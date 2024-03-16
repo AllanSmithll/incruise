@@ -4,10 +4,6 @@ import java.util.List;
 
 public class Student extends SchoolMember {
 
-	private String addres;
-
-	private String cellphoneNumber;
-
 	private List<Candidature> candidatureList;
 
 	public Candidature candidatarOferta(Vacancy vacancy) {

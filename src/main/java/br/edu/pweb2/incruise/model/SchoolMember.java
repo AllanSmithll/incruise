@@ -1,26 +1,26 @@
 package br.edu.pweb2.incruise.model;
 
-import br.edu.pweb2.incruise.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.Date;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SchoolMember extends User {
 
-	private String matriculation;
+	private String enrollment;
 
 	private String name;
 
+	private String cpf;
 
+	private Date birthdate;
 
 	private String course;
 
-	public SchoolMember(String username, String email, String password, String matriculation, String name, String course) {
-		super(username, email, password);
-		this.matriculation = matriculation;
-		this.name = name;
-		this.course = course;
-	}
-
-	public SchoolMember(){
-        super();
-
-    }
 }
