@@ -1,22 +1,14 @@
 package br.edu.pweb2.incruise.model;
 
-import java.util.List;
+import jakarta.persistence.*;
+import lombok.*;
 
+@EqualsAndHashCode(callSuper = true)
+@Entity
+@Table(name = "tb_student")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student extends SchoolMember {
-
-	private List<Candidature> candidatureList;
-
-	public Candidature candidatarOferta(Vacancy vacancy) {
-		return null;
-	}
-
-	public void cancelarCandidatura(Candidature candidatura) {
-
-	}
-
-	public List<Candidature> listarCandidaturas() {
-
-		return this.candidatureList;
-	}
-
+	private String term;
 }

@@ -1,17 +1,16 @@
 package br.edu.pweb2.incruise.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.MappedSuperclass;
+import lombok.*;
 
 import java.util.Date;
 
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@MappedSuperclass
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SchoolMember extends User {
+public abstract class SchoolMember extends User {
 
 	private String enrollment;
 

@@ -1,17 +1,18 @@
 package br.edu.pweb2.incruise.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
-import java.util.List;
-
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Entity
+@Data
+@Table(name = "tb_company")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Company extends User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String fantasyName;
 
@@ -19,22 +20,16 @@ public class Company extends User {
 
 	private String personContact;
 
-
+	@OneToOne
+	private Address adress;
 
 	private String principalActivity;
 
 	private String urlPage;
 
-	private List<Offer> opportunityList;
+	// A fazer
+	// private List<Offer> offerList;
 
 	// A FAZER
 	// private Document<PDF> comproEnder;
-
-	public void addOffer() {
-
-	}
-
-	public List<Offer> listOportunitty() {
-		return this.opportunityList;
-	}
 }
