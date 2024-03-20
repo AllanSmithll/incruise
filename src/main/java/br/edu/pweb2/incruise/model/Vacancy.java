@@ -1,12 +1,9 @@
 package br.edu.pweb2.incruise.model;
 
-import br.edu.pweb2.incruise.model.Opportunity;
-import br.edu.pweb2.incruise.model.Student;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vacancy extends Opportunity {
+public class Vacancy extends Offer {
 
 	//private List<Student> candidateList;
 
@@ -27,10 +24,6 @@ public class Vacancy extends Opportunity {
 
 	public Vacancy(){
 
-	}
-
-	public Vacancy(String principalActivity, int workloadSemanal, double transportVoucher, double remunerationValue, List<String> criteriaList) {
-		super(principalActivity, workloadSemanal, transportVoucher, remunerationValue, criteriaList);
 	}
 
 	public void setCandidatureList(List<Candidature> candidatureList) {

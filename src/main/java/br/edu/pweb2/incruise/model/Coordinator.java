@@ -1,13 +1,14 @@
 package br.edu.pweb2.incruise.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.*;
+
+@EqualsAndHashCode(callSuper = true)
+@Entity
+@Data
+@Table(name = "tb_coordinator")
+@AllArgsConstructor
 public class Coordinator extends SchoolMember {
 
-
-    public Coordinator(String username, String email, String password, String matriculation, String name, String course) {
-        super(username, email, password, matriculation, name, course);
-    }
-
-    public Coordinator() {
-        super();
-    }
 }
