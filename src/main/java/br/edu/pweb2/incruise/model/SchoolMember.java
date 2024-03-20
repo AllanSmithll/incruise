@@ -1,26 +1,25 @@
 package br.edu.pweb2.incruise.model;
 
-import br.edu.pweb2.incruise.model.User;
+import jakarta.persistence.MappedSuperclass;
+import lombok.*;
 
-public class SchoolMember extends User {
+import java.util.Date;
 
-	private String matriculation;
+@EqualsAndHashCode(callSuper = true)
+@MappedSuperclass
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class SchoolMember extends User {
+
+	private String enrollment;
 
 	private String name;
 
+	private String cpf;
 
+	private Date birthdate;
 
 	private String course;
 
-	public SchoolMember(String username, String email, String password, String matriculation, String name, String course) {
-		super(username, email, password);
-		this.matriculation = matriculation;
-		this.name = name;
-		this.course = course;
-	}
-
-	public SchoolMember(){
-        super();
-
-    }
 }
