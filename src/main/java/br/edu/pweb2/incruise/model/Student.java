@@ -2,13 +2,15 @@ package br.edu.pweb2.incruise.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
+//@Entity
+//@Table(name = "tb_student")
 @EqualsAndHashCode(callSuper = true)
-@Entity
-@Table(name = "tb_student")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@RequiredArgsConstructor
+@SuperBuilder
 public class Student extends SchoolMember {
-	private String term;
 }
