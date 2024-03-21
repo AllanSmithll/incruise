@@ -4,11 +4,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
 
-@EqualsAndHashCode(callSuper = true)
-@Entity
+//@Entity
+//@Table(name = "tb_coordinator")
 @Data
-@Table(name = "tb_coordinator")
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
+@NoArgsConstructor
 public class Coordinator extends SchoolMember {
 
 }

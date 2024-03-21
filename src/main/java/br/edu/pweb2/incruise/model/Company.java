@@ -3,10 +3,10 @@ package br.edu.pweb2.incruise.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+//@Entity
+//@Table(name = "tb_company")
 @EqualsAndHashCode(callSuper = true)
-@Entity
 @Data
-@Table(name = "tb_company")
 @NoArgsConstructor
 @AllArgsConstructor
 public class Company extends User {
