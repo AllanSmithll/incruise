@@ -2,14 +2,12 @@ package br.edu.pweb2.incruise.model;
 
 import jakarta.persistence.MappedSuperclass;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
-@MappedSuperclass
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public abstract class SchoolMember extends User {
 
 	private String enrollment;
@@ -18,8 +16,16 @@ public abstract class SchoolMember extends User {
 
 	private String cpf;
 
-	private Date birthdate;
+	private String birthdate;
 
 	private String course;
 
+	public SchoolMember(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String cpf, String birthdate, String course) {
+		super(id, username, email, password, phoneNumber);
+		this.enrollment = enrollment;
+		this.name = name;
+		this.cpf = cpf;
+		this.birthdate = birthdate;
+		this.course = course;
+	}
 }
