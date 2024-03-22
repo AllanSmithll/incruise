@@ -8,10 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Vacancy extends Offer {
 
 	//private List<Student> candidateList;
@@ -30,4 +28,7 @@ public class Vacancy extends Offer {
 		return students;
 	}
 
+	public Vacancy(String principalActivity, int workloadSemanal, double transportVoucher, double remunerationValue, List<String> criteriaList) {
+		super(principalActivity, workloadSemanal, transportVoucher, remunerationValue, criteriaList);
+	}
 }

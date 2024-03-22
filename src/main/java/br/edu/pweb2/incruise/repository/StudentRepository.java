@@ -1,42 +1,51 @@
 package br.edu.pweb2.incruise.repository;
 
 
-import br.edu.pweb2.incruise.model.SchoolMember;
 import br.edu.pweb2.incruise.model.Student;
-//import br.edu.pweb2.incruise.model.User;
-//import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Component
 public class StudentRepository {
 
-    private final Map<Integer, Student> studentMap = new HashMap<>();
+    public static Integer nextId =1;
+
+    public static final List<Student> studentList = new ArrayList<>();
 
     {
-        Student s1 = new Student();
+        Student s1 = new Student(0,"bob","bob@gmail","123","(83) 98843-53242","1234","Bob Marley","12345678901", "12/03/2004","Sistemas Para Internet");
         this.add(s1);
-        Student s2 = new Student();
+        Student s2 = new Student(0,"po","poppey<3Olivia@gmail","123","(83) 98878-53242","1234","Olivia Palito","098765432112", "6/12/1999","Sistemas Para Internet");
         this.add(s2);
 
     }
     public void add(Student student){
-
-        Integer id = this.generateID();
-        student.setId(id);
-        studentMap.put(id, student);
+        student.setId( nextId++);
+        studentList.add(student);
     }
 
     public List<Student> list(){
-        return new ArrayList<>(this.studentMap.values());
+        return studentList;
     }
 
-    public void remove(Integer id){
-        this.studentMap.remove(id);
+    public void remove(Integer id) throws Exception {
+
+        Student student =this.find(id);
+        studentList.remove(student);
+
     }
 
+
+    public Student find(Integer id) throws Exception {
+
+        for(Student s: studentList){
+            if(s.getId().equals(id))
+                return s;
+        }
+        throw new Exception("Student not Found");
+    }
+/*
     private Integer generateID(){
 
         List<Student> students = this.list();
@@ -51,5 +60,5 @@ public class StudentRepository {
             id++; // se não, aumente o id e continue
         }
         return id;
-    }
+    }*/
 }
