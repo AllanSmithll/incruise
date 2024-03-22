@@ -2,17 +2,15 @@ package br.edu.pweb2.incruise.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 //@Entity
 //@Table(name = "tb_company")
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Company extends User {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
 	private String fantasyName;
 
@@ -21,7 +19,7 @@ public class Company extends User {
 	private String personContact;
 
 	@OneToOne
-	private Address adress;
+	private String adress;
 
 	private String principalActivity;
 
@@ -32,4 +30,15 @@ public class Company extends User {
 
 	// A FAZER
 	// private Document<PDF> comproEnder;
+
+
+	public Company(Integer id, String username, String email, String password, String phoneNumber, String fantasyName, String cnpj, String personContact, String adress, String principalActivity, String urlPage) {
+		super(id, username, email, password, phoneNumber);
+		this.fantasyName = fantasyName;
+		this.cnpj = cnpj;
+		this.personContact = personContact;
+		this.adress = adress;
+		this.principalActivity = principalActivity;
+		this.urlPage = urlPage;
+	}
 }
