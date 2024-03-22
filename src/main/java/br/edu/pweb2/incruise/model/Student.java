@@ -1,8 +1,7 @@
 package br.edu.pweb2.incruise.model;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Student extends SchoolMember {
 
-    private List<Candidature> candidatureList = new ArrayList<>();
+    private final List<Candidature> candidatureList = new ArrayList<>();
 
     public Student(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String cpf, String birthdate, String course) {
         super(id, username, email, password, phoneNumber, enrollment, name, cpf, birthdate, course);
