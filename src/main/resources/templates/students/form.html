@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de cadastro</title>
+</head>
+<body>
+    <h1>Cadastrar Aluno</h1>
+    <form th:action="@{/student/save}" method="post" th:object="${student}">
+        <input type="hidden" th:field="*{id}"/>
+        Nome: <input type="text" th:field="*{name}"/><br/> <br/>
+        Senha: <input type="password" th:field="*{password}"/><br/><br/>
+        Email: <input type="text" th:field="*{email}"/><br/><br/>
+        Matrícula: <input type="text" th:field="*{enrollment}"/><br/><br/>
+        Curso: <input type="text" th:field="*{course}"/><br/><br/>
+        <input type="submit" value="Salvar">
+    </form>
+</body>
+</html>

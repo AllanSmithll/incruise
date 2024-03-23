@@ -5,7 +5,7 @@ import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,26 +19,35 @@ public class StudentController {
     StudentRepository studentRepository;
 
     @RequestMapping("/register")
-    public String getForm(Student student, Model model){
+    public String getForm(Student student, Model model) {
         model.addAttribute("student", student);
         return "students/form";
 
     }
 
     @RequestMapping("/students")
-    public ModelAndView getAllStudents(ModelAndView model){
-        model.setViewName("students/list");
+    public ModelAndView getAll(ModelAndView modelAndView) {
+        modelAndView.setViewName("students/list");
         List<Student> students = studentRepository.list();
-        model.addObject("students", students);
-        return model;
-
+        modelAndView.addObject("students", students);
+        return modelAndView;
     }
 
-//    @RequestMapping("/save")
-//    public String saveStudent(Student student, Model model){
-//            model.addAtribute()
-//
-//
-//    }
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(Student student, ModelAndView modelAndView) {
+        studentRepository.add(student);
+        modelAndView.setViewName("students/list");
+        modelAndView.addObject("students", studentRepository.list());
+        return modelAndView;
+    }
 
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    public String delete(@PathVariable("id") Integer id) {
+        try {
+            studentRepository.remove(id);
+            return "redirect:/student/students";
+        } catch (Exception e) {
+            return "redirect:/student/students";
+        }
+    }
 }

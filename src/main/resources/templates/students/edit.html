@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Aluno</title>
+</head>
+<body>
+<h1>Editar Aluno</h1>
+<form th:action="@{/student/edit/{id}(id=${student.id})}" method="post">
+  <input type="hidden" th:field="*{id}"/>
+  Nome: <input type="text" th:field="*{name}"/><br/><br/>
+  Email: <input type="text" th:field="*{email}"/><br/><br/>
+  Matrícula: <input type="text" th:field="*{enrollment}"/><br/><br/>
+  Curso: <input type="text" th:field="*{course}"/><br/><br/>
+  <input type="submit" value="Salvar">
+</form>
+</body>
+</html>
