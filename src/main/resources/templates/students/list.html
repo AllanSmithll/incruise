@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estudantes</title>
+</head>
+<body>
+<h1>Todos estudantes cadastrados:</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Matrícula</th>
+        <th>Curso</th>
+        <th>Email</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <button>
+        <a th:href="@{/student/register}">Novo</a>
+    </button>
+    <tr th:each="student : ${students}">
+        <td>[[${student.id}]]</td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.enrollment}"></td>
+        <td th:text="${student.course}"></td>
+        <td th:text="${student.email}"></td>
+        <td>
+            <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
+                <input type="hidden" name="_method" value="DELETE"/>
+                <input type="submit" value="Remover"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

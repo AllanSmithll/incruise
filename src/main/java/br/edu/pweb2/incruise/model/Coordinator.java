@@ -1,9 +1,8 @@
 package br.edu.pweb2.incruise.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+//import jakarta.persistence.Entity;
+//import jakarta.persistence.Table;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 //@Entity
 //@Table(name = "tb_coordinator")
