@@ -3,10 +3,11 @@ package br.edu.pweb2.incruise.repository;
 
 import br.edu.pweb2.incruise.model.Student;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Component
+@Repository
 public class StudentRepository {
 
     public static Integer nextId =1;
