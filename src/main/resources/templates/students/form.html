@@ -16,6 +16,11 @@
         Nome de Usuário: <input type="text" th:field="*{username}"/><br/> <br/>
         Email: <input type="text" th:field="*{email}"/><br/><br/>
         Senha: <input type="password" th:field="*{password}"/><br/><br/>
+        Competências:
+        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+            <input type="checkbox" th:field="*{competenceList}" th:value="${competence}" th:checked="${student.competenceList.contains(competence)}"/>
+            <span th:text="${competence.getDescription()}"></span>
+        </label><br/><br/>
         <input type="submit" value="Salvar">
     </form>
 </body>

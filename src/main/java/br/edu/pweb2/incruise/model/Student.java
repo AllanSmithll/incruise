@@ -14,7 +14,7 @@ import java.util.List;
 public class Student extends SchoolMember {
     private String birthdate;
     private String phoneNumber;
-
+    private List<Competence> competenceList = new ArrayList<>();
     private final List<Candidature> candidatureList = new ArrayList<>();
 
     public Student(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String birthdate, String course) {
