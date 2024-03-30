@@ -14,9 +14,9 @@ public class StudentRepository {
     public static final List<Student> studentList = new ArrayList<>();
 
     {
-        Student s1 = new Student(0,"bob","bob@gmail","123","(83) 98843-53242","1234","Bob Marley","12345678901", "12/03/2004","Sistemas Para Internet");
+        Student s1 = new Student(0,"bob","bob@gmail","123","(83) 98843-53242","1234","Bob Marley", "12/03/2004","Sistemas Para Internet");
         this.add(s1);
-        Student s2 = new Student(0,"po","poppey<3Olivia@gmail","123","(83) 98878-53242","1234","Olivia Palito","098765432112", "6/12/1999","Sistemas Para Internet");
+        Student s2 = new Student(0,"po","poppey<3Olivia@gmail","123","(83) 98878-53242","1234","Olivia Palito", "6/12/1999","Sistemas Para Internet");
         this.add(s2);
 
     }

@@ -8,14 +8,19 @@ import java.util.List;
 
 //@Entity
 //@Table(name = "tb_student")
+@Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Student extends SchoolMember {
-
+    private String birthdate;
+    private String phoneNumber;
+    private List<Competence> competenceList = new ArrayList<>();
     private final List<Candidature> candidatureList = new ArrayList<>();
 
-    public Student(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String cpf, String birthdate, String course) {
-        super(id, username, email, password, phoneNumber, enrollment, name, cpf, birthdate, course);
+    public Student(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String birthdate, String course) {
+        super(id, username, email, password, enrollment, name, course);
+        this.phoneNumber = phoneNumber;
+        this.birthdate = birthdate;
     }
 
     public void addCandidature(Candidature candidature) {

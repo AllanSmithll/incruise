@@ -9,10 +9,18 @@
     <form th:action="@{/student/save}" method="post" th:object="${student}">
         <input type="hidden" th:field="*{id}"/>
         Nome: <input type="text" th:field="*{name}"/><br/> <br/>
-        Senha: <input type="password" th:field="*{password}"/><br/><br/>
-        Email: <input type="text" th:field="*{email}"/><br/><br/>
         Matrícula: <input type="text" th:field="*{enrollment}"/><br/><br/>
         Curso: <input type="text" th:field="*{course}"/><br/><br/>
+        Data de Nascimento: <input type="text" th:field="*{birthdate}"/><br/><br/>
+        Número de telefone: <input type="text" th:field="*{phoneNumber}"/><br/><br/>
+        Nome de Usuário: <input type="text" th:field="*{username}"/><br/> <br/>
+        Email: <input type="text" th:field="*{email}"/><br/><br/>
+        Senha: <input type="password" th:field="*{password}"/><br/><br/>
+        Competências:
+        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+            <input type="checkbox" th:field="*{competenceList}" th:value="${competence}" th:checked="${student.competenceList.contains(competence)}"/>
+            <span th:text="${competence.getDescription()}"></span>
+        </label><br/><br/>
         <input type="submit" value="Salvar">
     </form>
 </body>
