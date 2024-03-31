@@ -1,8 +1,7 @@
 package br.edu.pweb2.incruise.model;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 //@Entity
 //@Table(name = "tb_company")

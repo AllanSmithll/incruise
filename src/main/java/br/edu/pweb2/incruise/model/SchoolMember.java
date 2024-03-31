@@ -1,10 +1,9 @@
 package br.edu.pweb2.incruise.model;
 
-import jakarta.persistence.MappedSuperclass;
+//import jakarta.persistence.MappedSuperclass;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
+//import java.util.Date;
 
 @Data
 @NoArgsConstructor

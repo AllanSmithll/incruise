@@ -1,8 +1,7 @@
 package br.edu.pweb2.incruise.model;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Student extends SchoolMember {
-
     private String birthdate;
     private String phoneNumber;
     private List<Competence> competenceList = new ArrayList<>();

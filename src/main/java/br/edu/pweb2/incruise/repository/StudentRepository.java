@@ -37,7 +37,6 @@ public class StudentRepository {
 
     }
 
-
     public Student find(Integer id) throws Exception {
 
         for(Student s: studentList){
@@ -46,6 +45,7 @@ public class StudentRepository {
         }
         throw new Exception("Student not Found");
     }
+
 /*
     private Integer generateID(){
 
