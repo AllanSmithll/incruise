@@ -14,18 +14,12 @@ public abstract class SchoolMember extends User {
 
 	private String name;
 
-	private String cpf;
-
-	private String birthdate;
-
 	private String course;
 
-	public SchoolMember(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String cpf, String birthdate, String course) {
-		super(id, username, email, password, phoneNumber);
+	public SchoolMember(Integer id, String username, String email, String password, String enrollment, String name, String course) {
+		super(id, username, email, password);
 		this.enrollment = enrollment;
 		this.name = name;
-		this.cpf = cpf;
-		this.birthdate = birthdate;
 		this.course = course;
 	}
 }

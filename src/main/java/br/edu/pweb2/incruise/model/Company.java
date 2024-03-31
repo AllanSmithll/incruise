@@ -11,15 +11,20 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 
 public class Company extends User {
-
 	private String fantasyName;
 
 	private String cnpj;
 
+	private String phoneNumber;
+
 	private String personContact;
 
+<<<<<<< Updated upstream
 	@OneToOne
 	private String adress;
+=======
+	private String address;
+>>>>>>> Stashed changes
 
 	private String principalActivity;
 
@@ -32,12 +37,13 @@ public class Company extends User {
 	// private Document<PDF> comproEnder;
 
 
-	public Company(Integer id, String username, String email, String password, String phoneNumber, String fantasyName, String cnpj, String personContact, String adress, String principalActivity, String urlPage) {
-		super(id, username, email, password, phoneNumber);
+	public Company(Integer id, String username, String email, String password, String fantasyName, String cnpj, String phoneNumber, String personContact, String address, String principalActivity, String urlPage) {
+		super(id, username, email, password);
 		this.fantasyName = fantasyName;
 		this.cnpj = cnpj;
+		this.phoneNumber = phoneNumber;
 		this.personContact = personContact;
-		this.adress = adress;
+		this.address = address;
 		this.principalActivity = principalActivity;
 		this.urlPage = urlPage;
 	}

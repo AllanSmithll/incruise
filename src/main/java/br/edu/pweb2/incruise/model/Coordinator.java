@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 public class Coordinator extends SchoolMember {
 
-    public Coordinator(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String cpf, String birthdate, String course) {
-        super(id, username, email, password, phoneNumber, enrollment, name, cpf, birthdate, course);
+    public Coordinator(Integer id, String username, String email, String password, String enrollment, String name, String course) {
+        super(id, username, email, password, enrollment, name, course);
     }
 }
