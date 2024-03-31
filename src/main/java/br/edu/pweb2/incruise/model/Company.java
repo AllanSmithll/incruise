@@ -19,12 +19,7 @@ public class Company extends User {
 
 	private String personContact;
 
-<<<<<<< Updated upstream
-	@OneToOne
-	private String adress;
-=======
 	private String address;
->>>>>>> Stashed changes
 
 	private String principalActivity;
 

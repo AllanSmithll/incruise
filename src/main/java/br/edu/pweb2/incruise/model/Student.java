@@ -13,15 +13,11 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Student extends SchoolMember {
-<<<<<<< Updated upstream
 
-    private List<Candidature> candidatureList = new ArrayList<>();
-=======
     private String birthdate;
     private String phoneNumber;
     private List<Competence> competenceList = new ArrayList<>();
     private final List<Candidature> candidatureList = new ArrayList<>();
->>>>>>> Stashed changes
 
     public Student(Integer id, String username, String email, String password, String phoneNumber, String enrollment, String name, String birthdate, String course) {
         super(id, username, email, password, enrollment, name, course);

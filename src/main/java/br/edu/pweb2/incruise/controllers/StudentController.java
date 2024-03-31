@@ -36,14 +36,6 @@ public class StudentController {
 
     }
 
-<<<<<<< Updated upstream
-//    @RequestMapping("/save")
-//    public String saveStudent(Student student, Model model){
-//            model.addAtribute()
-//
-//
-//    }
-=======
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(Student student, ModelAndView modelAndView, @RequestParam(value = "competences", required = false) List<Competence> competences) {
         if (competences != null) {
