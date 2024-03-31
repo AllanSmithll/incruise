@@ -47,6 +47,5 @@ public class StudentController {
         modelAndView.addObject("students", studentRepository.list());
         return modelAndView;
     }
->>>>>>> Stashed changes
 
 }
