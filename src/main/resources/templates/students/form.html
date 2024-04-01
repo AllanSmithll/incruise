@@ -3,25 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulário de cadastro</title>
+    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png" th:href="@{/imgs/icons8-navio-48.png}">
+    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png">
+
+
 </head>
-<body>
-    <h1>Cadastrar Aluno</h1>
-    <form th:action="@{/student/save}" method="post" th:object="${student}">
-        <input type="hidden" th:field="*{id}"/>
-        Nome: <input type="text" th:field="*{name}"/><br/> <br/>
-        Matrícula: <input type="text" th:field="*{enrollment}"/><br/><br/>
-        Curso: <input type="text" th:field="*{course}"/><br/><br/>
-        Data de Nascimento: <input type="text" th:field="*{birthdate}"/><br/><br/>
-        Número de telefone: <input type="text" th:field="*{phoneNumber}"/><br/><br/>
-        Nome de Usuário: <input type="text" th:field="*{username}"/><br/> <br/>
-        Email: <input type="text" th:field="*{email}"/><br/><br/>
-        Senha: <input type="password" th:field="*{password}"/><br/><br/>
-        Competências:
-        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
-            <input type="checkbox" th:field="*{competenceList}" th:value="${competence}" th:checked="${student.competenceList.contains(competence)}"/>
-            <span th:text="${competence.getDescription()}"></span>
-        </label><br/><br/>
-        <input type="submit" value="Salvar">
-    </form>
+<style>
+    :root{
+        --primary-color-tomato: hsl(4,100%,67%);
+        --color-neutral-dark-state-gray:hsl(234, 29%, 20%);
+        --color-neutral-charcoal-grey:hsl(235, 18%, 26%);
+        --color-neutral-grey:hsl(231, 7%, 60%);
+        --color-neutral-white:hsl(0, 0%, 100%);
+        --dark-grey-color-neutral: hsl(0,0%,12%);
+        --grey-neutral-color: hsl(0, 0%, 20%);
+        --off-black-neutral-color: hsl(0,0%,8%);
+    }
+
+    .card-main {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        background-color: var(--dark-grey-color-neutral);
+        width: 500px;
+        height: 740px;
+        border-radius: 10px;
+    }
+
+    .main-screen {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        background-color: var(--color-neutral-dark-state-gray);
+    }
+
+    .main-content {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        margin-left: 100px;
+        color: var(--color-neutral-white);
+    }
+
+    .submit-input {
+        width: 300px;
+        height: 40px;
+        background-color: var(--color-neutral-charcoal-grey);
+        border-radius: 10px;
+        color: var(--color-neutral-white);
+        border: none;
+    }
+
+   .input-form {
+        border-radius: 5px;
+        padding: 5px;
+        margin: 3px;
+       width: 300px;
+    }
+    form .label-form{
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .label-competence {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+</style>
+<body class="main-screen">
+<div class="card-main">
+    <div class="main-content">
+        <h1>Cadastrar Aluno</h1>
+        <form th:action="@{/student/save}" method="post" th:object="${student}">
+
+
+           <input id="input-id" class="input-form" type="hidden" th:field="*{id}"/>
+
+            <label class="label-form" for="input-name">Name</label>
+            <input id="input-name" class="input-form" type="text" th:field="*{name}"/>
+
+            <label class="label-form" for="input-enrollment">Enrollment</label>
+            <input id="input-enrollment" class="input-form" type="text" th:field="*{enrollment}"/>
+
+            <label class="label-form" for="input-course">Course</label>
+            <input id="input-course" class="input-form" type="text" th:field="*{course}"/>
+
+            <label class="label-form" for="input-birthdate">Birthdate</label>
+            <input id="input-birthdate" class="input-form" type="text" th:field="*{birthdate}"/>
+
+
+            <label class="label-form" for="input-phone-number">Phone number</label>
+            <input id="input-phone-number" class="input-form" type="text" th:field="*{phoneNumber}"/>
+
+            <label class="label-form" for="input-username">Username</label>
+            <input id="input-username" class="input-form" type="text" th:field="*{username}"/>
+
+            <label class="label-form" for="input-email">Email</label>
+            <input class="input-form" id="input-email" type="text" th:field="*{email}"/>
+
+            <label class="label-form" for="input-senha">Password</label>
+            <input id="input-senha" class="input-form" type="password" th:field="*{password}"/>
+
+
+
+
+            <div class="label-competence">
+                <h3>Competências:</h3>
+                <label
+                      th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+                <input type="checkbox" th:field="*{competenceList}" th:value="${competence}"
+                       th:checked="${student.competenceList.contains(competence)}"/>
+                <span th:text="${competence.getDescription()}"></span>
+            </label></div>
+            <input  class="submit-input"  type="submit" value="Salvar">
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
