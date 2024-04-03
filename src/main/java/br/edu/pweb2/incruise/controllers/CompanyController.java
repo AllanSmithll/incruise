@@ -21,12 +21,12 @@ public class CompanyController {
     CompanyRepository companyRepository;
 
     @RequestMapping("/register")
-    public String getForm(Student company, Model model) {
+    public String getForm(Company company, Model model) {
         model.addAttribute("company", company);
         return "companies/form";
     }
 
-    @RequestMapping("/students")
+    @RequestMapping("/companies")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("companies/list");
         List<Company> companies = companyRepository.list();
@@ -34,11 +34,18 @@ public class CompanyController {
         return modelAndView;
     }
 
+    /*@RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView save(Company company, ModelAndView modelAndView) {
+        companyRepository.add(company);
+        modelAndView.setViewName("/");
+        modelAndView.addObject("companies", companyRepository.list());
+        return modelAndView;
+    }*/
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(Company company, ModelAndView modelAndView) {
         companyRepository.add(company);
-        modelAndView.setViewName("companies/list");
-        modelAndView.addObject("companies", companyRepository.list());
+        modelAndView.setViewName("redirect:/company/companies");  // Redirect to companies list
         return modelAndView;
     }
 

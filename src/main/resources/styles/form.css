@@ -1,0 +1,47 @@
+:root{
+    --primary-color-tomato: hsl(4,100%,67%);
+    --color-neutral-dark-state-gray:hsl(234, 29%, 20%);
+    --color-neutral-charcoal-grey:hsl(235, 18%, 26%);
+    --color-neutral-grey:hsl(231, 7%, 60%);
+    --color-neutral-white:hsl(0, 0%, 100%);
+    --dark-grey-color-neutral: hsl(0,0%,12%);
+    --grey-neutral-color: hsl(0, 0%, 20%);
+    --off-black-neutral-color: hsl(0,0%,8%);
+}
+
+.card-main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background-color: var(--dark-grey-color-neutral);
+    width: 500px;
+    height: 500px;
+}
+
+.main-screen {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--color-neutral-dark-state-gray);
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-left: 100px;
+    color: var(--color-neutral-white);
+}
+
+.submit-input {
+    width: 100px;
+    height: 40px;
+}
+
+.input-form {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px;
+}

@@ -43,7 +43,9 @@ public class StudentController {
         studentRepository.add(student);
         // Configura o ModelAndView
         modelAndView.setViewName("students/list");
-        modelAndView.addObject("students", studentRepository.list());
+        //modelAndView.addObject("students", studentRepository.list());
+        modelAndView.setViewName("redirect:/student/students");  // Redirect to students list
+        System.out.println(studentRepository.list());
         return modelAndView;
     }
 

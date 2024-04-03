@@ -1,12 +1,9 @@
-<<<<<<< Updated upstream
-=======
-@import 'theme.css';
+@import './theme.css';
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: default;
 }
 
 /* Body */
@@ -71,7 +68,6 @@ footer {
 }
 
 
->>>>>>> Stashed changes
 a {
     text-decoration: none;
 }
