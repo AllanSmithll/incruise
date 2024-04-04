@@ -1,3 +1,45 @@
+@import url("./theme.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: var(--font-family);
+    font-size: 16px;
+    color: var(--secondary-color);
+}
+
+/* Header */
+header {
+    background-color: var(--primary-color);
+    padding: 20px 0;
+}
+
 a {
     text-decoration: none;
+}
+/* Classes*/
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+img.logo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
+}
+
+div.logo{
+align-self:flex-start ;
+justify-content: center;
+
 }

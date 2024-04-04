@@ -1,0 +1,38 @@
+@import url("main.css");
+
+.card-main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    background-color: var(--neutral-color-dark-grey);
+    width: 500px;
+    height: 500px;
+}
+
+.main-screen {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--neutral-color-dark-state-gray);
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-left: 100px;
+    color: var(--neutral-color-white);
+}
+
+.submit-input {
+    width: 100px;
+    height: 40px;
+}
+
+.input-form {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 3px;
+}

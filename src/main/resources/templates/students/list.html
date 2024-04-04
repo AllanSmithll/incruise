@@ -1,117 +1,52 @@
 <!doctype html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/styles/list.css}">
+    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
     <title>Estudantes</title>
 </head>
-<style>
-    :root{
-        --primary-color-tomato: hsl(4,100%,67%);
-        --color-neutral-dark-state-gray:hsl(234, 29%, 20%);
-        --color-neutral-charcoal-grey:hsl(235, 18%, 26%);
-        --color-neutral-grey:hsl(231, 7%, 60%);
-        --color-neutral-white:hsl(0, 0%, 100%);
-        --dark-grey-color-neutral: hsl(0,0%,12%);
-        --grey-neutral-color: hsl(0, 0%, 20%);
-        --off-black-neutral-color: hsl(0,0%,8%);
-    }
-    .main-screen{
-        font-family: "Roboto Thin", Serif,sans-serif;
-        background-color: var(--color-neutral-charcoal-grey);
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        height: 100vh;
-    }
-    .card-component{
-        border-radius: 10px;
-        background-color: var(--dark-grey-color-neutral);
-        width: 600px;
-        height: auto;
-        color: var(--color-neutral-white);
-        margin: 10px;
-
-    }
-
-    th{
-        color: var(--primary-color-tomato)
-    }
-    .card-content{
-        margin: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .button-add{
-        border: none;
-        border-radius: 5px;
-        width: 70px;
-        background: var(--color-neutral-dark-state-gray);
-
-        font-size: 20px;
-        margin-right: 500px;
-        margin-bottom: 10px;
-        text-outline: none;
-    }
-    .button-add a{
-        color: var(--color-neutral-white);
-        text-decoration: none;
-    }
-
-    .input-delete {
-        background-color: var(--color-neutral-dark-state-gray);
-        color: var(--color-neutral-white);
-        border-radius: 5px;
-        border: none;
-        padding: 5px;
-        margin: 5px;
-    }
-    table{
-        border-collapse: collapse;
-    }
-</style>
 <body class="main-screen">
+    <div class="card-component">
+        <div class="card-content">
+            <h1>Todos os estudantes cadastrados</h1>
+            <button class="button-add">
+                <a th:href="@{/student/register}">Novo</a>
+            </button>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Matrícula</th>
+                        <th>Curso</th>
+                        <th>Email</th>
+                        <th>telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-<div class="card-component">
-
-    <div class="card-content">
-        <h1>Todos estudantes cadastrados</h1>
-        <button class="button-add">
-            <a th:href="@{/student/register}">New</a>
-        </button>
-        <table border="1">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th>
-                <th>Matrícula</th>
-                <th>Curso</th>
-                <th>Email</th>
-                <th>Ações</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr th:each="student : ${students}">
-                <td>[[${student.id}]]</td>
-                <td th:text="${student.name}"></td>
-                <td th:text="${student.enrollment}"></td>
-                <td th:text="${student.course}"></td>
-                <td th:text="${student.email}"></td>
-                <td>
-                    <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
-                        <input type="hidden" name="_method" value="DELETE"/>
-                        <input class="input-delete" type="submit" value="Remover"/>
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                    <tr th:each="student : ${students}">
+                        <td>[[${student.id}]]</td>
+                        <td th:text="${student.name}"></td>
+                        <td th:text="${student.enrollment}"></td>
+                        <td th:text="${student.course}"></td>
+                        <td th:text="${student.email}"></td>
+                        <td>
+                            <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <input class="input-delete" type="submit" value="Remover" />
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +19,13 @@ public class CompanyController {
     @Autowired
     CompanyRepository companyRepository;
 
-    @RequestMapping("/register")
-    public String getForm(Student company, Model model) {
+    @RequestMapping("/register")    
+    public String getForm(Company company, Model model) {
         model.addAttribute("company", company);
         return "companies/form";
     }
 
-    @RequestMapping("/students")
+    @RequestMapping("/companies")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("companies/list");
         List<Company> companies = companyRepository.list();
