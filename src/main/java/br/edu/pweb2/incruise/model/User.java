@@ -5,7 +5,6 @@ package br.edu.pweb2.incruise.model;
 //import jakarta.persistence.Id;
 //import jakarta.persistence.MappedSuperclass;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor

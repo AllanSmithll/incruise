@@ -1,10 +1,10 @@
 :root{
     --primary-color-tomato: hsl(4,100%,67%);
-    --color-neutral-dark-state-gray:hsl(234, 29%, 20%);
-    --color-neutral-charcoal-grey:hsl(235, 18%, 26%);
-    --color-neutral-grey:hsl(231, 7%, 60%);
-    --color-neutral-white:hsl(0, 0%, 100%);
-    --dark-grey-color-neutral: hsl(0,0%,12%);
+    --neutral-color-dark-state-gray:hsl(234, 29%, 20%);
+    --neutral-color-charcoal-grey:hsl(235, 18%, 26%);
+    --neutral-color-grey:hsl(231, 7%, 60%);
+    --neutral-color-white:hsl(0, 0%, 100%);
+    --neutral-color-dark-grey: hsl(0,0%,12%);
     --grey-neutral-color: hsl(0, 0%, 20%);
     --off-black-neutral-color: hsl(0,0%,8%);
 }
@@ -14,7 +14,7 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    background-color: var(--dark-grey-color-neutral);
+    background-color: var(--neutral-color-dark-grey);
     width: 500px;
     height: 500px;
 }
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: var(--color-neutral-dark-state-gray);
+    background-color: var(--neutral-color-dark-state-gray);
 }
 
 .main-content {
@@ -32,7 +32,7 @@
     align-content: center;
     flex-direction: column;
     margin-left: 100px;
-    color: var(--color-neutral-white);
+    color: var(--neutral-color-white);
 }
 
 .submit-input {

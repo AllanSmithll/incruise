@@ -1,12 +1,9 @@
-<<<<<<< Updated upstream
-=======
-@import 'theme.css';
+@import url("./theme.css");
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: default;
 }
 
 /* Body */
@@ -22,56 +19,27 @@ header {
     padding: 20px 0;
 }
 
+a {
+    text-decoration: none;
+}
+/* Classes*/
 .container {
-    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     margin: 0 auto;
 }
 
-.login-register {
-    float: right;
-    font-size: 14px;
-    color: #fff;
+img.logo{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    
 }
 
-.login-register a {
-    text-decoration: none;
-    color: #fff;
-    margin: 0 10px;
-}
+div.logo{
+align-self:flex-start ;
+justify-content: center;
 
-.login-register a:hover {
-    color: #ddd;
-}
-
-/* Main */
-main {
-    padding: 40px 0;
-}
-
-/* Section */
-section {
-    margin-bottom: 40px;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-/* Footer */
-footer {
-    background-color: var(--primary-color);
-    padding: 20px 0;
-    text-align: center;
-}
-
-
->>>>>>> Stashed changes
-a {
-    text-decoration: none;
 }
