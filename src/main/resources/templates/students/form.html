@@ -5,11 +5,10 @@
     <meta charset="UTF-8">
     <title>Formulário de cadastro</title>
     <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-
     <link rel="stylesheet" th:href="@{/styles/form.css}">
-
+    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png" th:href="@{/imgs/icons8-navio-48.png}">
+    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png">
 </head>
-
 <body class="main-screen">
     <div class="card-main">
         <div class="main-content">
@@ -18,33 +17,29 @@
 
                 <input id="input-id" class="input-form" type="hidden" th:field="*{id}" />
 
-                <label class="label-form" for="input-name">Name</label>
+                <label class="label-form" for="input-name">Nome</label>
                 <input id="input-name" class="input-form" type="text" th:field="*{name}" />
 
-                <label class="label-form" for="input-enrollment">Enrollment</label>
+                <label class="label-form" for="input-enrollment">Matrícula</label>
                 <input id="input-enrollment" class="input-form" type="text" th:field="*{enrollment}" />
 
-                <label class="label-form" for="input-course">Course</label>
+                <label class="label-form" for="input-course">Cursp</label>
                 <input id="input-course" class="input-form" type="text" th:field="*{course}" />
 
-                <label class="label-form" for="input-birthdate">Birthdate</label>
+                <label class="label-form" for="input-birthdate">Data de Nascimento</label>
                 <input id="input-birthdate" class="input-form" type="text" th:field="*{birthdate}" />
 
-
-                <label class="label-form" for="input-phone-number">Phone number</label>
+                <label class="label-form" for="input-phone-number">Número de Telefone</label>
                 <input id="input-phone-number" class="input-form" type="text" th:field="*{phoneNumber}" />
 
-                <label class="label-form" for="input-username">Username</label>
+                <label class="label-form" for="input-username">Nome de usuário</label>
                 <input id="input-username" class="input-form" type="text" th:field="*{username}" />
 
                 <label class="label-form" for="input-email">Email</label>
                 <input class="input-form" id="input-email" type="text" th:field="*{email}" />
 
-                <label class="label-form" for="input-senha">Password</label>
+                <label class="label-form" for="input-senha">Senha</label>
                 <input id="input-senha" class="input-form" type="password" th:field="*{password}" />
-
-
-
 
                 <div class="label-competence">
                     <h3>Competências:</h3>
@@ -58,7 +53,4 @@
             </form>
         </div>
     </div>
-
-</body>
-
 </html>
