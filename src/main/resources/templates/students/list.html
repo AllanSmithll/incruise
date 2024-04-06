@@ -25,7 +25,7 @@
                         <th>Matrícula</th>
                         <th>Curso</th>
                         <th>Email</th>
-                        <th>telefone</th>
+                        <th>Telefone</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -37,6 +37,7 @@
                         <td th:text="${student.enrollment}"></td>
                         <td th:text="${student.course}"></td>
                         <td th:text="${student.email}"></td>
+                        <td th:text="${student.phoneNumber}"></td>
                         <td>
                             <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
                                 <input type="hidden" name="_method" value="DELETE" />
