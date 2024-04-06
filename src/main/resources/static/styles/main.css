@@ -10,7 +10,7 @@
 body {
     font-family: var(--font-family);
     font-size: 16px;
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
 }
 
 /* Header */
@@ -42,4 +42,24 @@ div.logo{
 align-self:flex-start ;
 justify-content: center;
 
+}
+
+.flex{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex.around{
+    justify-content: space-around;
+}
+
+.flex.collumn{
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bolder{
+    font-weight: bolder;
 }

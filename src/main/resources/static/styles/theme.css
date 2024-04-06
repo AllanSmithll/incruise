@@ -1,5 +1,7 @@
 :root {
-
+    /*Cores específicas*/
+    --first-info-color: #F5F5F5;
+    /*Palheta*/
     --primary-color: #0073b7;
     /* Azul escuro */
     --primary-color-light: #428bca;
@@ -39,7 +41,7 @@
 
     --neutral-color-grey: hsl(231, 7%, 60%);
 
-    --neutral-color-white: hsl(0, 0%, 100%);
+    --neutral-color-white: #F2F2F2
 
     --neutral-color-dark-grey: hsl(0, 0%, 12%);
 

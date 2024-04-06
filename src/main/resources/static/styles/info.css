@@ -1,0 +1,78 @@
+@import url("./main.css");
+
+#first-info{
+    display: flex;
+    padding: 1.2rem;
+    align-items: center;
+    justify-content: space-evenly ;
+    background-color: var(--first-info-color);
+}
+
+#first-info img{
+    background-color: white;
+    border-radius: 50%;
+    height: 20vh;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+  }
+  
+  .info-section {
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+  }
+  
+  .info-section:first-child {
+    border-top: none;
+  }
+  
+  .info-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex.around {
+    justify-content: space-between;
+  }
+  
+  .flex.collumn {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .topic {
+    margin-bottom: 10px;
+  }
+  
+  .topic-title {
+    font-weight: bold;
+  }
+  
+  .topic-content {
+    font-size: 0.9em;
+  }
+  
+  .opportunity-card {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+    width: calc(50% - 15px);
+    float: left;
+  }
+  
+  .bolder {
+    font-weight: bold;
+  }
+  
