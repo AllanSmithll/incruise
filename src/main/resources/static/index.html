@@ -2,7 +2,7 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Incruise</title>
     <link rel="shortcut icon" type="imagex/png" href="imgs/logo.png">
 
     <link rel="stylesheet" href ="styles/principal-page.css">
@@ -16,7 +16,8 @@
             
         </div>
         <div class="login-register">
-            <a href="#">Login</a> | <a th:href="@{student/register}">Registrar</a>
+            <button type="button" onclick="window.location.href='#'">Login</button>
+            <button type="button" onclick="window.location.href='../templates/pages/choice-register.html'">Registrar</button>
         </div>
     </div>
 </header>

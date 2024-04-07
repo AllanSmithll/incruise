@@ -1,8 +1,6 @@
 package br.edu.pweb2.incruise.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Vacancy extends Offer {
+public class Vacancy extends Opportunity {
 
 	//private List<Student> candidateList;
 
@@ -28,7 +26,9 @@ public class Vacancy extends Offer {
 		return students;
 	}
 
-	public Vacancy(String principalActivity, int workloadSemanal, double transportVoucher, double remunerationValue, List<String> criteriaList) {
-		super(principalActivity, workloadSemanal, transportVoucher, remunerationValue, criteriaList);
+	public Vacancy(Integer id, String principalActivity, int weeklyWorkload, double remunerationValue,
+				   double transportVoucher, String prerequisites, List<Candidature> candidatureList) {
+		super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites);
+		this.candidatureList = candidatureList;
 	}
 }
