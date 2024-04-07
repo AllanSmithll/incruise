@@ -14,6 +14,7 @@ public class Vacancy extends Offer {
 
 	private List<Candidature> candidatureList;
 
+	private Integer quanty;
 	/**
 	 * Retorna uma lista contendo os STUDENTS candidatos a uma vaga
 	 * */

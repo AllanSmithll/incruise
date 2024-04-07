@@ -5,26 +5,25 @@
     padding: 1.2rem;
     align-items: center;
     justify-content: space-evenly ;
-    background-color: var(--first-info-color);
+    background-color: var(--info-background);
+    font-size: 1.6rem;
 }
 
 #first-info img{
     background-color: white;
     border-radius: 50%;
-    height: 20vh;
+    height: 25vh;
 }
 
 body {
-    font-family: sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f2f2f2;
+    font-family: var(--info-font-family);
+    cursor: default;
   }
   
   .info-section {
     padding: 20px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: var(--info-section-border);
     margin-bottom: 20px;
   }
   
@@ -32,44 +31,49 @@ body {
     border-top: none;
   }
   
-  .info-section h2 {
+.section-title {
     font-size: 1.5em;
-    margin-bottom: 10px;
+    margin: 20px 0;
     text-align: center;
   }
+
   
-  .flex {
-    display: flex;
-  }
-  
-  .flex.around {
-    justify-content: space-between;
-  }
-  
-  .flex.collumn {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .topic {
-    margin-bottom: 10px;
+  .topic, .opportunity-card {
+    margin: 20px;
+    text-align: center;
   }
   
   .topic-title {
     font-weight: bold;
+    margin-bottom: 10px;
+
   }
   
   .topic-content {
-    font-size: 0.9em;
+    font-size: 1.2em;
   }
   
   .opportunity-card {
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    border: var(--info-section-border);
     margin-right: 10px;
     width: calc(50% - 15px);
     float: left;
+    background: var(--oportunity-card-background);
+    transition: ease-in-out all 0.5s ;
+  }
+
+  .opportunity-card:hover{
+    padding: 14px; 
+    background: var(--oportunity-card-background-hover);
+  }
+  
+  .opportunity-card p{
+    margin: 10px 0px;
+  }
+  .opportunity-card:hover *{
+    color: var(--oportunity-card-color-hover);
   }
   
   .bolder {

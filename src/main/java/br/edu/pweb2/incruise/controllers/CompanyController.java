@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/company")
@@ -19,7 +21,7 @@ public class CompanyController {
     @Autowired
     CompanyRepository companyRepository;
 
-    @RequestMapping("/register")    
+    @RequestMapping("/register")
     public String getForm(Company company, Model model) {
         model.addAttribute("company", company);
         return "companies/form";
@@ -50,4 +52,16 @@ public class CompanyController {
             return "redirect:/company/companies";
         }
     }
+
+    @GetMapping("/find/{id}")
+    public String getCompanyById(@PathVariable Integer id, Model model) {
+        // Aqui você pode buscar a empresa com base no ID
+        Company companyGet = companyRepository.find(id);
+
+        // Adicione a empresa ao modelo
+        model.addAttribute("company", companyGet);
+
+        return "redirect:/companies/info";
+    }
+
 }
