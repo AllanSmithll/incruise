@@ -1,114 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar-se</title>
     <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-
     <link rel="stylesheet" th:href="@{/styles/form.css}">
-
 </head>
-
 <body class="main-screen">
     <div class="card-main">
-
         <div class="main-content">
             <h1>Cadastrar-se</h1>
             <form th:action="@{/company/save}" method="post" th:object="${company}">
-
                 <div class="form-container">
                     <h2 class="form-container-description">
                         Login
                     </h2>
-
                     <label for="username">Usuário</label>
-                    <!-- required -->
                     <input type="text" id="username" class="input-form" th:field="*{username}">
-
                     <div class="flex">
                         <label for="password">Senha</label>
-                        <!-- required -->
                         <input type="password" id="password" class="input-form" th:field="*{password}">
 
-                        <label for="password-confirm">Confirme sua senha</label>
-                        <!-- required -->
+                        <label for="password-confirm">Confirmar senha</label>
                         <input type="password" id="password-confirm" class="input-form">
-
                     </div>
                 </div>
-
                 <div class="form-container">
                     <h2 class="form-container-description">
                         Informações Básicas
                     </h2>
-                    <!--<input id="input-id" class="input-form" type="hidden" th:field="*{id}"/>
--->
                     <label for="fantasyNameInput">Nome Fantasia</label>
-                    <!-- required -->
                     <input type="text" id="fantasyNameInput" class="input-form" th:field="*{fantasyName}">
 
-                    <label for="cnpjInput">Cnpjoto</label>
-
-                    <!-- required -->
+                    <label for="cnpjInput">CNPJ</label>
                     <input type="text" id="cnpjInput" class="input-form" th:field="*{cnpj}">
 
-                    <label for="principalActivityInput">Principal Atividade</label>
-                    <!-- required -->
+                    <label for="principalActivityInput">Principal atividade</label>
                     <input type="text" id="principalActivityInput" class="input-form" th:field="*{principalActivity}">
 
-                    <label for="urlPageInput">site da empresa</label>
-
+                    <label for="urlPageInput">Site da empresa</label>
                     <input type="text" id="urlPageInput" class="input-form" th:field="*{urlPage}">
-
                 </div>
-
                 <div class="form-container">
                     <h2 class="form-container-description">
                         Contato
                     </h2>
-
-                    <label for="emailInput">email</label>
-
-                    <!-- required -->
+                    <label for="emailInput">Email</label>
                     <input type="email" id="emailInput" class="input-form" th:field="*{email}">
 
-                    <label for="phoneNumberInput">telefone</label>
-
-                    <!-- required -->
+                    <label for="phoneNumberInput">Telefone</label>
                     <input type="text" id="phoneNumberInput" class="input-form" th:field="*{phoneNumber}">
 
                     <label for="personContactInput">Nome do responsável</label>
-
-                    <!-- required -->
                     <input type="text" id="personContactInput" class="input-form" th:field="*{personContact}">
-
-
                 </div>
-
                 <div class="form-container">
                     <h2 class="form-container-description">
-                        Confirmar Enderço
+                        Confirmar Endereço
                     </h2>
-
                     <label for="addressInput">Endereço</label>
-
-                    <!-- required -->
                     <input type="text" id="addressInput" class="input-form" th:field="*{address}">
-                
-                
-                    <label for="adressVerify">Comprovante de endereço</label>
 
-                    <!-- required -->
+                    <label for="adressVerify">Comprovante de endereço</label>
                     <input type="file" id="adressVerify" class="input-form" th:field="*{address}">
-                
                 </div>
                 <button class="submit-input" type="submit"> salvar</button>
-
             </form>
         </div>
     </div>
-
 </body>
-
 </html>
