@@ -3,6 +3,8 @@ package br.edu.pweb2.incruise.model;
 //import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 //@Entity
 //@Table(name = "tb_company")
 
@@ -24,8 +26,7 @@ public class Company extends User {
 
 	private String urlPage;
 
-	// A fazer
-	// private List<Offer> offerList;
+	private List<Opportunity> opportunityList;
 
 	// A FAZER
 	// private Document<PDF> comproEnder;

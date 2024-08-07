@@ -5,15 +5,16 @@ import lombok.Getter;
 @Getter
 public enum Competence {
     JAVA("Java"),
-    TEAM_WORK("Trabalho em Equipe"),
     PYTHON("Python"),
+    HTML("HTML"),
     CSS("CSS"),
     JAVASCRIPT("JavaScript"),
-    ADAPTABILITY("Adaptabilidade"),
     MYSQL("MySQL"),
     POSTGRES("PostgreSQL"),
     WINDOWS("Windows"),
-    ANDROID("Android");
+    ANDROID("Android"),
+    TEAM_WORK("Trabalho em Equipe"),
+    ADAPTABILITY("Adaptabilidade");
 
     private final String description;
 
@@ -21,7 +22,4 @@ public enum Competence {
         this.description = description;
     }
 
-    public String getDescription() {
-        return description;
-    }
 }
