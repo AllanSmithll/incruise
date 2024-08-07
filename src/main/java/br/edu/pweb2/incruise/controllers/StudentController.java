@@ -41,10 +41,8 @@ public class StudentController {
             student.setCompetenceList(competences);
         }
         studentRepository.add(student);
-        // Configura o ModelAndView
         modelAndView.setViewName("students/list");
-        //modelAndView.addObject("students", studentRepository.list());
-        modelAndView.setViewName("redirect:/student/students");  // Redirect to students list
+        modelAndView.setViewName("redirect:/student/students");
         System.out.println(studentRepository.list());
         return modelAndView;
     }

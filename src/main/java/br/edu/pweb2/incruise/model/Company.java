@@ -6,6 +6,8 @@ import java.util.List;
 //import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 //@Entity
 //@Table(name = "tb_company")
 
