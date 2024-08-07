@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title >
+        [[${company.fantasyName}]]
+    </title>
+
+    <link rel="stylesheet" th:href="@{/styles/info.css}">
+    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
+
+
+</head>
+
+<body>
+    <!-- <section class="info-section" id="first-info">
+
+        <img src="imgs/enterprise-default.png">
+        <h1 id="name"> [[${company.fantasyName}]]</h1>
+    </section>
+    <section class="info-section" id="activity-section">
+        <div class="topic">
+            <h1 class="topic-title"> Principal atividade</h1>
+            <p class="topic-content">[[${company.principalActivity}]]</p>
+        </div>
+    </section>
+    <section class="info-section" id="basic-section">
+
+        <h2 class="section-title"> Dados da Empresa</h2>
+
+        <div class="flex around ">
+
+            <div class="topic">
+                <h1 class="topic-title">Nome Fantasia</h1>
+                <p class="topic-content"> [[${company.fantasyName}]]</p>
+            </div>
+
+            <div class="topic">
+                <h1 class="topic-title">CNPJ</h1>
+                <p class="topic-content"> [[${company.cnpj}]]</p>
+            </div>
+
+        </div>
+
+        <div class="topic">
+            <h1 class="topic-title">Endereco</h1>
+            <p class="topic-content"> [[${company.address}]]</p>
+        </div>
+        <div class="topic">
+            <h1 class="topic-title">Site</h1>
+            <p class="topic-content"><a
+                    th:href="@{company.urlpage}"
+                    target="_blank"> [[${company.urlpage}]]</a></p>
+        </div>
+
+    </section>
+
+    <section class="info-section" id="contact-section">
+
+        <h2 class="section-title"> Contato </h2>
+        <div class="flex collumn">
+            <div class="flex around ">
+
+                <div class="topic">
+                    <h1 class="topic-title"> Email</h1>
+                    <p class="topic-content"> [[${company.email}]]</p>
+                </div>
+
+                <div class="topic">
+                    <h1 class="topic-title">Telefone</h1>
+                    <p class="topic-content"> [[${company.phoneNumber}]]</p>
+                </div>
+
+            </div>
+
+            <div class="topic">
+                <h1 class="topic-title">Pessoa Contato</h1>
+                <p class="topic-content"> [[${company.personContact}]]</p>
+            </div>
+
+        </div>
+
+    </section>
+    <section class="info-section" id="oportunity-section">
+        <h2 class="section-title"> Oportunidades </h2>
+
+        <div class="flex row" >
+            <div class="opportunity-card" th:each="vacancy :${company.vacancyList}">
+                <h2 class="topic-title">[[${vacancy.principalActivity}]]</h2>
+
+                <p><span class="bolder">Remuneração: </span>
+                    <span>[[${vacancy.remunerationValue}]]</span>
+                </p>
+
+                <p><span class="bolder">Quantidade de Vagas: </span>
+                    <span>[[${vacancy.quanty}]] Vagas</span>
+                </p>
+                <p><span class="bolder">Carga Horária: </span>
+                    <span>[[${vacancy.workloadSemanal}]]</span></p>
+                <p>
+                
+            </div>
+
+        </div>
+
+    </section>
+ -->
+</body>
+
+</html>

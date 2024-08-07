@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.repository;
 
 import br.edu.pweb2.incruise.model.Company;
+import br.edu.pweb2.incruise.model.ItemNotFoundException;
 import br.edu.pweb2.incruise.model.Student;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -35,12 +36,12 @@ public class CompanyRepository {
         companyList.remove(company);
     }
 
-    public Company find(Integer id) throws Exception {
+    public Company find(Integer id) throws ItemNotFoundException {
         for(Company c: companyList){
             if(c.getId().equals(id))
                 return c;
         }
-        throw new Exception("Company not Found");
+        throw new ItemNotFoundException("Company with id: "+ id + " not Found");
     }
 
 /*

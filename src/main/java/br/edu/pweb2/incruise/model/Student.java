@@ -9,7 +9,6 @@ import java.util.List;
 //@Entity
 //@Table(name = "tb_student")
 @Data
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Student extends SchoolMember {
     private String birthdate;

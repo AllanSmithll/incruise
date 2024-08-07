@@ -10,7 +10,8 @@
 body {
     font-family: var(--font-family);
     font-size: 16px;
-    color: var(--secondary-color);
+    background: var(--body-color-default);
+
 }
 
 /* Header */
@@ -19,8 +20,17 @@ header {
     padding: 20px 0;
 }
 
-a {
+a{
     text-decoration: none;
+    color: var(--links-color);
+    transition: ease-in all 0.5s;
+
+}
+
+a:hover{
+    color: var(--neutral-color-dark-state-gray);
+    font: bold;
+    text-decoration: underline;
 }
 /* Classes*/
 .container {
@@ -42,4 +52,24 @@ div.logo{
 align-self:flex-start ;
 justify-content: center;
 
+}
+
+.flex{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex.around{
+    justify-content: space-around;
+}
+
+.flex.collumn{
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bolder{
+    font-weight: bolder;
 }
