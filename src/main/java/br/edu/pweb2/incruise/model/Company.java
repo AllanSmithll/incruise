@@ -30,7 +30,7 @@ public class Company extends User {
 	private String urlPage;
 
 	// A fazer
-	private List<Offer> offerList;
+	private List<Opportunity> opportunityList;
 
 	// A FAZER
 	// private Document<PDF> comproEnder;
@@ -49,9 +49,10 @@ public class Company extends User {
 
 	public List<Vacancy> getVacancyList() {
 		List<Vacancy> vacancies = new ArrayList<>();
-		for (Offer offer : offerList) {
-			if (offer instanceof Vacancy)
-				vacancies.add((Vacancy) offer);
+		for (Opportunity opportunity : opportunityList) {
+			
+			if (opportunity instanceof Vacancy)
+				vacancies.add((Vacancy) opportunity);
 		}
 		return vacancies;
 	}
