@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.controllers;
 
 
+import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.repository.InternshipOfferRepository;
@@ -22,7 +23,7 @@ public class InternshipOfferController {
     @RequestMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
         model.addAttribute("internshipOffer", internshipOffer);
-        return "offers/form";
+        return "/offers/form";
     }
 
     @RequestMapping("/offers")
@@ -44,9 +45,8 @@ public class InternshipOfferController {
             offer.setDesirableSkills(derisableSkills);
         }
         internshipOfferRepository.add(offer);
-        modelAndView.setViewName("offers/list");
-        modelAndView.setViewName("redirect:/offer/offers");
-        System.out.println(internshipOfferRepository.list());
+        modelAndView.setViewName("/offers/list");
+        modelAndView.addObject("offers", internshipOfferRepository.list());
         return modelAndView;
     }
 
@@ -54,9 +54,9 @@ public class InternshipOfferController {
     public String delete(@PathVariable("id") Integer id) {
         try {
             internshipOfferRepository.remove(id);
-            return "redirect:/offer/offers";
+            return "redirect:/internshipOffer/offers";
         } catch (Exception e) {
-            return "redirect:/offer/offers";
+            return "redirect:/internshipOffer/offers";
         }
     }
 }
