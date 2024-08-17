@@ -7,9 +7,9 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class InternshipOffer extends Opportunity {
-    public InternshipOffer(Integer id, String principalActivity, int weeklyWorkload, double remunerationValue,
-                           double transportVoucher, String prerequisites) {
+public class Internship extends Opportunity {
+    public Internship(Integer id, String principalActivity, int weeklyWorkload, double remunerationValue,
+                      double transportVoucher, String prerequisites) {
         super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites);
     }
 }

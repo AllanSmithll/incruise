@@ -3,16 +3,17 @@ package br.edu.pweb2.incruise.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
 //import jakarta.persistence.*;
+import lombok.*;
 
+import java.util.List;
 
 //@Entity
 //@Table(name = "tb_company")
 
 @Data
 @NoArgsConstructor
+
 public class Company extends User {
 	private String fantasyName;
 
@@ -26,7 +27,7 @@ public class Company extends User {
 
 	private String principalActivity;
 
-	private String urlPage="";
+	private String urlPage;
 
 	private List<Opportunity> opportunityList;
 
@@ -45,17 +46,13 @@ public class Company extends User {
 		this.urlPage = urlPage;
 	}
 
-	public List<InternshipOffer> getVacancyList() {
-		List<InternshipOffer> vacancies = new ArrayList<>();
+	public List<Vacancy> getVacancyList() {
+		List<Vacancy> vacancies = new ArrayList<>();
 		for (Opportunity opportunity : opportunityList) {
 			
-			if (opportunity instanceof InternshipOffer)
-				vacancies.add((InternshipOffer) opportunity);
+			if (opportunity instanceof Vacancy)
+				vacancies.add((Vacancy) opportunity);
 		}
 		return vacancies;
-	}
-
-	public void  addOpportunity(Opportunity opportunity) {
-		this.opportunityList.add(opportunity);
 	}
 }

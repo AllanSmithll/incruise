@@ -75,5 +75,8 @@ body {
   .opportunity-card:hover *{
     color: var(--oportunity-card-color-hover);
   }
-
+  
+  .bolder {
+    font-weight: bold;
+  }
   

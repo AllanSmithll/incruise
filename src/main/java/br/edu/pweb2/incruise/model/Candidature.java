@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class Candidature {
     private Student student;
-    private InternshipOffer internshipOffer;
+    private Vacancy vacancy;
 
 //private EstadoCandidatura situacao;
 

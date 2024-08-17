@@ -2,6 +2,8 @@ package br.edu.pweb2.incruise.repository;
 
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.ItemNotFoundException;
+import br.edu.pweb2.incruise.model.Student;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -14,9 +16,9 @@ public class CompanyRepository {
     public static final List<Company> companyList = new ArrayList<>();
 
     {
-        Company c1 = new Company(3,"itaipava","ita@gmail","123","Itaipava Cervejas","1234","(11) 98878-5324", "Bob", "São Paulo 123 capital", "Bebidas","https://cervejaitaipava.com.br/");
+        Company c1 = new Company(0,"itaipava","ita@gmail","123","Itaipava Cervejas","1234","(11) 98878-5324", "Bob", "São Paulo 123 capital", "Bebidas","https://cervejaitaipava.com.br/");
         this.add(c1);
-        Company c2 = new Company(5,"Ambev","amb@gmail","123","Ambev Cervejas","1234","(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas","https://www.ambev.com.br/");
+        Company c2 = new Company(0,"Ambev","amb@gmail","123","Ambev Cervejas","1234","(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas","https://www.ambev.com.br/");
         this.add(c2);
 
     }
@@ -39,7 +41,7 @@ public class CompanyRepository {
             if(c.getId().equals(id))
                 return c;
         }
-        throw new ItemNotFoundException("Company Not Found");
+        throw new ItemNotFoundException("Company with id: "+ id + " not Found");
     }
 
 /*
