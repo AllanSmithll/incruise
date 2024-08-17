@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<head>
+    <meta th:insert="~{/fragments/headfiles(title='Incruise')}">
+</head>
+<body>
+<header>
+    <div th:replace="~{/fragments/header}">        
+    </div>
+</header>
+<main>
+    <section class="about">
+        <h2>O que Somos?</h2>
+        <p>
+            Breve descrição sobre o sistema de divulgação de estágio, incluindo seus objetivos e benefícios.
+        </p>
+    </section>
+    <section class="description">
+        <h2>Descrição</h2>
+        <p>
+            Breve descrição sobre as funcionalidades do sistema, como:
+            * Cadastro de empresas e vagas
+            * Busca por vagas
+            * Candidatura a vagas
+            * Acompanhamento de candidaturas
+        </p>
+    </section>
+</main>
+<footer>
+    <div class="container">
+        <p>Copyright &copy; 2024 - Incruise</p>
+    </div>
+</footer>
+</body>
+</html>
