@@ -2,30 +2,36 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title >
-        [[${company.fantasyName}]]
-    </title>
+    <meta th:insert="~{/fragments/headfiles(title='Incruise - [[${company.fantasyName}]]')}">
 
-    <link rel="stylesheet" th:href="@{/styles/info.css}">
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-
+    <!-- <link rel="stylesheet" th:href="@{/styles/info.css}"> -->
+    <link rel="stylesheet" href="../../static/styles/info.css">
 
 </head>
 
-<body>
-    <!-- <section class="info-section" id="first-info">
+<header>
+    <div th:replace="~{/fragments/header}">
+    </div>
+</header>
 
-        <img src="imgs/enterprise-default.png">
-        <h1 id="name"> [[${company.fantasyName}]]</h1>
+<body>
+
+    <section class="info-section" id="first-info">
+        <img src="../../static/imgs/default/enterprise-default.png">
+        <!-- <img th:href="/imgs/enterprise-default.png"> -->
+        <h1 id="name" th:text="${company.fantasyName}">Text Content Default </h1>
     </section>
+
     <section class="info-section" id="activity-section">
+
         <div class="topic">
             <h1 class="topic-title"> Principal atividade</h1>
-            <p class="topic-content">[[${company.principalActivity}]]</p>
+            <p class="topic-content" th:text="${company.principalActivity}">Text Content Default Text Content Default
+                Text Content Default</p>
         </div>
+
     </section>
+
     <section class="info-section" id="basic-section">
 
         <h2 class="section-title"> Dados da Empresa</h2>
@@ -33,26 +39,27 @@
         <div class="flex around ">
 
             <div class="topic">
-                <h1 class="topic-title">Nome Fantasia</h1>
-                <p class="topic-content"> [[${company.fantasyName}]]</p>
+                <h1 class="topic-title">Oportunidades Cadastradas</h1>
+                <p class="topic-content"> <span th:text="${lists.size(company.opportunityList)}">Text Content
+                        Default</span> Oportunidades</p>
             </div>
 
             <div class="topic">
                 <h1 class="topic-title">CNPJ</h1>
-                <p class="topic-content"> [[${company.cnpj}]]</p>
+                <p class="topic-content" th:text="${company.cnpj}"> </p>
             </div>
 
         </div>
 
         <div class="topic">
             <h1 class="topic-title">Endereco</h1>
-            <p class="topic-content"> [[${company.address}]]</p>
+            <p class="topic-content" th:text="${company.address}">Text Default</p>
         </div>
-        <div class="topic">
-            <h1 class="topic-title">Site</h1>
-            <p class="topic-content"><a
-                    th:href="@{company.urlpage}"
-                    target="_blank"> [[${company.urlpage}]]</a></p>
+
+        <div class="topic" th:if="${company.urlpage != ''}">
+            <h1 class="topic-title">Site Oficial</h1>
+            <p class="topic-content"><a th:href="@{company.urlpage}" target="_blank"> Clique aqui para acessar o site
+                    oficial</a></p>
         </div>
 
     </section>
@@ -85,28 +92,28 @@
     </section>
     <section class="info-section" id="oportunity-section">
         <h2 class="section-title"> Oportunidades </h2>
-
+        
         <div class="flex row" >
-            <div class="opportunity-card" th:each="vacancy :${company.vacancyList}">
-                <h2 class="topic-title">[[${vacancy.principalActivity}]]</h2>
-
+            <div class="opportunity-card" th:each="internshipOffer :${company.vacancyList}">
+                <h2 class="topic-title">[[${internshipOffer.principalActivity}]]</h2>
+                
                 <p><span class="bolder">Remuneração: </span>
-                    <span>[[${vacancy.remunerationValue}]]</span>
+                    <span>[[${internshipOffer.remunerationValue}]]</span>
                 </p>
-
+                
                 <p><span class="bolder">Quantidade de Vagas: </span>
-                    <span>[[${vacancy.quanty}]] Vagas</span>
+                    <span>[[${internshipOffer.quanty}]] Vagas</span>
                 </p>
                 <p><span class="bolder">Carga Horária: </span>
-                    <span>[[${vacancy.workloadSemanal}]]</span></p>
-                <p>
-                
+                    <span>[[${internshipOffer.workloadSemanal}]]</span></p>
+                    <p>
+                        
             </div>
 
         </div>
 
     </section>
- -->
+    
 </body>
 
 </html>

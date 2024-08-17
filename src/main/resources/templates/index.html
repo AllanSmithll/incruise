@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+
+<head>
+
+    <meta th:insert="~{/fragments/headfiles(title='Incruise')}">
+    <link rel="stylesheet" href="./style.css">
+    </link>
+</head>
+
+<body>
+    <header>
+        <div th:replace="~{/fragments/header}">
+        </div>
+    </header>
+
+    <main>
+
+        <section class="introduction" th:style="'background:
+    linear-gradient(rgba(0,0,0,0.5), 
+    rgba(0,0,0,0.5)),
+    url('+ @{/imgs/backgrounds/principalCruise.png}+')'">
+
+            <div class="intro-text">
+                <h1>Incruise</h1>
+                <p>O Cruzeiro de Oportunidades</p>
+            </div>
+
+        </section>
+
+        <!-- Content -->
+
+        <section class="objective-section">
+            <h1>Nosso Objetivo</h1>
+            <p>
+                O Incruise é um projeto sem fins lucrativos
+ 
+            </p>
+
+        </section>
+    </main>
+
+    <footer>
+
+        <div th:replace="~{/fragments/footer}"></div>
+
+    </footer>
+</body>
+
+</html>
