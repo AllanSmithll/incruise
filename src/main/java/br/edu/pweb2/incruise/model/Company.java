@@ -27,7 +27,7 @@ public class Company extends User {
 
 	private String principalActivity;
 
-	private String urlPage;
+	private String urlPage="";
 
 	// A fazer
 	private List<Opportunity> opportunityList;
