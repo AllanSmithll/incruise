@@ -11,8 +11,6 @@
     --oportunity-card-background-hover: var(--neutral-color-dark);
     --oportunity-card-color-hover: #feffff;
 
-
-    
     
     /*Palheta*/
     --primary-color: #0073b7;
@@ -65,7 +63,8 @@
     --link-color-hover: #428bca; /* Azul médio */
     --border-color: #ddd; /* Cinza claro */
     --off-black-neutral-color: hsl(0, 0%, 8%);
-
+    
+    --introduction-color:#ffffff;   
 
     /* Gradientes */
 
@@ -77,5 +76,8 @@
     /* Fonts*/
     --info-font-family:sans-serif;
     --font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    
+    /* Font-Size*/
+    --title-section-size-font: 2.5rem;
+    
 }
