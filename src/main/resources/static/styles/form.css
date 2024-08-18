@@ -5,22 +5,23 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #f0f4f8; /* Cor de fundo clara */
-    margin: 200px 0 200px 0;
+    background-color: #7F7F7F; /* Cor de fundo clara */
+    margin: 50px 0 200px 0;
+    height: auto;
 }
 
-/* Estilo do container central */
 .card-main {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    background-color: #ffffff; /* Cor de fundo do card */
+    background-color: #498CA9;
+    color: white;
     width: 500px;
-    height: 500px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
 }
 
 /* Estilo do conteúdo principal */
@@ -29,7 +30,8 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    color: #333333; /* Cor do texto */
+    color: white; /* Cor do texto */
+    height: auto;
 }
 
 /* Estilo dos botões de submissão */
@@ -52,6 +54,14 @@
 .submit-input:hover {
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
 }
+
+.label-competence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
+    gap: 10px; /* Espaçamento entre os itens */
+    align-items: start; /* Alinha os itens no topo de cada célula */
+}
+
 
 /* Estilo dos campos de entrada do formulário */
 .input-form {
@@ -105,4 +115,16 @@ button[type="submit"] {
 /* Estilo do botão ao passar o mouse */
 button[type="submit"]:hover {
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.title-page {
+   justify-self: center;
+}
+
+.buttons-actions {
+    display: flex;
+    width: 100%;
+    justify-items: center;
+    justify-content: center ;
+    flex-direction: row;
 }
