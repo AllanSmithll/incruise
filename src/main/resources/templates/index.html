@@ -4,8 +4,9 @@
 <head>
 
     <meta th:insert="~{/fragments/headfiles(title='Incruise')}">
-    <link rel="stylesheet" href="./style.css">
-    </link>
+<!--     <link rel="stylesheet" href="../static/styles/principal-page.css">-->
+
+    <link rel="stylesheet" th:href="@{/styles/principal-page.css}" />
 </head>
 
 <body>
@@ -14,36 +15,69 @@
         </div>
     </header>
 
-    <main>
 
-        <section class="introduction" th:style="'background:
+    <section class="introduction" th:style="'background:
     linear-gradient(rgba(0,0,0,0.5), 
     rgba(0,0,0,0.5)),
-    url('+ @{/imgs/backgrounds/principalCruise.png}+')'">
+    url('+ @{/imgs/backgrounds/principal-cruise2.jpg}+')'">
 
-            <div class="intro-text">
-                <h1>Incruise</h1>
-                <p>O Cruzeiro de Oportunidades</p>
-            </div>
+        <div class="intro-text">
+            <h1>Incruise</h1>
+            <p>O Cruzeiro de Oportunidades</p>
+        </div>
 
+    </section>
+
+    <!-- Content -->
+
+    <main>
+        <section id="Objective-Section" class="section-main">
+            <h1 class="section-title">Nosso Objetivo</h1>
+            <p id="Our-Objective">
+                O Incruise é um projeto sem fins lucrativos que visa conectar estudantes a oportunidades de estágio,
+                facilitando o processo de candidatura, seleção e divulgação das vagas.
+            </p>
         </section>
 
-        <!-- Content -->
+        <section class="team-boxed">
+            <!-- https://epicbootstrap.com/snippets/team-cards-->
+            <div class="container">
+                <div class="intro section-title">
+                    <h2 class="text-center section-title">Equipe</h2>
+                </div>
 
-        <section class="objective-section">
-            <h1>Nosso Objetivo</h1>
-            <p>
-                O Incruise é um projeto sem fins lucrativos
- 
-            </p>
-
+                <div class="row people">
+                    <div class="col-md-6 col-lg-4 item">
+                        <div class="box"><img class="rounded-circle" src="https://avatars.githubusercontent.com/u/1426341" alt="Allan Smith">
+                            <h3 class="name">Allan Smith</h3>
+                            <p class="title">Developer</p>
+                            <p class="description"> </p>
+                            <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <div class="box"><img class="rounded-circle" src="https://avatars.githubusercontent.com/u/87027617" alt="Haniel Costa">
+                            <h3 class="name">Haniel Costa</h3>
+                            <p class="title">Developer</p>
+                            <p class="description"> </p>
+                            <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 item">
+                        <div class="box"><img class="rounded-circle" src="https://avatars.githubusercontent.com/u/4584594" alt="Márcio José">
+                            <h3 class="name">Márcio José</h3>
+                            <p class="title">Developer</p>
+                            <p class="description"> </p>
+                            <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
 
-        <div th:replace="~{/fragments/footer}"></div>
-
+    <footer th:replace="~{/fragments/footer}">
     </footer>
 </body>
 

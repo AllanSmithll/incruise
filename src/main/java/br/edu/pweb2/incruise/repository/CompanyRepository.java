@@ -18,6 +18,8 @@ public class CompanyRepository {
         this.add(c1);
         Company c2 = new Company(5,"Ambev","amb@gmail","123","Ambev Cervejas","1234","(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas","https://www.ambev.com.br/");
         this.add(c2);
+        Company c3 = new Company(6,"Solar","cocaCola@gmail","123","Solar","123445","(11) 98878-3242", "Seu Zé", "Paraíba Rua Caravelas", "Bebidas","https://www.ambev.com.br/");
+        this.add(c3);
 
     }
     public void add(Company company){
