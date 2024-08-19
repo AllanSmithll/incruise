@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/company")
 public class CompanyController {
 
-    @Autowired
+    final
     CompanyRepository companyRepository;
+
+    public CompanyController(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
+    }
 
     @RequestMapping("/register")
     public String getForm(Company company, Model model) {

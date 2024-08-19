@@ -26,7 +26,7 @@ public class InternshipOfferRepository {
         this.add(i1);
         InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
                 560.0, "Não ter sido casado", c1);
-        c1.addOpportunity(i1);
+        c1.addOpportunity(i2);
         this.add(i2);
 
     }

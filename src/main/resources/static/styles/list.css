@@ -1,62 +1,78 @@
 @import url("main.css");
 
+/* Estilos principais da tela */
 .main-screen {
-    font-family: "Roboto Thin", Serif, sans-serif;
-    background-color: var(--neutral-color-charcoal-grey);
     display: flex;
     justify-content: center;
     align-content: center;
-    height: 100vh;
+    background-color: #f0f4f8; /* Cor de fundo clara */
+    padding: 40px 0;
 }
 
+/* Estilo do container da listagem */
 .card-component {
-    border-radius: 10px;
-    background-color: var(--neutral-color-dark-grey);
-    width: 600px;
-    height: auto;
-    color: var(--neutral-color-white);
-    margin: 10px;
-
-}
-
-th {
-    color: var(--primary-color-tomato)
-}
-
-.card-content {
-    margin: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: #ffffff; /* Cor de fundo do card */
+    width: 80%;
+    max-width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
 }
 
-.button-add {
-    border: none;
-    border-radius: 5px;
-    width: 70px;
-    background: var(--neutral-color-dark-state-gray);
-
-    font-size: 20px;
-    margin-right: 500px;
-    margin-bottom: 10px;
-
+/* Estilo do título da listagem */
+.card-component h1 {
+    color: #333333; /* Cor do texto */
+    margin-bottom: 20px;
 }
 
-.button-add a {
-    color: var(--neutral-color-white);
-    text-decoration: none;
+/* Estilo da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaçamento entre bordas */
+}
+
+thead {
+    background-color: #007bff; /* Cor de fundo do cabeçalho da tabela */
+    color: white; /* Cor do texto no cabeçalho */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ced4da; /* Borda inferior das células */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Cor de fundo alternada para linhas pares */
+}
+
+tbody tr:hover {
+    background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilo dos botões de ação */
+.action-box {
+    text-align: center; /* Centraliza os botões de ação */
+}
+
+.action-box form {
+    display: inline; /* Faz com que os formulários fiquem lado a lado */
 }
 
 .input-delete {
-    background-color: var(--neutral-color-dark-state-gray);
-    color: var(--neutral-color-white);
-    border-radius: 5px;
+    background-color: #dc3545; /* Cor de fundo do botão de exclusão */
+    color: white;
     border: none;
-    padding: 5px;
-    margin: 5px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
 }
 
-table {
-    border-collapse: collapse;
+/* Estilo do botão de exclusão ao passar o mouse */
+.input-delete:hover {
+    background-color: #c82333; /* Cor de fundo do botão ao passar o mouse */
 }

@@ -28,12 +28,7 @@ public class Company extends User {
 
 	private String urlPage="";
 
-<<<<<<< Updated upstream
-	// A fazer
-	private List<Opportunity> opportunityList;
-=======
 	private List<Opportunity> opportunityList = new ArrayList<Opportunity>();
->>>>>>> Stashed changes
 
 	// A FAZER
 	// private Document<PDF> comproEnder;
