@@ -49,6 +49,9 @@
                         <input type="hidden" name="_method" value="DELETE"/>
                         <input class="input-delete" type="submit" value="Remover"/>
                     </form>
+                    <form th:action="@{/internshipOffer/apply/{id}(id=${offer.id})}" method="get">
+                        <input class="btn-action btn-apply" type="submit" value="Candidatar-se"/>
+                    </form>
                 </div>
             </td>
         </tr>

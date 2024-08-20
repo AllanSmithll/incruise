@@ -58,11 +58,11 @@ tbody tr:hover {
 }
 
 .action-box form {
-    display: inline; /* Faz com que os formulários fiquem lado a lado */
+    display: inline;
 }
 
 .input-delete {
-    background-color: #dc3545; /* Cor de fundo do botão de exclusão */
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 4px;
@@ -75,4 +75,29 @@ tbody tr:hover {
 /* Estilo do botão de exclusão ao passar o mouse */
 .input-delete:hover {
     background-color: #c82333; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.btn-apply {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-left: 8px;
+}
+
+.btn-apply:hover {
+    background-color: #218838;
+}
+
+.btn-apply:active {
+    background-color: #1e7e34;
+}
+
+.btn-apply:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }

@@ -3,15 +3,12 @@ package br.edu.pweb2.incruise.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Candidature {
     private Student student;
-    private InternshipOffer internshipOffer;
-
-//private EstadoCandidatura situacao;
-
+    private InternshipOffer offer;
+    private String message;
 }
