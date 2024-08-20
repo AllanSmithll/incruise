@@ -20,13 +20,13 @@ public class InternshipOfferRepository {
 
         Company c1 = companyRepository.find(3);
         InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4.800,
-                490.0, "Não ter sido preso", c1);
+                490.0, "Não ter sido preso");
 
-        c1.addOpportunity(i1);
+        //c1.addOpportunity(i1);
         this.add(i1);
         InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
-                560.0, "Não ter sido casado", c1);
-        c1.addOpportunity(i2);
+                560.0, "Não ter sido casado");
+        //c1.addOpportunity(i1);
         this.add(i2);
 
     }
@@ -55,11 +55,11 @@ public class InternshipOfferRepository {
 
     /*
      * private Integer generateID(){
-     * 
+     *
      * List<Student> students = this.list();
-     * 
+     *
      * Integer id = 1;
-     * 
+     *
      * //percore a lista procurando o maior ID, ou uma possível para inserção;
      * for(Student student : students){
      * //checa se o id gerado é maior que o id Na lista
