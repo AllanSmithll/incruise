@@ -25,6 +25,7 @@ public class Student extends SchoolMember {
     public void addCandidature(Candidature candidature) {
         candidatureList.add(candidature);
     }
+
     public void removeCandidature(Candidature candidature) {
         candidatureList.remove(candidature);
     }

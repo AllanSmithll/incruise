@@ -1,10 +1,9 @@
 package br.edu.pweb2.incruise.controllers;
 
 
-import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.Competence;
-import br.edu.pweb2.incruise.model.InternshipOffer;
+import br.edu.pweb2.incruise.model.*;
 import br.edu.pweb2.incruise.repository.InternshipOfferRepository;
+import br.edu.pweb2.incruise.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +18,12 @@ public class InternshipOfferController {
 
     @Autowired
     InternshipOfferRepository internshipOfferRepository;
+    StudentRepository studentRepository;
+
+    public InternshipOfferController(InternshipOfferRepository internshipOfferRepository, StudentRepository studentRepository) {
+        this.internshipOfferRepository = internshipOfferRepository;
+        this.studentRepository = studentRepository;
+    }
 
     @RequestMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
@@ -48,6 +53,32 @@ public class InternshipOfferController {
         modelAndView.setViewName("/offers/list");
         modelAndView.addObject("offers", internshipOfferRepository.list());
         return modelAndView;
+    }
+
+    @GetMapping("/apply/{id}")
+    public String showApplicationForm(@PathVariable("id") Integer offerId, Model model) throws Exception {
+        InternshipOffer offer = internshipOfferRepository.find(offerId);
+        model.addAttribute("offer", offer);
+        return "offers/application";
+    }
+
+    @PostMapping("/apply")
+    public String applyForInternship(@RequestParam("offerId") Integer offerId,
+                                     @RequestParam("enrollment") String enrollment,
+                                     @RequestParam(value = "message", required = false) String message) throws Exception {
+        Student student = studentRepository.findByEnrollment(enrollment);
+        InternshipOffer offer = internshipOfferRepository.find(offerId);
+
+        boolean alreadyApplied = offer.getCandidatureList().stream()
+                .anyMatch(candidature -> candidature.getStudent().equals(student));
+        if (!alreadyApplied) {
+            Candidature newCandidature = new Candidature(student, offer, message);
+            offer.addCandidature(newCandidature);
+            student.addCandidature(newCandidature);
+        } else {
+            throw new IllegalStateException("Você já se candidatou a esta oferta.");
+        }
+        return "redirect:/internshipOffer/offers";
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
