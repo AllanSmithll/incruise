@@ -11,9 +11,9 @@ public class InternshipOffer extends Opportunity {
 	private List<Candidature> candidatureList;
 
 	public InternshipOffer(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,
-			Double transportVoucher, String prerequisites, Company responsable) {
+			Double transportVoucher, String prerequisites) {
 
-		super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites, responsable);
+		super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites);
 		
 		//this.candidatureList = candidatureList;
 	}
