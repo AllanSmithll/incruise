@@ -2,6 +2,7 @@ package br.edu.pweb2.incruise.controllers;
 
 
 import br.edu.pweb2.incruise.model.*;
+import br.edu.pweb2.incruise.repository.CompanyRepository;
 import br.edu.pweb2.incruise.repository.InternshipOfferRepository;
 import br.edu.pweb2.incruise.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class InternshipOfferController {
     @Autowired
     InternshipOfferRepository internshipOfferRepository;
     StudentRepository studentRepository;
+    //CompanyRepository companyRepository;
 
     public InternshipOfferController(InternshipOfferRepository internshipOfferRepository, StudentRepository studentRepository) {
         this.internshipOfferRepository = internshipOfferRepository;
@@ -40,9 +42,14 @@ public class InternshipOfferController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView save(InternshipOffer offer, ModelAndView modelAndView, @RequestParam(value = "necessarySkills",
+    public ModelAndView save(InternshipOffer offer,
+                             ModelAndView modelAndView, @RequestParam(value = "necessarySkills",
             required = false) List<Competence> necessarySkills, @RequestParam(value = "desirableSkills",
             required = false) List<Competence> derisableSkills) {
+        //Company company = companyRepository.find(companyId);
+//        if (company != null) {
+//            offer.setCompanyResponsable(company);
+//        }
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
@@ -79,7 +86,6 @@ public class InternshipOfferController {
             throw new IllegalStateException("Você já se candidatou a esta oferta.");
 
         }
-        System.out.println("Chegou aqui" + offer.getId() + student.getId() );
         return "redirect:/internshipOffer/offers";
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -57,26 +58,19 @@ public class CompanyController {
             return "redirect:/company/companies";
         }
     }
-    
-        @GetMapping("/info")
-        public String showCompanyInfo(Model model) {
-    
-            if (!model.containsAttribute("company")) {
-    
-                return "redirect:/company/companies"; 
-            }
-    
-            return "company/info"; 
+
+    @GetMapping("/info")
+    public String showCompanyInfo(Model model) {
+        if (!model.containsAttribute("company")) {
+            return "redirect:/company/companies";
         }
+        return "companies/info";
+    }
 
     @GetMapping("/find/{id}")
     public String getCompanyById(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-
-        Company companyGet = companyRepository.find(id);
-
-        redirectAttributes.addFlashAttribute("company", companyGet);
-
+        Company company = companyRepository.find(id);
+        redirectAttributes.addFlashAttribute("company", company);
         return "redirect:/company/info";
     }
-
 }
