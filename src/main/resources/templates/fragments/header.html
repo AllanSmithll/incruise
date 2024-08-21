@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark" style="background: #498CA9;" th:fragment="header">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" th:href="@{/incruise}">
             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top">
             <span class="logo-font">Incruise</span>
         </a>
@@ -9,5 +9,4 @@
             <button type="button" th:onclick="|window.location.href='@{/student/my-candidatures}'|">Minhas candidaturas</button>
         </div>
     </div>
-    
 </nav>

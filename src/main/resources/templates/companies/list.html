@@ -51,11 +51,9 @@
                         <input type="hidden" name="_method" value="DELETE"/>
                         <input class="input-delete" type="submit" value="Remover"/>
                     </form>
-
-                <form th:action="@{/company/info/{id}(id=${company.id})}" method="get">
-                    <input type="hidden" name="_method" value="Info"/>
-                    <input class="input-info" type="submit" value="Infor"/>
-                </form>
+                    <form th:action="@{/company/find/{id}(id=${company.id})}" method="get">
+                        <input type="submit" value="Info"/>
+                    </form>
             </div>
             </td>
         </tr>
