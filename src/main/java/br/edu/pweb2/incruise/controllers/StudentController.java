@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.controllers;
 
 
+import br.edu.pweb2.incruise.model.Candidature;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.repository.StudentRepository;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -39,6 +42,21 @@ public class StudentController {
         modelAndView.addObject("students", students);
         return modelAndView;
     }
+
+    @GetMapping("/my-candidatures")
+    public ModelAndView getMyCandidatures() throws Exception {
+        String enrollment = "1234";
+        Student student = studentRepository.findByEnrollment(enrollment);
+        if (student == null) {
+            throw new Exception("Student not found.");
+        }
+        List<Candidature> candidatures = student.getCandidatureList();
+        ModelAndView modelAndView = new ModelAndView("students/my-candidatures");
+        modelAndView.addObject("candidatures", candidatures);
+        modelAndView.addObject("studentName", student.getName());
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView save(Student student, ModelAndView modelAndView, @RequestParam(value = "competences", required = false) List<Competence> competences) {
