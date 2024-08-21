@@ -29,27 +29,30 @@
 
 /* Estilo da tabela */
 table {
-    width: 100%;
-    border-collapse: collapse; /* Remove espaçamento entre bordas */
+    width: auto;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: auto;
 }
 
 thead {
-    background-color: #007bff; /* Cor de fundo do cabeçalho da tabela */
-    color: white; /* Cor do texto no cabeçalho */
+    background-color: #007bff;
+    color: white;
 }
 
 th, td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid #ced4da; /* Borda inferior das células */
+    border-bottom: 1px solid #ced4da;
+    white-space: nowrap;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Cor de fundo alternada para linhas pares */
+    background-color: #f9f9f9;
 }
 
 tbody tr:hover {
-    background-color: #e9ecef; /* Cor de fundo ao passar o mouse */
+    background-color: #e9ecef;
 }
 
 /* Estilo dos botões de ação */

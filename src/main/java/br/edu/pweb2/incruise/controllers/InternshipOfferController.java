@@ -77,7 +77,9 @@ public class InternshipOfferController {
             student.addCandidature(newCandidature);
         } else {
             throw new IllegalStateException("Você já se candidatou a esta oferta.");
+
         }
+        System.out.println("Chegou aqui" + offer.getId() + student.getId() );
         return "redirect:/internshipOffer/offers";
     }
 
