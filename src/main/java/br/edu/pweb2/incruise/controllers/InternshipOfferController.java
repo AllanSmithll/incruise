@@ -67,9 +67,9 @@ public class InternshipOfferController {
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
         }
-        Company companyCurrent = companyRepository.find(offer.getCompanyResponsable());
+        Company companyCurrent = companyRepository.find(offer.getCompanyResponsible());
         companyCurrent.addOpportunity(offer);
-        offer.setCompanyResponsable(companyCurrent.getId());
+        offer.setCompanyResponsible(companyCurrent.getId());
         internshipOfferRepository.add(offer);
         modelAndView.setViewName("/offers/list");
         modelAndView.addObject("offers", internshipOfferRepository.list());
