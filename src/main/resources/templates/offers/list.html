@@ -45,12 +45,12 @@
                         <td th:text="${offer.prerequisites}"></td>
                         <td>
                             <div class="action-box">
-                                <form th:action="@{/internshipOffer/delete/{id}(id=${offer.id})}" method="post">
-                                    <input type="hidden" name="_method" value="DELETE" />
-                                    <input class="input-delete" type="submit" value="Remover" />
-                                </form>
                                 <form th:action="@{/internshipOffer/apply/{id}(id=${offer.id})}" method="get">
                                     <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
+                                </form>
+                                <form th:action="@{/internshipOffer/cancel/{id}(id=${offer.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input class="input-delete" type="submit" value="Cancelar" />
                                 </form>
                             </div>
                         </td>

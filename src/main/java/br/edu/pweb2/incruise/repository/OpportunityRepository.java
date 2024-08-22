@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class InternshipOfferRepository {
+public class OpportunityRepository {
     public static Integer nextId = 1;
 
-    public static final List<InternshipOffer> oportunityList = new ArrayList<>();
+    public static final List<Opportunity> oportunityList = new ArrayList<>();
 
     {
         CompanyRepository companyRepository = new CompanyRepository();
@@ -22,7 +22,6 @@ public class InternshipOfferRepository {
         Company c1 = companyRepository.find(1);
         InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4.800,
                 490.0, "Não ter sido preso", c1.getId());
-
         c1.addOpportunity(i1);
         this.add(i1);
         InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
@@ -32,12 +31,12 @@ public class InternshipOfferRepository {
 
     }
 
-    public void add(InternshipOffer internshipOffer) {
-        internshipOffer.setId(nextId++);
-        oportunityList.add(internshipOffer);
+    public void add(Opportunity opportunity) {
+        opportunity.setId(nextId++);
+        oportunityList.add(opportunity);
     }
 
-    public List<InternshipOffer> list() {
+    public List<Opportunity> list() {
         return oportunityList;
     }
 

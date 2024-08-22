@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
-
-    final
     CompanyRepository companyRepository;
 
     public CompanyController(CompanyRepository companyRepository) {
