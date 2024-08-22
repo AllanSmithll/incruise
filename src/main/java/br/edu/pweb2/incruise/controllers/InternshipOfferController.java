@@ -1,15 +1,21 @@
 package br.edu.pweb2.incruise.controllers;
 
+<<<<<<< Updated upstream
 
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.InternshipOffer;
+=======
+import br.edu.pweb2.incruise.model.*;
+import br.edu.pweb2.incruise.repository.CompanyRepository;
+>>>>>>> Stashed changes
 import br.edu.pweb2.incruise.repository.InternshipOfferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -19,6 +25,17 @@ public class InternshipOfferController {
 
     @Autowired
     InternshipOfferRepository internshipOfferRepository;
+<<<<<<< Updated upstream
+=======
+    StudentRepository studentRepository;
+    // CompanyRepository companyRepository;
+
+    public InternshipOfferController(InternshipOfferRepository internshipOfferRepository,
+            StudentRepository studentRepository) {
+        this.internshipOfferRepository = internshipOfferRepository;
+        this.studentRepository = studentRepository;
+    }
+>>>>>>> Stashed changes
 
     @RequestMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
@@ -35,9 +52,20 @@ public class InternshipOfferController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+<<<<<<< Updated upstream
     public ModelAndView save(InternshipOffer offer, ModelAndView modelAndView, @RequestParam(value = "necessarySkills",
             required = false) List<Competence> necessarySkills, @RequestParam(value = "desirableSkills",
             required = false) List<Competence> derisableSkills) {
+=======
+    public ModelAndView save(InternshipOffer offer,
+            ModelAndView modelAndView,
+            @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
+            @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills) {
+        // Company company = companyRepository.find(companyId);
+        // if (company != null) {
+        // offer.setCompanyResponsable(company);
+        // }
+>>>>>>> Stashed changes
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
@@ -50,6 +78,36 @@ public class InternshipOfferController {
         return modelAndView;
     }
 
+<<<<<<< Updated upstream
+=======
+    @GetMapping("/apply/{id}")
+    public String showApplicationForm(@PathVariable("id") Integer offerId, Model model) throws Exception {
+        InternshipOffer offer = internshipOfferRepository.find(offerId);
+        model.addAttribute("offer", offer);
+        return "offers/application";
+    }
+
+    @PostMapping("/apply")
+    public String applyForInternship(@RequestParam("offerId") Integer offerId,
+            @RequestParam("enrollment") String enrollment,
+            @RequestParam(value = "message", required = false) String message) throws Exception {
+        Student student = studentRepository.findByEnrollment(enrollment);
+        InternshipOffer offer = internshipOfferRepository.find(offerId);
+
+        boolean alreadyApplied = offer.getCandidatureList().stream()
+                .anyMatch(candidature -> candidature.getStudent().equals(student));
+        if (!alreadyApplied) {
+            Candidature newCandidature = new Candidature(student, offer, message);
+            offer.addCandidature(newCandidature);
+            student.addCandidature(newCandidature);
+        } else {
+            throw new IllegalStateException("Você já se candidatou a esta oferta.");
+
+        }
+        return "redirect:/internshipOffer/offers";
+    }
+
+>>>>>>> Stashed changes
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable("id") Integer id) {
         try {
@@ -58,5 +116,31 @@ public class InternshipOfferController {
         } catch (Exception e) {
             return "redirect:/internshipOffer/offers";
         }
+    }
+
+    @GetMapping("/info")
+    public String showIntership(Model model){
+        if (!model.containsAttribute("opportunity")){
+            return "redirect:/internshipOffer/offers";
+        }
+        return "offers/opportunity";
+        
+    }
+    
+    @GetMapping("/find/{id}")
+    public String findIntership(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+        
+        Opportunity opportunity = internshipOfferRepository.find(id);
+
+        if (!opportunity.isEmpty()) {
+            redirectAttributes.addFlashAttribute("opportunity", opportunity);
+            String type = (opportunity.getClass() == Intership.getClass() ? "Estágio":"Oferta");
+            redirectAttributes.addFlashAttribute("typeOpportunity", type );
+            return "redirect:/internshipOffer/info";
+
+        }else{
+            return "redirect:/not-found";
+        }
+
     }
 }

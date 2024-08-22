@@ -36,4 +36,8 @@ public abstract class Opportunity {
 		this.prerequisites = prerequisites;
 		this.companyResponsable = companyResponsable;
 	}
+
+	public Boolean isEmpty(){
+		return false;
+	}
 }
