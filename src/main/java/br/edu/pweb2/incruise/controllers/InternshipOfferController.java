@@ -58,13 +58,20 @@ public class InternshipOfferController {
 
     public ModelAndView save(InternshipOffer offer, ModelAndView modelAndView,
             @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
-            @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills) {
+            @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills,
+            @RequestParam("companyID") String companyId
+        ){
 
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
+        }
+
+        if(!companyId.isEmpty()){
+            Company companyCurrent =   this.findCompanyResponsable(companyId);
+            offer.setCompanyResponsable(companyCurrent);
         }
 
         internshipOfferRepository.add(offer);
@@ -134,5 +141,10 @@ public class InternshipOfferController {
         redirectAttributes.addFlashAttribute("typeOpportunity", type);
         return "redirect:/internshipOffer/info";
 
+    }
+
+    public Company findCompanyResponsable(String id){
+        Integer idCompany = Integer.valueOf(id);
+        return companyRepository.find(idCompany);
     }
 }
