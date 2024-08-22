@@ -7,7 +7,6 @@ import java.util.List;
 
 public class InternshipOffer extends Opportunity {
 
-	private Company ownerCompany;
 	@Getter
 	private List<Candidature> candidatureList = new ArrayList<>();
 
