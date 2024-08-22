@@ -2,66 +2,12 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<<<<<<< Updated upstream
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ofertas de Estágio</title>
-=======
 
     <meta th:insert="~{/fragments/headfiles(title='Oportunidades')}">
->>>>>>> Stashed changes
 
     <link rel="stylesheet" th:href="@{/styles/list.css}">
 </head>
 
-<<<<<<< Updated upstream
-<body class="main-screen">
-
-<div class="card-component">
-    <h1> Todas as Ofertas de Estágio Cadastradas</h1>
-
-    <a th:href="@{/internshipOffer/register}">
-        <button class="button-add">
-            Nova Oferta
-        </button>
-    </a>
-
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Principal Atividade</th>
-            <th>Carga Horária Semanal</th>
-            <th>Valor da Bolsa</th>
-            <th>Vale Transporte</th>
-            <th>Pré-requisitos</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="offer :${offers}">
-            <td>[[${offer.id}]]</td>
-            <td th:text="${offer.principalActivity}"></td>
-            <td th:text="${offer.weeklyWorkload}"></td>
-            <td th:text="${offer.remunerationValue}"></td>
-            <td th:text="${offer.transportVoucher}"></td>
-            <td th:text="${offer.prerequisites}"></td>
-            <td>
-                <div class="action-box">
-                    <form th:action="@{/internshipOffer/delete/{id}(id=${offer.id})}" method="post">
-                        <input type="hidden" name="_method" value="DELETE"/>
-                        <input class="input-delete" type="submit" value="Remover"/>
-                    </form>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-</div>
-=======
 <body>
     <header>
         <div th:replace="~{/fragments/header}">
@@ -114,7 +60,6 @@
 
         </div>
     </div>
->>>>>>> Stashed changes
 </body>
 
 </html>

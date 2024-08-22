@@ -2,13 +2,39 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta th:insert="~{/fragments/headfiles(title='${typeOpportunity} - ${opportunity.id}')}">
     <link rel="stylesheet" th:href="@{/styles/offer.css}">
 </head>
 
 <body>
-    <h1 th:text="${typeOpportunity}">
-    </h1>
+    <h1 th:text="${typeOpportunity}"></h1>
+    
+    <div>
+        <h2>Detalhes</h2>
+        <p><strong>ID:</strong> <span th:text="${opportunity.id}">1</span></p>
+        <p><strong>Atividade Principal:</strong> <span th:text="${opportunity.principalActivity}">Atividade principal</span></p>
+        <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40</span> horas</p>
+        <p><strong>Valor da Remuneração:</strong> R$ <span th:text="${opportunity.remunerationValue}">1000.00</span></p>
+        <p><strong>Vale Transporte:</strong> R$ <span th:text="${opportunity.transportVoucher}">100.00</span></p>
+        <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Pré-requisitos</span></p>
+    </div>
+
+    <div>
+        <h2>Candidaturas</h2>
+
+    </div>
+    
+    <div>
+        <h2>Informações da Empresa Responsável</h2>
+        <p><strong>Nome da Empresa:</strong> <span th:text="${opportunity.companyResponsable.name}">Nome da Empresa</span></p>
+        <p><strong>Endereço:</strong> <span th:text="${opportunity.companyResponsable.address}">Endereço da Empresa</span></p>
+        <p><strong>Website:</strong> 
+            <a th:href="${opportunity.companyResponsable.urlpage}" target="_blank" th:text="${opportunity.companyResponsable.urlpage}">
+                Website da Empresa
+            </a>
+        </p>
+    </div>
 
 </body>
+
+</html>

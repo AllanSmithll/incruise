@@ -46,6 +46,14 @@ public class StudentRepository {
         throw new Exception("Student not Found");
     }
 
+    public Student findByEnrollment(String enrollment) throws Exception {
+        for(Student s: studentList){
+            if(s.getEnrollment().equals(enrollment))
+                return s;
+        }
+        throw new Exception("Student not Found");
+    }
+
 /*
     private Integer generateID(){
 

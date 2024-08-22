@@ -9,7 +9,9 @@
 </head>
 <body>
     <h1>Selecione como deseja se cadastrar:</h1>
-    <button onclick="window.location.href='../companies/form.html'">Registrar como Empresa</button>
-    <button onclick="window.location.href='../students/form.html'">Registrar como Estudante</button>
+    <div class="register-links">
+        <button type="button" th:onclick="|window.location.href='@{/company/register}'|">Registrar como Empresa</button>
+        <button type="button" th:onclick="|window.location.href='@{/student/register}'|">Registrar como Estudante</button>
+    </div>
 </body>
 </html>
