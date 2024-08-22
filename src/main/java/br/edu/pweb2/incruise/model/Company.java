@@ -28,7 +28,7 @@ public class Company extends User {
 
 	private String urlPage="";
 
-	private List<Opportunity> opportunityList;
+	private List<Opportunity> opportunityList = new ArrayList<Opportunity>();
 
 	// A FAZER
 	// private Document<PDF> comproEnder;

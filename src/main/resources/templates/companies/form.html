@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Cadastrar-se</title>
     <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-    <link rel="stylesheet" th:href="@{/styles/form.css}">
+    <link rel="stylesheet" th:href="@{/styles/company/company.css}">
 </head>
 <body class="main-screen">
     <div class="card-main">
@@ -61,8 +61,9 @@
                     <label for="addressInput">Endereço</label>
                     <input type="text" id="addressInput" class="input-form" th:field="*{address}">
 
-                    <label for="adressVerify">Comprovante de endereço</label>
-                    <input type="file" id="adressVerify" class="input-form" th:field="*{address}">
+                    <div class="file-upload"><label class="custom-file-upload" for="adressVerify">Comprovante de endereço</label>
+                        <input type="file" id="adressVerify" class="input-form inter-font-line"
+                               th:field="*{address}"></div>
                 </div>
                 <button class="submit-input" type="submit"> salvar</button>
             </form>

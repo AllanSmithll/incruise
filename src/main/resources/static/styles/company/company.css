@@ -1,15 +1,14 @@
-@import url("main.css");
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
 
 .inter-font {
-            font-family: "Inter", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 900;
-            font-style: normal;
-        }
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
 .inter-font-line {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
@@ -117,15 +116,32 @@ textarea {
     color: #495057; /* Cor do texto dentro dos campos */
 }
 
-input[type="text"],
-input[type="number"],
-input[type="date"],
-textarea:active {
-    border: none;
 
+.file-upload input[type="file"] {
+    display: none;
+}
+/* Estiliza o botão */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #495057;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+    margin-top:8px ;
 }
 
-/* Estilo dos botões de envio */
+/* Estiliza o botão quando o mouse está sobre ele */
+.custom-file-upload:hover {
+    background-color: green;
+}
+
+
+    /* Estilo dos botões de envio */
 button[type="submit"] {
     width: 100%;
     background-color: #007bff; /* Cor de fundo do botão */
