@@ -13,28 +13,33 @@ body {
 
 }
 
-a{
+a {
     text-decoration: none;
     color: var(--links-color);
     transition: ease-in all 0.5s;
 }
 
-a:hover{
+a:hover {
     color: var(--neutral-color-dark-state-gray);
     font: bold;
     text-decoration: underline;
 }
+
 /* Classes*/
 
-img.logo{
+img.logo {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    
+
 }
 
-div.logo{
-align-self:flex-start ;
-justify-content: center;
+div.logo {
+    align-self: flex-start;
+    justify-content: center;
 
+}
+
+.navbar-brand:hover {
+    cursor: pointer;
 }
