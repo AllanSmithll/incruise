@@ -131,6 +131,16 @@ public class InternshipOfferController {
         
         Opportunity opportunity = internshipOfferRepository.find(id);
 
+        if (opportunity.isEmpty()) {return "redirect:/not-found";}
+
+        redirectAttributes.addFlashAttribute("opportunity", opportunity);
+        
+        String type = 
+        (opportunity.getClass() == InternshipOffer.class 
+        ? "Estágio" : "Oferta");
+
+        redirectAttributes.addFlashAttribute("typeOpportunity", type);
+        return "redirect:/internshipOffer/info";
         if (!opportunity.isEmpty()) {
             redirectAttributes.addFlashAttribute("opportunity", opportunity);
             String type = (opportunity.getClass() == Intership.getClass() ? "Estágio":"Oferta");
