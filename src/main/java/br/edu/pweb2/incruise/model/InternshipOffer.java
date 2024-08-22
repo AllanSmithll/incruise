@@ -1,10 +1,14 @@
 package br.edu.pweb2.incruise.model;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class InternshipOffer extends Opportunity {
 
+	private Company ownerCompany;
+	@Getter
 	private List<Candidature> candidatureList = new ArrayList<>();
 
 	public InternshipOffer(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,
@@ -12,13 +16,10 @@ public class InternshipOffer extends Opportunity {
 		super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites, company);
 	}
 
-	public List<Candidature> getCandidatureList() {
-		return candidatureList;
-	}
-
 	public void addCandidature(Candidature candidature) {
 		this.candidatureList.add(candidature);
 	}
+
 
 	public List<Student> listCandidates() {
 		List<Student> students = new ArrayList<>();

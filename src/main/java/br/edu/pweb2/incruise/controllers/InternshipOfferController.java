@@ -26,17 +26,23 @@ public class InternshipOfferController {
     InternshipOfferRepository internshipOfferRepository;
 
     StudentRepository studentRepository;
-    // CompanyRepository companyRepository;
 
+    CompanyRepository companyRepository;
     public InternshipOfferController(InternshipOfferRepository internshipOfferRepository,
-            StudentRepository studentRepository) {
+            StudentRepository studentRepository, CompanyRepository companyRepository) {
         this.internshipOfferRepository = internshipOfferRepository;
         this.studentRepository = studentRepository;
+        this.companyRepository = companyRepository;
+
     }
+
 
     @RequestMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
         model.addAttribute("internshipOffer", internshipOffer);
+        List<Company> companies = companyRepository.list();
+        model.addAttribute("companies", companies);
+
         return "/offers/form";
     }
 
@@ -60,6 +66,7 @@ public class InternshipOfferController {
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
         }
+
         internshipOfferRepository.add(offer);
         modelAndView.setViewName("/offers/list");
         modelAndView.addObject("offers", internshipOfferRepository.list());
@@ -78,7 +85,6 @@ public class InternshipOfferController {
 
             @RequestParam("enrollment") String enrollment,
             @RequestParam(value = "message", required = false) String message) throws Exception {
-
         Student student = studentRepository.findByEnrollment(enrollment);
         InternshipOffer offer = (InternshipOffer) internshipOfferRepository.find(offerId);
 
