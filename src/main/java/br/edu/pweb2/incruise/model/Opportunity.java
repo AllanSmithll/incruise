@@ -22,7 +22,7 @@ public abstract class Opportunity {
 	private Double transportVoucher = 0.0;
 	private String prerequisites;
 	private Company companyResponsable;
-	
+
 	private List<Competence> necessarySkills = new ArrayList<>();
 	private List<Competence> desirableSkills = new ArrayList<>();
 

@@ -1,15 +1,15 @@
 package br.edu.pweb2.incruise.controllers;
 
-<<<<<<< Updated upstream
 
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.InternshipOffer;
-=======
+
 import br.edu.pweb2.incruise.model.*;
 import br.edu.pweb2.incruise.repository.CompanyRepository;
->>>>>>> Stashed changes
+
 import br.edu.pweb2.incruise.repository.InternshipOfferRepository;
+import br.edu.pweb2.incruise.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +25,7 @@ public class InternshipOfferController {
 
     @Autowired
     InternshipOfferRepository internshipOfferRepository;
-<<<<<<< Updated upstream
-=======
+
     StudentRepository studentRepository;
     // CompanyRepository companyRepository;
 
@@ -35,7 +34,12 @@ public class InternshipOfferController {
         this.internshipOfferRepository = internshipOfferRepository;
         this.studentRepository = studentRepository;
     }
->>>>>>> Stashed changes
+
+    public InternshipOfferController(InternshipOfferRepository internshipOfferRepository, StudentRepository studentRepository) {
+        this.internshipOfferRepository = internshipOfferRepository;
+        this.studentRepository = studentRepository;
+    }
+
 
     @RequestMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
@@ -52,20 +56,13 @@ public class InternshipOfferController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-<<<<<<< Updated upstream
+
     public ModelAndView save(InternshipOffer offer, ModelAndView modelAndView, @RequestParam(value = "necessarySkills",
             required = false) List<Competence> necessarySkills, @RequestParam(value = "desirableSkills",
             required = false) List<Competence> derisableSkills) {
-=======
-    public ModelAndView save(InternshipOffer offer,
-            ModelAndView modelAndView,
-            @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
-            @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills) {
-        // Company company = companyRepository.find(companyId);
-        // if (company != null) {
-        // offer.setCompanyResponsable(company);
-        // }
->>>>>>> Stashed changes
+
+
+   
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
@@ -78,8 +75,6 @@ public class InternshipOfferController {
         return modelAndView;
     }
 
-<<<<<<< Updated upstream
-=======
     @GetMapping("/apply/{id}")
     public String showApplicationForm(@PathVariable("id") Integer offerId, Model model) throws Exception {
         InternshipOffer offer = internshipOfferRepository.find(offerId);
@@ -89,8 +84,12 @@ public class InternshipOfferController {
 
     @PostMapping("/apply")
     public String applyForInternship(@RequestParam("offerId") Integer offerId,
+
             @RequestParam("enrollment") String enrollment,
             @RequestParam(value = "message", required = false) String message) throws Exception {
+             @RequestParam("enrollment") String enrollment,
+              @RequestParam(value = "message", required = false) String message) throws Exception {
+
         Student student = studentRepository.findByEnrollment(enrollment);
         InternshipOffer offer = internshipOfferRepository.find(offerId);
 
@@ -107,7 +106,7 @@ public class InternshipOfferController {
         return "redirect:/internshipOffer/offers";
     }
 
->>>>>>> Stashed changes
+
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String delete(@PathVariable("id") Integer id) {
         try {

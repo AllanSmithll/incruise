@@ -10,6 +10,7 @@ public class MainController {
     public String showChoiceRegister() {
         return "pages/choice-register";
     }
+
     @GetMapping("/not-found")
     public String showNotFoundPage(){
         return "/pages/system/not-found";
