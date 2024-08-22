@@ -10,7 +10,7 @@
 <div class="card-main">
     <div class="card-component">
         <h1>Cadastro de Oferta de Estágio</h1>
-        <form th:action="@{/internshipOffer/s   ave}" th:object="${internshipOffer}" method="post">
+        <form th:action="@{/internshipOffer/save}" th:object="${internshipOffer}" method="post">
             <div class="form-group">
                 <label for="principalActivity">Principal atividade:</label>
                 <input type="text" id="principalActivity" th:field="*{principalActivity}"
@@ -38,6 +38,14 @@
             <div class="form-group">
                 <label for="prerequisites">Pré-requisitos:</label>
                 <textarea id="prerequisites" th:field="*{prerequisites}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="company">Empresa:</label>
+                <select id="company" th:field="*{companyResponsable}" required>
+                    <option value="">Selecione uma empresa</option>
+                    <option th:each="company : ${companies}" th:value="${company}" th:text="${company.fantasyName}"></option>
+                </select>
             </div>
 
             <button type="submit">Cadastrar Oferta</button>
