@@ -23,6 +23,7 @@ public abstract class Opportunity {
 	private String prerequisites;
 	private Integer companyResponsible;
 
+	private Boolean active = true;
 	private List<Competence> necessarySkills = new ArrayList<>();
 	private List<Competence> desirableSkills = new ArrayList<>();
 
