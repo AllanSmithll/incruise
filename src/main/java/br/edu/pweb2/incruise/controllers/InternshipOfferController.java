@@ -58,8 +58,7 @@ public class InternshipOfferController {
 
     public ModelAndView save(InternshipOffer offer, ModelAndView modelAndView,
             @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
-            @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills,
-            @RequestParam("companyID") String companyId
+            @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills
         ){
 
         if (necessarySkills != null) {
@@ -68,12 +67,9 @@ public class InternshipOfferController {
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
         }
-
-        if(!companyId.isEmpty()){
-            Company companyCurrent =   this.findCompanyResponsable(companyId);
-            offer.setCompanyResponsable(companyCurrent);
-        }
-
+        Company companyCurrent = companyRepository.find(offer.getCompanyResponsable());
+        companyCurrent.addOpportunity(offer);
+        offer.setCompanyResponsable(companyCurrent.getId());
         internshipOfferRepository.add(offer);
         modelAndView.setViewName("/offers/list");
         modelAndView.addObject("offers", internshipOfferRepository.list());
@@ -119,7 +115,7 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/info")
-    public String showIntership(Model model) {
+    public String showInternship(Model model) {
         if (!model.containsAttribute("opportunity")) {
             return "redirect:/internshipOffer/offers";
         }
@@ -128,8 +124,7 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/find/{id}")
-    public String findIntership(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-
+    public String findInternship(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         Opportunity opportunity = internshipOfferRepository.find(id);
 
         if (opportunity.isEmpty()) {return "redirect:/not-found";}
@@ -143,7 +138,7 @@ public class InternshipOfferController {
 
     }
 
-    public Company findCompanyResponsable(String id){
+    public Company findCompanyResponsable(Integer id){
         Integer idCompany = Integer.valueOf(id);
         return companyRepository.find(idCompany);
     }

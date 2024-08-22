@@ -21,12 +21,12 @@ public class InternshipOfferRepository {
 
         Company c1 = companyRepository.find(1);
         InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4.800,
-                490.0, "Não ter sido preso", c1);
+                490.0, "Não ter sido preso", c1.getId());
 
         c1.addOpportunity(i1);
         this.add(i1);
         InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
-                560.0, "Não ter sido casado", c1);
+                560.0, "Não ter sido casado", c1.getId());
         c1.addOpportunity(i2);
         this.add(i2);
 
