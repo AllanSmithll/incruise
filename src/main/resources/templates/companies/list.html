@@ -2,9 +2,10 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="../../static/styles/company/list-company.css"/>
     <meta th:insert="~{/fragments/headfiles(title='Empresas')}">
 
-    <link rel="stylesheet" th:href="@{/styles/list.css}">
+    <link rel="stylesheet" th:href="@{/styles/company/list-company.css}">
     <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
 
 </head>
@@ -15,22 +16,22 @@
     <h1> Todas as Empresas Cadastradas</h1>
 
     <a th:href="@{/company/register}">
-        <button class="button-add">
+        <button class="button-add btn btn-primary ">
             Nova Empresa
         </button>
     </a>
-    <table>
+    <table class="w-auto">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nome Fantasia</th>
             <th>CNPJ</th>
-            <th>principal Atividade</th>
+            <th>Atividade</th>
             <th>Email</th>
             <th>Telefone</th>
-            <th>Pessoa p/ Contato</th>
+            <th>Contato</th>
             <th>Endereço</th>
-            <th>Página</th>
+            <th>Site</th>
             <th>Ações</th>
         </tr>
         </thead>

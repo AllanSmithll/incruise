@@ -27,15 +27,8 @@ public class InternshipOfferController {
     InternshipOfferRepository internshipOfferRepository;
 
     StudentRepository studentRepository;
-    // CompanyRepository companyRepository;
-
     public InternshipOfferController(InternshipOfferRepository internshipOfferRepository,
             StudentRepository studentRepository) {
-        this.internshipOfferRepository = internshipOfferRepository;
-        this.studentRepository = studentRepository;
-    }
-
-    public InternshipOfferController(InternshipOfferRepository internshipOfferRepository, StudentRepository studentRepository) {
         this.internshipOfferRepository = internshipOfferRepository;
         this.studentRepository = studentRepository;
     }
@@ -87,8 +80,7 @@ public class InternshipOfferController {
 
             @RequestParam("enrollment") String enrollment,
             @RequestParam(value = "message", required = false) String message) throws Exception {
-             @RequestParam("enrollment") String enrollment,
-              @RequestParam(value = "message", required = false) String message) throws Exception {
+
 
         Student student = studentRepository.findByEnrollment(enrollment);
         InternshipOffer offer = internshipOfferRepository.find(offerId);
@@ -127,13 +119,13 @@ public class InternshipOfferController {
     }
     
     @GetMapping("/find/{id}")
-    public String findIntership(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+    public String findIntership(@PathVariable Integer id, RedirectAttributes redirectAttributes) throws Exception {
         
         Opportunity opportunity = internshipOfferRepository.find(id);
 
         if (!opportunity.isEmpty()) {
             redirectAttributes.addFlashAttribute("opportunity", opportunity);
-            String type = (opportunity.getClass() == Intership.getClass() ? "Estágio":"Oferta");
+            String type = (opportunity.getClass() == InternshipOffer.class ? "Estágio":"Oferta");
             redirectAttributes.addFlashAttribute("typeOpportunity", type );
             return "redirect:/internshipOffer/info";
 
