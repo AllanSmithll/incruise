@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,12 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/company")
 public class CompanyController {
 
-    final
+    @Autowired
     CompanyRepository companyRepository;
-
-    public CompanyController(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
-    }
 
     @RequestMapping("/register")
     public String getForm(Company company, Model model) {
@@ -57,26 +52,16 @@ public class CompanyController {
             return "redirect:/company/companies";
         }
     }
-    
-        @GetMapping("/info")
-        public String showCompanyInfo(Model model) {
-    
-            if (!model.containsAttribute("company")) {
-    
-                return "redirect:/company/companies"; 
-            }
-    
-            return "company/info"; 
-        }
 
     @GetMapping("/find/{id}")
-    public String getCompanyById(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-
+    public String getCompanyById(@PathVariable Integer id, Model model) {
+        // Aqui você pode buscar a empresa com base no ID
         Company companyGet = companyRepository.find(id);
 
-        redirectAttributes.addFlashAttribute("company", companyGet);
+        // Adicione a empresa ao modelo
+        model.addAttribute("company", companyGet);
 
-        return "redirect:/company/info";
+        return "redirect:/companies/info";
     }
 
 }

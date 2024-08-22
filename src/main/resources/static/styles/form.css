@@ -1,44 +1,26 @@
 @import url("main.css");
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
-
-.inter-font {
-            font-family: "Inter", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 900;
-            font-style: normal;
-        }
-.inter-font-line {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
-}
-
 /* Estilos principais da tela */
 .main-screen {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #7F7F7F; /* Cor de fundo clara */
-    margin: 50px 0 200px 0;
-    height: auto;
+    background-color: #f0f4f8; /* Cor de fundo clara */
+    margin: 200px 0 200px 0;
 }
 
+/* Estilo do container central */
 .card-main {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    background-color: transparent;
-    color: white;
+    background-color: #ffffff; /* Cor de fundo do card */
     width: 500px;
-    height: auto;
-    border: none;
-    border-radius: 8px;
-    padding: 20px;
+    height: 500px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
 }
 
 /* Estilo do conteúdo principal */
@@ -47,8 +29,7 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    color: white; /* Cor do texto */
-    height: auto;
+    color: #333333; /* Cor do texto */
 }
 
 /* Estilo dos botões de submissão */
@@ -72,14 +53,6 @@
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
 }
 
-.label-competence {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
-    gap: 10px; /* Espaçamento entre os itens */
-    align-items: start; /* Alinha os itens no topo de cada célula */
-}
-
-
 /* Estilo dos campos de entrada do formulário */
 .input-form {
     border-radius: 4px;
@@ -87,7 +60,6 @@
     margin: 5px 0;
     border: 1px solid #ced4da; /* Cor da borda dos campos */
     background-color: #ffffff; /* Cor de fundo dos campos */
-    height: 43px;
 }
 
 /* Estilo dos grupos de formulário */
@@ -110,19 +82,11 @@ input[type="date"],
 textarea {
     width: 100%;
     padding: 10px;
-    border: none;
+    border: 1px solid #ced4da;
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #ffffff;
     color: #495057; /* Cor do texto dentro dos campos */
-}
-
-input[type="text"],
-input[type="number"],
-input[type="date"],
-textarea:active {
-    border: none;
-
 }
 
 /* Estilo dos botões de envio */
@@ -141,20 +105,4 @@ button[type="submit"] {
 /* Estilo do botão ao passar o mouse */
 button[type="submit"]:hover {
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-}
-
-.title-page {
-    display: flex;
-    width: 100%;
-    justify-items: center;
-    justify-content: center ;
-    flex-direction: row;
-}
-
-.buttons-actions {
-    display: flex;
-    width: 100%;
-    justify-items: center;
-    justify-content: center ;
-    flex-direction: row;
 }

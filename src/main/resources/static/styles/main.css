@@ -1,3 +1,5 @@
+@import url("./theme.css");
+
 * {
     margin: 0;
     padding: 0;
@@ -13,10 +15,17 @@ body {
 
 }
 
+/* Header */
+header {
+    background-color: var(--primary-color);
+    padding: 20px 0;
+}
+
 a{
     text-decoration: none;
     color: var(--links-color);
     transition: ease-in all 0.5s;
+
 }
 
 a:hover{
@@ -25,6 +34,13 @@ a:hover{
     text-decoration: underline;
 }
 /* Classes*/
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+}
 
 img.logo{
     width: 50px;
@@ -38,3 +54,24 @@ align-self:flex-start ;
 justify-content: center;
 
 }
+
+.flex{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flex.around{
+    justify-content: space-around;
+}
+
+.flex.collumn{
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bolder{
+    font-weight: bolder;
+}
+

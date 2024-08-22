@@ -2,7 +2,6 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../static/styles/form.css"/>
     <meta charset="UTF-8">
     <title>Formulário de cadastro</title>
     <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
@@ -11,55 +10,47 @@
     <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png">
 </head>
 <body class="main-screen">
-
     <div class="card-main">
-        <h1  class="inter-font">Incruise</h1>
-        <div class="main-content inter-font-line">
-            <h1 class="title-page">Cadastrar-se</h1>
+        <div class="main-content">
+            <h1>Cadastrar-se</h1>
             <form th:action="@{/student/save}" method="post" th:object="${student}">
 
                 <input id="input-id" class="input-form" type="hidden" th:field="*{id}" />
 
                 <label class="label-form" for="input-name">Nome</label>
-                <input id="input-name" class="input-form" placeholder="seu nome completo" type="text" th:field="*{name}" />
+                <input id="input-name" class="input-form" type="text" th:field="*{name}" />
 
                 <label class="label-form" for="input-enrollment">Matrícula</label>
-                <input id="input-enrollment" class="input-form"  placeholder="sua matricula" type="text" th:field="*{enrollment}" />
+                <input id="input-enrollment" class="input-form" type="text" th:field="*{enrollment}" />
 
                 <label class="label-form" for="input-course">Curso</label>
-                <input id="input-course" placeholder="nome do curso *" class="input-form" type="text" th:field="*{course}" />
+                <input id="input-course" class="input-form" type="text" th:field="*{course}" />
 
-                <label class="label-form" for="input-birthdate">Data de Nascimento *</label>
-                <input id="input-birthdate" class="input-form" placeholder="data de nascimento " type="text" th:field="*{birthdate}" />
+                <label class="label-form" for="input-birthdate">Data de Nascimento</label>
+                <input id="input-birthdate" class="input-form" type="text" th:field="*{birthdate}" />
 
                 <label class="label-form" for="input-phone-number">Número de Telefone</label>
-                <input id="input-phone-number" placeholder="(00) 000000000)" class="input-form" type="text" th:field="*{phoneNumber}" />
+                <input id="input-phone-number" class="input-form" type="text" th:field="*{phoneNumber}" />
 
                 <label class="label-form" for="input-username">Nome de usuário</label>
-                <input id="input-username" class="input-form" placeholder="nome de usuário" type="text" th:field="*{username}" />
+                <input id="input-username" class="input-form" type="text" th:field="*{username}" />
 
                 <label class="label-form" for="input-email">Email</label>
-                <input class="input-form" placeholder="@email" id="input-email" type="text" th:field="*{email}" />
+                <input class="input-form" id="input-email" type="text" th:field="*{email}" />
 
                 <label class="label-form" for="input-senha">Senha</label>
-                <input id="input-senha" placeholder="senha" class="input-form" type="password" th:field="*{password}" />
+                <input id="input-senha" class="input-form" type="password" th:field="*{password}" />
 
-                <div >
+                <div class="label-competence">
                     <h3>Competências:</h3>
-
-                    <div class="label-competence">
-                        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
-                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence}"
-                                   th:checked="${student.competenceList.contains(competence)}"/>
-                            <span th:text="${competence.getDescription()}"></span>
-                        </label>
-                    </div>
+                    <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+                        <input type="checkbox" th:field="*{competenceList}" th:value="${competence}"
+                            th:checked="${student.competenceList.contains(competence)}" />
+                        <span th:text="${competence.getDescription()}"></span>
+                    </label>
                 </div>
-                <div class="buttons-actions">
                 <input class="submit-input" type="submit" value="Salvar">
-            </div>
             </form>
         </div>
     </div>
-</body>
 </html>
