@@ -58,6 +58,14 @@
                                 <a th:href="@{find/{id}(id=${offer.id})}">
                                 Visualizar
                                 </a>
+
+                                <form th:action="@{/internshipOffer/apply/{id}(id=${offer.id})}" method="get">
+                                    <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
+                                </form>
+                                <form th:action="@{/internshipOffer/cancel/{id}(id=${offer.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input class="input-delete" type="submit" value="Cancelar" />
+                                </form>
                             </div>
                         </td>
                     </tr>

@@ -21,20 +21,21 @@ public abstract class Opportunity {
 	private Double remunerationValue = 0.0;
 	private Double transportVoucher = 0.0;
 	private String prerequisites;
-	private Company companyResponsable;
+	private Integer companyResponsible;
 
+	private Boolean active = true;
 	private List<Competence> necessarySkills = new ArrayList<>();
 	private List<Competence> desirableSkills = new ArrayList<>();
 
 	public Opportunity(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,
-					   Double transportVoucher, String prerequisites, Company companyResponsable) {
+					   Double transportVoucher, String prerequisites, Integer companyResponsible) {
 		this.id = id;
 		this.principalActivity = principalActivity;
 		this.weeklyWorkload = weeklyWorkload;
 		this.remunerationValue = remunerationValue;
 		this.transportVoucher = transportVoucher;
 		this.prerequisites = prerequisites;
-		this.companyResponsable = companyResponsable;
+		this.companyResponsible = companyResponsible;
 	}
 
 	public Boolean isEmpty(){

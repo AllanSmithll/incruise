@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 //import jakarta.persistence.*;
 
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Company extends User {
+	@Getter
 	private String fantasyName;
 
 	private String cnpj;
@@ -53,6 +55,19 @@ public class Company extends User {
 				vacancies.add((InternshipOffer) opportunity);
 		}
 		return vacancies;
+	}
+
+	@Override
+	public String toString() {
+		return "Company{" +
+				"fantasyName='" + fantasyName + '\'' +
+				", cnpj='" + cnpj + '\'' +
+				", phoneNumber='" + phoneNumber + '\'' +
+				", personContact='" + personContact + '\'' +
+				", address='" + address + '\'' +
+				", principalActivity='" + principalActivity + '\'' +
+				", urlPage='" + urlPage + '\'' +
+				'}';
 	}
 
 	public void  addOpportunity(Opportunity opportunity) {
