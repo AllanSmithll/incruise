@@ -19,8 +19,8 @@
 
             <a th:href="@{/internshipOffer/register}">
                 <button class="button-add">
-                Nova Oferta
-            </button>
+                    Nova Oferta
+                </button>
             </a>
 
             <table>
@@ -36,15 +36,29 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="offer :${offers}">
-                        <td>[[${offer.id}]]</td>
-                        <td th:text="${offer.principalActivity}"></td>
-                        <td th:text="${offer.weeklyWorkload}"></td>
-                        <td th:text="${offer.remunerationValue}"></td>
-                        <td th:text="${offer.transportVoucher}"></td>
-                        <td th:text="${offer.prerequisites}"></td>
+                    <tr th:each="offer : ${offers}">
+                        <td>
+    
+                            [[${offer.id}]]
+                        </td>
+                            <td th:text="${offer.principalActivity}"></td>
+                            <td th:text="${offer.weeklyWorkload}"></td>
+                            <td th:text="${offer.remunerationValue}"></td>
+                            <td th:text="${offer.transportVoucher}"></td>
+                            <td th:text="${offer.prerequisites}"></td>
                         <td>
                             <div class="action-box">
+                                <form th:action="@{delete/{id}(id=${offer.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input class="input-delete" type="submit" value="Remover" />
+                                </form>
+                                <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
+                                    <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
+                                </form>
+                                <a th:href="@{find/{id}(id=${offer.id})}">
+                                Visualizar
+                                </a>
+
                                 <form th:action="@{/internshipOffer/apply/{id}(id=${offer.id})}" method="get">
                                     <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
                                 </form>
