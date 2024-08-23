@@ -1,4 +1,4 @@
-# Incruise — The Internship's Cruise.
+# Incruise — The Internship's Cruise
 Estagiar é como a aventura em um Cruzeiro. Todo trajeto é marcado por incríveis descobertas, novos horizontes e experiências de tirar o fôlego. Cada colega é um companheiro de viagem, trazendo uma rica bagagem de histórias e conhecimento. 
 
 ## Descrição
