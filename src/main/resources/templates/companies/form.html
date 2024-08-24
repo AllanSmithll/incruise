@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Cadastrar-se</title>
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
+    <meta th:insert="~{/fragments/headfiles(title='Cadastrar-se')}">
+
     <link rel="stylesheet" th:href="@{/styles/company/company.css}">
 </head>
 <body class="main-screen">
+    <header>
+        <div th:replace="~{/fragments/header}"></div>
+    </header>
+
     <div class="card-main">
         <div class="main-content">
             <h1>Cadastrar-se</h1>
@@ -69,5 +72,9 @@
             </form>
         </div>
     </div>
+
+    <div th:replace="~{/fragments/scripts}">
+    </div>
+
 </body>
 </html>

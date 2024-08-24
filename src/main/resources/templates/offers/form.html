@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta th:insert="~{/fragments/headfiles(title='Cadastrar Ofertas')}">
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
     <link rel="stylesheet" th:href="@{/styles/form.css}">
 </head>
 <body class="main-screen">
+    <header>
+        <div th:replace="~{/fragments/header}"></div>
+    </header>
 <div class="card-main">
     <div class="card-component">
         <h1>Cadastro de Oferta de Estágio</h1>
@@ -42,7 +44,7 @@
 
             <div class="form-group">
                 <label for="company">Empresa:</label>
-                <select id="company" th:field="*{companyResponsible}" required>
+                <select id="company" th:field="*{companyResponsable}" required>
                     <option value="">Selecione uma empresa</option>
                     <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.fantasyName}"></option>
                 </select>
@@ -51,6 +53,9 @@
             <button type="submit">Cadastrar Oferta</button>
         </form>
     </div>
+</div>
+
+<div th:replace="~{/fragments/scripts}">
 </div>
 </body>
 </html>

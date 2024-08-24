@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minhas Candidaturas</title>
+    <meta th:insert="~{/fragments/headfiles(title=Candidaturas)}">
+
     <link rel="stylesheet" th:href="@{/styles/list.css}">
 </head>
 <body>
+<header>
+    <div th:replace="~{/fragments/header}"></div>
+</header>
 <h1>Candidaturas de [[${studentName}]]</h1>
 <div class="candidatures-container">
     <div th:if="${not #lists.isEmpty(candidatures)}">
@@ -33,5 +35,7 @@
         <p>Você ainda não fez nenhuma candidatura.</p>
     </div>
 </div>
+<div th:replace="~{/fragments/scripts}">
+
 </body>
 </html>

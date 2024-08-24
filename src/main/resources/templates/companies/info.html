@@ -13,87 +13,93 @@
 
 <body>
 
-<section class="info-section" id="first-info">
-    <img th:src="@{/imgs/default/enterprise-default.png}">
-    <h1 id="name" th:text="${company.fantasyName}">Text Content Default</h1>
-</section>
+    <section class="info-section" id="first-info">
+        <img th:src="@{/imgs/default/enterprise-default.png}">
+        <h1 id="name" th:text="${company.fantasyName}">Text Content Default</h1>
+    </section>
 
-<section class="info-section" id="activity-section">
-    <div class="topic">
-        <h1 class="topic-title">Principal atividade</h1>
-        <p class="topic-content" th:text="${company.principalActivity}">Text Content Default Text Content Default Text Content Default</p>
-    </div>
-</section>
-
-<section class="info-section" id="basic-section">
-    <h2 class="section-title">Dados da Empresa</h2>
-
-    <div class="flex around">
+    <section class="info-section" id="activity-section">
         <div class="topic">
-            <h1 class="topic-title">Oportunidades Cadastradas</h1>
-            <p class="topic-content">
-                <span th:text="${company.opportunityList != null ? #lists.size(company.opportunityList) : 0}">0</span>
-                Oportunidades
-            </p>
+            <h1 class="topic-title">Principal atividade</h1>
+            <p class="topic-content" th:text="${company.principalActivity}">Text Content Default Text Content Default
+                Text Content Default</p>
         </div>
+    </section>
 
-        <div class="topic">
-            <h1 class="topic-title">CNPJ</h1>
-            <p class="topic-content" th:text="${company.cnpj}"></p>
-        </div>
-    </div>
+    <section class="info-section" id="basic-section">
+        <h2 class="section-title">Dados da Empresa</h2>
 
-    <div class="topic">
-        <h1 class="topic-title">Endereço</h1>
-        <p class="topic-content" th:text="${company.address}">Text Default</p>
-    </div>
-
-    <div class="topic" th:if="${company.urlPage != null and !company.urlPage.isEmpty()}">
-        <h1 class="topic-title">Site Oficial</h1>
-        <p class="topic-content"><a th:href="@{${company.urlPage}}" target="_blank"> Clique aqui para acessar o site oficial</a></p>
-    </div>
-</section>
-
-<section class="info-section" id="contact-section">
-    <h2 class="section-title">Contato</h2>
-    <div class="flex collumn">
         <div class="flex around">
             <div class="topic">
-                <h1 class="topic-title">Email</h1>
-                <p class="topic-content" th:text="${company.email}"></p>
+                <h1 class="topic-title">Oportunidades Cadastradas</h1>
+                <p class="topic-content">
+                    <span
+                        th:text="${company.opportunityList != null ? #lists.size(company.opportunityList) : 0}">0</span>
+                    Oportunidades
+                </p>
             </div>
 
             <div class="topic">
-                <h1 class="topic-title">Telefone</h1>
-                <p class="topic-content" th:text="${company.phoneNumber}"></p>
+                <h1 class="topic-title">CNPJ</h1>
+                <p class="topic-content" th:text="${company.cnpj}"></p>
             </div>
         </div>
 
         <div class="topic">
-            <h1 class="topic-title">Pessoa Contato</h1>
-            <p class="topic-content" th:text="${company.personContact}"></p>
+            <h1 class="topic-title">Endereço</h1>
+            <p class="topic-content" th:text="${company.address}">Text Default</p>
         </div>
-    </div>
-</section>
 
-<section class="info-section" id="oportunity-section">
-    <h2 class="section-title">Oportunidades</h2>
-
-    <div th:if="${#lists.isEmpty(company.opportunityList)}">
-        <p>Não há oportunidades disponíveis.</p>
-    </div>
-    <div th:each="opportunity : ${company.opportunityList}">
-        <div class="opportunity-item">
-            <h3 th:text="${opportunity.principalActivity}">Principal Atividade</h3>
-            <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40 horas</span></p>
-            <p><strong>Remuneração:</strong> <span th:text="${opportunity.remunerationValue}">R$ 0,00</span></p>
-            <p><strong>Vale Transporte:</strong> <span th:text="${opportunity.transportVoucher}">Sim</span></p>
-            <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Nenhum</span></p>
+        <div class="topic" th:if="${company.urlPage != null and !company.urlPage.isEmpty()}">
+            <h1 class="topic-title">Site Oficial</h1>
+            <p class="topic-content"><a th:href="@{${company.urlPage}}" target="_blank"> Clique aqui para acessar o site
+                    oficial</a></p>
         </div>
-    </div>
-<!--    <button type="button" th:onclick="|window.location.href='@{/internshipOffer/register}'|">Cadastrar oferta</button>-->
-</section>
+    </section>
 
+    <section class="info-section" id="contact-section">
+        <h2 class="section-title">Contato</h2>
+        <div class="flex collumn">
+            <div class="flex around">
+                <div class="topic">
+                    <h1 class="topic-title">Email</h1>
+                    <p class="topic-content" th:text="${company.email}"></p>
+                </div>
+
+                <div class="topic">
+                    <h1 class="topic-title">Telefone</h1>
+                    <p class="topic-content" th:text="${company.phoneNumber}"></p>
+                </div>
+            </div>
+
+            <div class="topic">
+                <h1 class="topic-title">Pessoa Contato</h1>
+                <p class="topic-content" th:text="${company.personContact}"></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="oportunity-section">
+        <h2 class="section-title">Oportunidades</h2>
+
+        <div th:if="${#lists.isEmpty(company.opportunityList)}">
+            <p>Não há oportunidades disponíveis.</p>
+        </div>
+        <div th:each="opportunity : ${company.opportunityList}">
+            <div class="opportunity-item">
+                <h3 th:text="${opportunity.principalActivity}">Principal Atividade</h3>
+                <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40 horas</span>
+                </p>
+                <p><strong>Remuneração:</strong> <span th:text="${opportunity.remunerationValue}">R$ 0,00</span></p>
+                <p><strong>Vale Transporte:</strong> <span th:text="${opportunity.transportVoucher}">Sim</span></p>
+                <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Nenhum</span></p>
+            </div>
+        </div>
+        <!--    <button type="button" th:onclick="|window.location.href='@{/internshipOffer/register}'|">Cadastrar oferta</button>-->
+    </section>
+
+    <div th:replace="~{/fragments/scripts}">
+    </div>
 </body>
 
 </html>

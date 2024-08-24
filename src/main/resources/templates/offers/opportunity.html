@@ -3,13 +3,15 @@
 
 <head>
     <meta th:insert="~{/fragments/headfiles(title='${typeOpportunity} - ${opportunity.id}')}">
-    <!--     <link rel="stylesheet" th:href="@{/styles/offer.css}"> -->
+         <link rel="stylesheet" th:href="@{/styles/info.css}">
 </head>
 
 <body>
 
-    <h1 th:text="${typeOpportunity}">
-    </h1>
+    <header>
+        <div th:replace="~{/fragments/header}"></div>
+    </header>
+
     <h1 th:text="${typeOpportunity}"></h1>
 
     <div>
@@ -52,19 +54,19 @@
 
     <div>
         <h2>Informações da Empresa Responsável</h2>
-        <p><strong>Nome da Empresa:</strong> <span th:text="${opportunity.companyResponsable.fantasyName}">Nome da
-                Empresa</span></p>
-        <p><strong>Endereço:</strong> <span th:text="${opportunity.companyResponsable.address}">Endereço da
-                Empresa</span></p>
-        <div th:if="${!opportunity.companyResponsable.urlPage.isEmpty()}" >
+<!--         <p><strong>Nome da Empresa:</strong> <span th:text="${opportunity.companyResponsable.fantasyName}">Nome da Empresa</span></p>
+        <p><strong>Endereço:</strong> <span th:text="${opportunity.companyResponsable.address}">Endereço da Empresa</span></p>
+        <div th:if="${opportunity.companyResponsable.urlPage != null and !opportunity.companyResponsable.urlPage.isEmpty()}">
             <p><strong>Website:</strong>
-                <a th:href="${opportunity.companyResponsable.urlPage}" target="_blank"
+                <a th:href="@{${opportunity.companyResponsable.urlPage}}" target="_blank"
                     th:text="${opportunity.companyResponsable.urlPage}">
                     Acesse o perfil da empresa
                 </a>
             </p>
         </div>
-    </div>
+    </div> -->
+    
+    <div th:replace="~{/fragments/scripts}">
 
 </body>
 
