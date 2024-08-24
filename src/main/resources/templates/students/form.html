@@ -2,16 +2,15 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../../static/styles/form.css"/>
-    <meta charset="UTF-8">
-    <title>Formulário de cadastro</title>
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-    <link rel="stylesheet" th:href="@{/styles/form.css}">
-    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png" th:href="@{/imgs/icons8-navio-48.png}">
-    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png">
+    <!-- <link rel="stylesheet" type="text/css" href="../../static/styles/form.css"/>-->
+    <meta th:insert="~{/fragments/headfiles(title='Cadastrar-se')}">
+
 </head>
 <body class="main-screen">
-
+    
+<header>
+    <div th:replace="~{/fragments/header}"></div>
+</header>
     <div class="card-main">
         <h1  class="inter-font">Incruise</h1>
         <div class="main-content inter-font-line">
@@ -61,5 +60,8 @@
             </form>
         </div>
     </div>
+
+    <div th:replace="~{/fragments/scripts}">
+
 </body>
 </html>

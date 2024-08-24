@@ -1,13 +1,62 @@
-<nav class="navbar navbar-dark" style="background: #498CA9;" th:fragment="header">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}">
-            <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top">
-            <span class="logo-font">Incruise</span>
-        </a>
-        <div >
-            <button class="btn btn-primary" type="button" th:onclick="|window.location.href='@{/choice-register}'|">Registro</button>
-            <button class="btn btn-secondary" type="button" th:onclick="|window.location.href='@{/student/my-candidatures}'|">Minhas candidaturas</button>
+<section class="navigation" th:fragment="header">
+    <div class="nav-container">
+        <div class="brand">
+            <a class="navbar-brand" th:href="@{/}">
+                <!--             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+                <span class="logo-font">Incruise</span>
+            </a>
         </div>
-        
+        <nav>
+            <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
+            <ul class="nav-list">
+                <li>
+                    <a th:href="@{/student/students}">Alunos</a>
+                </li>
+                <li>
+                    <a th:href="@{/internshipOffer/offers}" >Oportunidades</a>
+                </li>
+                <li>
+                    <a th:href="@{/company/companies}" >Empresas</a>
+                </li>
+                <li>
+                </li>
+
+                <!--            
+                 <ul class="navbar-dropdown">
+              <li>
+                <a href="#!">Sass</a>
+              </li>
+              <li>
+                <a href="#!">Less</a>
+              </li>
+              <li>
+                <a href="#!">Stylus</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#!">Portfolio</a>
+          </li>
+          <li>
+            <a href="#!">Category</a>
+            <ul class="navbar-dropdown">
+              <li>
+                <a href="#!">Sass</a>
+              </li>
+              <li>
+                <a href="#!">Less</a>
+              </li>
+              <li>
+                <a href="#!">Stylus</a>
+              </li>
+            </ul>
+                      </li>
+
+            -->
+                <li>
+                    <a href="#!">Contact</a>
+                </li>
+            </ul>
+        </nav>
     </div>
-</nav>
+</section>

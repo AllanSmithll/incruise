@@ -1,9 +1,5 @@
 package br.edu.pweb2.incruise.controllers;
 
-import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.Competence;
-import br.edu.pweb2.incruise.model.InternshipOffer;
-
 import br.edu.pweb2.incruise.model.*;
 import br.edu.pweb2.incruise.repository.CompanyRepository;
 
@@ -37,7 +33,6 @@ public class InternshipOfferController {
 
     }
 
-
     @RequestMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
         model.addAttribute("internshipOffer", internshipOffer);
@@ -68,7 +63,7 @@ public class InternshipOfferController {
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
         }
-        Company companyCurrent = companyRepository.find(offer.getCompanyResponsible());
+        Company companyCurrent = companyRepository.find(offer.getCompanyResponsable());
         companyCurrent.addOpportunity(offer);
         opportunityRepository.add(offer);
         modelAndView.setViewName("/offers/list");
@@ -115,30 +110,19 @@ public class InternshipOfferController {
         }
     }
 
-    @GetMapping("/info")
-    public String showInternship(Model model) {
-        if (!model.containsAttribute("opportunity")) {
-            return "redirect:/internshipOffer/offers";
-        }
-        return "offers/opportunity";
-    }
-
-    @GetMapping("/find/{id}")
-    public String findInternship(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
+    @GetMapping("/info/{id}")
+    public String showInternship(Model model, @PathVariable Integer id) {
         Opportunity opportunity = opportunityRepository.find(id);
         if (opportunity.isEmpty()) {
             return "redirect:/not-found";
         }
-        redirectAttributes.addFlashAttribute("opportunity", opportunity);
-        String type =
-                (opportunity.getClass() == InternshipOffer.class
-                        ? "Estágio" : "Oferta");
-        redirectAttributes.addFlashAttribute("typeOpportunity", type);
-        return "redirect:/internshipOffer/info";
+        model.addAttribute("opportunity", opportunity);
+        String type = (opportunity.getClass() == InternshipOffer.class ? "Oferta de Estágio": "Estágio" );
+        model.addAttribute("typeOpportunity", type);
 
-    }
+        return "offers/opportunity";}
 
-    public Company findCompanyResponsible(Integer id) {
+    public Company findcompanyResponsable(Integer id) {
         Integer idCompany = Integer.valueOf(id);
         return companyRepository.find(idCompany);
     }
