@@ -2,13 +2,12 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta th:insert="~{/fragments/headfiles(title='Cadastrar Ofertas')}">
-    <link rel="stylesheet" th:href="@{/styles/form.css}">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar Oferta')}">
+
 </head>
 <body class="main-screen">
-    <header>
-        <div th:replace="~{/fragments/header}"></div>
-    </header>
+    
+         <header  th:replace="~{/fragments/header}">    </header> <main>
 <div class="card-main">
     <div class="card-component">
         <h1>Cadastro de Oferta de Estágio</h1>
@@ -57,5 +56,6 @@
 
 <div th:replace="~{/fragments/scripts}">
 </div>
-</body>
+</main> </main> </body>
+
 </html>

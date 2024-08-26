@@ -1,8 +1,11 @@
 *{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-cursor: default;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: default;
+}
+main{
+  padding: 0 !important;
 }
 /* introduction */
 .introduction {

@@ -1,62 +1,46 @@
-<section class="navigation" th:fragment="header">
+<header th:fragment="header">
+  <section class="navigation">
     <div class="nav-container">
-        <div class="brand">
-            <a class="navbar-brand" th:href="@{/}">
-                <!--             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
-                <span class="logo-font">Incruise</span>
-            </a>
-        </div>
-        <nav>
-            <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
-            <ul class="nav-list">
-                <li>
-                    <a th:href="@{/student/students}">Alunos</a>
-                </li>
-                <li>
-                    <a th:href="@{/internshipOffer/offers}" >Oportunidades</a>
-                </li>
-                <li>
-                    <a th:href="@{/company/companies}" >Empresas</a>
-                </li>
-                <li>
-                </li>
+      <div class="brand">
+        <a class="navbar-brand" th:href="@{/}">
+          <!--             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+          <span class="logo-font">Incruise</span>
+        </a>
+      </div>
+      <nav>
+        <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
+        <ul class="nav-list">
+          <li>
+            <a th:href="@{/student/students}">Alunos</a>
+          </li>
+          <li>
+            <a th:href="@{/internshipOffer/offers}">Oportunidades</a>
+          </li>
+          <li>
+            <a th:href="@{/company/companies}">Empresas</a>
+          </li>
+          <li>
+          </li>
 
-                <!--            
-                 <ul class="navbar-dropdown">
-              <li>
-                <a href="#!">Sass</a>
-              </li>
-              <li>
-                <a href="#!">Less</a>
-              </li>
-              <li>
-                <a href="#!">Stylus</a>
-              </li>
-            </ul>
-          </li>
           <li>
-            <a href="#!">Portfolio</a>
+            <a href="#!">Login</a>
           </li>
+
           <li>
-            <a href="#!">Category</a>
+            <a href="#!">Registrar-se</a>
             <ul class="navbar-dropdown">
               <li>
-                <a href="#!">Sass</a>
+                <a th:href="@{/student/register}">Como Estudante</a>
               </li>
               <li>
-                <a href="#!">Less</a>
-              </li>
-              <li>
-                <a href="#!">Stylus</a>
+                <a th:href="@{/company/register}">Como empresa</a>
               </li>
             </ul>
-                      </li>
+          </li>
 
-            -->
-                <li>
-                    <a href="#!">Contact</a>
-                </li>
-            </ul>
-        </nav>
+        </ul>
+      </nav>
     </div>
-</section>
+  </section>
+
+</header>

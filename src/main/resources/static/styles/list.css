@@ -1,21 +1,20 @@
 @import url("main.css");
 
 /* Estilos principais da tela */
-.main-screen {
+/* .main-screen {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #f0f4f8; /* Cor de fundo clara */
-    padding: 40px 0;
-}
-
+    background-color: #f0f4f8; 
+}*/
 /* Estilo do container da listagem */
 .card-component {
     display: flex;
+    justify-self: center;
+    justify-content: center;
     flex-direction: column;
     background-color: #ffffff; /* Cor de fundo do card */
-    width: 80%;
-    max-width: 80%;
+    width: fit-content;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
     border-radius: 8px; /* Bordas arredondadas */
     padding: 20px; /* Espaçamento interno */
@@ -103,4 +102,8 @@ tbody tr:hover {
 .btn-apply:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.button-add {
+    margin: 20px 0 20px 0;
 }

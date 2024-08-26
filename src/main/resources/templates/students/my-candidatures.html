@@ -6,9 +6,8 @@
     <link rel="stylesheet" th:href="@{/styles/list.css}">
 </head>
 <body>
-<header>
-    <div th:replace="~{/fragments/header}"></div>
-</header>
+
+     <header  th:replace="~{/fragments/header}"></header> <main>
 <h1>Candidaturas de [[${studentName}]]</h1>
 <div class="candidatures-container">
     <div th:if="${not #lists.isEmpty(candidatures)}">
@@ -37,5 +36,6 @@
 </div>
 <div th:replace="~{/fragments/scripts}">
 
-</body>
+</main> </main> </body>
+
 </html>

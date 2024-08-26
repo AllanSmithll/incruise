@@ -21,11 +21,13 @@ public class OpportunityRepository {
 
         Company c1 = companyRepository.find(1);
         InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4.800,
-                490.0, "Não ter sido preso", c1.getId());
-        c1.addOpportunity(i1);
-        this.add(i1);
-        InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
-                560.0, "Não ter sido casado", c1.getId());
+                490.0, "Não ter sido preso", c1);
+                System.out.println(i1);
+                c1.addOpportunity(i1);
+                this.add(i1);
+                InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
+                560.0, "Não ter sido casado", c1);
+                System.out.println(i2);
         c1.addOpportunity(i2);
         this.add(i2);
 
@@ -47,7 +49,7 @@ public class OpportunityRepository {
 
     public Opportunity find(Integer id) {
         for (Opportunity i : oportunityList) {
-            if (i.getId().equals(id))
+            if (i.equals(id))
                 return i;
         }
         return new NullOpportunity();
@@ -63,7 +65,7 @@ public class OpportunityRepository {
      * //percore a lista procurando o maior ID, ou uma possível para inserção;
      * for(Student student : students){
      * //checa se o id gerado é maior que o id Na lista
-     * if(id >student.getId())
+     * if(id >student)
      * break; //caso seja, pare de interar
      * id++; // se não, aumente o id e continue
      * }

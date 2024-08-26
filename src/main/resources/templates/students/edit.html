@@ -2,13 +2,11 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta th:insert="~{/fragments/headfiles(title='[[${student.name}]]')}">
-
 </head>
 <body>
   
-<header>
-  <div th:replace="~{/fragments/header}"></div>
-</header>
+
+   <header  th:replace="~{/fragments/header}"></header> <main>
 
 <h1>Editar Aluno</h1>
 <form th:action="@{/student/edit/{id}(id=${student.id})}" method="post">
@@ -20,5 +18,6 @@
   <input type="submit" value="Salvar">
 </form>
 <div th:replace="~{/fragments/scripts}"></div>
-</body>
+</main> </main> </body>
+
 </html>

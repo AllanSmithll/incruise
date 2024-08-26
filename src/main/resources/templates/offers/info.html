@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Incluindo o fragmento de cabeçalho -->
+    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${typeOpportunity} + ' - ' + ${opportunity.principalActivity})}">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header th:replace="~{/fragments/header}"></header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <!-- Título da oportunidade -->
+        <h1 th:text="${typeOpportunity}">Tipo da Oportunidade</h1>
+
+        <!-- Seção de detalhes da oportunidade -->
+        <div>
+            <h2>Detalhes</h2>
+            <p><strong>ID:</strong> <span th:text="${opportunity.id}">1</span></p>
+            <p><strong>Atividade Principal:</strong> <span th:text="${opportunity.principalActivity}">Atividade principal</span></p>
+            <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40</span> horas</p>
+            <p><strong>Valor da Remuneração:</strong> R$ <span th:text="${opportunity.remunerationValue}">1000.00</span></p>
+            <p><strong>Vale Transporte:</strong> R$ <span th:text="${opportunity.transportVoucher}">100.00</span></p>
+            <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Pré-requisitos</span></p>
+        </div>
+
+        <!-- Seção de candidaturas -->
+        <div>
+            <h2>Candidaturas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Matrícula</th>
+                        <th>Email</th>
+                        <th>Curso</th>
+                        <th>Telefone</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody th:each="c : ${opportunity.candidatureList}">
+                    <tr>
+                        <td th:text="${c.student.name}">Nome do Estudante</td>
+                        <td th:text="${c.student.enrollment}">Matrícula do Estudante</td>
+                        <td th:text="${c.student.email}">Email do Estudante</td>
+                        <td th:text="${c.student.course}">Curso do Estudante</td>
+                        <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
+                        <td th:text="${c.createdDate}">Data da Candidatura</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Seção de informações da empresa responsável -->
+        <div>
+            <h2>Informações da Empresa Responsável</h2>
+            <p>
+                <strong>Nome da Empresa:</strong>
+                <span th:text="${opportunity.companyResponsable.fantasyName}">Nome da Empresa</span>
+            </p>
+            <p>
+                <strong>Endereço:</strong>
+                <span th:text="${opportunity.companyResponsable.address}">Endereço da Empresa</span>
+            </p>
+            <div th:if="${opportunity.companyResponsable.urlPage != null and !opportunity.companyResponsable.urlPage.isEmpty()}">
+                <p>
+                    <strong>Website:</strong>
+                    <a th:href="${opportunity.companyResponsable.urlPage}" target="_blank" th:text="${opportunity.companyResponsable.urlPage}">Acesse o perfil da empresa</a>
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Inclusão de scripts -->
+    <div th:replace="~{/fragments/scripts}"></div>
+
+</body>
+
+</html>

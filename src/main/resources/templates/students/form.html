@@ -2,15 +2,14 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <!-- <link rel="stylesheet" type="text/css" href="../../static/styles/form.css"/>-->
-    <meta th:insert="~{/fragments/headfiles(title='Cadastrar-se')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar-se')}">
+
 
 </head>
 <body class="main-screen">
     
-<header>
-    <div th:replace="~{/fragments/header}"></div>
-</header>
+
+     <header  th:replace="~{/fragments/header}"></header> <main>
     <div class="card-main">
         <h1  class="inter-font">Incruise</h1>
         <div class="main-content inter-font-line">
@@ -63,5 +62,6 @@
 
     <div th:replace="~{/fragments/scripts}">
 
-</body>
+</main> </main> </body>
+
 </html>

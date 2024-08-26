@@ -1,0 +1,149 @@
+/* Variáveis de estilo para manter consistência */
+:root {
+  --info-background: #f5f5f5;
+  --info-font-family: 'Arial', sans-serif;
+  --info-section-border: 1px solid #ddd;
+  --opportunity-card-background: #ffffff;
+  --opportunity-card-background-hover: #e6f7ff;
+  --opportunity-card-color-hover: #007bff;
+}
+
+/* Estilo base para o corpo da página */
+body {
+  font-family: var(--info-font-family);
+  background-color: var(--info-background);
+  cursor: default;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo para as seções de informação */
+.info-section {
+  padding: 1.5rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  border: var(--info-section-border);
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo para a seção de cabeçalho da empresa */
+#first-info {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--info-background);
+}
+
+#first-info img {
+  background-color: white;
+  border-radius: 50%;
+  height: 10rem;
+  width: 10rem;
+  object-fit: cover;
+  margin-right: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#first-info h1 {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+/* Seção de atividade principal */
+#activity-section {
+  text-align: center;
+}
+
+.topic {
+  margin: 1rem 0;
+}
+
+.topic-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.topic-content {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Seção de dados da empresa */
+#basic-section {
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+}
+
+.around {
+  justify-content: space-around;
+}
+
+.column {
+  flex-direction: column;
+}
+
+/* Seção de contato */
+#contact-section {
+  text-align: center;
+}
+
+/* Estilo dos títulos de seção */
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #333;
+}
+
+/* Estilo para cartões de oportunidade */
+#oportunity-section .opportunity-item {
+  display: inline-block;
+  width: calc(30% - 2rem);
+  padding: 1rem;
+  margin: 1rem;
+  border: var(--info-section-border);
+  border-radius: 0.5rem;
+  background-color: var(--opportunity-card-background);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+#oportunity-section .opportunity-item:hover {
+  background-color: var(--opportunity-card-background-hover);
+}
+
+#oportunity-section h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+#oportunity-section p {
+  font-size: 1rem;
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+  #first-info {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #first-info img {
+      margin-bottom: 1rem;
+  }
+
+  .opportunity-item {
+      width: 100%;
+  }
+}
