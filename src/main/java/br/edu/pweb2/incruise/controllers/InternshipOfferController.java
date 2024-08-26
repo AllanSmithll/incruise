@@ -63,7 +63,7 @@ public class InternshipOfferController {
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
         }
-        Company companyCurrent = companyRepository.find(offer.getCompanyResponsable().getId());
+        Company companyCurrent = companyRepository.find(offer.getCompanyResponsible().getId());
         companyCurrent.addOpportunity(offer);
         opportunityRepository.add(offer);
         modelAndView.setViewName("/offers/list");
@@ -100,7 +100,7 @@ public class InternshipOfferController {
     }
 
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String cancel(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
         try {
             opportunityRepository.remove(id);
             return "redirect:/internshipOffer/offers";

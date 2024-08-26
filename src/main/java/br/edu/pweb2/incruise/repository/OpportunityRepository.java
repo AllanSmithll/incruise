@@ -48,9 +48,9 @@ public class OpportunityRepository {
     }
 
     public Opportunity find(Integer id) {
-        for (Opportunity i : oportunityList) {
-            if (i.equals(id))
-                return i;
+        for (Opportunity op : oportunityList) {
+            if (op.equals(id))
+                return op;
         }
         return new NullOpportunity();
     }

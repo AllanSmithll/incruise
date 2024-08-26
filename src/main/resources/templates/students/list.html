@@ -5,51 +5,52 @@
     <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Estudantes')}">
 
 </head>
-<body class="main-screen">
-    
-
-     <header  th:replace="~{/fragments/header}"></header> <main>
-
-    <div class="card-component">
-        <div class="card-content">
-            <h1>Todos os estudantes cadastrados</h1>
-            <button class="button-add">
-                <a th:href="@{/student/register}">Novo</a>
-            </button>
+<body>
+<header th:replace="~{/fragments/header}"></header>
+<main>
+    <div class="main-screen">
+        <div class="card-component">
+            <h1>Todos os Alunos Cadastrados</h1>
+            <a th:href="@{/student/register}">
+                <button class="button-add btn btn-primary">Novo Aluno</button>
+            </a>
             <table border="1">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Matrícula</th>
-                        <th>Curso</th>
-                        <th>Email</th>
-                        <th>Telefone</th>
-                        <th>Ações</th>
-                    </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>Curso</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
                 </thead>
                 <tbody>
 
-                    <tr th:each="student : ${students}">
-                        <td>[[${student.id}]]</td>
-                        <td th:text="${student.name}"></td>
-                        <td th:text="${student.enrollment}"></td>
-                        <td th:text="${student.course}"></td>
-                        <td th:text="${student.email}"></td>
-                        <td th:text="${student.phoneNumber}"></td>
-                        <td>
+                <tr th:each="student : ${students}">
+                    <td>[[${student.id}]]</td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.enrollment}"></td>
+                    <td th:text="${student.course}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td th:text="${student.phoneNumber}"></td>
+                    <td>
+                        <div class="action-box">
                             <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
-                                <input type="hidden" name="_method" value="DELETE" />
-                                <input class="input-delete" type="submit" value="Remover" />
+                                <input type="hidden" name="_method" value="DELETE"/>
+                                <input class="btn-action btn-delete" type="submit" value="Remover"/>
                             </form>
-                        </td>
-                    </tr>
+                        </div>
+                    </td>
+                </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <div th:replace="~{/fragments/scripts}">
+    <div th:replace="~{/fragments/scripts}"></div>
 
-</main> </main> </body>
+</main>
+</body>
 
 </html>
