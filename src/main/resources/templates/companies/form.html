@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta th:insert="~{/fragments/headfiles(title='Cadastrar-se')}">
 
-    <link rel="stylesheet" th:href="@{/styles/company/company.css}">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Registre-se')}">
+
 </head>
 <body class="main-screen">
-    <header>
-        <div th:replace="~{/fragments/header}"></div>
-    </header>
+    
+         <header  th:replace="~{/fragments/header}">    </header> <main>
 
     <div class="card-main">
         <div class="main-content">
@@ -76,5 +75,6 @@
     <div th:replace="~{/fragments/scripts}">
     </div>
 
-</body>
+</main> </main> </body>
+
 </html>

@@ -2,14 +2,13 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta th:insert="~{/fragments/headfiles(title='Estudantes')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Estudantes')}">
 
 </head>
 <body class="main-screen">
     
-<header>
-    <div th:replace="~{/fragments/header}"></div>
-</header>
+
+     <header  th:replace="~{/fragments/header}"></header> <main>
 
     <div class="card-component">
         <div class="card-content">
@@ -51,5 +50,6 @@
     </div>
     <div th:replace="~{/fragments/scripts}">
 
-</body>
+</main> </main> </body>
+
 </html>

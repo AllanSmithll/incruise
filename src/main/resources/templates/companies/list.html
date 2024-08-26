@@ -2,68 +2,68 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta th:insert="~{/fragments/headfiles(title='Empresas')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Empresas')}">
 
-    <!--     <link rel="stylesheet" type="text/css" th:href="@{/styles/company/list-company.css}"/>-->
-    <link rel="stylesheet" th:href="@{/styles/company/list.css}">
 
 </head>
 
 <body class="main-screen">
-    <header>
-        <div th:replace="~{/fragments/header}"></div>
-    </header>
 
-    <div class="card-component">
-        <h1> Todas as Empresas Cadastradas</h1>
+    <header th:replace="~{/fragments/header}"> </header>
+    <main>
 
-        <a th:href="@{/company/register}">
-            <button class="button-add btn btn-primary ">
-                Nova Empresa
-            </button>
-        </a>
-        <table class="w-auto">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome Fantasia</th>
-                    <th>CNPJ</th>
-                    <th>Atividade</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Contato</th>
-                    <th>Endereço</th>
-                    <th>Site</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="company :${companies}">
-                    <td>[[${company.id}]]</td>
-                    <td th:text="${company.fantasyName}"></td>
-                    <td th:text="${company.cnpj}"></td>
-                    <td th:text="${company.principalActivity}"></td>
-                    <td th:text="${company.email}"></td>
-                    <td th:text="${company.phoneNumber}">td>
-                    <td th:text="${company.personContact}">td>
-                    <td th:text="${company.address}">td>
-                    <td th:text="${company.urlPage}">td>
-                    <td>
-                        <div class="action-box">
-                            <form th:action="@{/company/delete/{id}(id=${company.id})}" method="post">
-                                <input type="hidden" name="_method" value="DELETE" />
-                                <input class="input-delete" type="submit" value="Remover" />
-                            </form>
-                            <form th:action="@{/company/find/{id}(id=${company.id})}" method="get">
-                                <input type="submit" value="Info" />
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="card-component">
+            <h1> Todas as Empresas Cadastradas</h1>
 
-        <div th:replace="~{/fragments/scripts}">
+            <a th:href="@{/company/register}">
+                <button class="button-add btn btn-primary ">
+                    Nova Empresa
+                </button>
+            </a>
+            <table class="w-auto">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome Fantasia</th>
+                        <th>CNPJ</th>
+                        <th>Atividade</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Contato</th>
+                        <th>Endereço</th>
+                        <th>Site</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="company :${companies}">
+                        <td>[[${company.id}]]</td>
+                        <td th:text="${company.fantasyName}"></td>
+                        <td th:text="${company.cnpj}"></td>
+                        <td th:text="${company.principalActivity}"></td>
+                        <td th:text="${company.email}"></td>
+                        <td th:text="${company.phoneNumber}">td>
+                        <td th:text="${company.personContact}">td>
+                        <td th:text="${company.address}">td>
+                        <td th:text="${company.urlPage}">td>
+                        <td>
+                            <div class="action-box">
+                                <form th:action="@{/company/delete/{id}(id=${company.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <input class="input-delete" type="submit" value="Remover" />
+                                </form>
+                                <form th:action="@{/company/info/{id}(id=${company.id})}" method="get">
+                                    <input type="submit" value="Info" />
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div th:replace="~{/fragments/scripts}">
+            </div>
         </div>
-    </div>
+    </main>
+    </main>
 </body>

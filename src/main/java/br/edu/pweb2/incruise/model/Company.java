@@ -17,7 +17,8 @@ import lombok.NoArgsConstructor;
 public class Company extends User {
 	@Getter
 	private String fantasyName;
-
+	
+	@Getter
 	private String cnpj;
 
 	private String phoneNumber;
@@ -72,5 +73,9 @@ public class Company extends User {
 
 	public void  addOpportunity(Opportunity opportunity) {
 		this.opportunityList.add(opportunity);
+	}
+
+	public boolean empty(){
+		return false;
 	}
 }

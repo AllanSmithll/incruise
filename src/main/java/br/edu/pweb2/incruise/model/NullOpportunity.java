@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 public class NullOpportunity extends Opportunity {
 
     public NullOpportunity(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,
-            Double transportVoucher, String prerequisites, Integer companyResponsable) {
+            Double transportVoucher, String prerequisites, Company companyResponsable) {
         super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites, companyResponsable);
         //TODO Auto-generated constructor stub
     }

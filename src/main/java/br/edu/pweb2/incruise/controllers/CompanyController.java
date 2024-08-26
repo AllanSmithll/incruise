@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.Company;
+import br.edu.pweb2.incruise.model.ItemNotFoundException;
 import br.edu.pweb2.incruise.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,18 +58,18 @@ public class CompanyController {
         }
     }
 
-    @GetMapping("/info")
-    public String showCompanyInfo(Model model) {
-        if (!model.containsAttribute("company")) {
-            return "redirect:/company/companies";
-        }
-        return "companies/info";
-    }
+    @GetMapping("/info/{id}")
+    public String showCompanyInfo(Model model, @PathVariable Integer id) {
+        try{
+            Company company = companyRepository.find(id);
+            model.addAttribute("company", company);
+            return "companies/info";
 
-    @GetMapping("/find/{id}")
-    public String getCompanyById(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-        Company company = companyRepository.find(id);
-        redirectAttributes.addFlashAttribute("company", company);
-        return "redirect:/company/info";
+        }catch( ItemNotFoundException ie){
+            return "redirect:/system/not-found";
+        }
+/*         if (!model.containsAttribute("company")) {
+            return "redirect:/company/companies";
+        } */
     }
 }
