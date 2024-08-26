@@ -20,14 +20,12 @@ public class OpportunityRepository {
         CompanyRepository companyRepository = new CompanyRepository();
 
         Company c1 = companyRepository.find(1);
-        InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4.800,
+        InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4800.00,
                 490.0, "Não ter sido preso", c1);
-                System.out.println(i1);
                 c1.addOpportunity(i1);
                 this.add(i1);
-                InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5.300,
+                InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5300.00,
                 560.0, "Não ter sido casado", c1);
-                System.out.println(i2);
         c1.addOpportunity(i2);
         this.add(i2);
 

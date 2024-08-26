@@ -27,7 +27,7 @@
                             <th>ID</th>
                             <th>Contratante</th>
                             <th>Principal Atividade</th>
-                            <th>Carga Horária Semanal (Horas)</th>
+                            <th>Carga Horária Semanal</th>
                             <th>Valor da Bolsa</th>
                             <th>Vale Transporte</th>
                             <th>Pré-requisitos</th>
@@ -41,13 +41,13 @@
                             </td>
                             <td th:text="${offer.companyResponsible.fantasyName}"></td>
                             <td th:text="${offer.principalActivity}"></td>
-                            <td th:text="${offer.weeklyWorkload}"></td>
-                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue * 1000, 1, 1)}"></td>
-                            <td th:text="${offer.transportVoucher}"></td>
+                            <td th:text="${offer.weeklyWorkload} + ' horas'"></td>
+                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></td>
+                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}"></td>
                             <td th:text="${offer.prerequisites}"></td>
                             <td>
                                 <div class="action-box">
-                                    <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
+                                    <a th:action="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
                                     <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
                                         <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
                                     </form>
@@ -64,12 +64,9 @@
             </div>
         </div>
 
-
         <div th:replace="~{/fragments/scripts}">
         </div>
     </main>
 
     </body>
-
-
 </html>
