@@ -1,44 +1,39 @@
 package br.edu.pweb2.incruise.controllers;
 
-
 import br.edu.pweb2.incruise.model.Candidature;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.Student;
-import br.edu.pweb2.incruise.repository.StudentRepository;
+import br.edu.pweb2.incruise.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
 @RequestMapping("/student")
 public class StudentController {
 
-    @Autowired
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
     @Autowired
-    public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String getForm(Student student, Model model) {
         model.addAttribute("student", student);
         model.addAttribute("competences", Competence.values());
         return "students/form";
-
     }
 
-    @RequestMapping("/students")
+    @GetMapping("/students")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("students/list");
-        List<Student> students = studentRepository.list();
+        List<Student> students = studentService.listAll();
         modelAndView.addObject("students", students);
         return modelAndView;
     }
@@ -46,7 +41,7 @@ public class StudentController {
     @GetMapping("/my-candidatures")
     public ModelAndView getMyCandidatures() throws Exception {
         String enrollment = "1234";
-        Student student = studentRepository.findByEnrollment(enrollment);
+        Student student = studentService.findByEnrollment(enrollment);
         if (student == null) {
             throw new Exception("Student not found.");
         }
@@ -57,22 +52,20 @@ public class StudentController {
         return modelAndView;
     }
 
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public ModelAndView save(Student student, ModelAndView modelAndView, @RequestParam(value = "competences", required = false) List<Competence> competences) {
         if (competences != null) {
             student.setCompetenceList(competences);
         }
-        studentRepository.add(student);
-        modelAndView.setViewName("students/list");
+        studentService.add(student);
         modelAndView.setViewName("redirect:/student/students");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Integer id) {
         try {
-            studentRepository.remove(id);
+            studentService.remove(id);
             return "redirect:/student/students";
         } catch (Exception e) {
             return "redirect:/student/students";
