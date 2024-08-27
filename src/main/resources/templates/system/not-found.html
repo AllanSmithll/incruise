@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta th:insert="~{/fragments/headfiles(title='Not Found')}">
-
+    <meta th:insert="~{/fragments/headfiles(title='Page Not Found')}">
+    <link rel="stylesheet" th:href="@{/styles/system/not-found.css}">
 </head>
-<body>
-    
 
-     <header  th:replace="~{/fragments/header}"></header> <main>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="error-template">
-                    <h1>
-                        Acho que você !</h1>
-                    <h2>
-                        404 Not Found</h2>
-                    <div class="error-details">
-                        Sorry, an error has occured, Requested page not found!
-                    </div>
-                    <div class="error-actions">
-                        <a href="http://www.jquery2dotnet.com" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                            Take Me Home </a><a href="http://www.jquery2dotnet.com" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+<body>
+    <header th:replace="~{/fragments/header}"></header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="error-template">
+                        <div class="compass-container">
+                            <div class="compass">
+                                <div class="compass-needle"></div>
+                            </div>
+                        </div>
+                        <h1 id="title-error">Será que era Leste ou Oeste?</h1>
+                        <hr>
+                        <h1>404</h1>
+                        <h1>Page Not Found</h1>
+                        <h2 id="description-error">Desculpe, a página que você está procurando não existe.</h2>
+
+                        <div class="error-actions">
+                            <a th:href="@{/}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                                Leve-me ao Hall</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div th:replace="~{/fragments/scripts}">
-
-</main> </main> </body>
+        <div th:replace="~{/fragments/scripts}"></div>
+    </main>
+</body>
 
 </html>

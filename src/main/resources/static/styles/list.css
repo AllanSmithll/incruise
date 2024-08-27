@@ -63,7 +63,7 @@ tbody tr:hover {
     display: inline;
 }
 
-.input-delete {
+.btn-delete {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -74,9 +74,8 @@ tbody tr:hover {
     transition: background-color 0.3s;
 }
 
-/* Estilo do botão de exclusão ao passar o mouse */
-.input-delete:hover {
-    background-color: #c82333; /* Cor de fundo do botão ao passar o mouse */
+.btn-delete:hover {
+    background-color: #c82333;
 }
 
 .btn-apply {
@@ -105,5 +104,22 @@ tbody tr:hover {
 }
 
 .button-add {
-    margin: 20px 0 20px 0;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 20px 0;
+}
+
+.button-add:hover {
+    background-color: #138496;
+}
+
+.button-add:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(23, 162, 184, 0.5);
 }

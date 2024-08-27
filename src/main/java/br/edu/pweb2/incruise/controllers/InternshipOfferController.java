@@ -63,7 +63,7 @@ public class InternshipOfferController {
         if (derisableSkills != null) {
             offer.setDesirableSkills(derisableSkills);
         }
-        Company companyCurrent = companyRepository.find(offer.getCompanyResponsable().getId());
+        Company companyCurrent = companyRepository.find(offer.getCompanyResponsible().getId());
         companyCurrent.addOpportunity(offer);
         opportunityRepository.add(offer);
         modelAndView.setViewName("/offers/list");
@@ -100,7 +100,7 @@ public class InternshipOfferController {
     }
 
     @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)
-    public String delete(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String cancel(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
         try {
             opportunityRepository.remove(id);
             return "redirect:/internshipOffer/offers";
@@ -114,7 +114,7 @@ public class InternshipOfferController {
     public String showInternship(Model model, @PathVariable Integer id) {
         Opportunity opportunity = opportunityRepository.find(id);
         if (opportunity.isEmpty()) {
-            return "redirect:/system/not-found";
+            return "redirect:/not-found";
         }
         model.addAttribute("opportunity", opportunity);
         String type = (opportunity.getClass() == InternshipOffer.class ? "Oferta de Estágio": "Estágio" );
@@ -122,7 +122,7 @@ public class InternshipOfferController {
 
         return "offers/info";}
 
-    public Company findcompanyResponsable(Integer id) {
+    public Company findcompanyResponsible(Integer id) {
         Integer idCompany = Integer.valueOf(id);
         return companyRepository.find(idCompany);
     }
