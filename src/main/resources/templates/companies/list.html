@@ -48,7 +48,7 @@
                         <td th:text="${company.urlPage}">td>
                         <td>
                             <div class="action-box">
-                                <a th:action="@{/company/info/{id}(id=${company.id})}" class="btn-action btn-view">Visualizar</a>
+                                <a th:href="@{/company/info/{id}(id=${company.id})}" class="btn-action btn-view">Visualizar</a>
                                 <form th:action="@{/company/delete/{id}(id=${company.id})}" method="post">
                                     <input type="hidden" name="_method" value="DELETE" />
                                     <input class="btn-action btn-delete" type="submit" value="Remover" />

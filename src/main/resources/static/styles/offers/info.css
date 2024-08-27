@@ -1,0 +1,111 @@
+.main-content {
+    margin: 55px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    text-align: center;
+    font-size: 2.5em;
+    color: #34495e; /* Cor do título */
+    margin-bottom: 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+.company-visit-btn{
+    width: 100%;
+    background-color: #215488; /* Título de seção */
+    
+}
+
+.company-visit-btn:hover{
+    width: 100%;
+    background-color: #192838; /* Título de seção */
+    
+}
+
+h2 {
+    color: #2c3e50; /* Título de seção */
+    margin-bottom: 15px;
+    font-size: 1.8em;
+}
+
+p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+.table-candidatures {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.table-candidatures th, .table-candidatures td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Separadores de linha */
+}
+
+.table-candidatures th {
+    background-color: #2980b9;
+    color: white;
+}
+
+.table-candidatures tr:hover {
+    background-color: #f1f1f1; /* Efeito hover para linhas */
+}
+
+.company-info .company-link {
+    color: #2980b9; /* Cor do link */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.company-info .company-link:hover {
+    text-decoration: underline;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .main-content {
+        padding: 15px;
+    }
+
+    .title {
+        font-size: 2em;
+    }
+
+    .section {
+        padding: 10px;
+    }
+
+    .table-candidatures th, .table-candidatures td {
+        padding: 8px;
+    }
+}
