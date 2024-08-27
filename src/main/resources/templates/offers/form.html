@@ -6,56 +6,82 @@
 
 </head>
 <body class="main-screen">
-    
-         <header  th:replace="~{/fragments/header}">    </header> <main>
-<div class="card-main">
-    <div class="card-component">
-        <h1>Cadastro de Oferta de Estágio</h1>
-        <form th:action="@{/internshipOffer/save}" th:object="${internshipOffer}" method="post">
-            <div class="form-group">
-                <label for="principalActivity">Principal atividade:</label>
-                <input type="text" id="principalActivity" th:field="*{principalActivity}"
-                       placeholder="Ex: Estágio em Desenvolvimento Web" required>
-            </div>
 
-            <div class="form-group">
-                <label for="weeklyWorkload">Carga horária semanal:</label>
-                <input type="number" id="weeklyWorkload" th:field="*{weeklyWorkload}"
-                       placeholder="Carga horária semanal" required>
-            </div>
+<header th:replace="~{/fragments/header}"></header>
+<main>
+    <div class="card-main">
+        <div class="card-component">
+            <h1>Cadastro de Oferta de Estágio</h1>
+            <form th:action="@{/internshipOffer/save}" th:object="${internshipOffer}" method="post">
+                <div class="form-group">
+                    <label for="principalActivity">Principal atividade:</label>
+                    <input type="text" id="principalActivity" th:field="*{principalActivity}"
+                           placeholder="Ex: Estágio em Desenvolvimento Web" required>
+                </div>
 
-            <div class="form-group">
-                <label for="remunerationValue">Valor da bolsa:</label>
-                <input type="number" id="remunerationValue" th:field="*{remunerationValue}"
-                       placeholder="Valor da bolsa">
-            </div>
+                <div class="form-group">
+                    <label for="weeklyWorkload">Carga horária semanal:</label>
+                    <input type="number" id="weeklyWorkload" th:field="*{weeklyWorkload}"
+                           placeholder="Carga horária semanal" required>
+                </div>
 
-            <div class="form-group">
-                <label for="transportVoucher">Vale transporte:</label>
-                <input type="number" id="transportVoucher" th:field="*{transportVoucher}" placeholder="Vale transporte:"
-                       required>
-            </div>
+                <div class="form-group">
+                    <label for="remunerationValue">Valor da bolsa:</label>
+                    <input type="number" id="remunerationValue" th:field="*{remunerationValue}"
+                           placeholder="Valor da bolsa">
+                </div>
 
-            <div class="form-group">
-                <label for="prerequisites">Pré-requisitos:</label>
-                <textarea id="prerequisites" th:field="*{prerequisites}"></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="transportVoucher">Vale transporte:</label>
+                    <input type="number" id="transportVoucher" th:field="*{transportVoucher}"
+                           placeholder="Vale transporte:"
+                           required>
+                </div>
 
-            <div class="form-group">
-                <label for="company">Empresa:</label>
-                <select id="company" th:field="*{companyResponsible}" required>
-                    <option value="">Selecione uma empresa</option>
-                    <option th:each="company : ${companies}" th:value="${company.id}" th:text="${company.fantasyName}"></option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="prerequisites">Pré-requisitos:</label>
+                    <textarea id="prerequisites" th:field="*{prerequisites}"></textarea>
+                </div>
 
-            <button type="submit">Cadastrar Oferta</button>
-        </form>
+                <div class="form-group">
+                    <label for="company">Empresa:</label>
+                    <select id="company" name="companyResponsible" required>
+                        <option value="">Selecione uma empresa</option>
+                        <option th:each="company : ${companies}" th:value="${company.id}"
+                                th:text="${company.fantasyName}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="necessarySkills">Competências Necessárias:</label>
+                    <div id="necessarySkills">
+                        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+                            <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence}"
+                            />
+                            <span th:text="${competence.getDescription()}"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="desirableSkills">Competências Desejadas:</label>
+                    <div id="desirableSkills">
+                        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+                            <input type="checkbox" th:field="*{desirableSkills}" th:value="${competence}"
+                            />
+                            <span th:text="${competence.getDescription()}"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit">Cadastrar Oferta</button>
+            </form>
+        </div>
     </div>
-</div>
 
-<div th:replace="~{/fragments/scripts}">
-</div>
-</main> </main> </body>
+    <div th:replace="~{/fragments/scripts}">
+    </div>
+</main>
+</body>
 
 </html>

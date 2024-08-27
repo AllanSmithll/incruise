@@ -1,10 +1,9 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.*;
-import br.edu.pweb2.incruise.repository.CompanyRepository;
-
-import br.edu.pweb2.incruise.repository.OpportunityRepository;
-import br.edu.pweb2.incruise.repository.StudentRepository;
+import br.edu.pweb2.incruise.services.CompanyService;
+import br.edu.pweb2.incruise.services.OpportunityService;
+import br.edu.pweb2.incruise.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,112 +17,125 @@ import java.util.List;
 @RequestMapping("/internshipOffer")
 public class InternshipOfferController {
 
+    private final OpportunityService opportunityService;
+    private final StudentService studentService;
+    private final CompanyService companyService;
+
     @Autowired
-    OpportunityRepository opportunityRepository;
-
-    StudentRepository studentRepository;
-
-    CompanyRepository companyRepository;
-
-    public InternshipOfferController(OpportunityRepository opportunityRepository,
-                                     StudentRepository studentRepository, CompanyRepository companyRepository) {
-        this.opportunityRepository = opportunityRepository;
-        this.studentRepository = studentRepository;
-        this.companyRepository = companyRepository;
-
+    public InternshipOfferController(OpportunityService opportunityService,
+                                     StudentService studentService,
+                                     CompanyService companyService) {
+        this.opportunityService = opportunityService;
+        this.studentService = studentService;
+        this.companyService = companyService;
     }
 
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
         model.addAttribute("internshipOffer", internshipOffer);
-        List<Company> companies = companyRepository.list();
+        List<Company> companies = companyService.listAll();
         model.addAttribute("companies", companies);
-
         return "/offers/form";
     }
 
-    @RequestMapping("/offers")
+    @GetMapping("/offers")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("offers/list");
-        List<Opportunity> offers = opportunityRepository.list();
+        List<Opportunity> offers = opportunityService.findAll();
         modelAndView.addObject("offers", offers);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-
-    public ModelAndView save(InternshipOffer offer, ModelAndView modelAndView,
-                             @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
-                             @RequestParam(value = "desirableSkills", required = false) List<Competence> derisableSkills
-    ) {
-
+    @PostMapping("/save")
+    public String save(@ModelAttribute("internshipOffer") InternshipOffer offer,
+                       @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
+                       @RequestParam(value = "desirableSkills", required = false) List<Competence> desirableSkills,
+                       @RequestParam("companyResponsible") Integer companyId,
+                       RedirectAttributes redirectAttributes) {
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
-        if (derisableSkills != null) {
-            offer.setDesirableSkills(derisableSkills);
+        if (desirableSkills != null) {
+            offer.setDesirableSkills(desirableSkills);
         }
-        Company companyCurrent = companyRepository.find(offer.getCompanyResponsible().getId());
-        companyCurrent.addOpportunity(offer);
-        opportunityRepository.add(offer);
-        modelAndView.setViewName("/offers/list");
-        modelAndView.addObject("offers", opportunityRepository.list());
-        return modelAndView;
+
+        Company company = companyService.findById(companyId);
+        if (company == null) {
+            redirectAttributes.addFlashAttribute("error", "Empresa não encontrada.");
+            return "redirect:/internshipOffer/register";
+        }
+
+        offer.setCompanyResponsible(company);
+        company.addOpportunity(offer);
+        opportunityService.add(offer);
+        redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
+        return "redirect:/internshipOffer/offers";
     }
 
     @GetMapping("/apply/{id}")
-    public String showApplicationForm(@PathVariable("id") Integer offerId, Model model) throws Exception {
-        InternshipOffer offer = (InternshipOffer) opportunityRepository.find(offerId);
+    public String showApplicationForm(@PathVariable("id") Integer offerId, Model model, RedirectAttributes redirectAttributes) {
+        InternshipOffer offer = (InternshipOffer) opportunityService.findById(offerId);
+        if (offer == null || offer.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
+            return "redirect:/internshipOffer/offers";
+        }
         model.addAttribute("offer", offer);
         return "offers/application";
     }
 
     @PostMapping("/apply")
     public String applyForInternship(@RequestParam("offerId") Integer offerId,
-
                                      @RequestParam("enrollment") String enrollment,
-                                     @RequestParam(value = "message", required = false) String message) throws Exception {
-        Student student = studentRepository.findByEnrollment(enrollment);
-        InternshipOffer offer = (InternshipOffer) opportunityRepository.find(offerId);
+                                     @RequestParam(value = "message", required = false) String message,
+                                     RedirectAttributes redirectAttributes) throws Exception {
 
+        Student student = studentService.findByEnrollment(enrollment);
+        if (student == null) {
+            redirectAttributes.addFlashAttribute("error", "Aluno não encontrado.");
+            return "redirect:/internshipOffer/offers";
+        }
+
+        InternshipOffer offer = (InternshipOffer) opportunityService.findById(offerId);
+        if (offer == null || offer.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
+            return "redirect:/internshipOffer/offers";
+        }
         boolean alreadyApplied = offer.getCandidatureList().stream()
                 .anyMatch(candidature -> candidature.getStudent().equals(student));
-        if (!alreadyApplied) {
-            Candidature newCandidature = new Candidature(student, offer, message);
-            offer.addCandidature(newCandidature);
-            student.addCandidature(newCandidature);
-        } else {
-            throw new IllegalStateException("Você já se candidatou a esta oferta.");
+        if (alreadyApplied) {
+            redirectAttributes.addFlashAttribute("error", "Você já se candidatou a esta oferta.");
+            return "redirect:/internshipOffer/offers";
+        }
 
+        Candidature newCandidature = new Candidature(student, offer, message);
+        offer.addCandidature(newCandidature);
+        student.addCandidature(newCandidature);
+
+        redirectAttributes.addFlashAttribute("success", "Candidatura realizada com sucesso.");
+        return "redirect:/internshipOffer/offers";
+    }
+
+    @PostMapping("/cancel/{id}")
+    public String cancelOffer(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+        try {
+            opportunityService.remove(id);
+            redirectAttributes.addFlashAttribute("success", "Oferta cancelada com sucesso.");
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Não foi possível cancelar a oferta.");
         }
         return "redirect:/internshipOffer/offers";
     }
 
-    @RequestMapping(value = "/cancel/{id}", method = RequestMethod.POST)
-    public String cancel(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
-        try {
-            opportunityRepository.remove(id);
-            return "redirect:/internshipOffer/offers";
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Não foi possível apagar a oferta.");
-            return "redirect:/internshipOffer/offers";
-        }
-    }
-
     @GetMapping("/info/{id}")
-    public String showInternship(Model model, @PathVariable Integer id) {
-        Opportunity opportunity = opportunityRepository.find(id);
-        if (opportunity.isEmpty()) {
-            return "redirect:/not-found";
+    public String showInternshipInfo(@PathVariable Integer id, Model model, RedirectAttributes redirectAttributes) {
+        Opportunity opportunity = opportunityService.findById(id);
+        if (opportunity == null || opportunity.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
+            return "redirect:/internshipOffer/offers";
         }
         model.addAttribute("opportunity", opportunity);
-        String type = (opportunity.getClass() == InternshipOffer.class ? "Oferta de Estágio": "Estágio" );
+        String type = (opportunity instanceof InternshipOffer) ? "Oferta de Estágio" : "Estágio";
         model.addAttribute("typeOpportunity", type);
-
-        return "offers/info";}
-
-    public Company findcompanyResponsible(Integer id) {
-        Integer idCompany = Integer.valueOf(id);
-        return companyRepository.find(idCompany);
+        return "offers/info";
     }
 }

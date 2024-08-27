@@ -1,7 +1,6 @@
 package br.edu.pweb2.incruise.model;
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,6 @@ import java.util.List;
 @Data
 public class InternshipOffer extends Opportunity {
 
-	@Getter
 	private List<Candidature> candidatureList = new ArrayList<>();
 
 	public InternshipOffer(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,

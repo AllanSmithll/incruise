@@ -4,6 +4,7 @@ import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.NullOpportunity;
 import br.edu.pweb2.incruise.model.Opportunity;
+import jakarta.annotation.PostConstruct;
 
 import org.springframework.stereotype.Repository;
 
@@ -15,21 +16,6 @@ public class OpportunityRepository {
     public static Integer nextId = 1;
 
     public static final List<Opportunity> oportunityList = new ArrayList<>();
-
-    {
-        CompanyRepository companyRepository = new CompanyRepository();
-
-        Company c1 = companyRepository.find(1);
-        InternshipOffer i1 = new InternshipOffer(0, "Programador Front-end", 40, 4800.00,
-                490.0, "Não ter sido preso", c1);
-                c1.addOpportunity(i1);
-                this.add(i1);
-                InternshipOffer i2 = new InternshipOffer(0, "Programador Back-end", 40, 5300.00,
-                560.0, "Não ter sido casado", c1);
-        c1.addOpportunity(i2);
-        this.add(i2);
-
-    }
 
     public void add(Opportunity opportunity) {
         opportunity.setId(nextId++);
@@ -47,7 +33,7 @@ public class OpportunityRepository {
 
     public Opportunity find(Integer id) {
         for (Opportunity op : oportunityList) {
-            if (op.equals(id))
+            if (op.getId().equals(id))
                 return op;
         }
         return new NullOpportunity();

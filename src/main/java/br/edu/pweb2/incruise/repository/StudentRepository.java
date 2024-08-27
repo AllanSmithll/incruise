@@ -2,7 +2,6 @@ package br.edu.pweb2.incruise.repository;
 
 
 import br.edu.pweb2.incruise.model.Student;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -52,6 +51,9 @@ public class StudentRepository {
                 return s;
         }
         throw new Exception("Student not Found");
+    }
+
+    public void update(Student student) {
     }
 
 /*
