@@ -50,24 +50,22 @@ public class InternshipOfferController {
     public String save(@ModelAttribute("internshipOffer") InternshipOffer offer,
                        @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
                        @RequestParam(value = "desirableSkills", required = false) List<Competence> desirableSkills,
-                       @RequestParam("companyResponsible") Integer companyId,
+                       @RequestParam("companyId") Integer companyId,
                        RedirectAttributes redirectAttributes) {
+        Company company = companyService.findById(companyId);
+        if (company == null) {
+            redirectAttributes.addFlashAttribute("error", "Empresa não encontrada.");
+            return "redirect:/internshipOffer/register";
+        }
+        offer.setCompanyResponsible(company);
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
         if (desirableSkills != null) {
             offer.setDesirableSkills(desirableSkills);
         }
-
-        Company company = companyService.findById(companyId);
-        if (company == null) {
-            redirectAttributes.addFlashAttribute("error", "Empresa não encontrada.");
-            return "redirect:/internshipOffer/register";
-        }
-
-        offer.setCompanyResponsible(company);
-        company.addOpportunity(offer);
         opportunityService.add(offer);
+        company.addOpportunity(offer);
         redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
         return "redirect:/internshipOffer/offers";
     }

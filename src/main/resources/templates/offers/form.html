@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="company">Empresa:</label>
-                    <select id="company" name="companyResponsible" required>
+                    <select id="company" name="companyId" required>
                         <option value="">Selecione uma empresa</option>
                         <option th:each="company : ${companies}" th:value="${company.id}"
                                 th:text="${company.fantasyName}"></option>
