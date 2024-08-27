@@ -66,7 +66,7 @@ public class CompanyController {
             return "companies/info";
 
         }catch( ItemNotFoundException ie){
-            return "redirect:/system/not-found";
+            return "redirect:/not-found";
         }
 /*         if (!model.containsAttribute("company")) {
             return "redirect:/company/companies";

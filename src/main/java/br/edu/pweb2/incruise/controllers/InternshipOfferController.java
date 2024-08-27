@@ -114,7 +114,7 @@ public class InternshipOfferController {
     public String showInternship(Model model, @PathVariable Integer id) {
         Opportunity opportunity = opportunityRepository.find(id);
         if (opportunity.isEmpty()) {
-            return "redirect:/system/not-found";
+            return "redirect:/not-found";
         }
         model.addAttribute("opportunity", opportunity);
         String type = (opportunity.getClass() == InternshipOffer.class ? "Oferta de Estágio": "Estágio" );
@@ -122,7 +122,7 @@ public class InternshipOfferController {
 
         return "offers/info";}
 
-    public Company findcompanyResponsable(Integer id) {
+    public Company findcompanyResponsible(Integer id) {
         Integer idCompany = Integer.valueOf(id);
         return companyRepository.find(idCompany);
     }

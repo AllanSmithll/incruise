@@ -47,7 +47,7 @@
                             <td th:text="${offer.prerequisites}"></td>
                             <td>
                                 <div class="action-box">
-                                    <a th:action="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
+                                    <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
                                     <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
                                         <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
                                     </form>

@@ -3,7 +3,9 @@
 
 <head>
     <!-- Incluindo o fragmento de cabeçalho -->
-    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${typeOpportunity} + ' - ' + ${opportunity.principalActivity})}">
+    <meta
+        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${typeOpportunity} + ' - ' + ${opportunity.principalActivity})}">
+    <link rel="stylesheet" th:href="@{/styles/offers/info.css}">
 </head>
 
 <body>
@@ -11,25 +13,32 @@
     <header th:replace="~{/fragments/header}"></header>
 
     <!-- Conteúdo principal -->
-    <main>
+    <main class="main-content">
         <!-- Título da oportunidade -->
-        <h1 th:text="${typeOpportunity}">Tipo da Oportunidade</h1>
+        <h1 class="title" th:text="${typeOpportunity}">Tipo da Oportunidade</h1>
 
         <!-- Seção de detalhes da oportunidade -->
-        <div>
-            <h2>Detalhes</h2>
-            <p><strong>ID:</strong> <span th:text="${opportunity.id}">1</span></p>
-            <p><strong>Atividade Principal:</strong> <span th:text="${opportunity.principalActivity}">Atividade principal</span></p>
+        <div class="section details">
+            <h1 class="section-title">Detalhes</h1>
+            <!--             <p><strong>ID:</strong> <span th:text="${opportunity.id}">1</span></p> -->
+            <p><strong>Atividade Principal:</strong> <span th:text="${opportunity.principalActivity}">Atividade
+                    principal</span></p>
             <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40</span> horas</p>
-            <p><strong>Valor da Remuneração:</strong> R$ <span th:text="${opportunity.remunerationValue}">1000.00</span></p>
+            <p><strong>Valor da Remuneração:</strong> R$ <span th:text="${opportunity.remunerationValue}">1000.00</span>
+            </p>
             <p><strong>Vale Transporte:</strong> R$ <span th:text="${opportunity.transportVoucher}">100.00</span></p>
             <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Pré-requisitos</span></p>
         </div>
 
         <!-- Seção de candidaturas -->
-        <div>
-            <h2>Candidaturas</h2>
-            <table>
+        <div class="section candidatures">
+            <h1 class="section-title">Candidaturas</h1>
+            
+            <div th:if="${#lists.isEmpty(opportunity.candidatureList)}">
+                <p class="no-content-msg">Sem Candidaturas Registradas.</p>
+            </div>
+
+            <table  th:if="${!#lists.isEmpty(opportunity.candidatureList)}" class="table-candidatures">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -54,24 +63,26 @@
         </div>
 
         <!-- Seção de informações da empresa responsável -->
-        <div>
-            <h2>Informações da Empresa Responsável</h2>
+        <div class="section company-info">
+            <h1 class="section-title">Empresa Responsável</h1>
             <p>
                 <strong>Nome da Empresa:</strong>
-                <span th:text="${opportunity.companyResponsable.fantasyName}">Nome da Empresa</span>
+                <span th:text="${opportunity.companyResponsible.fantasyName}">Nome da Empresa</span>
             </p>
             <p>
                 <strong>Endereço:</strong>
-                <span th:text="${opportunity.companyResponsable.address}">Endereço da Empresa</span>
+                <span th:text="${opportunity.companyResponsible.address}">Endereço da Empresa</span>
             </p>
-            <div th:if="${opportunity.companyResponsable.urlPage != null and !opportunity.companyResponsable.urlPage.isEmpty()}">
+            <div
+                th:if="${opportunity.companyResponsible.urlPage != null and !opportunity.companyResponsible.urlPage.isEmpty()}">
                 <p>
                     <strong>Website:</strong>
-                    <a th:href="${opportunity.companyResponsable.urlPage}" target="_blank" th:text="${opportunity.companyResponsable.urlPage}">Acesse o perfil da empresa</a>
+                    <a class="company-link" th:href="${opportunity.companyResponsible.urlPage}" target="_blank"
+                        th:text="${opportunity.companyResponsible.urlPage}">Acesse o perfil da empresa</a>
                 </p>
             </div>
+            <a class="btn btn-primary company-visit-btn"th:href="@{/company/info/{id}(id=${opportunity.companyResponsible.id})}">Visitar perfil</a>
         </div>
-
     </main>
 
     <!-- Inclusão de scripts -->

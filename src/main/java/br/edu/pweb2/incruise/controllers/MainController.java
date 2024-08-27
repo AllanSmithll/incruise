@@ -13,6 +13,6 @@ public class MainController {
 
     @GetMapping("/not-found")
     public String showNotFoundPage(){
-        return "/pages/system/not-found";
+        return "/system/not-found";
     }
 }
