@@ -17,8 +17,4 @@ public class NullOpportunity extends Opportunity {
         return true;
     }
 
-    @Override
-    public boolean equals(Integer id) {
-        return super.equals(id);
-    }
 }
