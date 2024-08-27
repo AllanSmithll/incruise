@@ -16,7 +16,7 @@
                 <h1> Todas as Ofertas de Estágio Cadastradas</h1>
 
                 <a th:href="@{/internshipOffer/register}">
-                    <button class="button-add">
+                    <button class="button-add btn btn-primary">
                         Nova Oferta
                     </button>
                 </a>
@@ -27,7 +27,7 @@
                             <th>ID</th>
                             <th>Contratante</th>
                             <th>Principal Atividade</th>
-                            <th>Cari2.toString Horária Semanal</th>
+                            <th>Carga Horária Semanal</th>
                             <th>Valor da Bolsa</th>
                             <th>Vale Transporte</th>
                             <th>Pré-requisitos</th>
@@ -39,24 +39,22 @@
                             <td>
                                 [[${offer.id}]]
                             </td>
-                            <td th:text="${offer.companyResponsable.fantasyName}"></td>
+                            <td th:text="${offer.companyResponsible.fantasyName}"></td>
                             <td th:text="${offer.principalActivity}"></td>
-                            <td th:text="${offer.weeklyWorkload}"></td>
-                            <td th:text="${offer.remunerationValue}"></td>
-                            <td th:text="${offer.transportVoucher}"></td>
+                            <td th:text="${offer.weeklyWorkload} + ' horas'"></td>
+                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></td>
+                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}"></td>
                             <td th:text="${offer.prerequisites}"></td>
                             <td>
                                 <div class="action-box">
-                                    <form th:action="@{delete/{id}(id=${offer.id})}" method="post">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        <input class="input-delete" type="submit" value="Remover" />
-                                    </form>
+                                    <a th:action="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
                                     <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
                                         <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
                                     </form>
-                                    <a th:href="@{info/{id}(id=${offer.id})}">
-                                        Visualizar
-                                    </a>
+                                    <form th:action="@{cancel/{id}(id=${offer.id})}" method="post">
+                                        <input type="hidden" name="_method" value="DELETE" />
+                                        <input class="btn-action btn-delete" type="submit" value="Cancelar" />
+                                    </form>
                                 </div>
                             </td>
                         </tr>
@@ -66,12 +64,9 @@
             </div>
         </div>
 
-
         <div th:replace="~{/fragments/scripts}">
         </div>
     </main>
 
-    <body>
-
-
+    </body>
 </html>
