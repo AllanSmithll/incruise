@@ -9,7 +9,6 @@ main{
 }
 /* introduction */
 .introduction {
-    background-color: rgba(217, 27, 27, 0.424)!important;
     background-size: cover !important;
     background-attachment: fixed !important;
     background-position: center !important;

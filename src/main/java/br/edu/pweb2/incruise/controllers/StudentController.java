@@ -71,4 +71,17 @@ public class StudentController {
             return "redirect:/student/students";
         }
     }
+
+    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
+    public String info(@PathVariable("id") Integer id, Model model) {
+        try {
+
+            Student stundent = studentRepository.find(id);
+            model.addAttribute("student", stundent);
+            return "/students/info";
+
+        } catch (Exception e) {
+            return "redirect:/not-found";
+        }
+    }
 }
