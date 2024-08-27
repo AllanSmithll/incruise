@@ -88,7 +88,7 @@
             <h2 class="section-title">Oportunidades <span> </span></h2>
             <p>Total de Oportunidades: <span th:text="${#lists.size(company.opportunityList)}"></span></p>
 
-            <div th:if="${#lists.isEmpty(company.opportunityList)}">
+            <div class="no-content-msg" th:if="${#lists.isEmpty(company.opportunityList)}">
                 <p>Não há oportunidades disponíveis.</p>
             </div>
 

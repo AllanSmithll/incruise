@@ -1,0 +1,20 @@
+#Competence-List {
+    list-style: none;
+    padding-inline-start: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Style individual list items */
+
+#Competence-List li {
+    flex: 1 1 200px;
+    max-width: 200px;
+    padding: 10px;
+    background-color: var(--opportunity-card-background);
+    text-align: center;
+    border-radius: 10%;
+    transition: background-color 0.3s ease;
+}

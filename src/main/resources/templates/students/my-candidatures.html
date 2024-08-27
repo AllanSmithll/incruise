@@ -30,8 +30,8 @@
             </tbody>
         </table>
     </div>
-    <div th:if="${#lists.isEmpty(candidatures)}">
-        <p>Você ainda não fez nenhuma candidatura.</p>
+    <div class="no-content-msg" th:if="${#lists.isEmpty(candidatures)}">
+        <p>Você ainda não possui candidatura(s).</p>
     </div>
 </div>
 <div th:replace="~{/fragments/scripts}">
