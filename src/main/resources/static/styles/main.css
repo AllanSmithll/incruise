@@ -26,8 +26,6 @@ a {
 
 a:hover {
     color: var(--neutral-color-dark-state-gray);
-    font-weight: bold;
-    text-decoration: underline;
 }
 
 /* Classes*/

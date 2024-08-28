@@ -76,7 +76,7 @@ public class StudentController {
     public String info(@PathVariable("id") Integer id, Model model) {
         try {
 
-            Student stundent = studentRepository.find(id);
+            Student stundent = this.studentService.findById(id);
             model.addAttribute("student", stundent);
             return "/students/info";
 

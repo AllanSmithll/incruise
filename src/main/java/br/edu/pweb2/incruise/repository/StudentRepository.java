@@ -31,12 +31,12 @@ public class StudentRepository {
 
     public void remove(Integer id) throws Exception {
 
-        Student student =this.find(id);
+        Student student =this.findBy(id);
         studentList.remove(student);
 
     }
 
-    public Student find(Integer id) throws Exception {
+    public Student findBy(Integer id) throws Exception {
 
         for(Student s: studentList){
             if(s.getId().equals(id))
