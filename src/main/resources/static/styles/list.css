@@ -203,7 +203,11 @@ tbody tr {
         cursor: pointer;
         font-size: 14px;
         transition: background-color 0.3s;
+}
 
+.btn-view:hover {
+    color: white !important;
+    background-color: #3e3e88;
 }
 
 .btn-delete:hover {

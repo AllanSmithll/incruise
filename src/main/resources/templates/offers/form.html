@@ -28,12 +28,12 @@
 
                             <input type="number" id="remunerationValue" class="input-form w-50" placeholder="Valor da bolsa"
                                    th:field="*{remunerationValue}" step="0.01" min="0" value="0.00"
-                                   title="Por favor, insira um valor válido para a bolsa. Utilize ponto (.) como separador decimal.">
+                                   title="Por favor, insira um valor válido para a bolsa. Utilize vírgula (,) como separador decimal.">
                         </div>
 
                         <input type="number" id="transportVoucher" class="input-form w-100" placeholder="Vale transporte"
                                th:field="*{transportVoucher}" step="0.01" min="0.00" value="0.00"
-                               title="Por favor, insira um valor válido para o vale transporte. Utilize ponto (.) como separador decimal.">
+                               title="Por favor, insira um valor válido para o vale transporte. Utilize vírgula (,) como separador decimal.">
                     </div>
                 </fieldset>
 
@@ -54,13 +54,14 @@
                               title="Os pré-requisitos podem ter no máximo 500 caracteres."></textarea>
 
                     <div class="d-flex flex-column gap-3">
-                        <label>Competências Necessárias:</label>
+                        <label>Competências Necessárias (Selecione pelo menos uma):</label>
                         <div id="necessarySkills" class="d-flex flex-wrap gap-3">
                             <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}" class="competence-checkbox">
-                                <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence}"/>
+                                <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence}" />
                                 <span th:text="${competence.getDescription()}"></span>
                             </label>
                         </div>
+                        <div id="competenceError" style="color: red; display: none;">Por favor, selecione pelo menos uma competência necessária.</div>
 
                         <label>Competências Desejadas:</label>
                         <div id="desirableSkills" class="d-flex flex-wrap gap-3">

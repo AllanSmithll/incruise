@@ -35,7 +35,6 @@
                 <strong>Vale Transporte:</strong><span th:text="'R$'+ ${#numbers.formatDecimal(opportunity.transportVoucher, 1, 2)}">R$ 0,00</span>
             </p>
 
-            <!-- Pré-requisitos -->
             <p>
                 <strong>Pré-requisitos:</strong>
                 <span th:if="${!#strings.isEmpty(opportunity.prerequisites)}"
@@ -44,7 +43,6 @@
             </p>
         </div>
         <div class="section competences">
-            <!-- Obrigatórias-->
             <div id="Competence-Necessary-Box">
                 <p class="topic-title">Competências Obrigatórias</p>
                 <ul class="list-competences" th:each="competence : ${opportunity.necessarySkills}">
@@ -54,7 +52,6 @@
                 </ul>
             </div>
 
-            <!-- Opcionais-->
             <div id="Competence-Desirable-Box">
                 
                 <p class="topic-title">Competências Desejadas</p>
@@ -67,7 +64,6 @@
             
         </div>
 
-        <!-- Seção de candidaturas -->
         <div class="section candidatures">
             <h1 class="section-title">Candidaturas</h1>
 

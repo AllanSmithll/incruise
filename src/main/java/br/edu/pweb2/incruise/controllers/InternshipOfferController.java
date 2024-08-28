@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/internshipOffer")
@@ -46,6 +47,24 @@ public class InternshipOfferController {
         return modelAndView;
     }
 
+    @GetMapping("/filter")
+    public ModelAndView filterOffers(
+            @RequestParam(value = "companyName", required = false) String companyName,
+            @RequestParam(value = "minRemuneration", required = false) Double minRemuneration,
+            @RequestParam(value = "maxRemuneration", required = false) Double maxRemuneration,
+            @RequestParam(value = "minWeeklyWorkload", required = false) Integer minWeeklyWorkload,
+            @RequestParam(value = "maxWeeklyWorkload", required = false) Integer maxWeeklyWorkload,
+            @RequestParam(value = "prerequisites", required = false) String prerequisites,
+            ModelAndView modelAndView) {
+
+        List<Opportunity> filteredOffers = opportunityService.filterOffers(
+                companyName, minRemuneration, maxRemuneration, minWeeklyWorkload, maxWeeklyWorkload, prerequisites);
+
+        modelAndView.setViewName("offers/list");
+        modelAndView.addObject("offers", filteredOffers);
+        return modelAndView;
+    }
+
     @PostMapping("/save")
     public String save(@ModelAttribute("internshipOffer") InternshipOffer offer,
                        @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
@@ -65,7 +84,6 @@ public class InternshipOfferController {
             offer.setDesirableSkills(desirableSkills);
         }
         
-        opportunityService.add(offer);
         opportunityService.add(offer,company);
         
         redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
