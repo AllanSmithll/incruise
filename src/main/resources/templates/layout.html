@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+
+<head>
+    <meta th:insert="~{/fragments/headfiles(title='Incruise')}">
+    <link rel="stylesheet" th:href="@{/styles/principal-page.css}" />
+</head>
+
+<body>
+<header th:replace="~{/fragments/header}"></header>
+
+<main>
+    <!-- Conteúdo específico da página será inserido aqui -->
+    <div th:fragment="content"></div>
+</main>
+
+<footer th:replace="~{/fragments/footer}"></footer>
+
+<div th:replace="~{/fragments/scripts}"></div>
+</body>
+
+</html>
