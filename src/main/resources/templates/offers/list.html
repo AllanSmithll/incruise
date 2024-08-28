@@ -2,59 +2,138 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ofertas de Estágio</title>
 
-    <link rel="stylesheet" th:href="@{/styles/list.css}">
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Oportunidades')}">
+
 </head>
 
-<body class="main-screen">
+<body>
+<header th:replace="~{/fragments/header}"></header>
+<main>
 
-<div class="card-component">
-    <h1> Todas as Ofertas de Estágio Cadastradas</h1>
+    <div class="main-screen">
+        <div class="card-component">
+            <h1>Ofertas de Estágio</h1>
 
-    <a th:href="@{/internshipOffer/register}">
-        <button class="button-add">
-            Nova Oferta
-        </button>
-    </a>
+            <a th:href="@{/internshipOffer/register}">
+                <button class="button-add btn btn-primary">
+                    Nova Oferta
+                </button>
+            </a>
 
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Principal Atividade</th>
-            <th>Carga Horária Semanal</th>
-            <th>Valor da Bolsa</th>
-            <th>Vale Transporte</th>
-            <th>Pré-requisitos</th>
-            <th>Ações</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="offer :${offers}">
-            <td>[[${offer.id}]]</td>
-            <td th:text="${offer.principalActivity}"></td>
-            <td th:text="${offer.weeklyWorkload}"></td>
-            <td th:text="${offer.remunerationValue}"></td>
-            <td th:text="${offer.transportVoucher}"></td>
-            <td th:text="${offer.prerequisites}"></td>
-            <td>
-                <div class="action-box">
-                    <form th:action="@{/internshipOffer/delete/{id}(id=${offer.id})}" method="post">
-                        <input type="hidden" name="_method" value="DELETE"/>
-                        <input class="input-delete" type="submit" value="Remover"/>
-                    </form>
+            <a th:href="@{/internshipOffer/offers}">
+                <button class="button-add btn btn-primary">
+                    Listar Todas
+                </button>
+            </a>
+
+            <form th:action="@{/internshipOffer/filter}" method="get">
+                <div class="form-group">
+                    <label for="companyName">Nome da Empresa:</label>
+                    <input type="text" id="companyName" name="companyName" class="form-control"
+                           placeholder="Nome da Empresa">
                 </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+                <div class="form-group">
+                    <label for="minRemuneration">Remuneração Mínima:</label>
+                    <input type="number" step="0.01" id="minRemuneration" name="minRemuneration" class="form-control"
+                           placeholder="R$">
+                </div>
+                <div class="form-group">
+                    <label for="maxRemuneration">Remuneração Máxima:</label>
+                    <input type="number" step="0.01" id="maxRemuneration" name="maxRemuneration" class="form-control"
+                           placeholder="R$">
+                </div>
+                <div class="form-group">
+                    <label for="minWeeklyWorkload">Carga Horária Mínima (horas):</label>
+                    <input type="number" id="minWeeklyWorkload" name="minWeeklyWorkload" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="maxWeeklyWorkload">Carga Horária Máxima (horas):</label>
+                    <input type="number" id="maxWeeklyWorkload" name="maxWeeklyWorkload" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="prerequisites">Pré-requisitos:</label>
+                    <input type="text" id="prerequisites" name="prerequisites" class="form-control"
+                           placeholder="Pré-requisitos">
+                </div>
+                <!--                    <div class="form-group">-->
+                <!--                        <label for="competencies">Competências:</label>-->
+                <!--                        <input type="text" id="competencies" name="competencies" class="form-control" placeholder="Digite para buscar competências">-->
+                <!--                        <ul id="competencySuggestions" class="list-group" style="position: absolute; z-index: 1000; width: 100%; display: none;">-->
+                <!--                        </ul>-->
+                <!--                        <input type="hidden" id="competenciesData" th:value="${competences}" />-->
+                <!--                    </div>-->
+                <button type="submit" class="btn btn-primary">Filtrar</button>
+            </form>
 
-</div>
+            <div class="container">
+                <div class="father-card">
+                    <div class="col-md-6 col-lg-6" th:each="offer : ${offers}">
+                        <div class="individual-offer-card inter-font">
+                            <h3 th:text="${offer.companyResponsible.fantasyName}"></h3>
+                            <div class="d-flex flex-row gap-2">
+                                <div class="d-flex flex-column">
+                                    <small>ID:</small>
+                                    <p th:text="${offer.id}"></p>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <small>Principal Atividade:</small>
+                                    <p th:text="${offer.principalActivity}"></p>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row gap-3">
+                                <div class="d-flex flex-column">
+                                    <small>Carga Horária Semanal:</small>
+                                    <p th:text="${offer.weeklyWorkload} + ' horas'"></p>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <small>Valor da Bolsa:</small>
+
+                                    <p>
+                                        <span th:if="${offer.remunerationValue > 0}"
+                                              th:text="'R$ ' + ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></span>
+                                        <span th:unless="${offer.remunerationValue > 0}">
+                                            <strong>Estágio Voluntário</strong>
+                                        </span>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row gap-3">
+                                <div class="d-flex flex-column">
+                                    <small>Vale Transporte:</small>
+                                    <p th:text="${offer.transportVoucher != null && offer.transportVoucher > 0} ? 'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : 'Nenhum'">
+                                        Nenhum</p>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <small>Pré-requisitos:</small>
+                                    <p th:if="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}" th:text="${offer.prerequisites}"></p>
+                                    <p th:unless="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}">Nenhum</p>
+                                </div>
+                            </div>
+                            <div class="action-box d-flex gap-2 justify-content-center mt-3">
+                                <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">
+                                    <i class="bi bi-binoculars-fill"></i> Visualizar
+                                </a>
+                                <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
+                                    <input class="btn-action btn-apply" type="submit" value="Candidatar-se"/>
+                                </form>
+                                <form th:action="@{cancel/{id}(id=${offer.id})}" method="post">
+                                    <input type="hidden" name="_method" value="DELETE"/>
+                                    <input class="btn-action btn-delete" type="submit" value="Cancelar"/>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div th:replace="~{/fragments/scripts}">
+    </div>
+</main>
 </body>
+
 </html>

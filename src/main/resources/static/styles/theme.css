@@ -1,6 +1,6 @@
 :root {
     /*Cores específicas*/
-    --body-color-default:#fffcfc;
+    --body-color-default: #fffcfc;
 
     /*tags*/
     --links-color: #2a318e;
@@ -11,9 +11,13 @@
     --oportunity-card-background-hover: var(--neutral-color-dark);
     --oportunity-card-color-hover: #feffff;
 
+    --info-font-family: 'Arial', sans-serif;
+    --info-section-border: 1px solid #ddd;
+    --opportunity-card-background: #ffffff;
+    --opportunity-card-background-hover: #e6f7ff;
+    --opportunity-card-color-hover: #007bff;
 
-    
-    
+
     /*Palheta*/
     --primary-color: #0073b7;
     /* Azul escuro */
@@ -32,7 +36,7 @@
     /* Cinza claro */
 
 
-    --secondary-color-gray:#dddada;
+    --secondary-color-gray: #dddada;
     /* Cores de destaque */
     --accent-color: #ff9800;
     /* Laranja */
@@ -56,16 +60,18 @@
 
     --neutral-color-grey: hsl(231, 7%, 60%);
 
-    --neutral-color-white: #F2F2F2
-
-    --neutral-color-dark-grey: hsl(0, 0%, 12%);
+    --neutral-color-white: #F2F2F2 --neutral-color-dark-grey: hsl(0, 0%, 12%);
 
     /* Outras cores */
-    --link-color: #0073b7; /* Azul escuro */
-    --link-color-hover: #428bca; /* Azul médio */
-    --border-color: #ddd; /* Cinza claro */
+    --link-color: #0073b7;
+    /* Azul escuro */
+    --link-color-hover: #428bca;
+    /* Azul médio */
+    --border-color: #ddd;
+    /* Cinza claro */
     --off-black-neutral-color: hsl(0, 0%, 8%);
 
+    --introduction-color: #ffffff;
 
     /* Gradientes */
 
@@ -75,7 +81,12 @@
 
 
     /* Fonts*/
-    --info-font-family:sans-serif;
+    --info-font-family: sans-serif;
     --font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+    /* Font-Size*/
+    --title-section-size-font: 2.5rem;
+
+
 
 }

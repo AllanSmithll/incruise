@@ -4,6 +4,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Data
@@ -17,23 +18,32 @@ public abstract class Opportunity {
 	private Integer id;
 	
 	private String principalActivity;
-	private Integer weeklyWorkload;
+	private Integer weeklyWorkload = 0;
 	private Double remunerationValue = 0.0;
 	private Double transportVoucher = 0.0;
 	private String prerequisites;
-	private Company companyResponsable;
-	
+	private Company companyResponsible;
+
+	private Boolean active = true;
 	private List<Competence> necessarySkills = new ArrayList<>();
 	private List<Competence> desirableSkills = new ArrayList<>();
 
 	public Opportunity(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,
-					   Double transportVoucher, String prerequisites, Company companyResponsable) {
+					   Double transportVoucher, String prerequisites, Company companyResponsible) {
 		this.id = id;
 		this.principalActivity = principalActivity;
 		this.weeklyWorkload = weeklyWorkload;
 		this.remunerationValue = remunerationValue;
 		this.transportVoucher = transportVoucher;
 		this.prerequisites = prerequisites;
-		this.companyResponsable = companyResponsable;
+		this.companyResponsible = companyResponsible;
+	}
+
+	public Boolean isEmpty(){
+		return false;
+	}
+
+	public boolean equals(Integer id){
+		return Objects.equals(this.id, id);
 	}
 }

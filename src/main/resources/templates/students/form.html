@@ -1,56 +1,106 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title>Formulário de cadastro</title>
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-    <link rel="stylesheet" th:href="@{/styles/form.css}">
-    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png" th:href="@{/imgs/icons8-navio-48.png}">
-    <link rel="icon" sizes="32x32" href="/imgs/icons8-navio-48.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar-se')}">
+    <link rel="stylesheet" href="/styles/student/form-student.css">
+    <title>Cadastrar-se</title>
+    <script>
+        function validatePasswords() {
+            const password = document.getElementById('input-password').value;
+            const confirmPassword = document.getElementById('input-password-confirm').value;
+            const errorMessage = document.getElementById('password-error');
+
+            if (password !== confirmPassword) {
+                errorMessage.style.display = 'block';
+                return false;
+            } else {
+                errorMessage.style.display = 'none';
+                return true;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (event) => {
+                if (!validatePasswords()) {
+                    event.preventDefault();
+                }
+            });
+
+            document.getElementById('input-password-confirm').addEventListener('input', validatePasswords);
+        });
+    </script>
 </head>
 <body class="main-screen">
+<header th:replace="~{/fragments/header}"></header>
+<main>
     <div class="card-main">
-        <div class="main-content">
-            <h1>Cadastrar-se</h1>
+        <h1 class="inter-font">Incruise</h1>
+        <div class="main-content inter-font-line">
+            <h1 class="title-page">Cadastrar-se</h1>
             <form th:action="@{/student/save}" method="post" th:object="${student}">
-
                 <input id="input-id" class="input-form" type="hidden" th:field="*{id}" />
 
-                <label class="label-form" for="input-name">Nome</label>
-                <input id="input-name" class="input-form" type="text" th:field="*{name}" />
+                <label class="label-form" for="input-name">Nome *</label>
+                <input id="input-name" class="input-form" placeholder="Seu nome completo" type="text" th:field="*{name}" required maxlength="100"
+                       title="Nome completo é obrigatório e deve ter no máximo 100 caracteres." />
 
-                <label class="label-form" for="input-enrollment">Matrícula</label>
-                <input id="input-enrollment" class="input-form" type="text" th:field="*{enrollment}" />
+                <label class="label-form" for="input-enrollment">Matrícula *</label>
+                <input id="input-enrollment" class="input-form" placeholder="Sua matrícula" type="text" th:field="*{enrollment}" required pattern="\d{11}"
+                       title="Matrícula deve ter 11 dígitos." />
 
-                <label class="label-form" for="input-course">Curso</label>
-                <input id="input-course" class="input-form" type="text" th:field="*{course}" />
+                <label class="label-form" for="input-course">Curso *</label>
+                <input id="input-course" placeholder="Nome do curso" class="input-form" type="text" th:field="*{course}" required maxlength="100"
+                       title="O nome do curso é obrigatório e deve ter no máximo 100 caracteres." />
 
-                <label class="label-form" for="input-birthdate">Data de Nascimento</label>
-                <input id="input-birthdate" class="input-form" type="text" th:field="*{birthdate}" />
+                <label class="label-form" for="input-birthdate">Data de Nascimento *</label>
+                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="text" th:field="*{birthdate}" required pattern="\d{2}/\d{2}/\d{4}"
+                       title="Data de nascimento no formato DD/MM/AAAA." />
 
-                <label class="label-form" for="input-phone-number">Número de Telefone</label>
-                <input id="input-phone-number" class="input-form" type="text" th:field="*{phoneNumber}" />
+                <input type="tel" id="phoneNumberInput" class="input-form" placeholder="Telefone *"
+                       th:field="*{phoneNumber}" required pattern="\d{10,11}"
+                       title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
 
-                <label class="label-form" for="input-username">Nome de usuário</label>
-                <input id="input-username" class="input-form" type="text" th:field="*{username}" />
+                <label class="label-form" for="input-username">Nome de Usuário *</label>
+                <input id="input-username" class="input-form" placeholder="Nome de usuário" type="text" th:field="*{username}" required minlength="5" maxlength="20"
+                       title="Nome de usuário deve ter entre 5 e 20 caracteres." />
 
-                <label class="label-form" for="input-email">Email</label>
-                <input class="input-form" id="input-email" type="text" th:field="*{email}" />
+                <label class="label-form" for="input-email">Email *</label>
+                <input id="input-email" class="input-form" placeholder="Seu email" type="email" th:field="*{email}" required
+                       title="Por favor, insira um endereço de email válido." />
 
-                <label class="label-form" for="input-senha">Senha</label>
-                <input id="input-senha" class="input-form" type="password" th:field="*{password}" />
+                <label class="label-form" for="input-password">Senha *</label>
+                <input id="input-password" class="input-form" placeholder="Senha" type="password" th:field="*{password}" required minlength="8"
+                       title="Senha deve ter pelo menos 8 caracteres." />
 
-                <div class="label-competence">
-                    <h3>Competências:</h3>
-                    <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
-                        <input type="checkbox" th:field="*{competenceList}" th:value="${competence}"
-                            th:checked="${student.competenceList.contains(competence)}" />
-                        <span th:text="${competence.getDescription()}"></span>
-                    </label>
+                <label class="label-form" for="input-password-confirm">Confirme a Senha *</label>
+                <input id="input-password-confirm" class="input-form" placeholder="Confirme sua senha" type="password" required minlength="8"
+                       title="Confirmação da senha deve ter pelo menos 8 caracteres." />
+
+                <div id="password-error" class="error-message" style="display: none; color: red;">
+                    As senhas não coincidem. Por favor, verifique.
                 </div>
-                <input class="submit-input" type="submit" value="Salvar">
+
+                <div>
+                    <h3>Competências:</h3>
+                    <div class="label-competence">
+                        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
+                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence}"
+                                   th:checked="${student.competenceList.contains(competence)}"/>
+                            <span th:text="${competence.getDescription()}"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="buttons-actions">
+                    <input class="submit-input" type="submit" value="Salvar">
+                </div>
             </form>
         </div>
     </div>
+    <div th:replace="~{/fragments/scripts}"></div>
+</main>
+</body>
 </html>

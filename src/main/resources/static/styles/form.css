@@ -1,26 +1,44 @@
 @import url("main.css");
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+
+.inter-font {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+}
+.inter-font-line {
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
 /* Estilos principais da tela */
 .main-screen {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #f0f4f8; /* Cor de fundo clara */
-    margin: 200px 0 200px 0;
+    background-color: #6cb0fe; /* Cor de fundo clara */
+    margin: 50px 0 200px 0;
+    height: auto;
 }
 
-/* Estilo do container central */
 .card-main {
     display: flex;
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    background-color: #ffffff; /* Cor de fundo do card */
+    background-color: white;
+    color: black;
     width: 500px;
-    height: 500px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
-    border-radius: 8px; /* Bordas arredondadas */
-    padding: 20px; /* Espaçamento interno */
+    height: auto;
+    border: none;
+    border-radius: 8px;
+    padding: 20px;
 }
 
 /* Estilo do conteúdo principal */
@@ -29,29 +47,39 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    color: #333333; /* Cor do texto */
+    /*color: white; !* Cor do texto *!*/
+    height: auto;
 }
 
-/* Estilo dos botões de submissão */
 .submit-input {
-    width: 100px;
-    height: 40px;
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: white;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 1.1em;
     cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+
+}
+
+.submit-input:hover {
+    background-color: #0056b3;
 }
 
 /* Estilo do botão ao passar o mouse */
 .submit-input:hover {
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
 }
+
+.label-competence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
+    gap: 10px; /* Espaçamento entre os itens */
+    align-items: start; /* Alinha os itens no topo de cada célula */
+}
+
 
 /* Estilo dos campos de entrada do formulário */
 .input-form {
@@ -60,6 +88,7 @@
     margin: 5px 0;
     border: 1px solid #ced4da; /* Cor da borda dos campos */
     background-color: #ffffff; /* Cor de fundo dos campos */
+    height: 43px;
 }
 
 /* Estilo dos grupos de formulário */
@@ -82,18 +111,24 @@ input[type="date"],
 textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ced4da;
     border-radius: 4px;
     box-sizing: border-box;
-    background-color: #ffffff;
+    background-color: white;
+    border: 1px solid #ced4da;
     color: #495057; /* Cor do texto dentro dos campos */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea:active {
+
 }
 
 /* Estilo dos botões de envio */
 button[type="submit"] {
     width: 100%;
     background-color: #007bff; /* Cor de fundo do botão */
-    color: white;
     padding: 10px;
     border: none;
     border-radius: 4px;
@@ -105,4 +140,46 @@ button[type="submit"] {
 /* Estilo do botão ao passar o mouse */
 button[type="submit"]:hover {
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.title-page {
+    display: flex;
+    width: 100%;
+    justify-items: center;
+    justify-content: center ;
+    flex-direction: row;
+}
+
+.buttons-actions {
+    display: flex;
+    width: 100%;
+    justify-items: center;
+    justify-content: center ;
+    flex-direction: row;
+}
+
+.custom-select {
+    appearance: none; /* Remove a aparência padrão do navegador */
+    -webkit-appearance: none; /* Remove a aparência no Safari */
+    -moz-appearance: none; /* Remove a aparência no Firefox */
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+}
+.custom-file-upload {
+    width: fit-content;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 8px;
+    font-size: 14px;
+;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
 }

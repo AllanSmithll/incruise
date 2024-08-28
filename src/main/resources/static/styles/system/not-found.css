@@ -1,0 +1,76 @@
+.error-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.error-actions {
+    margin-top: 5%;
+    margin-bottom: 15px;
+}
+
+.error-actions .btn {
+    margin-right: 10px;
+    height:5rem;
+    font-size:2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+main{
+    display: flex;
+    flex-direction: column;    
+    align-items: center;
+    
+}
+.compass-container {
+    display: flex;
+    justify-content: center;
+}
+
+.compass {
+    width: 150px;
+    height: 150px;
+    border: 5px solid #ECF0F1; 
+    border-radius: 50%;
+    background-color: #2C3E50; /* Fundo da bússola */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    animation: spin 4s linear infinite;
+}
+
+.compass-needle {
+    position: absolute;
+    width: 5px;
+    height: 60%;
+    background-color: red;
+    top: 20%;
+    left: 50%;
+    transform-origin: bottom;
+    transform: translateX(-50%);
+    z-index: 1;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Animação de rotação da bússola */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    10% {
+        transform: rotate(50deg);
+    }
+    20% {
+        transform: rotate(100deg);
+    }
+    25% {
+        transform: rotate(150deg);
+    }
+    50% {
+        transform: rotate(250deg);
+    }
+    75% {
+        transform: rotate(310deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

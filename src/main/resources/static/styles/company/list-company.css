@@ -1,0 +1,112 @@
+@import url("main.css");
+
+/* Estilos principais da tela */
+.main-screen {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #6cb0fe; /* Cor de fundo clara */
+    padding: 40px 0;
+    width: 100%;
+}
+
+/* Estilo do container da listagem */
+.card-component {
+    display: flex;
+    justify-self: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ffffff; /* Cor de fundo do card */
+    width: fit-content;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo do título da listagem */
+.card-component h1 {
+    color: #333333; /* Cor do texto */
+    margin-bottom: 20px;
+}
+
+/* Estilo da tabela */
+table {
+    width: auto;
+    table-layout: auto;
+    border-collapse: collapse;
+    margin: auto;
+}
+
+thead {
+    background-color: #007bff;
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ced4da;
+    white-space: nowrap;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Estilo dos botões de ação */
+.action-box {
+    text-align: center; /* Centraliza os botões de ação */
+}
+
+.action-box form {
+    display: inline;
+}
+
+.input-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+/* Estilo do botão de exclusão ao passar o mouse */
+.input-delete:hover {
+    background-color: #c82333; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.btn-apply {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    margin-left: 8px;
+}
+
+.btn-apply:hover {
+    background-color: #218838;
+}
+
+.btn-apply:active {
+    background-color: #1e7e34;
+}
+
+.btn-apply:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+.button-add {
+    margin: 20px 0 20px 0;
+}
