@@ -66,7 +66,6 @@ public class InternshipOfferController {
         }
         
         opportunityService.add(offer);
-        company.addOpportunity(offer);
         opportunityService.add(offer,company);
         
         redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
