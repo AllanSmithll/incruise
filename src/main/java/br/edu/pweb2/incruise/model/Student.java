@@ -11,7 +11,7 @@ import java.util.List;
 //@Table(name = "tb_student")
 @Data
 @NoArgsConstructor
-public class Student extends SchoolMember {
+public class    Student extends SchoolMember {
     private LocalDate birthdate;
     private String phoneNumber;
     private List<Competence> competenceList = new ArrayList<>();
