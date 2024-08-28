@@ -53,9 +53,8 @@
                     </div>
                     <div class="topic">
                         <h1 class="topic-title">Data de Nascimento</h1>
+                         <p class="topic-content" th:if="student.birthdate" th:text="${#temporals.format(student.birthdate, 'dd/MM/yyyy')}" >09/07/1995</p>
 
-                        <p class="topic-content" th:text="${#dates.format(student.birthdate, 'dd/MM/yyyy'}">09/07/1995
-                        </p>
                     </div>
                     <!--
  div class="topic">
