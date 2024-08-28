@@ -2,7 +2,7 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='[[${student.name}]]')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='${student.name}')}">
 
     <link rel="stylesheet" th:href="@{/styles/students/info.css}">
 
@@ -121,7 +121,7 @@
                         </p>
                         <p>
                             <strong>Data Candidatura:</strong> <span
-                                th:text="${#dates.format(candidature.createdDate, 'dd/MM/yyyy') }">10/03/2004</span>
+                                th:text="${#temporals.format(candidature.createdDate, 'dd/MM/yyyy') }">10/03/2004</span>
                         </p>
                         <!-- Remuneração -->
                         <p th:if="${candidature.offer.remunerationValue != 0}">
@@ -136,9 +136,10 @@
 
                         <!-- Vale Transporte -->
                         <p th:if="${candidature.offer.transportVoucher != 0}">
-                            <strong>Vale Transporte:</strong>R$ <span
-                            th:text="'R$'+ ${#numbers.formatDecimal(candidature.offer.transportVoucher,1 ,2}">0,00</span>
+                            <strong>Vale Transporte:</strong> R$
+                            <span th:text="'R$ ' + ${#numbers.formatDecimal(candidature.offer.transportVoucher, 1, 2)}">0,00</span>
                         </p>
+
 
                         <!-- Pré-requisitos -->
                         <p th:if="${candidature.offer.prerequisites != 0}">

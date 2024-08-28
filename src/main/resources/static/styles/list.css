@@ -24,12 +24,15 @@
     justify-content: center;
     width: 500px    ;
     height: auto;
-    background-color: #11b9b9;
+    background-color: white;
     margin-top: 6px;
-    color: white;
+    color: black;
     align-self: center;
     padding: 10px;
     border-radius:25px ;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
 }
 .individual-company-card small {
