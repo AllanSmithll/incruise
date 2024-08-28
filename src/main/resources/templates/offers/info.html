@@ -89,7 +89,8 @@
                         <td th:text="${c.student.email}">Email do Estudante</td>
                         <td th:text="${c.student.course}">Curso do Estudante</td>
                         <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
-                        <td th:text="${#dates.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
+                        <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
+
                     </tr>
                 </tbody>
             </table>
