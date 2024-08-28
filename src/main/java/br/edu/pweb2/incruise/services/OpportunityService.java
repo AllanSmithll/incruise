@@ -1,5 +1,6 @@
 package br.edu.pweb2.incruise.services;
 
+import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.Opportunity;
 import br.edu.pweb2.incruise.repository.OpportunityRepository;
@@ -26,7 +27,13 @@ public class OpportunityService {
         return opportunityRepository.find(id);
     }
 
-    public void add(InternshipOffer offer) {
+    public void add(Opportunity offer, Company company) {
+        if(offer.getRemunerationValue() == null){
+            offer.setRemunerationValue(0.0);
+        }
+        offer.setCompanyResponsible(company);
+
+        company.addOpportunity(offer);
         opportunityRepository.add(offer);
     }
 

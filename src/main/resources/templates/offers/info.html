@@ -20,25 +20,62 @@
         <!-- Seção de detalhes da oportunidade -->
         <div class="section details">
             <h1 class="section-title">Detalhes</h1>
-            <!--             <p><strong>ID:</strong> <span th:text="${opportunity.id}">1</span></p> -->
-            <p><strong>Atividade Principal:</strong> <span th:text="${opportunity.principalActivity}">Atividade
-                    principal</span></p>
-            <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40</span> horas</p>
-            <p><strong>Valor da Remuneração:</strong> R$ <span th:text="${opportunity.remunerationValue}">1000.00</span>
+            <!-- Remuneração -->
+            <p th:if="${opportunity.remunerationValue != 0}">
+                <strong>Remuneração:</strong> 
+                <span th:text="'R$'+ ${#numbers.formatDecimal(opportunity.remunerationValue, 1, 2)}">R$ 0,00</span>
             </p>
-            <p><strong>Vale Transporte:</strong> R$ <span th:text="${opportunity.transportVoucher}">100.00</span></p>
-            <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Pré-requisitos</span></p>
+            <!-- voluntário -->
+            <p th:unless="${opportunity.remunerationValue != 0}">
+                <strong>Estágio Voluntário</strong>
+            </p>
+
+            <!-- Vale Transporte -->
+            <p th:if="${opportunity.transportVoucher != 0}">
+                <strong>Vale Transporte:</strong>R$ <span th:text="'R$'+ ${#numbers.formatDecimal(opportunity.transportVoucher, 1, 2)}">0,00</span>
+            </p>
+
+            <!-- Pré-requisitos -->
+            <p>
+                <strong>Pré-requisitos:</strong>
+                <span th:if="${!#strings.isEmpty(opportunity.prerequisites)}"
+                    th:text="${opportunity.prerequisites}"></span>
+                <span th:if="${#strings.isEmpty(opportunity.prerequisites)}">Nenhum</span>
+            </p>
+        </div>
+        <div class="section competences">
+            <!-- Obrigatórias-->
+            <div id="Competence-Necessary-Box">
+                <p class="topic-title">Competências Obrigatórias</p>
+                <ul class="list-competences" th:each="competence : ${opportunity.necessarySkills}">
+                    <li class="competence " th:text="${competence}">
+                        Isso é uma competência obrigatória e longa
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Opcionais-->
+            <div id="Competence-Desirable-Box">
+                
+                <p class="topic-title">Competências Desejadas</p>
+                <ul class="list-competences" th:each="competence : ${opportunity.desirableSkills}">
+                    <li class="competence" th:text="${competence}">
+                        Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa
+                    </li>
+                </ul>
+            </div>
+            
         </div>
 
         <!-- Seção de candidaturas -->
         <div class="section candidatures">
             <h1 class="section-title">Candidaturas</h1>
-            
+
             <div th:if="${#lists.isEmpty(opportunity.candidatureList)}">
                 <p class="no-content-msg">Sem Candidaturas Registradas.</p>
             </div>
 
-            <table  th:if="${!#lists.isEmpty(opportunity.candidatureList)}" class="table-candidatures">
+            <table th:if="${!#lists.isEmpty(opportunity.candidatureList)}" class="table-candidatures">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -81,7 +118,8 @@
                         th:text="${opportunity.companyResponsible.urlPage}">Acesse o perfil da empresa</a>
                 </p>
             </div>
-            <a class="btn btn-primary company-visit-btn"th:href="@{/company/info/{id}(id=${opportunity.companyResponsible.id})}">Visitar perfil</a>
+            <a class="btn btn-primary company-visit-btn"
+                th:href="@{/company/info/{id}(id=${opportunity.companyResponsible.id})}">Visitar perfil</a>
         </div>
     </main>
 

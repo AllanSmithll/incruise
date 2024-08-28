@@ -10,8 +10,7 @@ public class InternshipOffer extends Opportunity {
 
 	private List<Candidature> candidatureList = new ArrayList<>();
 
-	public InternshipOffer(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue,
-						   Double transportVoucher, String prerequisites, Company company) {
+	public InternshipOffer(Integer id, String principalActivity, Integer weeklyWorkload, Double remunerationValue, Double transportVoucher, String prerequisites, Company company) {
 		super(id, principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites, company);
 	}
 

@@ -18,7 +18,7 @@ public abstract class Opportunity {
 	private Integer id;
 	
 	private String principalActivity;
-	private Integer weeklyWorkload;
+	private Integer weeklyWorkload = 0;
 	private Double remunerationValue = 0.0;
 	private Double transportVoucher = 0.0;
 	private String prerequisites;
