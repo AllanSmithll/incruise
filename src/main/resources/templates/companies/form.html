@@ -1,80 +1,92 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Registre-se')}">
 
+    <title>Registre-se</title>
+    <link rel="stylesheet" href="/styles/company/form-company.css">
 </head>
 <body class="main-screen">
-    
-         <header  th:replace="~{/fragments/header}">    </header> <main>
-
+<header th:replace="~{/fragments/header}"></header>
+<main>
     <div class="card-main">
         <div class="main-content">
             <h1>Cadastrar-se</h1>
             <form th:action="@{/company/save}" method="post" th:object="${company}">
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Login
-                    </h2>
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" class="input-form" th:field="*{username}">
-                    <div class="flex">
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" class="input-form" th:field="*{password}">
+                <fieldset class="form-container">
+                    <input type="text" id="username" class="input-form w-50" placeholder="Nome de usuário *"
+                           th:field="*{username}">
+                    <div class="d-flex flex-row gap-3">
+                        <input type="password" id="password" class="w-50 input-form w-50 " placeholder="Senha *"
+                               th:field="*{password}">
 
-                        <label for="password-confirm">Confirmar senha</label>
-                        <input type="password" id="password-confirm" class="input-form">
+                        <input type="password" id="password-confirm" class="input-form w-50mx-2"
+                               placeholder="Confirme sua senha"></div>
+                </fieldset>
+
+                <fieldset class="form-container">
+                    <legend class="form-container-description  ">Informações Básicas</legend>
+                    <div class="d-flex flex-row gap-3">
+                        <!--                        <label for="fantasyNameInput">Nome Fantasia</label>-->
+                        <input type="text" id="fantasyNameInput" class="input-form w-50 " placeholder="Nome fantasia *"
+                               th:field="*{fantasyName}">
+
+                        <!--                        <label for="cnpjInput">CNPJ</label>-->
+                        <input type="text" id="cnpjInput" class="input-form w-50 " placeholder="CNPJ *"
+                               th:field="*{cnpj}">
                     </div>
-                </div>
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Informações Básicas
-                    </h2>
-                    <label for="fantasyNameInput">Nome Fantasia</label>
-                    <input type="text" id="fantasyNameInput" class="input-form" th:field="*{fantasyName}">
 
-                    <label for="cnpjInput">CNPJ</label>
-                    <input type="text" id="cnpjInput" class="input-form" th:field="*{cnpj}">
+                    <input type="text" id="principalActivityInput" class="input-form w-100"
+                           placeholder="Principal atividade *" th:field="*{principalActivity}">
 
-                    <label for="principalActivityInput">Principal atividade</label>
-                    <input type="text" id="principalActivityInput" class="input-form" th:field="*{principalActivity}">
+                    <input type="text" id="urlPageInput" class="input-form w-100" placeholder="Site da empresa * "
+                           th:field="*{urlPage}">
+                </fieldset>
 
-                    <label for="urlPageInput">Site da empresa</label>
-                    <input type="text" id="urlPageInput" class="input-form" th:field="*{urlPage}">
-                </div>
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Contato
-                    </h2>
-                    <label for="emailInput">Email</label>
-                    <input type="email" id="emailInput" class="input-form" th:field="*{email}">
+                <fieldset class="form-container">
+                    <div class="d-flex flex-column">
+                        <legend class="form-container-description ">Contato</legend>
+                        <div class="d-flex flex-row gap-3 ">
+                            <!--                        <label for="emailInput">Email</label>-->
+                            <input type="email" id="emailInput" class="input-form w-50 " placeholder="Email"
+                                   th:field="*{email}">
 
-                    <label for="phoneNumberInput">Telefone</label>
-                    <input type="text" id="phoneNumberInput" class="input-form" th:field="*{phoneNumber}">
+                            <!--                        <label for="phoneNumberInput">Telefone</label>-->
+                            <input type="text" id="phoneNumberInput" class="input-form w-50 " placeholder="Telefone *"
+                                   th:field="*{phoneNumber}">
+                        </div>
+                        <!--                        <label for="personContactInput">Nome do responsável</label>-->
+                        <input type="text" id="personContactInput" class="input-form w-100"
+                               placeholder="Nome do responsável" th:field="*{personContact}">
+                    </div>
+                </fieldset>
 
-                    <label for="personContactInput">Nome do responsável</label>
-                    <input type="text" id="personContactInput" class="input-form" th:field="*{personContact}">
-                </div>
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Confirmar Endereço
-                    </h2>
-                    <label for="addressInput">Endereço</label>
-                    <input type="text" id="addressInput" class="input-form" th:field="*{address}">
+                <fieldset class="form-container">
 
-                    <div class="file-upload"><label class="custom-file-upload" for="adressVerify">Comprovante de endereço</label>
-                        <input type="file" id="adressVerify" class="input-form inter-font-line"
-                               th:field="*{address}"></div>
-                </div>
-                <button class="submit-input" type="submit"> salvar</button>
+                    <legend class="form-container-description "> Endereço
+                        <div class="d-flex flex-column justify-content-center items-center  gap-3 ">
+                            <!--                    <label for="addressInput">Endereço</label>-->
+                            <input style="font-size: 16px" type="text" id="addressInput" class="input-form w-100  "
+                                   placeholder="Endereço *" th:field="*{address}">
+
+                            <div class="file-upload">
+                                <label class="custom-file-upload" for="adressVerify">Adicionar Comprovante</label>
+                                <input style="display: none" type="file" id="adressVerify"
+                                       class="input-form w-50 file-upload " placeholder="Compravante de residência *">
+                            </div>
+                        </div>
+                    </legend>
+
+                </fieldset>
+
+                <button class="submit-input btn btn-primary" type="submit">Salvar</button>
             </form>
         </div>
     </div>
 
-    <div th:replace="~{/fragments/scripts}">
-    </div>
-
-</main> </main> </body>
-
+    <div th:replace="~{/fragments/scripts}"></div>
+</main>
+</body>
 </html>
