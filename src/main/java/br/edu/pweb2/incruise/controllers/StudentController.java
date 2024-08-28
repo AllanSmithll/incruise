@@ -72,6 +72,7 @@ public class StudentController {
         }
     }
 
+
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
     public String info(@PathVariable("id") Integer id, Model model) {
         try {
@@ -84,4 +85,5 @@ public class StudentController {
             return "redirect:/not-found";
         }
     }
+
 }

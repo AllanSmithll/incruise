@@ -11,7 +11,7 @@
 <main>
     <div class="card-main">
         <div class="card-component">
-            <h1>Cadastro de Oferta de Estágio</h1>
+            <h1>Cadastro de Estágio</h1>
             <form th:action="@{/internshipOffer/save}" th:object="${internshipOffer}" method="post">
                 <div class="form-group">
                     <label for="principalActivity">Principal atividade:</label>
@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                     <label for="company">Empresa:</label>
-                    <select id="company" name="companyId" required>
+                    <select id="company" name="companyId" class="custom-select" required>
                         <option value="">Selecione uma empresa</option>
                         <option th:each="company : ${companies}" th:value="${company.id}"
                                 th:text="${company.fantasyName}"></option>
@@ -54,7 +54,7 @@
 
                 <div class="form-group">
                     <label for="necessarySkills">Competências Necessárias:</label>
-                    <div id="necessarySkills">
+                    <div id="necessarySkills" class="label-competence">
                         <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
                             <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence}"
                             />
@@ -65,7 +65,7 @@
 
                 <div class="form-group">
                     <label for="desirableSkills">Competências Desejadas:</label>
-                    <div id="desirableSkills">
+                    <div id="desirableSkills" class="label-competence">
                         <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
                             <input type="checkbox" th:field="*{desirableSkills}" th:value="${competence}"
                             />
@@ -74,7 +74,7 @@
                     </div>
                 </div>
 
-                <button type="submit">Cadastrar Oferta</button>
+                <button class="submit-input" type="submit">Cadastrar Oferta</button>
             </form>
         </div>
     </div>
