@@ -34,7 +34,7 @@
         <div class="section candidatures">
             <h1 class="section-title">Candidaturas</h1>
             
-            <div class="no-content-msg" th:if="${#lists.isEmpty(opportunity.candidatureList)}">
+            <div th:if="${#lists.isEmpty(opportunity.candidatureList)}">
                 <p class="no-content-msg">Sem Candidaturas Registradas.</p>
             </div>
 

@@ -16,7 +16,7 @@ body{
 #first-info {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 #first-info img {
@@ -25,12 +25,12 @@ body{
   height: 10rem;
   width: 10rem;
   object-fit: cover;
-  margin-right: 2rem;
+  margin-right: 5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #first-info h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   color: #333;
   margin: 0;
 }

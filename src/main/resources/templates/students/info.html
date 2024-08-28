@@ -66,8 +66,8 @@
     <section class="info-section" id="competences-section">
         <h2 class="section-title">Competências</h2>
 
-        <div class="no-content-msg"  th:if="${#lists.isEmpty(student.competenceList)}">
-            <p> De alguma forma, Não há competências</p>
+        <div  th:if="${#lists.isEmpty(student.competenceList)}">
+            <p class="no-content-msg"> De alguma forma, Não há competências</p>
         </div>
 
         <ul id="Competence-List" class="flex around" th:each="comptence : ${student.competenceList}">
@@ -101,8 +101,8 @@
     <section class="info-section" id="oportunity-section">
         <h2 class="section-title">Candidaturas</h2>
 
-        <div class="no-content-msg" th:if="${#lists.isEmpty(student.candidatureList)}">
-            <p>Não há registros de candidaturas.</p>
+        <div th:if="${#lists.isEmpty(student.candidatureList)}">
+            <p class="no-content-msg">Não há registros de candidaturas.</p>
         </div>
 
         <div th:each="candidature : ${student.candidatureList}">

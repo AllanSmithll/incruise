@@ -21,6 +21,10 @@ public class StudentService {
         return studentRepository.findByEnrollment(enrollment);
     }
 
+    public Student findById(Integer id) throws Exception {
+        return studentRepository.findBy(id);
+    }
+
     public List<Student> listAll() {
         return studentRepository.list();
     }
