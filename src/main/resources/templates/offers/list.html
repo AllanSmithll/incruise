@@ -13,7 +13,7 @@
 
         <div class="main-screen">
             <div class="card-component">
-                <h1> Todas as Ofertas de Estágio Cadastradas</h1>
+                <h1>Ofertas de Estágio</h1>
 
                 <a th:href="@{/internshipOffer/register}">
                     <button class="button-add btn btn-primary">
@@ -21,47 +21,47 @@
                     </button>
                 </a>
 
-                <table class="d-none">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Contratante</th>
-                            <th>Principal Atividade</th>
-                            <th>Carga Horária Semanal</th>
-                            <th>Valor da Bolsa</th>
-                            <th>Vale Transporte</th>
-                            <th>Pré-requisitos</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="offer : ${offers}">
-                            <td>
-                                [[${offer.id}]]
-                            </td>
-                            <td th:text="${offer.companyResponsible.fantasyName}"></td>
-                            <td th:text="${offer.principalActivity}"></td>
-                            <td th:text="${offer.weeklyWorkload} + ' horas'"></td>
-                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></td>
-                            <td
-                                th:text="${offer.transportVoucher != null and offer.transportVoucher > 0} ? 'R$ ' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : ''">
-                            </td>
-                            <td th:text="${offer.prerequisites}"></td>
-                            <td>
-                                <div class="action-box">
-                                    <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
-                                    <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
-                                        <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
-                                    </form>
-                                    <form th:action="@{cancel/{id}(id=${offer.id})}" method="post">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        <input class="btn-action btn-delete" type="submit" value="Cancelar" />
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <a th:href="@{/internshipOffer/offers}">
+                    <button class="button-add btn btn-primary">
+                        Listar Todas
+                    </button>
+                </a>
+
+                <form th:action="@{/internshipOffer/filter}" method="get">
+                    <div class="form-group">
+                        <label for="companyName">Nome da Empresa:</label>
+                        <input type="text" id="companyName" name="companyName" class="form-control" placeholder="Nome da Empresa">
+                    </div>
+                    <div class="form-group">
+                        <label for="minRemuneration">Remuneração Mínima:</label>
+                        <input type="number" step="0.01" id="minRemuneration" name="minRemuneration" class="form-control" placeholder="R$">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxRemuneration">Remuneração Máxima:</label>
+                        <input type="number" step="0.01" id="maxRemuneration" name="maxRemuneration" class="form-control" placeholder="R$">
+                    </div>
+                    <div class="form-group">
+                        <label for="minWeeklyWorkload">Carga Horária Mínima (horas):</label>
+                        <input type="number" id="minWeeklyWorkload" name="minWeeklyWorkload" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="maxWeeklyWorkload">Carga Horária Máxima (horas):</label>
+                        <input type="number" id="maxWeeklyWorkload" name="maxWeeklyWorkload" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="prerequisites">Pré-requisitos:</label>
+                        <input type="text" id="prerequisites" name="prerequisites" class="form-control" placeholder="Pré-requisitos">
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label for="competencies">Competências:</label>-->
+<!--                        <input type="text" id="competencies" name="competencies" class="form-control" placeholder="Digite para buscar competências">-->
+<!--                        <ul id="competencySuggestions" class="list-group" style="position: absolute; z-index: 1000; width: 100%; display: none;">-->
+<!--                        </ul>-->
+<!--                        <input type="hidden" id="competenciesData" th:value="${competences}" />-->
+<!--                    </div>-->
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
+
                 <div class="container">
                     <div class="father-card">
                         <div class="col-md-6 col-lg-6" th:each="offer : ${offers}">
@@ -85,11 +85,8 @@
                                     <div class="d-flex flex-column">
                                         <small>Valor da Bolsa:</small>
 
-                                        <p th:if="${offer.remunerationValue != 0}">
-                                            <span
-                                                th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}">R$
-                                                0,00</span>
-                                        </p>
+                                        <p th:if="${offer.remunerationValue != 0}"></p>
+                                        <p th:text="${offer.transportVoucher != null && offer.transportVoucher > 0} ? 'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : 'Nenhum'">R$0,00</p>
                                         <p th:unless="${offer.remunerationValue != 0}">
                                             <strong>Estágio Voluntário</strong>
                                         </p>
@@ -98,7 +95,7 @@
                                 <div class="d-flex flex-row gap-3">
                                     <div class="d-flex flex-column">
                                         <small>Vale Transporte:</small>
-                                        <p th:text="'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}"></p>
+                                        <p th:text="${offer.transportVoucher != null && offer.transportVoucher > 0} ? 'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : 'Nenhum'">Nenhum</p>
                                     </div>
                                     <div class="d-flex flex-column">
                                         <small>Pré-requisitos:</small>
@@ -128,7 +125,58 @@
         <div th:replace="~{/fragments/scripts}">
         </div>
     </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const competenciesData = document.getElementById('competenciesData').value;
+        const availableCompetencies = JSON.parse(competenciesData);
 
+        const competencyInput = document.getElementById('competencies');
+        const suggestionsBox = document.getElementById('competencySuggestions');
+
+        competencyInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            suggestionsBox.innerHTML = ''; // Limpar sugestões anteriores
+
+            if (query) {
+                const suggestions = availableCompetencies.filter(c => c.toLowerCase().includes(query));
+
+                if (suggestions.length > 0) {
+                    suggestionsBox.style.display = 'block';
+                    suggestions.forEach(suggestion => {
+                        const suggestionItem = document.createElement('li');
+                        suggestionItem.classList.add('list-group-item');
+                        suggestionItem.style.cursor = 'pointer';
+                        suggestionItem.textContent = suggestion;
+
+                        suggestionItem.addEventListener('click', function() {
+                            addCompetency(suggestion);
+                            suggestionsBox.style.display = 'none';
+                        });
+
+                        suggestionsBox.appendChild(suggestionItem);
+                    });
+                } else {
+                    suggestionsBox.style.display = 'none';
+                }
+            } else {
+                suggestionsBox.style.display = 'none';
+            }
+        });
+
+        competencyInput.addEventListener('blur', function() {
+            setTimeout(function() {
+                suggestionsBox.style.display = 'none';
+            }, 200);
+        });
+
+        function addCompetency(competency) {
+            const currentValue = competencyInput.value;
+            if (!currentValue.includes(competency)) {
+                competencyInput.value = currentValue ? `${currentValue}, ${competency}` : competency;
+            }
+        }
+    });
+</script>
 </body>
 
 </html>

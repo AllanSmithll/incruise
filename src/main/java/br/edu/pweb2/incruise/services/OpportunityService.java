@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OpportunityService {
@@ -25,6 +26,18 @@ public class OpportunityService {
 
     public Opportunity findById(Integer id) {
         return opportunityRepository.find(id);
+    }
+
+    public List<Opportunity> filterOffers(String companyName, Double minRemuneration, Double maxRemuneration,
+                                          Integer minWeeklyWorkload, Integer maxWeeklyWorkload, String prerequisites) {
+        return opportunityRepository.list().stream()
+                .filter(offer -> (companyName == null || offer.getCompanyResponsible().getFantasyName().toLowerCase().contains(companyName.toLowerCase())))
+                .filter(offer -> (minRemuneration == null || offer.getRemunerationValue() >= minRemuneration))
+                .filter(offer -> (maxRemuneration == null || offer.getRemunerationValue() <= maxRemuneration))
+                .filter(offer -> (minWeeklyWorkload == null || offer.getWeeklyWorkload() >= minWeeklyWorkload))
+                .filter(offer -> (maxWeeklyWorkload == null || offer.getWeeklyWorkload() <= maxWeeklyWorkload))
+                .filter(offer -> (prerequisites == null || offer.getPrerequisites().toLowerCase().contains(prerequisites.toLowerCase())))
+                .collect(Collectors.toList());
     }
 
     public void add(Opportunity offer, Company company) {
