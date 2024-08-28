@@ -32,7 +32,7 @@
 
             <!-- Vale Transporte -->
             <p th:if="${opportunity.transportVoucher != 0}">
-                <strong>Vale Transporte:</strong>R$ <span th:text="'R$'+ ${#numbers.formatDecimal(opportunity.transportVoucher, 1, 2)}">0,00</span>
+                <strong>Vale Transporte:</strong><span th:text="'R$'+ ${#numbers.formatDecimal(opportunity.transportVoucher, 1, 2)}">R$ 0,00</span>
             </p>
 
             <!-- Pré-requisitos -->
@@ -60,7 +60,7 @@
                 <p class="topic-title">Competências Desejadas</p>
                 <ul class="list-competences" th:each="competence : ${opportunity.desirableSkills}">
                     <li class="competence" th:text="${competence}">
-                        Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa
+                        Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa e não curta, pois se fosse curta não seria longa
                     </li>
                 </ul>
             </div>
@@ -93,7 +93,7 @@
                         <td th:text="${c.student.email}">Email do Estudante</td>
                         <td th:text="${c.student.course}">Curso do Estudante</td>
                         <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
-                        <td th:text="${c.createdDate}">Data da Candidatura</td>
+                        <td th:text="${#dates.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
                     </tr>
                 </tbody>
             </table>

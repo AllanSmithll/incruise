@@ -43,11 +43,13 @@
                             <td th:text="${offer.principalActivity}"></td>
                             <td th:text="${offer.weeklyWorkload} + ' horas'"></td>
                             <td th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></td>
-                            <td th:text="${offer.transportVoucher != null and offer.transportVoucher > 0} ? 'R$ ' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : ''"></td>
+                            <td
+                                th:text="${offer.transportVoucher != null and offer.transportVoucher > 0} ? 'R$ ' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : ''">
+                            </td>
                             <td th:text="${offer.prerequisites}"></td>
                             <td>
                                 <div class="action-box">
-                                        <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
+                                    <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">Visualizar</a>
                                     <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
                                         <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
                                     </form>
@@ -82,7 +84,15 @@
                                     </div>
                                     <div class="d-flex flex-column">
                                         <small>Valor da Bolsa:</small>
-                                        <p th:text="'R$' + ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></p>
+
+                                        <p th:if="${offer.remunerationValue != 0}">
+                                            <span
+                                                th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}">R$
+                                                0,00</span>
+                                        </p>
+                                        <p th:unless="${offer.remunerationValue != 0}">
+                                            <strong>Estágio Voluntário</strong>
+                                        </p>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-row gap-3">
@@ -119,5 +129,6 @@
         </div>
     </main>
 
-    </body>
+</body>
+
 </html>
