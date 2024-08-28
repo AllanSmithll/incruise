@@ -1,10 +1,7 @@
 package br.edu.pweb2.incruise.repository;
 
-import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.NullOpportunity;
 import br.edu.pweb2.incruise.model.Opportunity;
-import jakarta.annotation.PostConstruct;
 
 import org.springframework.stereotype.Repository;
 

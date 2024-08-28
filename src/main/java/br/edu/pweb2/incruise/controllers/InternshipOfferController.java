@@ -57,15 +57,17 @@ public class InternshipOfferController {
             redirectAttributes.addFlashAttribute("error", "Empresa não encontrada.");
             return "redirect:/internshipOffer/register";
         }
-        offer.setCompanyResponsible(company);
+        
         if (necessarySkills != null) {
             offer.setNecessarySkills(necessarySkills);
         }
         if (desirableSkills != null) {
             offer.setDesirableSkills(desirableSkills);
         }
+        
         opportunityService.add(offer);
-        company.addOpportunity(offer);
+        opportunityService.add(offer,company);
+        
         redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
         return "redirect:/internshipOffer/offers";
     }

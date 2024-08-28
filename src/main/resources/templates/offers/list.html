@@ -21,7 +21,7 @@
                     </button>
                 </a>
 
-                <table>
+                <table class="d-none">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -60,6 +60,57 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="container">
+                    <div class="father-card">
+                        <div class="col-md-6 col-lg-6" th:each="offer : ${offers}">
+                            <div class="individual-offer-card inter-font">
+                                <h3 th:text="${offer.companyResponsible.fantasyName}"></h3>
+                                <div class="d-flex flex-row gap-2">
+                                    <div class="d-flex flex-column">
+                                        <small>ID:</small>
+                                        <p th:text="${offer.id}"></p>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <small>Principal Atividade:</small>
+                                        <p th:text="${offer.principalActivity}"></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row gap-3">
+                                    <div class="d-flex flex-column">
+                                        <small>Carga Horária Semanal:</small>
+                                        <p th:text="${offer.weeklyWorkload} + ' horas'"></p>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <small>Valor da Bolsa:</small>
+                                        <p th:text="'R$' + ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row gap-3">
+                                    <div class="d-flex flex-column">
+                                        <small>Vale Transporte:</small>
+                                        <p th:text="'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}"></p>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <small>Pré-requisitos:</small>
+                                        <p th:text="${offer.prerequisites}"></p>
+                                    </div>
+                                </div>
+                                <div class="action-box d-flex gap-2 justify-content-center mt-3">
+                                    <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">
+                                        <i class="bi bi-binoculars-fill"></i> Visualizar
+                                    </a>
+                                    <form th:action="@{apply/{id}(id=${offer.id})}" method="get">
+                                        <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
+                                    </form>
+                                    <form th:action="@{cancel/{id}(id=${offer.id})}" method="post">
+                                        <input type="hidden" name="_method" value="DELETE" />
+                                        <input class="btn-action btn-delete" type="submit" value="Cancelar" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
