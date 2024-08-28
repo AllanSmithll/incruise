@@ -78,8 +78,8 @@ label {
     background-color: #0056b3;
 }
 
-.file-upload {
-    margin-top: 10px;
+input #addressVerify .file-input {
+    padding-bottom: 20px;
 }
 
 .custom-file-upload {
