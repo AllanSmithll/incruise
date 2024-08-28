@@ -1,12 +1,14 @@
 *{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-cursor: default;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: default;
+}
+main{
+  padding: 0 !important;
 }
 /* introduction */
 .introduction {
-    background-color: rgba(217, 27, 27, 0.424)!important;
     background-size: cover !important;
     background-attachment: fixed !important;
     background-position: center !important;
@@ -178,7 +180,6 @@ cursor: default;
   color:inherit;
   margin:0 10px;
   display:inline-block;
-  opacity:0.7;
 }
 
 .team-boxed .social a:hover {

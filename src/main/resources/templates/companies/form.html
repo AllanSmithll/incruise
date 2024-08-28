@@ -1,73 +1,115 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastrar-se</title>
-    <link rel="shortcut icon" type="imagex/png" th:href="@{/imgs/logo.png}">
-    <link rel="stylesheet" th:href="@{/styles/company/company.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Registre-se')}">
+    <title>Registre-se</title>
+    <link rel="stylesheet" href="/styles/company/form-company.css">
 </head>
 <body class="main-screen">
+<header th:replace="~{/fragments/header}"></header>
+<main>
     <div class="card-main">
         <div class="main-content">
             <h1>Cadastrar-se</h1>
-            <form th:action="@{/company/save}" method="post" th:object="${company}">
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Login
-                    </h2>
-                    <label for="username">Usuário</label>
-                    <input type="text" id="username" class="input-form" th:field="*{username}">
-                    <div class="flex">
-                        <label for="password">Senha</label>
-                        <input type="password" id="password" class="input-form" th:field="*{password}">
+            <form th:action="@{/company/save}" method="post" th:object="${company}" onsubmit="return validateForm()">
+                <fieldset class="form-container">
+                    <input type="text" id="username" class="input-form w-50" placeholder="Nome de usuário *"
+                           th:field="*{username}" required minlength="5" maxlength="20"
+                           title="O nome de usuário deve ter entre 5 e 20 caracteres.">
 
-                        <label for="password-confirm">Confirmar senha</label>
-                        <input type="password" id="password-confirm" class="input-form">
+                    <div class="d-flex flex-row gap-3">
+                        <input type="password" id="password" class="w-50 input-form" placeholder="Senha *"
+                               th:field="*{password}" required minlength="8" maxlength="20"
+                               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                               title="A senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número.">
+
+                        <input type="password" id="password-confirm" class="input-form w-50 mx-2"
+                               placeholder="Confirme sua senha" required minlength="8" maxlength="20"
+                               title="A confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida.">
                     </div>
-                </div>
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Informações Básicas
-                    </h2>
-                    <label for="fantasyNameInput">Nome Fantasia</label>
-                    <input type="text" id="fantasyNameInput" class="input-form" th:field="*{fantasyName}">
+                    <div id="password-error" class="error-message"></div>
+                </fieldset>
 
-                    <label for="cnpjInput">CNPJ</label>
-                    <input type="text" id="cnpjInput" class="input-form" th:field="*{cnpj}">
+                <fieldset class="form-container">
+                    <legend class="form-container-description">Informações Básicas</legend>
+                    <div class="d-flex flex-row gap-3">
+                        <input type="text" id="fantasyNameInput" class="input-form w-50" placeholder="Nome fantasia *"
+                               th:field="*{fantasyName}" required maxlength="100"
+                               title="O nome fantasia pode ter no máximo 100 caracteres.">
 
-                    <label for="principalActivityInput">Principal atividade</label>
-                    <input type="text" id="principalActivityInput" class="input-form" th:field="*{principalActivity}">
+                        <input type="text" id="cnpjInput" class="input-form w-50" placeholder="CNPJ *"
+                               th:field="*{cnpj}" required pattern="\d{14}" inputmode="numeric"
+                               title="Por favor, insira um CNPJ válido com 14 dígitos.">
+                    </div>
 
-                    <label for="urlPageInput">Site da empresa</label>
-                    <input type="text" id="urlPageInput" class="input-form" th:field="*{urlPage}">
-                </div>
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Contato
-                    </h2>
-                    <label for="emailInput">Email</label>
-                    <input type="email" id="emailInput" class="input-form" th:field="*{email}">
+                    <input type="text" id="principalActivityInput" class="input-form w-100"
+                           placeholder="Principal atividade *" th:field="*{principalActivity}" required maxlength="150"
+                           title="A principal atividade pode ter no máximo 150 caracteres.">
 
-                    <label for="phoneNumberInput">Telefone</label>
-                    <input type="text" id="phoneNumberInput" class="input-form" th:field="*{phoneNumber}">
+                    <input type="url" id="urlPageInput" class="input-form w-100" placeholder="Site da empresa *"
+                           th:field="*{urlPage}" required pattern="https?://.+"
+                           title="Por favor, insira uma URL válida (ex: http://www.exemplo.com).">
+                </fieldset>
 
-                    <label for="personContactInput">Nome do responsável</label>
-                    <input type="text" id="personContactInput" class="input-form" th:field="*{personContact}">
-                </div>
-                <div class="form-container">
-                    <h2 class="form-container-description">
-                        Confirmar Endereço
-                    </h2>
-                    <label for="addressInput">Endereço</label>
-                    <input type="text" id="addressInput" class="input-form" th:field="*{address}">
+                <fieldset class="form-container">
+                    <div class="d-flex flex-column">
+                        <legend class="form-container-description">Contato</legend>
+                        <div class="d-flex flex-row gap-3">
+                            <input type="email" id="emailInput" class="input-form w-50" placeholder="Email"
+                                   th:field="*{email}" required
+                                   title="Por favor, insira um endereço de email válido.">
 
-                    <div class="file-upload"><label class="custom-file-upload" for="adressVerify">Comprovante de endereço</label>
-                        <input type="file" id="adressVerify" class="input-form inter-font-line"
-                               th:field="*{address}"></div>
-                </div>
-                <button class="submit-input" type="submit"> salvar</button>
+                            <input type="tel" id="phoneNumberInput" class="input-form w-50" placeholder="Telefone *"
+                                   th:field="*{phoneNumber}" required pattern="\d{10,11}"
+                                   title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
+                        </div>
+                        <input type="text" id="personContactInput" class="input-form w-100"
+                               placeholder="Nome do responsável" th:field="*{personContact}" required maxlength="100"
+                               title="O nome do responsável pode ter no máximo 100 caracteres.">
+                    </div>
+                </fieldset>
+
+                <fieldset class="form-container">
+                    <legend class="form-container-description">Endereço</legend>
+                    <div class="d-flex flex-column justify-content-center items-center gap-3">
+                        <input style="font-size: 16px" type="text" id="addressInput" class="input-form w-100"
+                               placeholder="Endereço *" th:field="*{address}" required maxlength="200"
+                               title="O endereço pode ter no máximo 200 caracteres.">
+
+                        <div class="file-upload">
+                            <label for="addressVerify">Adicionar Comprovante</label>
+                            <input type="file" id="addressVerify" class="file-input" required aria-required="true">
+                            <div id="file-error" class="error-message" style="display: none">Por favor, adicione um comprovante de
+                                residência.
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <button class="submit-input btn btn-primary" type="submit">Salvar</button>
             </form>
         </div>
     </div>
+
+    <div th:replace="~{/fragments/scripts}"></div>
+
+    <script>
+        function validateForm() {
+            var password = document.getElementById("password").value;
+            var passwordConfirm = document.getElementById("password-confirm").value;
+            var errorElement = document.getElementById("password-error");
+
+            if (password !== passwordConfirm) {
+                errorElement.textContent = "As senhas não correspondem.";
+                return false;
+            }
+
+            errorElement.textContent = "";
+            return true;
+        }
+    </script>
+</main>
 </body>
 </html>

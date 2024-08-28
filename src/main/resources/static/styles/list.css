@@ -1,21 +1,12 @@
 @import url("main.css");
-
-/* Estilos principais da tela */
-.main-screen {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #f0f4f8; /* Cor de fundo clara */
-    padding: 40px 0;
-}
-
 /* Estilo do container da listagem */
 .card-component {
     display: flex;
+    justify-self: center;
+    justify-content: center;
     flex-direction: column;
-    background-color: #ffffff; /* Cor de fundo do card */
-    width: 80%;
-    max-width: 80%;
+    background-color: white; /* Cor de fundo do card */
+    width: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do card */
     border-radius: 8px; /* Bordas arredondadas */
     padding: 20px; /* Espaçamento interno */
@@ -27,6 +18,131 @@
     margin-bottom: 20px;
 }
 
+.individual-company-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px    ;
+    height: auto;
+    background-color: #11b9b9;
+    margin-top: 6px;
+    color: white;
+    align-self: center;
+    padding: 10px;
+    border-radius:25px ;
+
+}
+.individual-company-card small {
+    color: #6cb0fe;
+}
+
+.father-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Cria 3 colunas de largura igual */
+    gap: 2px; /* Espaçamento entre os itens */
+    align-items: start; /* Alinha os itens no topo de cada célula */
+    width: 100%;
+}
+
+.individual-offer-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    width: 500px;
+}
+
+.individual-offer-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.individual-offer-card .d-flex {
+    margin-bottom: 12px;
+}
+
+.individual-offer-card .d-flex div {
+    flex: 1;
+}
+
+.individual-offer-card .d-flex smal {
+    font-weight: bold;
+    color: #555;
+}
+
+.individual-offer-card .d-flex p {
+    margin: 0;
+}
+
+.individual-student-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 700px;
+}
+
+.individual-student-card h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.individual-student-card .d-flex {
+    margin-bottom: 12px;
+}
+
+.individual-student-card .d-flex div {
+    flex: 1;
+}
+
+.individual-student-card .d-flex smal {
+    font-weight: bold;
+    color: #555;
+}
+
+.individual-student-card .d-flex p {
+    margin: 0;
+}
+
+
+.action-box {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-action {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.btn-view {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-apply {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-action i {
+    margin-right: 4px;
+}
+
+
 /* Estilo da tabela */
 table {
     width: auto;
@@ -36,8 +152,8 @@ table {
 }
 
 thead {
-    background-color: #007bff;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 th, td {
@@ -47,16 +163,19 @@ th, td {
     white-space: nowrap;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+/*tbody tr:nth-child(even) {*/
+/*    background-color: #f9f9f9;*/
+/*}*/
 
-tbody tr:hover {
-    background-color: #e9ecef;
+tbody tr {
+    background-color: white;
 }
 
 /* Estilo dos botões de ação */
 .action-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     text-align: center; /* Centraliza os botões de ação */
 }
 
@@ -64,7 +183,7 @@ tbody tr:hover {
     display: inline;
 }
 
-.input-delete {
+.btn-delete {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -75,9 +194,24 @@ tbody tr:hover {
     transition: background-color 0.3s;
 }
 
-/* Estilo do botão de exclusão ao passar o mouse */
-.input-delete:hover {
-    background-color: #c82333; /* Cor de fundo do botão ao passar o mouse */
+.btn-view{
+        background-color: #3e3e68;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s;
+}
+
+.btn-view:hover {
+    color: white !important;
+    background-color: #3e3e88;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
 }
 
 .btn-apply {
@@ -104,3 +238,25 @@ tbody tr:hover {
     outline: none;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
+
+.button-add {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 20px 0;
+}
+
+.button-add:hover {
+    background-color: #138496;
+}
+
+.button-add:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(23, 162, 184, 0.5);
+}
+

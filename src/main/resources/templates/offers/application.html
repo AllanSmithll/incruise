@@ -4,10 +4,12 @@
 <head>
     <meta th:insert="~{/fragments/headfiles(title='Candidatar-se - ${offer.principalActivity}')}">
     <link rel="stylesheet" th:href="@{/styles/candidature.css}">
-</head
+</head>
 
 <body class="application-screen">
-
+    
+         <header  th:replace="~{/fragments/header}">    </header> <main>
+    
     <div class="application-container">
         <h1>Formulário de Candidatura</h1>
 
@@ -28,5 +30,8 @@
         </form>
     </div>
 
-</body>
+    <div th:replace="~{/fragments/scripts}">
+    </div>
+</main> </main> </body>
+
 </html>

@@ -14,16 +14,13 @@ public class CompanyRepository {
     public static final List<Company> companyList = new ArrayList<>();
 
     {
-        Company c1 = new Company(nextId,"itaipava","ita@gmail","123","Itaipava Cervejas","1234","(11) 98878-5324", "Bob", "São Paulo 123 capital", "Bebidas","https://cervejaitaipava.com.br/");
-        this.add(c1);
-        Company c2 = new Company(nextId,"Ambev","amb@gmail","123","Ambev Cervejas","1234","(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas","https://www.ambev.com.br/");
-        this.add(c2);
-        Company c3 = new Company(nextId,"Solar","cocaCola@gmail","123","Solar","123445","(11) 98878-3242", "Seu Zé", "Paraíba Rua Caravelas", "Bebidas","https://www.ambev.com.br/");
-        this.add(c3);
-
+        this.add(new Company(0, "Itaipava", "ita@gmail", "123", "Itaipava Cervejas", "1234", "(11) 98878-5324", "Bob", "São Paulo 123 capital", "Bebidas", "https://cervejaitaipava.com.br/"));
+        this.add(new Company(0, "Ambev", "amb@gmail", "123", "Ambev Cervejas", "1234", "(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas", "https://www.ambev.com.br/"));
+        this.add(new Company(0, "Solar", "cocaCola@gmail", "123", "Solar", "123445", "(11) 98878-3242", "Seu Zé", "Paraíba Rua Caravelas", "Bebidas", "https://www.ambev.com.br/"));
     }
+
     public void add(Company company){
-        company.setId( nextId++);
+        company.setId(nextId++);
         companyList.add(company);
     }
 
@@ -42,6 +39,9 @@ public class CompanyRepository {
                 return c;
         }
         throw new ItemNotFoundException("Company Not Found");
+    }
+
+    public void update(Company company) {
     }
 
 /*
