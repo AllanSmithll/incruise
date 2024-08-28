@@ -27,7 +27,7 @@
                                    title="A carga horária semanal deve estar entre 1 e 40 horas." step="1">
 
                             <input type="number" id="remunerationValue" class="input-form w-50" placeholder="Valor da bolsa"
-                                   th:field="*{remunerationValue}" step="0.01" min="0" value="0.00" required
+                                   th:field="*{remunerationValue}" step="0.01" min="0" value="0.00"
                                    title="Por favor, insira um valor válido para a bolsa. Utilize vírgula (,) como separador decimal.">
                         </div>
 
@@ -50,7 +50,7 @@
                     <legend class="form-container-description">Pré-requisitos</legend>
 
                     <textarea id="prerequisites" class="input-form w-100" placeholder="Pré-requisitos"
-                              th:field="*{prerequisites}" maxlength="500" required
+                              th:field="*{prerequisites}" maxlength="500"
                               title="Os pré-requisitos podem ter no máximo 500 caracteres."></textarea>
 
                     <div class="d-flex flex-column gap-3">
@@ -80,22 +80,5 @@
 
     <div th:replace="~{/fragments/scripts}"></div>
 </main>
-<script>
-    function validateCompetences() {
-        const checkboxes = document.querySelectorAll('input[name="necessarySkills"]');
-        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-        const errorElement = document.getElementById('competenceError');
-
-        if (!isChecked) {
-            errorElement.style.display = 'block';
-            return false;
-        } else {
-            errorElement.style.display = 'none';
-            return true;
-        }
-    }
-
-    document.querySelector('form').onsubmit = validateCompetences;
-</script>
 </body>
 </html>
