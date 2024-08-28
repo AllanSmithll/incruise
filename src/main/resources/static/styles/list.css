@@ -1,12 +1,4 @@
 @import url("main.css");
-
-/* Estilos principais da tela */
-/* .main-screen {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #f0f4f8;
-}*/
 /* Estilo do container da listagem */
 .card-component {
     display: flex;

@@ -43,7 +43,7 @@
                             <td th:text="${offer.principalActivity}"></td>
                             <td th:text="${offer.weeklyWorkload} + ' horas'"></td>
                             <td th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></td>
-                            <td th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}"></td>
+                            <td th:text="${offer.transportVoucher != null and offer.transportVoucher > 0} ? 'R$ ' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : ''"></td>
                             <td th:text="${offer.prerequisites}"></td>
                             <td>
                                 <div class="action-box">
