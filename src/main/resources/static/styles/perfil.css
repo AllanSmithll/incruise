@@ -1,7 +1,7 @@
-
-body{
+body {
   background: var(--info-background);
 }
+
 /* Estilo para as seções de informação */
 .info-section {
   padding: 1.5rem;
@@ -43,7 +43,7 @@ body{
 .topic {
   margin: 1rem 0;
   text-align: center;
-  width:50%;
+  width: 50%;
   align-self: center;
 }
 
@@ -91,10 +91,22 @@ body{
 .section {
   margin-bottom: 30px;
   padding: 15px;
-  border: 1px solid #e0e4e8; /* Bordas suaves */
+  border: 1px solid #e0e4e8;
+  /* Bordas suaves */
   border-radius: 5px;
   animation: slideUp 0.5s ease-out;
 }
+
+.section.competences {
+  min-height: 250px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.section.competences div {
+  width: 40%;
+}
+
 
 
 /* Estilo para cartões de oportunidade */

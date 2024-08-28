@@ -86,7 +86,8 @@
         <!-- Seção de oportunidades -->
         <section class="info-section" id="oportunity-section">
             <h2 class="section-title">Oportunidades <span> </span></h2>
-            <p th:unless="${#lists.isEmpty(company.opportunityList)}">Total de Oportunidades: <span th:text="${#lists.size(company.opportunityList)}"></span></p>
+            <p th:unless="${#lists.isEmpty(company.opportunityList)}">Total de Oportunidades: <span
+                    th:text="${#lists.size(company.opportunityList)}"></span></p>
 
             <div th:if="${#lists.isEmpty(company.opportunityList)}">
                 <p class="no-content-msg">Não há oportunidades disponíveis.</p>
@@ -97,15 +98,33 @@
                 th:href="@{/internshipOffer/info/{id}(id=${opportunity.id})}">
                 <div class="opportunity-item">
                     <h3 th:text="${opportunity.principalActivity}">Principal Atividade</h3>
-                    <p><strong>Carga Horária Semanal:</strong> <span th:text="${opportunity.weeklyWorkload}">40</span>
-                        horas</p>
-                    <p><strong>Remuneração:</strong>R$ <span th:text="${opportunity.remunerationValue}"> 0,00</span>
+                    
+                    <!-- Remuneração -->
+                    <p th:if="${opportunity.remunerationValue != 0}">
+                        <strong>Remuneração:</strong> <span th:text="${opportunity.remunerationValue}">R$
+                            0,00</span>
                     </p>
-                    <p><strong>Vale Transporte:</strong> <span th:text="${opportunity.transportVoucher}">Sim</span>
+                    <!-- voluntário -->
+                    <p th:unless="${opportunity.remunerationValue != 0}">
+                        <strong>Estágio Voluntário</strong>
                     </p>
-                    <p><strong>Pré-requisitos:</strong> <span th:text="${opportunity.prerequisites}">Nenhum</span>
+
+                    <!-- Vale Transporte -->
+                    <p th:if="${opportunity.transportVoucher != 0}">
+                        <strong>Vale Transporte:</strong>R$ <span
+                            th:text="${opportunity.transportVoucher}">0,00</span>
                     </p>
+
+                    <!-- Pré-requisitos -->
+                    <p>
+                        <strong>Pré-requisitos:</strong>
+                        <span th:if="${!#strings.isEmpty(opportunity.prerequisites)}"
+                              th:text="${opportunity.prerequisites}"></span>
+                        <span th:if="${#strings.isEmpty(opportunity.prerequisites)}">Nenhum</span>
+                    </p>                    
                 </div>
+
+
             </a>
 
         </section>
