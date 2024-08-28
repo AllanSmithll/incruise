@@ -136,9 +136,10 @@
 
                         <!-- Vale Transporte -->
                         <p th:if="${candidature.offer.transportVoucher != 0}">
-                            <strong>Vale Transporte:</strong>R$ <span
-                            th:text="'R$'+ ${#numbers.formatDecimal(candidature.offer.transportVoucher,1 ,2}">0,00</span>
+                            <strong>Vale Transporte:</strong> R$
+                            <span th:text="'R$ ' + ${#numbers.formatDecimal(candidature.offer.transportVoucher, 1, 2)}">0,00</span>
                         </p>
+
 
                         <!-- Pré-requisitos -->
                         <p th:if="${candidature.offer.prerequisites != 0}">
