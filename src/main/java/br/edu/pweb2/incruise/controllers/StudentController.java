@@ -63,7 +63,7 @@ public class StudentController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Long id) {
         try {
             studentService.remove(id);
             return "redirect:/student/students";
@@ -74,7 +74,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String info(@PathVariable("id") Integer id, Model model) {
+    public String info(@PathVariable("id") Long id, Model model) {
         try {
 
             Student stundent = this.studentService.findById(id);

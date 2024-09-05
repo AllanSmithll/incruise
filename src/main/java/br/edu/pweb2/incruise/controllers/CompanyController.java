@@ -44,7 +44,7 @@ public class CompanyController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Long id) {
         try {
             companyService.remove(id);
             return "redirect:/company/companies";
@@ -54,7 +54,7 @@ public class CompanyController {
     }
 
     @GetMapping("/info/{id}")
-    public String showCompanyInfo(Model model, @PathVariable Integer id) {
+    public String showCompanyInfo(Model model, @PathVariable Long id) {
         try {
             Company company = companyService.findById(id);
             model.addAttribute("company", company);

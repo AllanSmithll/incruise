@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Company;
+import br.edu.pweb2.incruise.model.NullCompany;
 import br.edu.pweb2.incruise.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,23 +18,23 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
-    public Company findById(Integer id) {
-        return companyRepository.find(id);
+    public Company findById(Long id) {
+        return companyRepository.findById(id).orElse(new NullCompany());
     }
 
     public List<Company> listAll() {
-        return companyRepository.list();
+        return companyRepository.findAll();
     }
 
     public void add(Company company) {
-        companyRepository.add(company);
+        companyRepository.save(company);
     }
 
     public void update(Company company) {
-        companyRepository.update(company);
+        companyRepository.save(company);
     }
 
-    public void remove(Integer id) throws Exception {
-        companyRepository.remove(id);
+    public void remove(Long id) throws Exception {
+        this.companyRepository.deleteById(id);
     }
 }

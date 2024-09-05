@@ -1,5 +1,6 @@
 package br.edu.pweb2.incruise.model;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,15 +11,31 @@ import java.time.format.DateTimeFormatter;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "candidatures") // Nome da tabela no banco de dados
 public class Candidature {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
-    private InternshipOffer offer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "internship_offer_id", nullable = false)
+    private InternshipOffer internshipOffer; // Nome correto do atributo aqui
+
+    @Column(name = "message")
     private String message;
+
+    @Column(name = "created_date")
     private LocalDateTime createdDate;
 
     public Candidature(Student student, InternshipOffer internshipOffer, String message) {
         this.student = student;
-        this.offer = internshipOffer;
+        this.internshipOffer = internshipOffer;
         this.message = message;
         this.createdDate = LocalDateTime.now();
     }

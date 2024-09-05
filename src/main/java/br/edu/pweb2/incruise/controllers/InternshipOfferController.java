@@ -69,7 +69,7 @@ public class InternshipOfferController {
     public String save(@ModelAttribute("internshipOffer") InternshipOffer offer,
                        @RequestParam(value = "necessarySkills", required = false) List<Competence> necessarySkills,
                        @RequestParam(value = "desirableSkills", required = false) List<Competence> desirableSkills,
-                       @RequestParam("companyId") Integer companyId,
+                       @RequestParam("companyId") Long companyId,
                        RedirectAttributes redirectAttributes) {
         Company company = companyService.findById(companyId);
         if (company == null) {
@@ -91,7 +91,7 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/apply/{id}")
-    public String showApplicationForm(@PathVariable("id") Integer offerId, Model model, RedirectAttributes redirectAttributes) {
+    public String showApplicationForm(@PathVariable("id") Long offerId, Model model, RedirectAttributes redirectAttributes) {
         InternshipOffer offer = (InternshipOffer) opportunityService.findById(offerId);
         if (offer == null || offer.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
@@ -102,7 +102,7 @@ public class InternshipOfferController {
     }
 
     @PostMapping("/apply")
-    public String applyForInternship(@RequestParam("offerId") Integer offerId,
+    public String applyForInternship(@RequestParam("offerId") Long offerId,
                                      @RequestParam("enrollment") String enrollment,
                                      @RequestParam(value = "message", required = false) String message,
                                      RedirectAttributes redirectAttributes) throws Exception {
@@ -134,7 +134,7 @@ public class InternshipOfferController {
     }
 
     @PostMapping("/cancel/{id}")
-    public String cancelOffer(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes) {
+    public String cancelOffer(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         try {
             opportunityService.remove(id);
             redirectAttributes.addFlashAttribute("success", "Oferta cancelada com sucesso.");
@@ -145,7 +145,7 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/info/{id}")
-    public String showInternshipInfo(@PathVariable Integer id, Model model, RedirectAttributes redirectAttributes) {
+    public String showInternshipInfo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
         Opportunity opportunity = opportunityService.findById(id);
         if (opportunity == null || opportunity.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");

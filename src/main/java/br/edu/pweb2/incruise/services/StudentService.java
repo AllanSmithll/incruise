@@ -1,5 +1,6 @@
 package br.edu.pweb2.incruise.services;
 
+import br.edu.pweb2.incruise.model.NullStudent;
 import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +22,24 @@ public class StudentService {
         return studentRepository.findByEnrollment(enrollment);
     }
 
-    public Student findById(Integer id) throws Exception {
-        return studentRepository.findBy(id);
+    public Student findById(Long id) throws Exception {
+        return studentRepository.findById(id).orElse(new NullStudent());
     }
 
     public List<Student> listAll() {
-        return studentRepository.list();
+        return studentRepository.findAll();
     }
 
     public void add(Student student) {
-        studentRepository.add(student);
+        studentRepository.save(student);
     }
 
     public void update(Student student) {
-        studentRepository.update(student);
+        studentRepository.save(student);
     }
 
-    public void remove(Integer id) throws Exception {
-        studentRepository.remove(id);
+    public void remove(Long id) throws Exception {
+        studentRepository.deleteById(id);
     }
 }
 

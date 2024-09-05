@@ -3,17 +3,19 @@ package br.edu.pweb2.incruise.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-//import jakarta.persistence.*;
+import jakarta.persistence.*;
 
 
-//@Entity
-//@Table(name = "tb_company")
-
+@Entity
+@Table(name = "tb_company")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Company extends User {
 	@Getter
 	private String fantasyName;
@@ -33,10 +35,9 @@ public class Company extends User {
 
 	private List<Opportunity> opportunityList = new ArrayList<Opportunity>();
 
-	// A FAZER
-	// private Document<PDF> comproEnder;
+	//private Document<PDF> comproEnder; A fazer
 
-	public Company(Integer id, String username, String email, String password, String fantasyName, String cnpj,
+	public Company(Long id, String username, String email, String password, String fantasyName, String cnpj,
 			String phoneNumber, String personContact, String address, String principalActivity, String urlPage) {
 		super(id, username, email, password);
 		this.fantasyName = fantasyName;
@@ -48,15 +49,15 @@ public class Company extends User {
 		this.urlPage = urlPage;
 	}
 
-	public List<InternshipOffer> getVacancyList() {
-		List<InternshipOffer> vacancies = new ArrayList<>();
-		for (Opportunity opportunity : opportunityList) {
-			
-			if (opportunity instanceof InternshipOffer)
-				vacancies.add((InternshipOffer) opportunity);
-		}
-		return vacancies;
-	}
+//	public List<Opportunity> getVacancyList() {
+//		List<InternshipOffer> vacancies = new ArrayList<>();
+//		for (Opportunity opportunity : opportunityList) {
+//
+//			if (opportunity instanceof InternshipOffer)
+//				vacancies.add((InternshipOffer) opportunity);
+//		}
+//		return vacancies;
+//	}
 
 	@Override
 	public String toString() {
