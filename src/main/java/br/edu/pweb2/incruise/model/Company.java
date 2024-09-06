@@ -33,7 +33,8 @@ public class Company extends User {
 
 	private String urlPage="";
 
-	private List<Opportunity> opportunityList = new ArrayList<Opportunity>();
+	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Opportunity> opportunityList = new ArrayList<>();
 
 	//private Document<PDF> comproEnder; A fazer
 
@@ -48,16 +49,6 @@ public class Company extends User {
 		this.principalActivity = principalActivity;
 		this.urlPage = urlPage;
 	}
-
-//	public List<Opportunity> getVacancyList() {
-//		List<InternshipOffer> vacancies = new ArrayList<>();
-//		for (Opportunity opportunity : opportunityList) {
-//
-//			if (opportunity instanceof InternshipOffer)
-//				vacancies.add((InternshipOffer) opportunity);
-//		}
-//		return vacancies;
-//	}
 
 	@Override
 	public String toString() {

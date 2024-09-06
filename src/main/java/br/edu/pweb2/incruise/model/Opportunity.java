@@ -9,8 +9,8 @@ import java.util.Objects;
 
 @Data
 @NoArgsConstructor
-@MappedSuperclass
-public abstract class Opportunity {
+@Entity
+public class Opportunity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,23 +31,27 @@ public abstract class Opportunity {
 	@Column(name = "prerequisites")
 	private String prerequisites;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "company_id", nullable = false)
 	private Company companyResponsible;
 
 	@Column(name = "active", nullable = false)
 	private Boolean active = true;
 
-	@ElementCollection(targetClass = Competence.class)
-	@CollectionTable(name = "necessary_skills", joinColumns = @JoinColumn(name = "opportunity_id"))
-	@Enumerated(EnumType.STRING)
-	@Column(name = "necessary_skill")
+	@ManyToMany
+	@JoinTable(
+			name = "tb_opportunity_competence_skill",
+			joinColumns = @JoinColumn(name = "opportunity_id"),
+			inverseJoinColumns = @JoinColumn(name = "competence_id")
+	)
 	private List<Competence> necessarySkills = new ArrayList<>();
 
-	@ElementCollection(targetClass = Competence.class)
-	@CollectionTable(name = "desirable_skills", joinColumns = @JoinColumn(name = "opportunity_id"))
-	@Enumerated(EnumType.STRING)
-	@Column(name = "desirable_skill")
+	@ManyToMany
+	@JoinTable(
+			name = "tb_opportunity_competence_skill",
+			joinColumns = @JoinColumn(name = "opportunity_id"),
+			inverseJoinColumns = @JoinColumn(name = "competence_id")
+	)
 	private List<Competence> desirableSkills = new ArrayList<>();
 
 	public Boolean isEmpty() {

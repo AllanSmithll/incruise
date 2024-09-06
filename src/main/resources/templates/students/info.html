@@ -13,8 +13,6 @@
     <header th:replace="~{/fragments/header}"></header>
     <main>
 
-        <body>
-
             <section class="info-section" id="first-info">
                 <img th:src="@{/imgs/default/student-boy-default.png}">
                 <h1 id="name" th:text="${#strings.capitalize(student.name)}">João Maria Lobo Alves Palhares Costa
@@ -62,6 +60,7 @@
 <p class="topic-content" th:text="${student.address}"></p>
 </div>
 -->
+                </div>
             </section>
 
             <section class="info-section" id="competences-section">
@@ -96,56 +95,56 @@
             <section class="info-section" id="oportunity-section">
                 <h2 class="section-title">Candidaturas</h2>
 
-                <div th:if="${#lists.isEmpty(student.candidatureList)}">
-                    <p class="no-content-msg">Não há registros de candidaturas.</p>
-                </div>
+<!--                <div th:if="${#lists.isEmpty(student.candidatureList)}">-->
+<!--                    <p class="no-content-msg">Não há registros de candidaturas.</p>-->
+<!--                </div>-->
 
-                <div th:each="candidature : ${student.candidatureList}">
+<!--                <div th:each="candidature : ${student.candidatureList}">-->
 
                     <div class="opportunity-item">
-                        <h3>
-                            <a th:href="@{/internshipOffer/info/{id}(id=${candidature.offer.id})}"
-                                th:text="${candidature.offer.principalActivity}">
-                                Principal Atividade
-                            </a>
-                        </h3>
+<!--                        <h3>-->
+<!--                            <a th:href="@{/internshipOffer/info/{id}(id=${candidature.offer.id})}"-->
+<!--                                th:text="${candidature.offer.principalActivity}">-->
+<!--                                Principal Atividade-->
+<!--                            </a>-->
+<!--                        </h3>-->
                         <p>
                             <strong>
                                 Empresa:
                             </strong>
-                            <a th:href="@{/company/info/{id}(id=${candidature.offer.companyResponsible.id})}"
-                                th:text="${candidature.offer.companyResponsible.fantasyName}">
-                                Nome da Empresa
-                            </a>
+<!--                            <a th:href="@{/company/info/{id}(id=${candidature.offer.companyResponsible.id})}"-->
+<!--                                th:text="${candidature.offer.companyResponsible.fantasyName}">-->
+<!--                                Nome da Empresa-->
+<!--                            </a>-->
 
                         </p>
-                        <p>
-                            <strong>Data Candidatura:</strong> <span
-                                th:text="${#temporals.format(candidature.createdDate, 'dd/MM/yyyy') }">10/03/2004</span>
-                        </p>
+<!--                        <p>-->
+<!--                            <strong>Data Candidatura:</strong> <span-->
+<!--                                th:text="${#temporals.format(candidature.createdDate, 'dd/MM/yyyy') }">10/03/2004</span>-->
+<!--                        </p>-->
                         <!-- Remuneração -->
-                        <p th:if="${candidature.offer.remunerationValue != 0}">
-                            <strong>Remuneração:</strong> <span
-                                th:text="'R$'+ ${#numbers.formatDecimal(candidature.offer.remunerationValue, 1, 2)}">R$
-                                0,00</span>
-                        </p>
+<!--                        <p th:if="${candidature.offer.remunerationValue != 0}">-->
+<!--                            <strong>Remuneração:</strong> <span-->
+<!--                                th:text="'R$'+ ${#numbers.formatDecimal(candidature.offer.remunerationValue, 1, 2)}">R$-->
+<!--                                0,00</span>-->
+<!--                        </p>-->
                         <!-- voluntário -->
-                        <p th:unless="${candidature.offer.remunerationValue != 0}">
-                            <strong>Estágio Voluntário</strong>
-                        </p>
+<!--                        <p th:unless="${candidature.offer.remunerationValue != 0}">-->
+<!--                            <strong>Estágio Voluntário</strong>-->
+<!--                        </p>-->
 
                         <!-- Vale Transporte -->
-                        <p th:if="${candidature.offer.transportVoucher != 0}">
-                            <strong>Vale Transporte:</strong> R$
-                            <span th:text="'R$ ' + ${#numbers.formatDecimal(candidature.offer.transportVoucher, 1, 2)}">0,00</span>
-                        </p>
+<!--                        <p th:if="${candidature.offer.transportVoucher != 0}">-->
+<!--                            <strong>Vale Transporte:</strong> R$-->
+<!--                            <span th:text="'R$ ' + ${#numbers.formatDecimal(candidature.offer.transportVoucher, 1, 2)}">0,00</span>-->
+<!--                        </p>-->
 
 
                         <!-- Pré-requisitos -->
-                        <p th:if="${candidature.offer.prerequisites != 0}">
-                            <strong>Pré-requisitos:</strong> <span
-                                th:text="${candidature.offer.prerequisites}">Nenhum</span>
-                        </p>
+<!--                        <p th:if="${candidature.offer.prerequisites != 0}">-->
+<!--                            <strong>Pré-requisitos:</strong> <span-->
+<!--                                th:text="${candidature.offer.prerequisites}">Nenhum</span>-->
+<!--                        </p>-->
                         <div class="button-box">
                             <button class="btn btn-danger">Cancelar Candidatura</button>
                         </div>

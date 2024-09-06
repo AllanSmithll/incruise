@@ -55,18 +55,18 @@
 
                     <div class="d-flex flex-column gap-3">
                         <label>Competências Necessárias (Selecione pelo menos uma):</label>
-                        <div id="necessarySkills" class="d-flex flex-wrap gap-3">
-                            <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}" class="competence-checkbox">
-                                <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence}" />
+                        <div class="d-flex flex-wrap gap-3">
+                            <label th:each="competence : ${necessarySkills}" class="competence-checkbox">
+                                <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence.id}" />
                                 <span th:text="${competence.getDescription()}"></span>
                             </label>
                         </div>
                         <div id="competenceError" style="color: red; display: none;">Por favor, selecione pelo menos uma competência necessária.</div>
 
                         <label>Competências Desejadas:</label>
-                        <div id="desirableSkills" class="d-flex flex-wrap gap-3">
-                            <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}" class="competence-checkbox">
-                                <input type="checkbox" th:field="*{desirableSkills}" th:value="${competence}"/>
+                        <div class="d-flex flex-wrap gap-3">
+                            <label th:each="competence : ${desirableSkills}" class="competence-checkbox">
+                                <input type="checkbox" th:field="*{desirableSkills}" th:value="${competence.id}"/>
                                 <span th:text="${competence.getDescription()}"></span>
                             </label>
                         </div>

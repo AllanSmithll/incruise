@@ -1,10 +1,9 @@
 package br.edu.pweb2.incruise.repository;
 
-import br.edu.pweb2.incruise.model.Student;
+import br.edu.pweb2.incruise.model.Competence;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student, Long> {
-    Student findByEnrollment(String enrollment);
+public interface CompetenceRepository extends JpaRepository<Competence, Long> {
 }

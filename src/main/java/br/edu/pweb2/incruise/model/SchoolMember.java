@@ -1,16 +1,12 @@
 package br.edu.pweb2.incruise.model;
 
-//import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Table;
 import lombok.*;
 
-//import java.util.Date;
-
 @Data
-@Table(name = "tb_school_member")
 @NoArgsConstructor
 @AllArgsConstructor
+@MappedSuperclass
 public abstract class SchoolMember extends User {
 
 	private String enrollment;

@@ -56,7 +56,7 @@
                        title="O nome do curso é obrigatório e deve ter no máximo 100 caracteres." />
 
                 <label class="label-form" for="input-birthdate">Data de Nascimento *</label>
-                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="text" th:field="*{birthdate}" required pattern="\d{2}/\d{2}/\d{4}"
+                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="date" th:field="*{birthdate}" required pattern="\d{2}/\d{2}/\d{4}"
                        title="Data de nascimento no formato DD/MM/AAAA." />
 
                 <input type="tel" id="phoneNumberInput" class="input-form" placeholder="Telefone *"
@@ -86,10 +86,10 @@
                 <div>
                     <h3>Competências:</h3>
                     <div class="label-competence">
-                        <label th:each="competence : ${T(br.edu.pweb2.incruise.model.Competence).values()}">
-                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence}"
-                                   th:checked="${student.competenceList.contains(competence)}"/>
-                            <span th:text="${competence.getDescription()}"></span>
+                        <label th:each="competence : ${competences}">
+                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence.id}"
+                                   />
+                            <span th:text="${competence.description}"></span>
                         </label>
                     </div>
                 </div>

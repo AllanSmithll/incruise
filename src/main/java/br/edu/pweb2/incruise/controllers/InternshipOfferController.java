@@ -2,6 +2,7 @@ package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.*;
 import br.edu.pweb2.incruise.services.CompanyService;
+import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.OpportunityService;
 import br.edu.pweb2.incruise.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +22,28 @@ public class InternshipOfferController {
     private final OpportunityService opportunityService;
     private final StudentService studentService;
     private final CompanyService companyService;
+    private final CompetenceService competenceService;
 
     @Autowired
     public InternshipOfferController(OpportunityService opportunityService,
                                      StudentService studentService,
-                                     CompanyService companyService) {
+                                     CompanyService companyService,
+                                     CompetenceService competenceService) {
         this.opportunityService = opportunityService;
         this.studentService = studentService;
         this.companyService = companyService;
+        this.competenceService = competenceService;
     }
 
     @GetMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
         model.addAttribute("internshipOffer", internshipOffer);
         List<Company> companies = companyService.listAll();
+        List<Competence> necessarySkills = competenceService.findAll();
+        List<Competence> desirableSkills = competenceService.findAll();
         model.addAttribute("companies", companies);
+        model.addAttribute("necessarySkills", necessarySkills);
+        model.addAttribute("desirableSkills", desirableSkills);
         return "/offers/form";
     }
 
@@ -118,16 +126,16 @@ public class InternshipOfferController {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
             return "redirect:/internshipOffer/offers";
         }
-        boolean alreadyApplied = offer.getCandidatureList().stream()
-                .anyMatch(candidature -> candidature.getStudent().equals(student));
-        if (alreadyApplied) {
-            redirectAttributes.addFlashAttribute("error", "Você já se candidatou a esta oferta.");
-            return "redirect:/internshipOffer/offers";
-        }
+//        boolean alreadyApplied = offer.getCandidatureList().stream()
+//                .anyMatch(candidature -> candidature.getStudent().equals(student));
+//        if (alreadyApplied) {
+//            redirectAttributes.addFlashAttribute("error", "Você já se candidatou a esta oferta.");
+//            return "redirect:/internshipOffer/offers";
+//        }
 
         Candidature newCandidature = new Candidature(student, offer, message);
-        offer.addCandidature(newCandidature);
-        student.addCandidature(newCandidature);
+//        offer.addCandidature(newCandidature);
+//        student.addCandidature(newCandidature);
 
         redirectAttributes.addFlashAttribute("success", "Candidatura realizada com sucesso.");
         return "redirect:/internshipOffer/offers";

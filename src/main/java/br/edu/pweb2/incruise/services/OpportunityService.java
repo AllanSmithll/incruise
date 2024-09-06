@@ -47,7 +47,7 @@ public class OpportunityService {
         }
         offer.setCompanyResponsible(company);
 
-        company.addOpportunity(offer);
+//        company.addOpportunity(offer);
         opportunityRepository.save(offer);
     }
 

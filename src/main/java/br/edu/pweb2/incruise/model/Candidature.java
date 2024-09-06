@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "candidatures") // Nome da tabela no banco de dados
+@Table(name = "tb_candidature")
 public class Candidature {
 
     @Id
@@ -25,7 +25,7 @@ public class Candidature {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "internship_offer_id", nullable = false)
-    private InternshipOffer internshipOffer; // Nome correto do atributo aqui
+    private InternshipOffer internshipOffer;
 
     @Column(name = "message")
     private String message;
