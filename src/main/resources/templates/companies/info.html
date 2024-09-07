@@ -36,7 +36,7 @@
                     <h1 class="topic-title">Oportunidades Cadastradas</h1>
                     <p class="topic-content">
                         <span
-                            th:text="${company.opportunityList != null ? #lists.size(company.opportunityList) : 0}">0</span>
+                            th:text="${company.internshipOfferList != null ? #lists.size(company.internshipOfferList) : 0}">0</span>
                         Oportunidades
                     </p>
                 </div>
@@ -86,15 +86,15 @@
         <!-- Seção de oportunidades -->
         <section class="info-section" id="oportunity-section">
             <h2 class="section-title">Oportunidades <span> </span></h2>
-            <p th:unless="${#lists.isEmpty(company.opportunityList)}">Total de Oportunidades: <span
-                    th:text="${#lists.size(company.opportunityList)}"></span></p>
+            <p th:unless="${#lists.isEmpty(company.internshipOfferList)}">Total de Oportunidades: <span
+                    th:text="${#lists.size(company.internshipOfferList)}"></span></p>
 
-            <div th:if="${#lists.isEmpty(company.opportunityList)}">
+            <div th:if="${#lists.isEmpty(company.internshipOfferList)}">
                 <p class="no-content-msg">Não há oportunidades disponíveis.</p>
             </div>
 
 
-            <a th:each="opportunity : ${company.opportunityList}" class="link-card"
+            <a th:each="opportunity : ${company.internshipOfferList}" class="link-card"
                 th:href="@{/internshipOffer/info/{id}(id=${opportunity.id})}">
                 <div class="opportunity-item">
                     <h3 th:text="${opportunity.principalActivity}">Principal Atividade</h3>

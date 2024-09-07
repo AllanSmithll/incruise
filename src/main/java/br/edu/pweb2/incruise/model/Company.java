@@ -34,7 +34,7 @@ public class Company extends User {
 	private String urlPage="";
 
 	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	private List<Opportunity> opportunityList = new ArrayList<>();
+	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
 
 	//private Document<PDF> comproEnder; A fazer
 
@@ -63,8 +63,8 @@ public class Company extends User {
 				'}';
 	}
 
-	public void  addOpportunity(Opportunity opportunity) {
-		this.opportunityList.add(opportunity);
+	public void  addOpportunity(InternshipOffer internshipOffer) {
+		this.internshipOfferList.add(internshipOffer);
 	}
 
 	public boolean empty(){

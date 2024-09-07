@@ -1,12 +1,11 @@
 package br.edu.pweb2.incruise.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Data
-public class NullOpportunity extends Opportunity {
+public class NullInternshipOffer extends InternshipOffer {
 
 
     @Override
