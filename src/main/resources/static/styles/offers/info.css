@@ -87,6 +87,10 @@ p {
     margin-right: 10px;
 }
 
+.list-competences .competence:hover::before {
+    color: #ffffff;
+}
+
 /* Efeito hover na competência */
 .list-competences .competence:hover {
     background-color: #2980b9;

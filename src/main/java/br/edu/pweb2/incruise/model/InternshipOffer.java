@@ -57,6 +57,14 @@ public class InternshipOffer {
 	)
 	private List<Competence> desirableSkills = new ArrayList<>();
 
+	@OneToMany(mappedBy = "internshipOffer", cascade = CascadeType.ALL, orphanRemoval = true,
+			fetch = FetchType.EAGER)
+	private List<Candidature> candidatureList = new ArrayList<>();
+
+	public void addCandidature(Candidature newCandidature) {
+		candidatureList.add(newCandidature);
+	}
+
 	public Boolean isEmpty() {
 		return false;
 	}

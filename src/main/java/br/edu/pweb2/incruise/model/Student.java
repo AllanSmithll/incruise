@@ -22,7 +22,10 @@ public class Student extends SchoolMember {
             inverseJoinColumns = @JoinColumn(name = "competence_id")
     )
     private List<Competence> competenceList = new ArrayList<>();
-//    private final List<Candidature> candidatureList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true,
+            fetch = FetchType.EAGER)
+    private final List<Candidature> candidatureList = new ArrayList<>();
 
     public Student(Long id, String username, String email, String password, String phoneNumber, String enrollment, String name, LocalDate birthdate, String course) {
         super(id, username, email, password, enrollment, name, course);
@@ -30,11 +33,11 @@ public class Student extends SchoolMember {
         this.birthdate = birthdate;
     }
 
-//    public void addCandidature(Candidature candidature) {
-//        candidatureList.add(candidature);
-//    }
-//
-//    public void removeCandidature(Candidature candidature) {
-//        candidatureList.remove(candidature);
-//    }
+    public void addCandidature(Candidature candidature) {
+        candidatureList.add(candidature);
+    }
+
+    public void removeCandidature(Candidature candidature) {
+        candidatureList.remove(candidature);
+    }
 }

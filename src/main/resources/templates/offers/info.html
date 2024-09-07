@@ -4,121 +4,121 @@
 <head>
     <!-- Incluindo o fragmento de cabeçalho -->
     <meta
-        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${offer.principalActivity})}">
+            th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${offer.principalActivity})}">
     <link rel="stylesheet" th:href="@{/styles/offers/info.css}">
 </head>
 
 <body>
-    <!-- Cabeçalho -->
-    <header th:replace="~{/fragments/header}"></header>
+<!-- Cabeçalho -->
+<header th:replace="~{/fragments/header}"></header>
 
-    <!-- Conteúdo principal -->
-    <main class="main-content">
-        <!-- Seção de detalhes da oportunidade -->
-        <div class="section details">
-            <h1 class="section-title">Detalhes</h1>
-            <!-- Remuneração -->
-            <p th:if="${offer.remunerationValue != 0}">
-                <strong>Remuneração:</strong> 
-                <span th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}">R$ 0,00</span>
-            </p>
-            <!-- voluntário -->
-            <p th:unless="${offer.remunerationValue != 0}">
-                <strong>Estágio Voluntário</strong>
-            </p>
+<!-- Conteúdo principal -->
+<main class="main-content">
+    <!-- Seção de detalhes da oportunidade -->
+    <div class="section details">
+        <h1 class="section-title">Detalhes</h1>
+        <!-- Remuneração -->
+        <p th:if="${offer.remunerationValue != 0}">
+            <strong>Remuneração:</strong>
+            <span th:text="'R$'+ ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}">R$ 0,00</span>
+        </p>
+        <!-- voluntário -->
+        <p th:unless="${offer.remunerationValue != 0}">
+            <strong>Estágio Voluntário</strong>
+        </p>
 
-            <!-- Vale Transporte -->
-            <p th:if="${offer.transportVoucher != 0}">
-                <strong>Vale Transporte:</strong><span th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}">R$ 0,00</span>
-            </p>
+        <!-- Vale Transporte -->
+        <p th:if="${offer.transportVoucher != 0}">
+            <strong>Vale Transporte:</strong><span
+                th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}">R$ 0,00</span>
+        </p>
 
-            <p>
-                <strong>Pré-requisitos:</strong>
-                <span th:if="${!#strings.isEmpty(offer.prerequisites)}"
-                    th:text="${offer.prerequisites}"></span>
-                <span th:if="${#strings.isEmpty(offer.prerequisites)}">Nenhum</span>
-            </p>
-        </div>
-        <div class="section competences">
-            <div id="Competence-Necessary-Box">
-                <p class="topic-title">Competências Obrigatórias</p>
-                <ul class="list-competences" th:each="competence : ${necessarySkills}">
-                    <li class="competence " th:text="${competence.description}">
-                        Isso é uma competência obrigatória e longa
-                    </li>
-                </ul>
-            </div>
-
-            <div id="Competence-Desirable-Box">
-
-                <p class="topic-title">Competências Desejadas</p>
-                <ul class="list-competences" th:each="competence : ${desirableSkills}">
-                    <li class="competence" th:text="${competence.description}">
-                        Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa e não curta, pois se fosse curta não seria longa
-                    </li>
-                </ul>
-            </div>
-
+        <p>
+            <strong>Pré-requisitos:</strong>
+            <span th:if="${!#strings.isEmpty(offer.prerequisites)}"
+                  th:text="${offer.prerequisites}"></span>
+            <span th:if="${#strings.isEmpty(offer.prerequisites)}">Nenhum</span>
+        </p>
+    </div>
+    <div class="section competences">
+        <div id="Competence-Necessary-Box">
+            <p class="topic-title">Competências Obrigatórias</p>
+            <ul class="list-competences" th:each="competence : ${necessarySkills}">
+                <li class="competence " th:text="${competence.description}">
+                    Isso é uma competência obrigatória e longa
+                </li>
+            </ul>
         </div>
 
-        <div class="section candidatures">
-            <h1 class="section-title">Candidaturas</h1>
+        <div id="Competence-Desirable-Box">
 
-<!--            <div th:if="${#lists.isEmpty(offer.candidatureList)}">-->
-<!--                <p class="no-content-msg">Sem Candidaturas Registradas.</p>-->
-<!--            </div>-->
-
-<!--            <table th:if="${!#lists.isEmpty(offer.candidatureList)}" class="table-candidatures">-->
-<!--                <thead>-->
-<!--                    <tr>-->
-<!--                        <th>Nome</th>-->
-<!--                        <th>Matrícula</th>-->
-<!--                        <th>Email</th>-->
-<!--                        <th>Curso</th>-->
-<!--                        <th>Telefone</th>-->
-<!--                        <th>Data</th>-->
-<!--                    </tr>-->
-<!--                </thead>-->
-<!--                <tbody th:each="c : ${offer.candidatureList}">-->
-<!--                    <tr>-->
-<!--                        <td th:text="${c.student.name}">Nome do Estudante</td>-->
-<!--                        <td th:text="${c.student.enrollment}">Matrícula do Estudante</td>-->
-<!--                        <td th:text="${c.student.email}">Email do Estudante</td>-->
-<!--                        <td th:text="${c.student.course}">Curso do Estudante</td>-->
-<!--                        <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>-->
-<!--                        <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>-->
-
-<!--                    </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
+            <p class="topic-title">Competências Desejadas</p>
+            <ul class="list-competences" th:each="competence : ${desirableSkills}">
+                <li class="competence" th:text="${competence.description}">
+                    Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa e não
+                    curta, pois se fosse curta não seria longa
+                </li>
+            </ul>
         </div>
 
-        <!-- Seção de informações da empresa responsável -->
-        <div class="section company-info">
-            <h1 class="section-title">Empresa Responsável</h1>
-            <p>
-                <strong>Nome da Empresa:</strong>
-                <span th:text="${offer.companyResponsible.fantasyName}">Nome da Empresa</span>
-            </p>
-            <p>
-                <strong>Endereço:</strong>
-                <span th:text="${offer.companyResponsible.address}">Endereço da Empresa</span>
-            </p>
-            <div
+    </div>
+
+    <div class="section candidatures">
+        <h1 class="section-title">Candidaturas</h1>
+
+        <div th:if="${#lists.isEmpty(offer.candidatureList)}">
+            <p class="no-content-msg">Sem Candidaturas Registradas.</p>
+        </div>
+
+        <table th:if="${!#lists.isEmpty(offer.candidatureList)}" class="table-candidatures">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+                <th>Curso</th>
+                <th>Telefone</th>
+                <th>Data</th>
+            </tr>
+            </thead>
+            <tbody th:each="c : ${offer.candidatureList}">
+            <tr>
+                <td th:text="${c.student.name}">Nome do Estudante</td>
+                <td th:text="${c.student.enrollment}">Matrícula do Estudante</td>
+                <td th:text="${c.student.email}">Email do Estudante</td>
+                <td th:text="${c.student.course}">Curso do Estudante</td>
+                <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
+                <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section company-info">
+        <h1 class="section-title">Empresa Responsável</h1>
+        <p>
+            <strong>Nome da Empresa:</strong>
+            <span th:text="${offer.companyResponsible.fantasyName}">Nome da Empresa</span>
+        </p>
+        <p>
+            <strong>Endereço:</strong>
+            <span th:text="${offer.companyResponsible.address}">Endereço da Empresa</span>
+        </p>
+        <div
                 th:if="${offer.companyResponsible.urlPage != null and !offer.companyResponsible.urlPage.isEmpty()}">
-                <p>
-                    <strong>Website:</strong>
-                    <a class="company-link" th:href="${offer.companyResponsible.urlPage}" target="_blank"
-                        th:text="${offer.companyResponsible.urlPage}">Acesse o perfil da empresa</a>
-                </p>
-            </div>
-            <a class="btn btn-primary company-visit-btn"
-                th:href="@{/company/info/{id}(id=${offer.companyResponsible.id})}">Visitar perfil</a>
+            <p>
+                <strong>Website:</strong>
+                <a class="company-link" th:href="${offer.companyResponsible.urlPage}" target="_blank"
+                   th:text="${offer.companyResponsible.urlPage}">Acesse o perfil da empresa</a>
+            </p>
         </div>
-    </main>
+        <a class="btn btn-primary company-visit-btn"
+           th:href="@{/company/info/{id}(id=${offer.companyResponsible.id})}">Visitar perfil</a>
+    </div>
+</main>
 
-    <!-- Inclusão de scripts -->
-    <div th:replace="~{/fragments/scripts}"></div>
+<div th:replace="~{/fragments/scripts}"></div>
 
 </body>
 

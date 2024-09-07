@@ -30,7 +30,7 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void add(Student student) {
+    public void save(Student student) {
         studentRepository.save(student);
     }
 

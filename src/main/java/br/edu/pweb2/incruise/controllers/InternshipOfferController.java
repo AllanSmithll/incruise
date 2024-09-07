@@ -82,7 +82,7 @@ public class InternshipOfferController {
             return "redirect:/internshipOffer/register";
         }
         
-        internshipOfferService.add(offer,company);
+        internshipOfferService.save(offer,company);
         
         redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
         return "redirect:/internshipOffer/offers";
@@ -107,8 +107,8 @@ public class InternshipOfferController {
 
         Student student = studentService.findByEnrollment(enrollment);
         if (student == null) {
-            redirectAttributes.addFlashAttribute("error", "Aluno não encontrado.");
-            return "redirect:/internshipOffer/offers";
+            redirectAttributes.addFlashAttribute("error", "Aluno não encontrado com a matrícula fornecida.");
+            return "redirect:/internshipOffer/apply/" + offerId;
         }
 
         InternshipOffer offer = internshipOfferService.findById(offerId);
@@ -116,16 +116,19 @@ public class InternshipOfferController {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
             return "redirect:/internshipOffer/offers";
         }
-//        boolean alreadyApplied = offer.getCandidatureList().stream()
-//                .anyMatch(candidature -> candidature.getStudent().equals(student));
-//        if (alreadyApplied) {
-//            redirectAttributes.addFlashAttribute("error", "Você já se candidatou a esta oferta.");
-//            return "redirect:/internshipOffer/offers";
-//        }
+
+        boolean alreadyApplied = offer.getCandidatureList().stream()
+                .anyMatch(candidature -> candidature.getStudent().equals(student));
+        if (alreadyApplied) {
+            redirectAttributes.addFlashAttribute("error", "Você já se candidatou a esta oferta.");
+            return "redirect:/internshipOffer/offers";
+        }
 
         Candidature newCandidature = new Candidature(student, offer, message);
-//        offer.addCandidature(newCandidature);
-//        student.addCandidature(newCandidature);
+        offer.addCandidature(newCandidature);
+        student.addCandidature(newCandidature);
+
+        internshipOfferService.save(offer, offer.getCompanyResponsible());
 
         redirectAttributes.addFlashAttribute("success", "Candidatura realizada com sucesso.");
         return "redirect:/internshipOffer/offers";

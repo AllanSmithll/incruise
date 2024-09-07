@@ -40,13 +40,13 @@ public class InternshipOfferService {
                 .collect(Collectors.toList());
     }
 
-        public void add(InternshipOffer offer, Company company) {
+    public void save(InternshipOffer offer, Company company) {
         if(offer.getRemunerationValue() == null){
             offer.setRemunerationValue(0.0);
         }
-        offer.setCompanyResponsible(company);
-
-//        company.addOpportunity(offer);
+        if(offer.getCompanyResponsible() == null){
+            offer.setCompanyResponsible(company);
+        }
         internshipOfferRepository.save(offer);
     }
 

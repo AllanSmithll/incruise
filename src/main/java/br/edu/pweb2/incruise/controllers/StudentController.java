@@ -60,7 +60,7 @@ public class StudentController {
         if (competences != null) {
             student.setCompetenceList(competences);
         }
-        studentService.add(student);
+        studentService.save(student);
         modelAndView.setViewName("redirect:/student/students");
         return modelAndView;
     }
