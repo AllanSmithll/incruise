@@ -149,9 +149,11 @@ public class InternshipOfferController {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
             return "redirect:/internshipOffer/offers";
         }
-        List<Competence> competences = competenceService.findAll();
+        List<Competence> necessarySkills = internshipOfferService.findById(id).getNecessarySkills();
+        List<Competence> desirableSkills = internshipOfferService.findById(id).getDesirableSkills();
         model.addAttribute("offer", offer);
-        model.addAttribute("competences", competences);
+        model.addAttribute("necessarySkills", necessarySkills);
+        model.addAttribute("desirableSkills", desirableSkills);
         return "offers/info";
     }
 }

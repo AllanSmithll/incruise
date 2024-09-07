@@ -37,12 +37,13 @@ public class InternshipOffer {
 	@JoinColumn(name = "company_id", nullable = false)
 	private Company companyResponsible;
 
-	@Column(name = "active", nullable = false)
-	private Boolean active = true;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status", nullable = false)
+	private OfferStatus status = OfferStatus.ABERTA;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
-			name = "tb_internship_offer_competence_skill",
+			name = "tb_internship_offer_necessary_skill",
 			joinColumns = @JoinColumn(name = "internship_offer_id"),
 			inverseJoinColumns = @JoinColumn(name = "competence_id")
 	)
@@ -50,7 +51,7 @@ public class InternshipOffer {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
-			name = "tb_internship_offer_competence_skill",
+			name = "tb_internship_offer_desirable_skill",
 			joinColumns = @JoinColumn(name = "internship_offer_id"),
 			inverseJoinColumns = @JoinColumn(name = "competence_id")
 	)

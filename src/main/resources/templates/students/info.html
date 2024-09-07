@@ -70,7 +70,7 @@
                     <p class="no-content-msg"> De alguma forma, Não há competências</p>
                 </div>
 
-                <ul id="Competence-List" class="flex around" th:each="competence : ${student.competenceList}">
+                <ul id="Competence-List" class="flex around" th:each="competence : ${student.getCompetenceList()}">
                     <li th:text="${competence.getDescription()}">Isso é uma grande competência</li>
                 </ul>
 

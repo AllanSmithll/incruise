@@ -27,6 +27,10 @@ public class Candidature {
     @JoinColumn(name = "internship_offer_id", nullable = false)
     private InternshipOffer internshipOffer;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private CandidatureStatus status = CandidatureStatus.PENDENTE;
+
     @Column(name = "message")
     private String message;
 

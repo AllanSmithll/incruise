@@ -40,14 +40,25 @@
             </p>
         </div>
         <div class="section competences">
-            <div>
-                <p class="topic-title">Competências da Oferta</p>
-                <ul class="list-competences" th:each="competence : ${competences}">
+            <div id="Competence-Necessary-Box">
+                <p class="topic-title">Competências Obrigatórias</p>
+                <ul class="list-competences" th:each="competence : ${necessarySkills}">
                     <li class="competence " th:text="${competence.description}">
                         Isso é uma competência obrigatória e longa
                     </li>
                 </ul>
             </div>
+
+            <div id="Competence-Desirable-Box">
+
+                <p class="topic-title">Competências Desejadas</p>
+                <ul class="list-competences" th:each="competence : ${desirableSkills}">
+                    <li class="competence" th:text="${competence.description}">
+                        Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa e não curta, pois se fosse curta não seria longa
+                    </li>
+                </ul>
+            </div>
+
         </div>
 
         <div class="section candidatures">

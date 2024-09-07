@@ -111,6 +111,10 @@
                                     <p th:unless="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}">Nenhum</p>
                                 </div>
                             </div>
+                            <div class="status-box mt-3">
+                                <small>Status da Oferta:</small>
+                                <p th:classappend="${offer.status.ABERTA} ? 'text-success' : 'text-danger'" th:text="${offer.status.ABERTA} ? 'Aberta' : 'Fechada'"></p>
+                            </div>
                             <div class="action-box d-flex gap-2 justify-content-center mt-3">
                                 <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">
                                     <i class="bi bi-binoculars-fill"></i> Visualizar
