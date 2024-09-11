@@ -7,19 +7,15 @@
 </head>
 
 <body>
-    <!-- Cabeçalho -->
     <header th:replace="~{/fragments/header}"></header>
 
-    <!-- Conteúdo principal -->
     <main>
 
-        <!-- Seção de informações da empresa -->
         <section class="info-section" id="first-info">
             <img th:src="@{/imgs/default/enterprise-default.png}" alt="Imagem da Empresa">
             <h1 id="name" th:text="${company.fantasyName}">Nome da Empresa</h1>
         </section>
 
-        <!-- Seção de atividade principal -->
         <section class="info-section" id="activity-section">
             <div class="topic">
                 <h1 class="topic-title">Principal Atividade</h1>
@@ -27,7 +23,6 @@
             </div>
         </section>
 
-        <!-- Seção de dados básicos da empresa -->
         <section class="info-section" id="basic-section">
             <h2 class="section-title">Dados da Empresa</h2>
 
@@ -36,7 +31,7 @@
                     <h1 class="topic-title">Oportunidades Cadastradas</h1>
                     <p class="topic-content">
                         <span
-                            th:text="${company.opportunityList != null ? #lists.size(company.opportunityList) : 0}">0</span>
+                            th:text="${company.internshipOfferList != null ? #lists.size(company.internshipOfferList) : 0}">0</span>
                         Oportunidades
                     </p>
                 </div>
@@ -83,18 +78,17 @@
             </div>
         </section>
 
-        <!-- Seção de oportunidades -->
         <section class="info-section" id="oportunity-section">
             <h2 class="section-title">Oportunidades <span> </span></h2>
-            <p th:unless="${#lists.isEmpty(company.opportunityList)}">Total de Oportunidades: <span
-                    th:text="${#lists.size(company.opportunityList)}"></span></p>
+            <p th:unless="${#lists.isEmpty(company.internshipOfferList)}">Total de Oportunidades: <span
+                    th:text="${#lists.size(company.internshipOfferList)}"></span></p>
 
-            <div th:if="${#lists.isEmpty(company.opportunityList)}">
+            <div th:if="${#lists.isEmpty(company.internshipOfferList)}">
                 <p class="no-content-msg">Não há oportunidades disponíveis.</p>
             </div>
 
 
-            <a th:each="opportunity : ${company.opportunityList}" class="link-card"
+            <a th:each="opportunity : ${company.internshipOfferList}" class="link-card"
                 th:href="@{/internshipOffer/info/{id}(id=${opportunity.id})}">
                 <div class="opportunity-item">
                     <h3 th:text="${opportunity.principalActivity}">Principal Atividade</h3>

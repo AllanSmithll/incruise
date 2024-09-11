@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.controllers;
 import br.edu.pweb2.incruise.model.Candidature;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.Student;
+import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,16 +18,18 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private final CompetenceService competenceService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, CompetenceService competenceService) {
         this.studentService = studentService;
+        this.competenceService = competenceService;
     }
 
     @GetMapping("/register")
-    public String getForm(Student student, Model model) {
-        model.addAttribute("student", student);
-        model.addAttribute("competences", Competence.values());
+    public String getForm(Model model) {
+        model.addAttribute("student", new Student());
+        model.addAttribute("competences", competenceService.findAll());
         return "students/form";
     }
 
@@ -45,9 +48,9 @@ public class StudentController {
         if (student == null) {
             throw new Exception("Student not found.");
         }
-        List<Candidature> candidatures = student.getCandidatureList();
+//        List<Candidature> candidatures = student.getCandidatureList();
         ModelAndView modelAndView = new ModelAndView("students/my-candidatures");
-        modelAndView.addObject("candidatures", candidatures);
+//        modelAndView.addObject("candidatures", candidatures);
         modelAndView.addObject("studentName", student.getName());
         return modelAndView;
     }
@@ -57,13 +60,13 @@ public class StudentController {
         if (competences != null) {
             student.setCompetenceList(competences);
         }
-        studentService.add(student);
+        studentService.save(student);
         modelAndView.setViewName("redirect:/student/students");
         return modelAndView;
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Long id) {
         try {
             studentService.remove(id);
             return "redirect:/student/students";
@@ -74,7 +77,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String info(@PathVariable("id") Integer id, Model model) {
+    public String info(@PathVariable("id") Long id, Model model) {
         try {
 
             Student stundent = this.studentService.findById(id);

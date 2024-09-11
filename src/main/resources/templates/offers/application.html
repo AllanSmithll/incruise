@@ -7,11 +7,16 @@
 </head>
 
 <body class="application-screen">
-    
-         <header  th:replace="~{/fragments/header}">    </header> <main>
-    
+
+<header th:replace="~{/fragments/header}"></header>
+<main>
+
     <div class="application-container">
         <h1>Formulário de Candidatura</h1>
+
+        <div th:if="${error}" class="alert alert-danger">
+            <p th:text="${error}"></p>
+        </div>
 
         <form th:action="@{/internshipOffer/apply}" method="post">
             <input type="hidden" name="offerId" th:value="${offer.id}" />
@@ -30,8 +35,7 @@
         </form>
     </div>
 
-    <div th:replace="~{/fragments/scripts}">
-    </div>
-</main> </main> </body>
-
+    <div th:replace="~{/fragments/scripts}"></div>
+</main>
+</body>
 </html>

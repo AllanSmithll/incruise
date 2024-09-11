@@ -9,14 +9,14 @@ import java.util.*;
 @Repository
 public class CompanyRepository {
 
-    public static Integer nextId = 1;
+    public static Long nextId = 1L;
 
     public static final List<Company> companyList = new ArrayList<>();
 
     {
-        this.add(new Company(0, "Itaipava", "ita@gmail", "123", "Itaipava Cervejas", "1234", "(11) 98878-5324", "Bob", "São Paulo 123 capital", "Bebidas", "https://cervejaitaipava.com.br/"));
-        this.add(new Company(0, "Ambev", "amb@gmail", "123", "Ambev Cervejas", "1234", "(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas", "https://www.ambev.com.br/"));
-        this.add(new Company(0, "Solar", "cocaCola@gmail", "123", "Solar", "123445", "(11) 98878-3242", "Seu Zé", "Paraíba Rua Caravelas", "Bebidas", "https://www.ambev.com.br/"));
+        this.add(new Company(0L, "Itaipava", "ita@gmail", "123", "Itaipava Cervejas", "1234", "(11) 98878-5324", "Bob", "São Paulo 123 capital", "Bebidas", "https://cervejaitaipava.com.br/"));
+        this.add(new Company(0L, "Ambev", "amb@gmail", "123", "Ambev Cervejas", "1234", "(11) 98878-3242", "Carlos", "Rio de Janeiro 123 capital", "Bebidas", "https://www.ambev.com.br/"));
+        this.add(new Company(0L, "Solar", "cocaCola@gmail", "123", "Solar", "123445", "(11) 98878-3242", "Seu Zé", "Paraíba Rua Caravelas", "Bebidas", "https://www.ambev.com.br/"));
     }
 
     public void add(Company company){
@@ -34,11 +34,7 @@ public class CompanyRepository {
     }
 
     public Company find(Integer id) throws ItemNotFoundException {
-        for(Company c: companyList){
-            if(c.getId().equals(id))
-                return c;
-        }
-        throw new ItemNotFoundException("Company Not Found");
+        return companyList.get(id);
     }
 
     public void update(Company company) {
@@ -46,11 +42,8 @@ public class CompanyRepository {
 
 /*
     private Integer generateID(){
-
         List<Student> students = this.list();
-
         Integer id = 1;
-
         //percore a lista procurando o maior ID, ou uma possível para inserção;
         for(Student student : students){
             //checa se o id gerado é maior que o id Na lista

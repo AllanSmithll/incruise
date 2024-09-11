@@ -3,7 +3,7 @@
 
 <head>
 
-    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Oportunidades')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Ofertas')}">
 
 </head>
 
@@ -110,6 +110,10 @@
                                     <p th:if="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}" th:text="${offer.prerequisites}"></p>
                                     <p th:unless="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}">Nenhum</p>
                                 </div>
+                            </div>
+                            <div class="status-box mt-3">
+                                <small>Status da Oferta:</small>
+                                <p th:classappend="${offer.status.ABERTA} ? 'text-success' : 'text-danger'" th:text="${offer.status.ABERTA} ? 'Aberta' : 'Fechada'"></p>
                             </div>
                             <div class="action-box d-flex gap-2 justify-content-center mt-3">
                                 <a th:href="@{info/{id}(id=${offer.id})}" class="btn-action btn-view">

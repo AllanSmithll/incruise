@@ -1,7 +1,8 @@
 package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.repository.CompanyRepository;
+import br.edu.pweb2.incruise.model.NullCompany;
+import br.edu.pweb2.incruise.repository.CompanyRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,30 +11,30 @@ import java.util.List;
 @Service
 public class CompanyService {
 
-    private final CompanyRepository companyRepository;
+    private final CompanyRepositoryJpa companyRepositoryJpa;
 
     @Autowired
-    public CompanyService(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
+    public CompanyService(CompanyRepositoryJpa companyRepositoryJpa) {
+        this.companyRepositoryJpa = companyRepositoryJpa;
     }
 
-    public Company findById(Integer id) {
-        return companyRepository.find(id);
+    public Company findById(Long id) {
+        return companyRepositoryJpa.findById(id).orElse(new NullCompany());
     }
 
     public List<Company> listAll() {
-        return companyRepository.list();
+        return companyRepositoryJpa.findAll();
     }
 
     public void add(Company company) {
-        companyRepository.add(company);
+        companyRepositoryJpa.save(company);
     }
 
     public void update(Company company) {
-        companyRepository.update(company);
+        companyRepositoryJpa.save(company);
     }
 
-    public void remove(Integer id) throws Exception {
-        companyRepository.remove(id);
+    public void remove(Long id) throws Exception {
+        this.companyRepositoryJpa.deleteById(id);
     }
 }

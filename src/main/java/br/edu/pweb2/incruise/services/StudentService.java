@@ -1,7 +1,8 @@
 package br.edu.pweb2.incruise.services;
 
+import br.edu.pweb2.incruise.model.NullStudent;
 import br.edu.pweb2.incruise.model.Student;
-import br.edu.pweb2.incruise.repository.StudentRepository;
+import br.edu.pweb2.incruise.repository.StudentRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,35 +11,35 @@ import java.util.List;
 @Service
 public class StudentService {
 
-    private final StudentRepository studentRepository;
+    private final StudentRepositoryJpa studentRepositoryJpa;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public StudentService(StudentRepositoryJpa studentRepositoryJpa) {
+        this.studentRepositoryJpa = studentRepositoryJpa;
     }
 
     public Student findByEnrollment(String enrollment) throws Exception {
-        return studentRepository.findByEnrollment(enrollment);
+        return studentRepositoryJpa.findByEnrollment(enrollment);
     }
 
-    public Student findById(Integer id) throws Exception {
-        return studentRepository.findBy(id);
+    public Student findById(Long id) throws Exception {
+        return studentRepositoryJpa.findById(id).orElse(new NullStudent());
     }
 
     public List<Student> listAll() {
-        return studentRepository.list();
+        return studentRepositoryJpa.findAll();
     }
 
-    public void add(Student student) {
-        studentRepository.add(student);
+    public void save(Student student) {
+        studentRepositoryJpa.save(student);
     }
 
     public void update(Student student) {
-        studentRepository.update(student);
+        studentRepositoryJpa.save(student);
     }
 
-    public void remove(Integer id) throws Exception {
-        studentRepository.remove(id);
+    public void remove(Long id) throws Exception {
+        studentRepositoryJpa.deleteById(id);
     }
 }
 

@@ -107,11 +107,10 @@ body {
   width: 40%;
 }
 
-
-
 /* Estilo para cartões de oportunidade */
 #oportunity-section .opportunity-item {
   display: inline-block;
+  cursor: pointer;
   width: calc(30% - 2rem);
   padding: 1rem;
   margin: 1rem;
