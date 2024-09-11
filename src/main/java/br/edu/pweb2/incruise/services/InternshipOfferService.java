@@ -3,7 +3,7 @@ package br.edu.pweb2.incruise.services;
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.NullInternshipOffer;
-import br.edu.pweb2.incruise.repository.InternshipOfferRepository;
+import br.edu.pweb2.incruise.repository.InternshipOfferRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,24 +13,24 @@ import java.util.stream.Collectors;
 @Service
 public class InternshipOfferService {
 
-    private final InternshipOfferRepository internshipOfferRepository;
+    private final InternshipOfferRepositoryJpa internshipOfferRepositoryJpa;
 
     @Autowired
-    public InternshipOfferService(InternshipOfferRepository internshipOfferRepository) {
-        this.internshipOfferRepository = internshipOfferRepository;
+    public InternshipOfferService(InternshipOfferRepositoryJpa internshipOfferRepositoryJpa) {
+        this.internshipOfferRepositoryJpa = internshipOfferRepositoryJpa;
     }
 
     public List<InternshipOffer> findAll() {
-        return internshipOfferRepository.findAll();
+        return internshipOfferRepositoryJpa.findAll();
     }
 
     public InternshipOffer findById(Long id) {
-        return internshipOfferRepository.findById(id).orElse(new NullInternshipOffer());
+        return internshipOfferRepositoryJpa.findById(id).orElse(new NullInternshipOffer());
     }
 
     public List<InternshipOffer> filterOffers(String companyName, Double minRemuneration, Double maxRemuneration,
                                           Integer minWeeklyWorkload, Integer maxWeeklyWorkload, String prerequisites) {
-        return internshipOfferRepository.findAll().stream()
+        return internshipOfferRepositoryJpa.findAll().stream()
                 .filter(offer -> (companyName == null || offer.getCompanyResponsible().getFantasyName().toLowerCase().contains(companyName.toLowerCase())))
                 .filter(offer -> (minRemuneration == null || offer.getRemunerationValue() >= minRemuneration))
                 .filter(offer -> (maxRemuneration == null || offer.getRemunerationValue() <= maxRemuneration))
@@ -47,10 +47,10 @@ public class InternshipOfferService {
         if(offer.getCompanyResponsible() == null){
             offer.setCompanyResponsible(company);
         }
-        internshipOfferRepository.save(offer);
+        internshipOfferRepositoryJpa.save(offer);
     }
 
     public void remove(Long id) throws Exception {
-        internshipOfferRepository.deleteById(id);
+        internshipOfferRepositoryJpa.deleteById(id);
     }
 }
