@@ -11,24 +11,24 @@ Company
 INSERT INTO tb_company (email, password, fantasyName, cnpj, phoneNumber, personContact, address, principalActivity, urlPage) VALUES
     ('Tech.Innovators@gmail.com', 'Tech123', 'Tech Innovators', '12345678000191', '11987654321', 'Lucas Andrade', 'Av. Paulista, 1234, São Paulo, SP', 'Desenvolvimento de software', 'www.techinnovators.com.br'),    
     ('NextGen.Solutions@gmail.com', 'NextGen123', 'NextGen Solutions', '23456789000182', '21998765432', 'Ana Costa', 'Rua da Tecnologia, 200, Rio de Janeiro, RJ', 'Consultoria em TI', 'www.nextgensolutions.com.br'),    
-    ('CloudWare.Inovation@gmail.com', 'CloudWare123', 'CloudWare', '34567890000173', '31912345678', 'Felipe Ramos', 'Rua do Sol, 789, Belo Horizonte, MG', 'Soluções de armazenamento em nuvem', 'www.cloudware.com.br'),    
+    ('CloudWare@gmail.com', 'CloudWare123', 'CloudWare', '34567890000173', '31912345678', 'Felipe Ramos', 'Rua do Sol, 789, Belo Horizonte, MG', 'Soluções de armazenamento em nuvem', 'www.cloudware.com.br'),    
     ('DataStream.Labs@gmail.com', 'DataStream123', 'DataStream Labs', '45678901000164', '51923456789', 'Mariana Souza', 'Av. dos Inovadores, 101, Porto Alegre, RS', 'Análise de dados e Big Data', 'www.datastreamlabs.com.br'),    
     ('SoftTech.Corp@gmail.com', 'SoftTech123', 'SoftTech Corp', '56789012000155', '85934567890', 'Rafael Martins', 'Rua da Computação, 321, Fortaleza, CE', 'Desenvolvimento de aplicativos', 'www.softtechcorp.com.br'),    
     ('CyberSec.Brasil@gmail.com', 'CyberSec123', 'CyberSec Brasil', '67890123000146', '61945678901', 'Camila Oliveira', 'Setor de TI, 654, Brasília, DF', 'Segurança cibernética', 'www.cybersecbrasil.com.br'),    
     ('AI.Innovations@gmail.com', 'AI123', 'AI Innovations', '78901234000137', '41956789012', 'Eduardo Lima', 'Rua dos Algoritmos, 123, Curitiba, PR', 'Inteligência artificial e automação', 'www.aiinnovations.com.br'),    
     ('Quantum.Solutions@gmail.com', 'Quantum123', 'Quantum Solutions', '89012345000128', '71967890123', 'Juliana Ferreira', 'Av. Quântica, 456, Salvador, BA', 'Desenvolvimento de tecnologia quântica', 'www.quantumsolutions.com.br'),    
     ('DevOps.Masters@gmail.com', 'DevOps123', 'DevOps Masters', '90123456000119', '19978901234', 'Thiago Pereira', 'Rua dos DevOps, 789, Campinas, SP', 'Consultoria e automação DevOps', 'www.devopsmasters.com.br'),    
-    ('ByteLab.Inovation@gmail.com', 'ByteLab123', 'ByteLab', '01234567000109', '27987654321', 'Paula Duarte', 'Rua dos Códigos, 321, Vitória, ES', 'Laboratório de inovação em software', 'www.bytelab.com.br'),    
+    ('ByteLab@gmail.com', 'ByteLab123', 'ByteLab', '01234567000109', '27987654321', 'Paula Duarte', 'Rua dos Códigos, 321, Vitória, ES', 'Laboratório de inovação em software', 'www.bytelab.com.br'),    
     ('SmartGrid.Tech@gmail.com', 'SmartGrid123', 'SmartGrid Tech', '12345678000210', '31912345678', 'Anderson Moreira', 'Rua das Energias, 200, Belo Horizonte, MG', 'Tecnologia para redes inteligentes', 'www.smartgridtech.com.br'),    
     ('VR.World@gmail.com', 'VR123', 'VR World', '23456789000291', '21998765432', 'Sofia Campos', 'Rua da Realidade, 400, Rio de Janeiro, RJ', 'Desenvolvimento de soluções em realidade virtual', 'www.vrworld.com.br'),    
     ('Blockchain.Solutions@gmail.com', 'Blockchain123', 'Blockchain Solutions', '34567890000282', '11987654321', 'Gustavo Silva', 'Rua do Blockchain, 500, São Paulo, SP', 'Soluções em blockchain e criptografia', 'www.blockchainsolutions.com.br'),    
-    ('RoboTech.Inovation@gmail.com', 'RoboTech123', 'RoboTech', '45678901000273', '51923456789', 'Letícia Barros', 'Av. Robótica, 600, Porto Alegre, RS', 'Desenvolvimento de robótica e automação', 'www.robotech.com.br'),    
-    ('Innovatech.Inovation@gmail.com', 'Innovatech123', 'Innovatech', '56789012000264', '85934567890', 'Bruno Lima', 'Rua da Inovação, 700, Fortaleza, CE', 'Inovações em TI e hardware', 'www.innovatech.com.br'),    
+    ('RoboTech@gmail.com', 'RoboTech123', 'RoboTech', '45678901000273', '51923456789', 'Letícia Barros', 'Av. Robótica, 600, Porto Alegre, RS', 'Desenvolvimento de robótica e automação', 'www.robotech.com.br'),    
+    ('Innovatech@gmail.com', 'Innovatech123', 'Innovatech', '56789012000264', '85934567890', 'Bruno Lima', 'Rua da Inovação, 700, Fortaleza, CE', 'Inovações em TI e hardware', 'www.innovatech.com.br'),    
     ('WebDev.Solutions@gmail.com', 'WebDev123', 'WebDev Solutions', '67890123000255', '61945678901', 'Fernanda Almeida', 'Avenida Web, 123, Brasília, DF', 'Desenvolvimento dewebsiteseecommerce', 'www.webdevsolutions.com.br'),    
     ('AI.Robotics@gmail.com', 'AI123', 'AI Robotics', '78901234000246', '41956789012', 'Leonardo Nunes', 'Rua da Automação, 234, Curitiba, PR', 'Soluções em IA e robótica', 'www.airobotics.com.br'),    
-    ('GreenTech.Inovation@gmail.com', 'GreenTech123', 'GreenTech', '89012345000237', '71967890123', 'Patrícia Dias', 'Rua Sustentável, 345, Salvador, BA', 'Tecnologia sustentável e energias renováveis', 'www.greentech.com.br'),    
+    ('GreenTech@gmail.com', 'GreenTech123', 'GreenTech', '89012345000237', '71967890123', 'Patrícia Dias', 'Rua Sustentável, 345, Salvador, BA', 'Tecnologia sustentável e energias renováveis', 'www.greentech.com.br'),    
     ('Infinity.Networks@gmail.com', 'Infinity123', 'Infinity Networks', '90123456000228', '19978901234', 'Ricardo Rocha', 'Av. das Redes, 567, Campinas, SP', 'Soluções de rede e conectividade', 'www.infinitynetworks.com.br'),    
-    ('CodeCraft.Inovation@gmail.com', 'CodeCraft123', 'CodeCraft', '01234567000219', '27987654321', 'Carla Teixeira', 'Rua dos Programadores, 123, Vitória, ES', 'Desenvolvimento de software sob medida', 'www.codecraft.com.br');
+    ('CodeCraft@gmail.com', 'CodeCraft123', 'CodeCraft', '01234567000219', '27987654321', 'Carla Teixeira', 'Rua dos Programadores, 123, Vitória, ES', 'Desenvolvimento de software sob medida', 'www.codecraft.com.br');
 /*
 Competence
     String description;
