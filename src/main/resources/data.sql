@@ -7,7 +7,7 @@ truncate tb_internship_offer_necessary_skill cascade;
 truncate tb_internship_offer_desirable_skill cascade;
 truncate tb_Candidature cascade;
 
-/* 
+/*
 Company
     String fantasyName;
     String cnpj;
@@ -43,32 +43,32 @@ INSERT INTO tb_company (id, username, email, password, fantasy_name, cnpj, phone
 Competence
     String description;
 */
-INSERT INTO tb_competence (description) VALUES 
-    (1,'Python'),
-    (2,'Java'),
-    (3,'JavaScript'),
-    (4,'TypeScript'),
-    (5,'C++'),
-    (6,'PHP'),
-    (7,'Ruby'),
-    (8,'C#'),
-    (9,'Swift'),
-    (10,'Kotlin'),
-    (11,'Front-end'),
-    (12,'Back-end'),
-    (13,'Full-stack'),
-    (14,'Gestão de Tempo'),
-    (15,'Liderança'),
-    (16,'Trabalho em Equipe '),
-    (17,'Desenvolvimento Ágil'),
-    (18,'Trabalhar Sobre pressão'),
-    (19,'Pensamento Crítico'),
-    (20,'Comunicação'),
-    (21,'Proatividade '),
-    (22,'Flexibilidade e Adaptabilidade a Novas Tecnologias'),
-    (23,'Bancos de Dados Relacionais'),
-    (24,'Bancos de Dados Não Relacionais'),
-    (25,'Negociação e Gerenciamento de Conflitos');
+INSERT INTO tb_competence (id, description) VALUES
+    (1, 'Python'),
+    (2, 'Java'),
+    (3, 'JavaScript'),
+    (4, 'TypeScript'),
+    (5, 'C++'),
+    (6, 'PHP'),
+    (7, 'Ruby'),
+    (8, 'C#'),
+    (9, 'Swift'),
+    (10, 'Kotlin'),
+    (11, 'Front-end'),
+    (12, 'Back-end'),
+    (13, 'Full-stack'),
+    (14, 'Gestão de Tempo'),
+    (15, 'Liderança'),
+    (16, 'Trabalho em Equipe '),
+    (17, 'Desenvolvimento Ágil'),
+    (18, 'Trabalhar Sobre pressão'),
+    (19, 'Pensamento Crítico'),
+    (20, 'Comunicação'),
+    (21, 'Proatividade '),
+    (22, 'Flexibilidade e Adaptabilidade a Novas Tecnologias'),
+    (23, 'Bancos de Dados Relacionais'),
+    (24, 'Bancos de Dados Não Relacionais'),
+    (25, 'Negociação e Gerenciamento de Conflitos');
 /*
 Student
    String phoneNumber;
@@ -97,7 +97,7 @@ INSERT INTO tb_student (id, username, email, password, phone_number, enrollment,
     (17,'Pedro_Bravim','Pedro.Bravim@gmail.com','Pedro123','83997890124', '20210010017', 'Pedro Gimenes Bravim', '1999-07-25', 'Sistemas para Internet'),    
     (18,'Juan_Farias','Juan.Farias@gmail.com','Juan123','83999012346', '20180010019', 'Juan Leite Farias', '1999-05-16', 'Sistemas para Internet'),    
     (19,'Joao_Dias','Joao.Dias@gmail.com','Joao123','83997890126', '20210010037', 'João Victor Batista Dias', '1998-07-03', 'Sistemas para Internet'),    
-    (20,'Alic_Andrade','Alic.Andrade@gmail.com','Alic123','83998901237', '20220010038', 'Alic Victor Santos de Andrade', '1997-09-22', 'Sistemas para Internet');
+    (20,'Alic_Andrade','Alic.Andrade@gmail.com','Alic123','83998901237', '20220010038', 'Alic Victor Santos de Andrade', '1997-09-22', 'Sistemas para Internet'),
     (21,'Luis_Kilmer','Luis.Kilmer@gmail.com','Luis123','839989039423', '20220010006', 'Luis Kilmer Bernardo da Silva', '2003-12-03', 'Sistemas para Internet');
 /*
 tb_student_competence_skill
@@ -222,7 +222,7 @@ INSERT INTO tb_internship_offer (id,principal_activity, weekly_workload, remuner
     (27,'Automação de Processos', 20, 1700.00, 220.00, 'Experiência com ferramentas de automação', 7, 'FINALIZADA'),
     (28,'Gestão de TI', 30, 1800.00, 200.00, 'Experiência em gerenciamento de equipes de TI', 8, 'ABERTA'),
     (29,'Controle de Qualidade', 25, 1500.00, 180.00, 'Conhecimento em técnicas de controle de qualidade', 9, 'CANCELADA'),
-    (30,'Engenharia de Dados', 20, 1900.00, 220.00, 'Experiência com big data e ferramentas de engenharia', 10, 'ABERTA'),
+    (30,'Engenharia de Dados', 20, 1900.00, 220.00, 'Experiência com big data e ferramentas de engenharia', 10, 'ABERTA');
 
 /* 
 tb_internship_offer_necessary_skill
