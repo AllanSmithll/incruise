@@ -8,27 +8,27 @@ Company
     String principalActivity;
     String urlPage="";
 */
-INSERT INTO tb_company (email, password, fantasyName, cnpj, phoneNumber, personContact, address, principalActivity, urlPage) VALUES
-    ('Tech.Innovators@gmail.com', 'Tech123', 'Tech Innovators', '12345678000191', '11987654321', 'Lucas Andrade', 'Av. Paulista, 1234, São Paulo, SP', 'Desenvolvimento de software', 'www.techinnovators.com.br'),    
-    ('NextGen.Solutions@gmail.com', 'NextGen123', 'NextGen Solutions', '23456789000182', '21998765432', 'Ana Costa', 'Rua da Tecnologia, 200, Rio de Janeiro, RJ', 'Consultoria em TI', 'www.nextgensolutions.com.br'),    
-    ('CloudWare@gmail.com', 'CloudWare123', 'CloudWare', '34567890000173', '31912345678', 'Felipe Ramos', 'Rua do Sol, 789, Belo Horizonte, MG', 'Soluções de armazenamento em nuvem', 'www.cloudware.com.br'),    
-    ('DataStream.Labs@gmail.com', 'DataStream123', 'DataStream Labs', '45678901000164', '51923456789', 'Mariana Souza', 'Av. dos Inovadores, 101, Porto Alegre, RS', 'Análise de dados e Big Data', 'www.datastreamlabs.com.br'),    
-    ('SoftTech.Corp@gmail.com', 'SoftTech123', 'SoftTech Corp', '56789012000155', '85934567890', 'Rafael Martins', 'Rua da Computação, 321, Fortaleza, CE', 'Desenvolvimento de aplicativos', 'www.softtechcorp.com.br'),    
-    ('CyberSec.Brasil@gmail.com', 'CyberSec123', 'CyberSec Brasil', '67890123000146', '61945678901', 'Camila Oliveira', 'Setor de TI, 654, Brasília, DF', 'Segurança cibernética', 'www.cybersecbrasil.com.br'),    
-    ('AI.Innovations@gmail.com', 'AI123', 'AI Innovations', '78901234000137', '41956789012', 'Eduardo Lima', 'Rua dos Algoritmos, 123, Curitiba, PR', 'Inteligência artificial e automação', 'www.aiinnovations.com.br'),    
-    ('Quantum.Solutions@gmail.com', 'Quantum123', 'Quantum Solutions', '89012345000128', '71967890123', 'Juliana Ferreira', 'Av. Quântica, 456, Salvador, BA', 'Desenvolvimento de tecnologia quântica', 'www.quantumsolutions.com.br'),    
-    ('DevOps.Masters@gmail.com', 'DevOps123', 'DevOps Masters', '90123456000119', '19978901234', 'Thiago Pereira', 'Rua dos DevOps, 789, Campinas, SP', 'Consultoria e automação DevOps', 'www.devopsmasters.com.br'),    
-    ('ByteLab@gmail.com', 'ByteLab123', 'ByteLab', '01234567000109', '27987654321', 'Paula Duarte', 'Rua dos Códigos, 321, Vitória, ES', 'Laboratório de inovação em software', 'www.bytelab.com.br'),    
-    ('SmartGrid.Tech@gmail.com', 'SmartGrid123', 'SmartGrid Tech', '12345678000210', '31912345678', 'Anderson Moreira', 'Rua das Energias, 200, Belo Horizonte, MG', 'Tecnologia para redes inteligentes', 'www.smartgridtech.com.br'),    
-    ('VR.World@gmail.com', 'VR123', 'VR World', '23456789000291', '21998765432', 'Sofia Campos', 'Rua da Realidade, 400, Rio de Janeiro, RJ', 'Desenvolvimento de soluções em realidade virtual', 'www.vrworld.com.br'),    
-    ('Blockchain.Solutions@gmail.com', 'Blockchain123', 'Blockchain Solutions', '34567890000282', '11987654321', 'Gustavo Silva', 'Rua do Blockchain, 500, São Paulo, SP', 'Soluções em blockchain e criptografia', 'www.blockchainsolutions.com.br'),    
-    ('RoboTech@gmail.com', 'RoboTech123', 'RoboTech', '45678901000273', '51923456789', 'Letícia Barros', 'Av. Robótica, 600, Porto Alegre, RS', 'Desenvolvimento de robótica e automação', 'www.robotech.com.br'),    
-    ('Innovatech@gmail.com', 'Innovatech123', 'Innovatech', '56789012000264', '85934567890', 'Bruno Lima', 'Rua da Inovação, 700, Fortaleza, CE', 'Inovações em TI e hardware', 'www.innovatech.com.br'),    
-    ('WebDev.Solutions@gmail.com', 'WebDev123', 'WebDev Solutions', '67890123000255', '61945678901', 'Fernanda Almeida', 'Avenida Web, 123, Brasília, DF', 'Desenvolvimento dewebsiteseecommerce', 'www.webdevsolutions.com.br'),    
-    ('AI.Robotics@gmail.com', 'AI123', 'AI Robotics', '78901234000246', '41956789012', 'Leonardo Nunes', 'Rua da Automação, 234, Curitiba, PR', 'Soluções em IA e robótica', 'www.airobotics.com.br'),    
-    ('GreenTech@gmail.com', 'GreenTech123', 'GreenTech', '89012345000237', '71967890123', 'Patrícia Dias', 'Rua Sustentável, 345, Salvador, BA', 'Tecnologia sustentável e energias renováveis', 'www.greentech.com.br'),    
-    ('Infinity.Networks@gmail.com', 'Infinity123', 'Infinity Networks', '90123456000228', '19978901234', 'Ricardo Rocha', 'Av. das Redes, 567, Campinas, SP', 'Soluções de rede e conectividade', 'www.infinitynetworks.com.br'),    
-    ('CodeCraft@gmail.com', 'CodeCraft123', 'CodeCraft', '01234567000219', '27987654321', 'Carla Teixeira', 'Rua dos Programadores, 123, Vitória, ES', 'Desenvolvimento de software sob medida', 'www.codecraft.com.br');
+INSERT INTO tb_company (username,email, password, fantasy_name, cnpj, phone_number, person_contact, address, principal_activity, url_page) VALUES
+    ('Tech_Innovators','Tech.Innovators@gmail.com', 'Tech123', 'Tech Innovators', '12345678000191', '11987654321', 'Lucas Andrade', 'Av. Paulista, 1234, São Paulo, SP', 'Desenvolvimento de software', 'www.techinnovators.com.br'),    
+    ('NextGen_Solutions','NextGen.Solutions@gmail.com', 'NextGen123', 'NextGen Solutions', '23456789000182', '21998765432', 'Ana Costa', 'Rua da Tecnologia, 200, Rio de Janeiro, RJ', 'Consultoria em TI', 'www.nextgensolutions.com.br'),    
+    ('CloudWare_gmail','CloudWare@gmail.com', 'CloudWare123', 'CloudWare', '34567890000173', '31912345678', 'Felipe Ramos', 'Rua do Sol, 789, Belo Horizonte, MG', 'Soluções de armazenamento em nuvem', 'www.cloudware.com.br'),    
+    ('DataStream_Labs','DataStream.Labs@gmail.com', 'DataStream123', 'DataStream Labs', '45678901000164', '51923456789', 'Mariana Souza', 'Av. dos Inovadores, 101, Porto Alegre, RS', 'Análise de dados e Big Data', 'www.datastreamlabs.com.br'),    
+    ('SoftTech_Corp','SoftTech.Corp@gmail.com', 'SoftTech123', 'SoftTech Corp', '56789012000155', '85934567890', 'Rafael Martins', 'Rua da Computação, 321, Fortaleza, CE', 'Desenvolvimento de aplicativos', 'www.softtechcorp.com.br'),    
+    ('CyberSec_Brasil','CyberSec.Brasil@gmail.com', 'CyberSec123', 'CyberSec Brasil', '67890123000146', '61945678901', 'Camila Oliveira', 'Setor de TI, 654, Brasília, DF', 'Segurança cibernética', 'www.cybersecbrasil.com.br'),    
+    ('AI_Innovations','AI.Innovations@gmail.com', 'AI123', 'AI Innovations', '78901234000137', '41956789012', 'Eduardo Lima', 'Rua dos Algoritmos, 123, Curitiba, PR', 'Inteligência artificial e automação', 'www.aiinnovations.com.br'),    
+    ('Quantum_Solutions','Quantum.Solutions@gmail.com', 'Quantum123', 'Quantum Solutions', '89012345000128', '71967890123', 'Juliana Ferreira', 'Av. Quântica, 456, Salvador, BA', 'Desenvolvimento de tecnologia quântica', 'www.quantumsolutions.com.br'),    
+    ('DevOps_Masters','DevOps.Masters@gmail.com', 'DevOps123', 'DevOps Masters', '90123456000119', '19978901234', 'Thiago Pereira', 'Rua dos DevOps, 789, Campinas, SP', 'Consultoria e automação DevOps', 'www.devopsmasters.com.br'),    
+    ('ByteLab_gmail','ByteLab@gmail.com', 'ByteLab123', 'ByteLab', '01234567000109', '27987654321', 'Paula Duarte', 'Rua dos Códigos, 321, Vitória, ES', 'Laboratório de inovação em software', 'www.bytelab.com.br'),    
+    ('SmartGrid_Tech','SmartGrid.Tech@gmail.com', 'SmartGrid123', 'SmartGrid Tech', '12345678000210', '31912345678', 'Anderson Moreira', 'Rua das Energias, 200, Belo Horizonte, MG', 'Tecnologia para redes inteligentes', 'www.smartgridtech.com.br'),    
+    ('VR_World','VR.World@gmail.com', 'VR123', 'VR World', '23456789000291', '21998765432', 'Sofia Campos', 'Rua da Realidade, 400, Rio de Janeiro, RJ', 'Desenvolvimento de soluções em realidade virtual', 'www.vrworld.com.br'),    
+    ('Blockchain_Solutions','Blockchain.Solutions@gmail.com', 'Blockchain123', 'Blockchain Solutions', '34567890000282', '11987654321', 'Gustavo Silva', 'Rua do Blockchain, 500, São Paulo, SP', 'Soluções em blockchain e criptografia', 'www.blockchainsolutions.com.br'),    
+    ('RoboTech_gmail','RoboTech@gmail.com', 'RoboTech123', 'RoboTech', '45678901000273', '51923456789', 'Letícia Barros', 'Av. Robótica, 600, Porto Alegre, RS', 'Desenvolvimento de robótica e automação', 'www.robotech.com.br'),    
+    ('Innovatech_gmail','Innovatech@gmail.com', 'Innovatech123', 'Innovatech', '56789012000264', '85934567890', 'Bruno Lima', 'Rua da Inovação, 700, Fortaleza, CE', 'Inovações em TI e hardware', 'www.innovatech.com.br'),    
+    ('WebDev_Solutions','WebDev.Solutions@gmail.com', 'WebDev123', 'WebDev Solutions', '67890123000255', '61945678901', 'Fernanda Almeida', 'Avenida Web, 123, Brasília, DF', 'Desenvolvimento dewebsiteseecommerce', 'www.webdevsolutions.com.br'),    
+    ('AI_Robotics','AI.Robotics@gmail.com', 'AI123', 'AI Robotics', '78901234000246', '41956789012', 'Leonardo Nunes', 'Rua da Automação, 234, Curitiba, PR', 'Soluções em IA e robótica', 'www.airobotics.com.br'),    
+    ('GreenTech_gmail','GreenTech@gmail.com', 'GreenTech123', 'GreenTech', '89012345000237', '71967890123', 'Patrícia Dias', 'Rua Sustentável, 345, Salvador, BA', 'Tecnologia sustentável e energias renováveis', 'www.greentech.com.br'),    
+    ('Infinity_Networks','Infinity.Networks@gmail.com', 'Infinity123', 'Infinity Networks', '90123456000228', '19978901234', 'Ricardo Rocha', 'Av. das Redes, 567, Campinas, SP', 'Soluções de rede e conectividade', 'www.infinitynetworks.com.br'),    
+    ('CodeCraft_gmail','CodeCraft@gmail.com', 'CodeCraft123', 'CodeCraft', '01234567000219', '27987654321', 'Carla Teixeira', 'Rua dos Programadores, 123, Vitória, ES', 'Desenvolvimento de software sob medida', 'www.codecraft.com.br');
 /*
 Competence
     String description;
@@ -67,34 +67,34 @@ Student
    LocalDate birthdate;
    String course
 */
-INSERT INTO tb_student ((email, password, phoneNumber, enrollment, name, birthdate, course) VALUES  
-    ('Yuri.Souza@gmail.com','Yuri123','83991234567', '20180010001', 'Yuri Adreano Santos de Souza', '1999-05-15', 'Sistemas para Internet'),    
-    ('Haniel.Silva@gmail.com','Haniel123','83998901235', '20220010018', 'Haniel Costa Da Silva', '2000-01-24 ', 'Sistemas para Internet'),    
-    ('Marcio.Silva@gmail.com','Marcio123','83998901235', '20220010018', 'Marcio Jose da Silva', '1997-09-03', 'Sistemas para Internet'),    
-    ('Allan.Amancio@gmail.com','Allan123','83992345678', '20190010002', 'Allan Alves Amancio', '1998-11-23', 'Sistemas para Internet'),    
-    ('Matheus.Sousa@gmail.com','Matheus123','83990123458', '20190010030', 'Matheus Pereira de Sousa', '1998-01-17', 'Sistemas para Internet'),    
-    ('Brian.Trajano@gmail.com','Brian123','83991234570', '20200010031', 'Brian Rafael Azevedo Trajano', '1997-11-08', 'Sistemas para Internet'),    
-    ('Ian.Mendonca@gmail.com','Ian123','83992345671', '20210010032', 'Ian Ribeiro de Mendonça', '1999-05-25', 'Sistemas para Internet'),    
-    ('George.Lima@gmail.com','George123','83995678901', '20180010005', 'George Barbosa de Lima', '1999-09-18', 'Sistemas para Internet'),    
-    ('Marcela.Kramer@gmail.com','Marcela123','83996789012', '20190010006', 'Marcela Barreto de Oliveira Kramer', '1998-01-12', 'Sistemas para Internet'),    
-    ('Renato.Melo@gmail.com','Renato123','83998901234', '20210010008', 'Renato Bezerra de Melo', '1998-07-20', 'Sistemas para Internet'),    
-    ('Yago.Aguiar@gmail.com','Yago123','83999012345', '20220010009', 'Yago César do Nascimento Aguiar', '1997-02-14', 'Sistemas para Internet'),    
-    ('Amanda.Araujo@gmail.com','Amanda123','83990123456', '20190010010', 'Amanda Cruz de Araujo', '1999-08-30', 'Sistemas para Internet'),    
-    ('Olivia.Oliva@gmail.com','Olivia123','83991234568', '20200010011', 'Olivia da Costa Oliva', '1998-04-09', 'Sistemas para Internet'),    
-    ('Raqueline.Gomes@gmail.com','Raqueline123','83992345679', '20210010012', 'Raqueline da Silva Gomes', '1997-10-17', 'Sistemas para Internet'),    
-    ('Geraldo.Neto@gmail.com','Geraldo123','83993456790', '20220010013', 'Geraldo da Silva Neto', '1999-03-22', 'Sistemas para Internet'),    
-    ('Juliana.Cavalcante@gmail.com','Juliana123','83996789013', '20200010016', 'Juliana Ferreira Cavalcante', '1997-12-01', 'Sistemas para Internet'),    
-    ('Pedro.Bravim@gmail.com','Pedro123','83997890124', '20210010017', 'Pedro Gimenes Bravim', '1999-07-25', 'Sistemas para Internet'),    
-    ('Juan.Farias@gmail.com','Juan123','83999012346', '20180010019', 'Juan Leite Farias', '1999-05-16', 'Sistemas para Internet'),    
-    ('Joao.Dias@gmail.com','Joao123','83997890126', '20210010037', 'João Victor Batista Dias', '1998-07-03', 'Sistemas para Internet'),    
-    ('Alic.Andrade@gmail.com','Alic123','83998901237', '20220010038', 'Alic Victor Santos de Andrade', '1997-09-22', 'Sistemas para Internet');
+INSERT INTO tb_student (username, email, password, phone_number, enrollment, name, birthdate, course) VALUES  
+    ('Yuri_Souza','Yuri.Souza@gmail.com','Yuri123','83991234567', '20180010001', 'Yuri Adreano Santos de Souza', '1999-05-15', 'Sistemas para Internet'),    
+    ('Haniel_Silva','Haniel.Silva@gmail.com','Haniel123','83998901235', '20220010018', 'Haniel Costa Da Silva', '2000-01-24 ', 'Sistemas para Internet'),    
+    ('Marcio_Silva','Marcio.Silva@gmail.com','Marcio123','83998901235', '20220010018', 'Marcio Jose da Silva', '1997-09-03', 'Sistemas para Internet'),    
+    ('Allan_Amancio','Allan.Amancio@gmail.com','Allan123','83992345678', '20190010002', 'Allan Alves Amancio', '1998-11-23', 'Sistemas para Internet'),    
+    ('Matheus_Sousa','Matheus.Sousa@gmail.com','Matheus123','83990123458', '20190010030', 'Matheus Pereira de Sousa', '1998-01-17', 'Sistemas para Internet'),    
+    ('Brian_Trajano','Brian.Trajano@gmail.com','Brian123','83991234570', '20200010031', 'Brian Rafael Azevedo Trajano', '1997-11-08', 'Sistemas para Internet'),    
+    ('Ian_Mendonca','Ian.Mendonca@gmail.com','Ian123','83992345671', '20210010032', 'Ian Ribeiro de Mendonça', '1999-05-25', 'Sistemas para Internet'),    
+    ('George_Lima','George.Lima@gmail.com','George123','83995678901', '20180010005', 'George Barbosa de Lima', '1999-09-18', 'Sistemas para Internet'),    
+    ('Marcela_Kramer','Marcela.Kramer@gmail.com','Marcela123','83996789012', '20190010006', 'Marcela Barreto de Oliveira Kramer', '1998-01-12', 'Sistemas para Internet'),    
+    ('Renato_Melo','Renato.Melo@gmail.com','Renato123','83998901234', '20210010008', 'Renato Bezerra de Melo', '1998-07-20', 'Sistemas para Internet'),    
+    ('Yago_Aguiar','Yago.Aguiar@gmail.com','Yago123','83999012345', '20220010009', 'Yago César do Nascimento Aguiar', '1997-02-14', 'Sistemas para Internet'),    
+    ('Amanda_Araujo','Amanda.Araujo@gmail.com','Amanda123','83990123456', '20190010010', 'Amanda Cruz de Araujo', '1999-08-30', 'Sistemas para Internet'),    
+    ('Olivia_Oliva','Olivia.Oliva@gmail.com','Olivia123','83991234568', '20200010011', 'Olivia da Costa Oliva', '1998-04-09', 'Sistemas para Internet'),    
+    ('Raqueline_Gomes','Raqueline.Gomes@gmail.com','Raqueline123','83992345679', '20210010012', 'Raqueline da Silva Gomes', '1997-10-17', 'Sistemas para Internet'),    
+    ('Geraldo_Neto','Geraldo.Neto@gmail.com','Geraldo123','83993456790', '20220010013', 'Geraldo da Silva Neto', '1999-03-22', 'Sistemas para Internet'),    
+    ('Juliana_Cavalcante','Juliana.Cavalcante@gmail.com','Juliana123','83996789013', '20200010016', 'Juliana Ferreira Cavalcante', '1997-12-01', 'Sistemas para Internet'),    
+    ('Pedro_Bravim','Pedro.Bravim@gmail.com','Pedro123','83997890124', '20210010017', 'Pedro Gimenes Bravim', '1999-07-25', 'Sistemas para Internet'),    
+    ('Juan_Farias','Juan.Farias@gmail.com','Juan123','83999012346', '20180010019', 'Juan Leite Farias', '1999-05-16', 'Sistemas para Internet'),    
+    ('Joao_Dias','Joao.Dias@gmail.com','Joao123','83997890126', '20210010037', 'João Victor Batista Dias', '1998-07-03', 'Sistemas para Internet'),    
+    ('Alic_Andrade','Alic.Andrade@gmail.com','Alic123','83998901237', '20220010038', 'Alic Victor Santos de Andrade', '1997-09-22', 'Sistemas para Internet');
 /*
 tb_student_competence_skill
 student competence (N..N)
     Long student_id;
     Long competence_id;
 */
-INSERT INTO tb_student_competence_skill(Long student_id, Long competence_id) VALUES
+INSERT INTO tb_student_competence_skill(student_id,competence_id) VALUES
     (1, 1),
     (1, 5),
     (1, 8),
@@ -172,7 +172,7 @@ INSERT INTO tb_student_competence_skill(Long student_id, Long competence_id) VAL
     (20, 12),
     (20, 22);
 /* 
-tb_intership_offer
+tb_internship_offer
     String principalActivity
     Integer weeklyWorkload
     Double remunerationValue
@@ -181,7 +181,7 @@ tb_intership_offer
     Long companyResponsible
     OfferStatus status ENUM Type
  */
-INSERT INTO tb_intership_offer (principalActivity, weeklyWorkload, remunerationValue, transportVoucher, prerequisites, companyResponsible, status) VALUES
+INSERT INTO tb_internship_offer (principal_activity, weekly_workload, remuneration_value, transport_voucher, prerequisites, company_id, status) VALUES
     ('Desenvolvimento de Software', 20, 1500.00, 200.00, 'Conhecimento em Java e SQL', 1, 'ABERTA'),
     ('Marketing Digital', 25, 1200.00, 0.00, 'Experiência com redes sociais', 2, 'ABERTA'),
     ('Suporte Técnico', 30, 1300.00, 100.00, 'Boa comunicação e conhecimento básico de TI', 3, 'ABERTA'),
@@ -524,7 +524,7 @@ INSERT INTO tb_internship_offer_desirable_skill (internship_offer_id, competence
     String message
     LocalDateTime createdDate
 */
-INSERT INTO Candidature (student, internshipOffer, status, message, createdDate) VALUES
+INSERT INTO Candidature (student, internship_offer_id, status, message, created_date) VALUES
     -- Oferta 1
     (1, 1, 'PENDENTE', 'Interessado na vaga.', '2024-09-01 10:00:00'),
     (2, 1, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),
