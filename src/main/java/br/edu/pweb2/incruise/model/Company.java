@@ -19,7 +19,6 @@ import jakarta.persistence.*;
 public class Company extends User {
 	@Getter
 	private String fantasyName;
-	
 	@Getter
 	private String cnpj;
 
