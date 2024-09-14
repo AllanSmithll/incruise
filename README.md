@@ -11,39 +11,39 @@ Este projeto foi realizado no intuito da obtenção da nota final da disciplina 
 
 - **Cadastro de Usuário**: Estudantes, Coordenadores e Empresas poderão se cadastrar no sistema.
 
-- **Personalização de Perfil**: Os usuários poderão visualizar e editar as suas informações contidas no perfil de usuário.
+- **Personalização de Perfil**: os usuários poderão visualizar e editar as suas informações contidas no perfil de usuário.
 
-- **Administração de Empresas e Estudantes**: Coordenadores de cursos poderão, excluir ou alterar informações das empresas e estudantes registrados no sistema.
+- **Administração de Empresas e Estudantes**: coordenadores de cursos poderão, excluir ou alterar informações das empresas e estudantes registrados no sistema.
 
-- **Gerenciamento de Ofertas e de Estágios**: Criação, edição, e listagem de ofertas e de estágio.
+- **Gerenciamento de Ofertas e de Estágios**: criação, edição, e listagem de ofertas e de estágio.
 
-- **Candidatura a Vaga Oftertada**: Estudantes podem se candidatar a ofertas de estágio.
+- **Candidatura a Vaga Oftertada**: estudantes podem se candidatar a ofertas de estágio.
 
-- **Conversão de Oferta em Estágio**: Transformação de uma oferta de estágio em um estágio ativo após a seleção de um candidato.
+- **Conversão de Oferta em Estágio**: transformação de uma oferta de estágio em um estágio ativo após a seleção de um candidato.
 
-- **Gerenciamento de Estágios**: Visualização e manutenção de estágios em andamento.
+- **Gerenciamento de Estágios**: visualização e manutenção de estágios em andamento.
 
 ## Tecnologias Utilizadas
 
-- [**Java**](https://www.java.com/pt-BR/): O cafézinho preferido de todos programadores.
+- [**Java**](https://www.java.com/pt-BR/): o cafézinho preferido de todos programadores.
 
 - [**Spring Boot**](https://spring.io/projects/spring-framework): a Primavera do Java.
 
-- [**Thymeleaf**](https://www.thymeleaf.org/): Template engine para renderização de páginas HTML no servidor.
+- [**Thymeleaf**](https://www.thymeleaf.org/): template engine para renderização de páginas HTML no servidor.
 
-- [**Lombok**:](https://projectlombok.org/) Biblioteca Java de anotações que reduzem *BoilerPlate Code*.
+- [**Lombok**:](https://projectlombok.org/) biblioteca Java de anotações que reduzem *BoilerPlate Code*.
 
-- [**Bootstrap**](https://getbootstrap.com/): Framework front-end que facilita, e muito, a vida do back-end.
+- [**Bootstrap**](https://getbootstrap.com/): framework front-end que facilita, e muito, a vida do back-end.
 
-- [**Maven**](https://maven.apache.org/): Gerenciador de dependências e automação de build.
+- [**Maven**](https://maven.apache.org/): gerenciador de dependências e automação de build.
 
 
 ## Considerações Finais
 - Além dos conceitos de PWEB, também foi possível praticar tópicos como:
   -  diagramação — Diagramas de DER, Classes; 
   -  Levantamento de requisitos - A equipe levantou os requisitos durante reuniões com o cliente (professor).
-  -  SCRUM — Divisão de tarefas, reuniões em equipes ;
-  -  GIT — Criação de Branchs, Revisão de Pull Requests.
+  -  SCRUM — Divisão de tarefas, reuniões em equipe;
+  -  GIT — Criação de branchs, revisão de Pull Requests.
 
 ## Licença
 Este projeto está licenciado sob a Licença Apache - veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
@@ -58,7 +58,7 @@ Este projeto está licenciado sob a Licença Apache - veja o arquivo [LICENSE](.
 <td align="center"><img src="https://avatars.githubusercontent.com/ImMarcio" alt="Márcio J. Silva" width="100" height="100"></td>
 </tr>
 <tr>
-<td align="center">(Não quis informar o nome)</td>
+<td align="center">Allan Alves Amâncio</td>
 <td align="center">Haniel Costa da Silva</td>
 <td align="center">Márcio José da Silva</td>
 </tr>
