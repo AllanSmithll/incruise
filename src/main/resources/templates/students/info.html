@@ -8,122 +8,126 @@
 
 <body>
 
-<header th:replace="~{/fragments/header}"></header>
-<main>
+    <header th:replace="~{/fragments/header}"></header>
+    <main>
 
-    <section class="info-section" id="first-info">
-        <img th:src="@{/imgs/default/student-boy-default.png}">
-        <h1 id="name" th:text="${#strings.capitalize(student.name)}">João Maria Lobo Alves Palhares Costa Palhinha
-            Gonçalves</h1>
-    </section>
+        <section class="info-section" id="first-info">
+            <img th:src="@{/imgs/default/student-boy-default.png}">
+            <h1 id="name" th:text="${#strings.capitalize(student.name)}">João Maria Lobo Alves Palhares Costa Palhinha
+                Gonçalves</h1>
+        </section>
 
-    <section class="info-section" id="academic-section">
-        <h1 class="section-title">Dados Acadêmicos</h1>
-        <div class="flex around">
-            <div class="topic">
-                <h1 class="topic-title">Matrícula</h1>
-                <p class="topic-content" th:text="${student.enrollment}">00001112222</p>
-            </div>
+        <section class="info-section" id="academic-section">
+            <h1 class="section-title">Dados Acadêmicos</h1>
+            <div class="flex around">
+                <div class="topic">
+                    <h1 class="topic-title">Matrícula</h1>
+                    <p class="topic-content" th:text="${student.enrollment}">00001112222</p>
+                </div>
 
-            <div class="topic">
-                <h1 class="topic-title">Curso</h1>
-                <p class="topic-content" th:text="${student.course}">Sistemas de Informação</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section" id="basic-section">
-        <h2 class="section-title">Dados Pessoais</h2>
-        <div class="flex around">
-            <div class="topic">
-                <h1 class="topic-title">Nome Completo</h1>
-                <p class="topic-content" th:text="${student.name}">João Maria Lobo Alves Palhares Costa Palhinha
-                    Gonçalves</p>
-            </div>
-            <div class="topic">
-                <h1 class="topic-title">Data de Nascimento</h1>
-                <p class="topic-content" th:if="${student.birthdate}"
-                   th:text="${#temporals.format(student.birthdate, 'dd/MM/yyyy')}">09/07/1995</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section" id="competences-section">
-        <h2 class="section-title">Competências</h2>
-
-        <div th:if="${#lists.isEmpty(student.competenceList)}">
-            <p class="no-content-msg">De alguma forma, Não há competências</p>
-        </div>
-
-        <ul id="Competence-List" class="flex around" th:each="competence : ${student.competenceList}">
-            <li th:text="${competence.description}">Isso é uma grande competência</li>
-        </ul>
-    </section>
-
-    <section class="info-section" id="contact-section">
-        <h2 class="section-title">Contato</h2>
-        <div class="flex around">
-            <div class="topic">
-                <h1 class="topic-title">Email</h1>
-                <p class="topic-content" th:text="${student.email}">palinha.joao@academico.uepa.edu.br</p>
-            </div>
-
-            <div class="topic">
-                <h1 class="topic-title">Telefone</h1>
-                <p class="topic-content" th:text="${student.phoneNumber}">+55 83 8229-2523</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="info-section" id="oportunity-section">
-        <h2 class="section-title">Candidaturas</h2>
-
-        <div th:if="${#lists.isEmpty(student.candidatureList)}">
-            <p class="no-content-msg">Não há registros de candidaturas.</p>
-        </div>
-
-        <div th:each="candidature : ${student.candidatureList}">
-            <div class="opportunity-item">
-                <h3>
-                    <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
-                       th:text="${candidature.internshipOffer.principalActivity}">
-                        Principal Atividade
-                    </a>
-                </h3>
-                <p>
-                    <strong>Empresa:</strong>
-                    <a th:href="@{/company/info/{id}(id=${candidature.internshipOffer.companyResponsible.id})}"
-                       th:text="${candidature.internshipOffer.companyResponsible.fantasyName}">
-                        Nome da Empresa
-                    </a>
-                </p>
-                <p>
-                    <strong>Data Candidatura:</strong> <span th:text="${candidature.formattedDate}">10/03/2004</span>
-                </p>
-                <p th:if="${candidature.internshipOffer.remunerationValue != 0}">
-                    <strong>Remuneração:</strong> <span
-                        th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.remunerationValue, 1, 2)}">R$ 0,00</span>
-                </p>
-                <p th:unless="${candidature.internshipOffer.remunerationValue != 0}">
-                    <strong>Estágio Voluntário</strong>
-                </p>
-                <p th:if="${candidature.internshipOffer.transportVoucher != 0}">
-                    <strong>Vale Transporte:</strong> R$ <span
-                        th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.transportVoucher, 1, 2)}">0,00</span>
-                </p>
-                <p th:if="${candidature.internshipOffer.prerequisites != 0}">
-                    <strong>Pré-requisitos:</strong> <span
-                        th:text="${candidature.internshipOffer.prerequisites}">Nenhum</span>
-                </p>
-                <div class="button-box">
-                    <button class="btn btn-danger">Cancelar Candidatura</button>
+                <div class="topic">
+                    <h1 class="topic-title">Curso</h1>
+                    <p class="topic-content" th:text="${student.course}">Sistemas de Informação</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div th:replace="~{/fragments/scripts}"></div>
-</main>
+        <section class="info-section" id="basic-section">
+            <h2 class="section-title">Dados Pessoais</h2>
+            <div class="flex around">
+                <div class="topic">
+                    <h1 class="topic-title">Nome Completo</h1>
+                    <p class="topic-content" th:text="${student.name}">João Maria Lobo Alves Palhares Costa Palhinha
+                        Gonçalves</p>
+                </div>
+                <div class="topic">
+                    <h1 class="topic-title">Data de Nascimento</h1>
+                    <p class="topic-content" th:if="${student.birthdate}"
+                        th:text="${#temporals.format(student.birthdate, 'dd/MM/yyyy')}">09/07/1995</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section" id="competences-section">
+            <h2 class="section-title">Competências</h2>
+
+            <div th:if="${#lists.isEmpty(student.competenceList)}">
+                <p class="no-content-msg">De alguma forma, Não há competências</p>
+            </div>
+
+            <div id="competence-List" class="flex around">
+                <p th:each="competence : ${student.competenceList}" th:text="${competence.description}">
+                    Isso é uma grande competência
+                </p>
+            </div>
+        </section>
+
+        <section class="info-section" id="contact-section">
+            <h2 class="section-title">Contato</h2>
+            <div class="flex around">
+                <div class="topic">
+                    <h1 class="topic-title">Email</h1>
+                    <p class="topic-content" th:text="${student.email}">palinha.joao@academico.uepa.edu.br</p>
+                </div>
+
+                <div class="topic">
+                    <h1 class="topic-title">Telefone</h1>
+                    <p class="topic-content" th:text="${student.phoneNumber}">+55 83 8229-2523</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section" id="oportunity-section">
+            <h2 class="section-title">Candidaturas</h2>
+
+            <div th:if="${#lists.isEmpty(student.candidatureList)}">
+                <p class="no-content-msg">Não há registros de candidaturas.</p>
+            </div>
+
+            <div th:each="candidature : ${student.candidatureList}">
+                <div class="opportunity-item">
+                    <h3>
+                        <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
+                            th:text="${candidature.internshipOffer.principalActivity}">
+                            Principal Atividade
+                        </a>
+                    </h3>
+                    <p>
+                        <strong>Empresa:</strong>
+                        <a th:href="@{/company/info/{id}(id=${candidature.internshipOffer.companyResponsible.id})}"
+                            th:text="${candidature.internshipOffer.companyResponsible.fantasyName}">
+                            Nome da Empresa
+                        </a>
+                    </p>
+                    <p>
+                        <strong>Data Candidatura:</strong> <span
+                            th:text="${candidature.formattedDate}">10/03/2004</span>
+                    </p>
+                    <p th:if="${candidature.internshipOffer.remunerationValue != 0}">
+                        <strong>Remuneração:</strong> <span
+                            th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.remunerationValue, 1, 2)}">R$
+                            0,00</span>
+                    </p>
+                    <p th:unless="${candidature.internshipOffer.remunerationValue != 0}">
+                        <strong>Estágio Voluntário</strong>
+                    </p>
+                    <p th:if="${candidature.internshipOffer.transportVoucher != 0}">
+                        <strong>Vale Transporte:</strong> R$ <span
+                            th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.transportVoucher, 1, 2)}">0,00</span>
+                    </p>
+                    <p th:if="${candidature.internshipOffer.prerequisites != 0}">
+                        <strong>Pré-requisitos:</strong> <span
+                            th:text="${candidature.internshipOffer.prerequisites}">Nenhum</span>
+                    </p>
+                    <div class="button-box">
+                        <button class="btn btn-danger">Cancelar Candidatura</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div th:replace="~{/fragments/scripts}"></div>
+    </main>
 </body>
 
 </html>
