@@ -94,22 +94,6 @@
     </div>
 
     <div th:replace="~{/fragments/scripts}"></div>
-
-    <script>
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var passwordConfirm = document.getElementById("password-confirm").value;
-            var errorElement = document.getElementById("password-error");
-
-            if (password !== passwordConfirm) {
-                errorElement.textContent = "As senhas não correspondem.";
-                return false;
-            }
-
-            errorElement.textContent = "";
-            return true;
-        }
-    </script>
 </main>
 </body>
 </html>

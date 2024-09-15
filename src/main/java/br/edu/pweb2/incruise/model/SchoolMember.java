@@ -1,24 +1,26 @@
 package br.edu.pweb2.incruise.model;
 
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public abstract class SchoolMember extends User {
+public abstract class SchoolMember {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "username", nullable = false, unique = true)
+	private User user;
+
+	@Column(name = "enrollment", unique = true)
 	private String enrollment;
 
+	@Column(name = "name")
 	private String name;
 
 	private String course;
-
-	public SchoolMember(Long id, String username, String email, String password, String enrollment, String name, String course) {
-		super(id, username, email, password);
-		this.enrollment = enrollment;
-		this.name = name;
-		this.course = course;
-	}
 }

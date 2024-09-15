@@ -6,32 +6,6 @@
     <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar-se')}">
     <link rel="stylesheet" href="/styles/student/form-student.css">
     <title>Cadastrar-se</title>
-    <script>
-        function validatePasswords() {
-            const password = document.getElementById('input-password').value;
-            const confirmPassword = document.getElementById('input-password-confirm').value;
-            const errorMessage = document.getElementById('password-error');
-
-            if (password !== confirmPassword) {
-                errorMessage.style.display = 'block';
-                return false;
-            } else {
-                errorMessage.style.display = 'none';
-                return true;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form');
-            form.addEventListener('submit', (event) => {
-                if (!validatePasswords()) {
-                    event.preventDefault();
-                }
-            });
-
-            document.getElementById('input-password-confirm').addEventListener('input', validatePasswords);
-        });
-    </script>
 </head>
 <body class="main-screen">
 <header th:replace="~{/fragments/header}"></header>
