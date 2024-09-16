@@ -1,4 +1,4 @@
-truncate tb_company cascade;
+/* truncate tb_company cascade;
 truncate tb_competence cascade;
 truncate tb_student cascade;
 truncate tb_student_competence_skill cascade;
@@ -6,7 +6,7 @@ truncate tb_internship_offer cascade;
 truncate tb_internship_offer_necessary_skill cascade;
 truncate tb_internship_offer_desirable_skill cascade;
 truncate tb_Candidature cascade;
-
+ */
 /* 
 Company
     String fantasyName;
@@ -231,7 +231,7 @@ tb_internship_offer competence (0-N ..0-N)
     Long competence_id
 */
 INSERT INTO tb_internship_offer_necessary_skill (internship_offer_id, competence_id) VALUES
-    (1, 1),
+        (1, 1),
         (1, 2),
         (1, 5),
         (1, 8),

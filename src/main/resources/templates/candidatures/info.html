@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Incluindo o fragmento de cabeçalho -->
+    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidture.student.name})}">
+</head>
+
+<!-- Esta vai ser a seção mais divertida que irei criar :D-->
+<body>
+    <main>
+
+        <section class="info-section" id="first-info">
+            <img th:src="@{/imgs/default/enterprise-default.png}" alt="Imagem do Estudante">
+            <h1>Candidatura de <span id="name" th:text="${candidture.student.name}">Nome do estudante></span> </h1>
+        
+        </section>
+
+    </main>
+</body>
+</html>
