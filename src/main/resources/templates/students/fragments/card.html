@@ -1,0 +1,39 @@
+<div class="individual-student-card inter-font" th:fragment="student-card(student)">
+    <h3 th:text="${student.name}"></h3>
+    <div class="d-flex flex-row gap-2">
+        <div class="d-flex flex-column">
+            <smal>ID:</smal>
+            <p th:text="${student.id}"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <smal>Matrícula:</smal>
+            <p th:text="${student.enrollment}"></p>
+        </div>
+    </div>
+    <div class="d-flex flex-row gap-2">
+        <div class="d-flex flex-column">
+            <smal>Curso:</smal>
+            <p th:text="${student.course}"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <smal>Email:</smal>
+            <p th:text="${student.email}"></p>
+        </div>
+    </div>
+    <div class="d-flex flex-row gap-2">
+        <div class="d-flex flex-column">
+            <smal>Telefone:</smal>
+            <p th:text="${student.phoneNumber}"></p>
+        </div>
+    </div>
+    <div class="action-box d-flex gap-2 justify-content-center mt-3">
+        <a th:href="@{info/{id}(id=${student.id})}" class="btn-action btn-view">
+            Visualizar
+        </a>
+        <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
+            <input type="hidden" name="_method" value="DELETE"/>
+            <input class="btn-action btn-delete" type="submit" value="Remover"/>
+        </form>
+    </div>
+</div>
+</div>

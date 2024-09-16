@@ -84,7 +84,7 @@
                 <p class="no-content-msg">Não há registros de candidaturas.</p>
             </div>
 
-            <div th:each="candidature : ${student.candidatureList}">
+            <th:block th:each="candidature : ${student.candidatureList}">
                 <div class="opportunity-item">
                     <h3>
                         <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
@@ -123,7 +123,7 @@
                         <button class="btn btn-danger">Cancelar Candidatura</button>
                     </div>
                 </div>
-            </div>
+            </th:block>
         </section>
 
         <div th:replace="~{/fragments/scripts}"></div>
