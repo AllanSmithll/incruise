@@ -2,6 +2,8 @@
 <html lang="pt_BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta th:insert="~{/fragments/custom-headfiles :: form-headfiles(title='Login')}">
     <title>Login</title>
 </head>
@@ -18,25 +20,21 @@
                         Login e/ou senha inválidos!
                     </div>
 
-                    <!-- Campo de Login -->
                     <input type="text" id="username" class="input-form w-100" name="username" placeholder="Login *"
                            required minlength="5" maxlength="20" autofocus
                            title="Por favor, insira um nome de usuário válido.">
 
-                    <!-- Campo de Senha -->
                     <input type="password" id="password" class="input-form w-100" name="password" placeholder="Senha *"
                            required minlength="8" maxlength="20"
                            title="A senha deve ter pelo menos 8 caracteres.">
 
-                    <!-- Checkbox 'Lembrar-me' -->
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="lembrar"> Lembrar-me
-                        </label>
-                    </div>
+<!--                    <div class="checkbox mb-3">-->
+<!--                        <label>-->
+<!--                            <input type="checkbox" value="lembrar"> Lembrar-me-->
+<!--                        </label>-->
+<!--                    </div>-->
                 </fieldset>
 
-                <!-- Botão de Login -->
                 <button class="submit-input btn btn-primary" type="submit">Entrar</button>
             </form>
         </div>

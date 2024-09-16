@@ -26,14 +26,14 @@ public class IncruiseSecurityConfig {
     }
 
     @Bean
-    protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
+    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/imagens/**").permitAll()
+                        .requestMatchers("/styles/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/auth/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/", true)
                         .permitAll())
                 .logout((logout) -> logout.logoutUrl("/auth/logout"));
         return http.build();
@@ -45,14 +45,25 @@ public class IncruiseSecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new JdbcUserDetailsManager(dataSource);
+    public UserDetailsService userDetailsService(DataSource dataSource) {
+        JdbcUserDetailsManager manager = new JdbcUserDetailsManager();
+        manager.setDataSource(dataSource);
+        manager.setUsersByUsernameQuery(
+                "SELECT username, password, enabled FROM tb_user WHERE username = ?"
+        );
+
+        manager.setAuthoritiesByUsernameQuery(
+                "SELECT u.username, r.name " +
+                        "FROM tb_user u INNER JOIN tb_role r ON u.role_id = r.id " +
+                        "WHERE u.username = ?"
+        );
+        return manager;
     }
 
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService());
+        provider.setUserDetailsService(userDetailsService(dataSource));
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
