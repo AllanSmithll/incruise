@@ -87,40 +87,10 @@
                 <p class="no-content-msg">Não há oportunidades disponíveis.</p>
             </div>
 
+            <th:block th:each="offer : ${company.internshipOfferList}"  
+            th:insert="~{/offers/fragments/card(offer)}">
 
-            <a th:each="opportunity : ${company.internshipOfferList}" class="link-card"
-                th:href="@{/internshipOffer/info/{id}(id=${opportunity.id})}">
-                <div class="opportunity-item">
-                    <h3 th:text="${opportunity.principalActivity}">Principal Atividade</h3>
-                    
-                    <!-- Remuneração -->
-                    <p th:if="${opportunity.remunerationValue != 0}">
-                        <strong>Remuneração:</strong> <span th:text="${opportunity.remunerationValue}">R$
-                            0,00</span>
-                    </p>
-                    <!-- voluntário -->
-                    <p th:unless="${opportunity.remunerationValue != 0}">
-                        <strong>Estágio Voluntário</strong>
-                    </p>
-
-                    <!-- Vale Transporte -->
-                    <p th:if="${opportunity.transportVoucher != 0}">
-                        <strong>Vale Transporte:</strong>R$ <span
-                            th:text="${opportunity.transportVoucher}">0,00</span>
-                    </p>
-
-                    <!-- Pré-requisitos -->
-                    <p>
-                        <strong>Pré-requisitos:</strong>
-                        <span th:if="${!#strings.isEmpty(opportunity.prerequisites)}"
-                              th:text="${opportunity.prerequisites}"></span>
-                        <span th:if="${#strings.isEmpty(opportunity.prerequisites)}">Nenhum</span>
-                    </p>                    
-                </div>
-
-
-            </a>
-
+            </th:block>
         </section>
 
         <!-- Inclusão de scripts -->
