@@ -16,12 +16,12 @@
             <form th:action="@{/company/save}" method="post" th:object="${company}" onsubmit="return validateForm()">
                 <fieldset class="form-container">
                     <input type="text" id="username" class="input-form w-50" placeholder="Nome de usuário *"
-                           th:field="*{username}" required minlength="5" maxlength="20"
+                           th:field="*{user.username}" required minlength="5" maxlength="20"
                            title="O nome de usuário deve ter entre 5 e 20 caracteres.">
 
                     <div class="d-flex flex-row gap-3">
                         <input type="password" id="password" class="w-50 input-form" placeholder="Senha *"
-                               th:field="*{password}" required minlength="8" maxlength="20"
+                               th:field="*{user.password}" required minlength="8" maxlength="20"
                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                title="A senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número.">
 
@@ -58,7 +58,7 @@
                         <legend class="form-container-description">Contato</legend>
                         <div class="d-flex flex-row gap-3">
                             <input type="email" id="emailInput" class="input-form w-50" placeholder="Email"
-                                   th:field="*{email}" required
+                                   th:field="*{user.email}" required
                                    title="Por favor, insira um endereço de email válido.">
 
                             <input type="tel" id="phoneNumberInput" class="input-form w-50" placeholder="Telefone *"
@@ -94,22 +94,6 @@
     </div>
 
     <div th:replace="~{/fragments/scripts}"></div>
-
-    <script>
-        function validateForm() {
-            var password = document.getElementById("password").value;
-            var passwordConfirm = document.getElementById("password-confirm").value;
-            var errorElement = document.getElementById("password-error");
-
-            if (password !== passwordConfirm) {
-                errorElement.textContent = "As senhas não correspondem.";
-                return false;
-            }
-
-            errorElement.textContent = "";
-            return true;
-        }
-    </script>
 </main>
 </body>
 </html>

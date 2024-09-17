@@ -6,32 +6,6 @@
     <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar-se')}">
     <link rel="stylesheet" href="/styles/student/form-student.css">
     <title>Cadastrar-se</title>
-    <script>
-        function validatePasswords() {
-            const password = document.getElementById('input-password').value;
-            const confirmPassword = document.getElementById('input-password-confirm').value;
-            const errorMessage = document.getElementById('password-error');
-
-            if (password !== confirmPassword) {
-                errorMessage.style.display = 'block';
-                return false;
-            } else {
-                errorMessage.style.display = 'none';
-                return true;
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.querySelector('form');
-            form.addEventListener('submit', (event) => {
-                if (!validatePasswords()) {
-                    event.preventDefault();
-                }
-            });
-
-            document.getElementById('input-password-confirm').addEventListener('input', validatePasswords);
-        });
-    </script>
 </head>
 <body class="main-screen">
 <header th:replace="~{/fragments/header}"></header>
@@ -64,15 +38,15 @@
                        title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
 
                 <label class="label-form" for="input-username">Nome de Usuário *</label>
-                <input id="input-username" class="input-form" placeholder="Nome de usuário" type="text" th:field="*{username}" required minlength="5" maxlength="20"
+                <input id="input-username" class="input-form" placeholder="Nome de usuário" type="text" th:field="*{user.username}" required minlength="5" maxlength="20"
                        title="Nome de usuário deve ter entre 5 e 20 caracteres." />
 
                 <label class="label-form" for="input-email">Email *</label>
-                <input id="input-email" class="input-form" placeholder="Seu email" type="email" th:field="*{email}" required
+                <input id="input-email" class="input-form" placeholder="Seu email" type="email" th:field="*{user.email}" required
                        title="Por favor, insira um endereço de email válido." />
 
                 <label class="label-form" for="input-password">Senha *</label>
-                <input id="input-password" class="input-form" placeholder="Senha" type="password" th:field="*{password}" required minlength="8"
+                <input id="input-password" class="input-form" placeholder="Senha" type="password" th:field="*{user.password}" required minlength="8"
                        title="Senha deve ter pelo menos 8 caracteres." />
 
                 <label class="label-form" for="input-password-confirm">Confirme a Senha *</label>

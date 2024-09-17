@@ -16,10 +16,21 @@ import jakarta.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Company extends User {
+public class Company {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@OneToOne
+	@JoinColumn(name = "username", insertable = false, updatable = false)
+	private User user;
+
 	@Getter
+	@Column(unique = true)
 	private String fantasyName;
+
 	@Getter
+	@Column(unique = true)
 	private String cnpj;
 
 	private String phoneNumber;
@@ -36,18 +47,6 @@ public class Company extends User {
 	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
 
 	//private Document<PDF> comproEnder; A fazer
-
-	public Company(Long id, String username, String email, String password, String fantasyName, String cnpj,
-			String phoneNumber, String personContact, String address, String principalActivity, String urlPage) {
-		super(id, username, email, password);
-		this.fantasyName = fantasyName;
-		this.cnpj = cnpj;
-		this.phoneNumber = phoneNumber;
-		this.personContact = personContact;
-		this.address = address;
-		this.principalActivity = principalActivity;
-		this.urlPage = urlPage;
-	}
 
 	@Override
 	public String toString() {

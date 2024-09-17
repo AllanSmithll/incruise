@@ -13,9 +13,10 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student extends SchoolMember {
+
     private LocalDate birthdate;
+
     private String phoneNumber;
-    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "tb_student_competence_skill",
@@ -27,12 +28,6 @@ public class Student extends SchoolMember {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true,
             fetch = FetchType.EAGER)
     private final List<Candidature> candidatureList = new ArrayList<>();
-
-    public Student(Long id, String username, String email, String password, String phoneNumber, String enrollment, String name, LocalDate birthdate, String course) {
-        super(id, username, email, password, enrollment, name, course);
-        this.phoneNumber = phoneNumber;
-        this.birthdate = birthdate;
-    }
 
     public void addCandidature(Candidature candidature) {
         candidatureList.add(candidature);
