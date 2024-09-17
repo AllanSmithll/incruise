@@ -29,6 +29,8 @@ public class IncruiseSecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
+                                "/internshipOffer/info/**","student/register","company/register").permitAll()
                         .requestMatchers("/styles/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
