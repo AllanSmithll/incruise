@@ -85,7 +85,7 @@
             <tr>
                 <td><a th:text="${c.student.name}" th:href="@{/student/info/{id}(id=${c.student.id})}">Nome do estudante</a></td>
                 <td th:text="${c.student.enrollment}">Matrícula do Estudante</td>
-                <td th:text="${c.student.email}">Email do Estudante</td>
+                <td th:text="${c.student.user.email}">Email do Estudante</td>
                 <td th:text="${c.student.course}">Curso do Estudante</td>
                 <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
                 <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
