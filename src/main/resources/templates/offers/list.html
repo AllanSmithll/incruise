@@ -12,12 +12,14 @@
     <main>
 
         <div class="main-screen">
-            <div class="card-component">
+            <div class="card-list-component">
                 <h1>Ofertas de Estágio</h1>
+                <div class="buttons-actions">
+                    <button class="button-add btn btn-primary " th:href="@{/internshipOffer/register}">
+                        Nova Oferta
+                    </button>
 
-                <a class="button-add btn btn-primary " th:href="@{/internshipOffer/register}">
-                    Nova Oferta
-                </a>
+                </div>
                 
                 <th:block th:replace="~{/offers/fragments/filter}"></th:block>
 

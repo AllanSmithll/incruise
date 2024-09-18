@@ -12,12 +12,15 @@
     <header th:replace="~{/fragments/header}"> </header>
     <main>
 
-        <div class="card-component">
-            <h1> Todas as Empresas Cadastradas</h1>
+        <div class="card-list-component">
+            <h1> Empresas Cadastradas</h1>
+            <div class="buttons-actions">
+                <a class="button-add btn btn-primary " th:href="@{/company/register}">
+                    Nova Empresa
+                </a>
 
-            <a class="button-add btn btn-primary " th:href="@{/company/register}">
-                Nova Empresa
-            </a>
+            </div>
+
             <th:block th:replace="~{/companies/fragments/table(companies= ${companies})}">
             </th:block>
 

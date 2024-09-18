@@ -69,30 +69,11 @@
         <div th:if="${#lists.isEmpty(offer.candidatureList)}">
             <p class="no-content-msg">Sem Candidaturas Registradas.</p>
         </div>
+        <button> toggle table</button>
+        <th:block th:if="${!#lists.isEmpty(offer.candidatureList)}" 
+        th:insert="~{/candidatures/fragments/table(candidatures=offer.candidatureList)}">
+        </th:block>
 
-        <table th:if="${!#lists.isEmpty(offer.candidatureList)}" class="table-candidatures">
-            <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Matrícula</th>
-                <th>Email</th>
-                <th>Curso</th>
-                <th>Telefone</th>
-                <th>Data</th>
-            </tr>
-            </thead>
-            <tbody th:each="c : ${offer.candidatureList}">
-            <tr>
-                <td><a th:text="${c.student.name}" th:href="@{/student/info/{id}(id=${c.student.id})}">Nome do estudante</a></td>
-                <td th:text="${c.student.enrollment}">Matrícula do Estudante</td>
-                <td th:text="${c.student.email}">Email do Estudante</td>
-                <td th:text="${c.student.course}">Curso do Estudante</td>
-                <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
-                <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
-
-            </tr>
-            </tbody>
-        </table>
     </div>
 
     <div class="section company-info">
