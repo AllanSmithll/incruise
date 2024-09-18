@@ -33,16 +33,16 @@
                 <p th:classappend="${offer.status.ABERTA} ? 'text-success' : 'text-danger'" th:text="${offer.status.ABERTA} ? 'Aberta' : 'Fechada'"></p>
             </td>
             <td>
-                <div class="action-box">
-                    <a th:href="@{/offer/info/{id}(id=${offer.id})}" class="btn-action btn-view">
+                <div class="buttons-actions">
+                    <a th:href="@{/offer/info/{id}(id=${offer.id})}" class="button-action btn-view">
                         <i class="bi bi-binoculars-fill"></i> Visualizar
                     </a>
                     <form th:action="@{/apply/{id}(id=${offer.id})}" method="get">
-                        <input class="btn-action btn-apply" type="submit" value="Candidatar-se" />
+                        <input class="button-action btn-apply" type="submit" value="Candidatar-se" />
                     </form>
                     <form th:action="@{/cancel/{id}(id=${offer.id})}" method="post">
                         <input type="hidden" name="_method" value="DELETE" />
-                        <button class="btn-action btn-delete" type="submit">
+                        <button class="button-action btn-delete" type="submit">
                             <i class="bi bi-trash-fill"></i> Cancelar
                         </button>
                     </form>

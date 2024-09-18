@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Registre-se</title>
     <link rel="stylesheet" href="/styles/company/form-company.css">
 </head>
+
 <body class="main-screen">
 <header th:replace="~{/fragments/header}"></header>
 <main>
@@ -25,33 +27,33 @@
                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                title="A senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número.">
 
-                        <input type="password" id="password-confirm" class="input-form w-50 mx-2"
-                               placeholder="Confirme sua senha" required minlength="8" maxlength="20"
-                               title="A confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida.">
-                    </div>
-                    <div id="password-error" class="error-message"></div>
-                </fieldset>
+                            <input type="password" id="password-confirm" class="input-form w-50 mx-2"
+                                placeholder="Confirme sua senha" required minlength="8" maxlength="20"
+                                title="A confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida.">
+                        </div>
+                        <div id="password-error" class="error-message"></div>
+                    </fieldset>
 
-                <fieldset class="form-container">
-                    <legend class="form-container-description">Informações Básicas</legend>
-                    <div class="d-flex flex-row gap-3">
-                        <input type="text" id="fantasyNameInput" class="input-form w-50" placeholder="Nome fantasia *"
-                               th:field="*{fantasyName}" required maxlength="100"
-                               title="O nome fantasia pode ter no máximo 100 caracteres.">
+                    <fieldset class="form-container">
+                        <legend class="form-container-description">Informações Básicas</legend>
+                        <div class="d-flex flex-row gap-3">
+                            <input type="text" id="fantasyNameInput" class="input-form w-50"
+                                placeholder="Nome fantasia *" th:field="*{fantasyName}" required maxlength="100"
+                                title="O nome fantasia pode ter no máximo 100 caracteres.">
 
-                        <input type="text" id="cnpjInput" class="input-form w-50" placeholder="CNPJ *"
-                               th:field="*{cnpj}" required pattern="\d{14}" inputmode="numeric"
-                               title="Por favor, insira um CNPJ válido com 14 dígitos.">
-                    </div>
+                            <input type="text" id="cnpjInput" class="input-form w-50" placeholder="CNPJ *"
+                                th:field="*{cnpj}" required pattern="\d{14}" inputmode="numeric"
+                                title="Por favor, insira um CNPJ válido com 14 dígitos.">
+                        </div>
 
-                    <input type="text" id="principalActivityInput" class="input-form w-100"
-                           placeholder="Principal atividade *" th:field="*{principalActivity}" required maxlength="150"
-                           title="A principal atividade pode ter no máximo 150 caracteres.">
+                        <input type="text" id="principalActivityInput" class="input-form w-100"
+                            placeholder="Principal atividade *" th:field="*{principalActivity}" required maxlength="150"
+                            title="A principal atividade pode ter no máximo 150 caracteres.">
 
-                    <input type="url" id="urlPageInput" class="input-form w-100" placeholder="Site da empresa *"
-                           th:field="*{urlPage}" required pattern="https?://.+"
-                           title="Por favor, insira uma URL válida (ex: http://www.exemplo.com).">
-                </fieldset>
+                        <input type="url" id="urlPageInput" class="input-form w-100" placeholder="Site da empresa *"
+                            th:field="*{urlPage}" required pattern="https?://.+"
+                            title="Por favor, insira uma URL válida (ex: http://www.exemplo.com).">
+                    </fieldset>
 
                 <fieldset class="form-container">
                     <div class="d-flex flex-column">
@@ -61,39 +63,43 @@
                                    th:field="*{user.email}" required
                                    title="Por favor, insira um endereço de email válido.">
 
-                            <input type="tel" id="phoneNumberInput" class="input-form w-50" placeholder="Telefone *"
-                                   th:field="*{phoneNumber}" required pattern="\d{10,11}"
-                                   title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
+                                <input type="tel" id="phoneNumberInput" class="input-form w-50" placeholder="Telefone *"
+                                    th:field="*{phoneNumber}" required pattern="\d{10,11}"
+                                    title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
+                            </div>
+                            <input type="text" id="personContactInput" class="input-form w-100"
+                                placeholder="Nome do responsável" th:field="*{personContact}" required maxlength="100"
+                                title="O nome do responsável pode ter no máximo 100 caracteres.">
                         </div>
-                        <input type="text" id="personContactInput" class="input-form w-100"
-                               placeholder="Nome do responsável" th:field="*{personContact}" required maxlength="100"
-                               title="O nome do responsável pode ter no máximo 100 caracteres.">
-                    </div>
-                </fieldset>
+                    </fieldset>
 
-                <fieldset class="form-container">
-                    <legend class="form-container-description">Endereço</legend>
-                    <div class="d-flex flex-column justify-content-center items-center gap-3">
-                        <input style="font-size: 16px" type="text" id="addressInput" class="input-form w-100"
-                               placeholder="Endereço *" th:field="*{address}" required maxlength="200"
-                               title="O endereço pode ter no máximo 200 caracteres.">
+                    <fieldset class="form-container">
+                        <legend class="form-container-description">Endereço</legend>
+                        <div class="d-flex flex-column justify-content-center items-center gap-3">
+                            <input style="font-size: 16px" type="text" id="addressInput" class="input-form w-100"
+                                placeholder="Endereço *" th:field="*{address}" required maxlength="200"
+                                title="O endereço pode ter no máximo 200 caracteres.">
 
-                        <div class="file-upload">
-                            <label for="addressVerify">Adicionar Comprovante</label>
-                            <input type="file" id="addressVerify" class="file-input" required aria-required="true">
-                            <div id="file-error" class="error-message" style="display: none">Por favor, adicione um comprovante de
-                                residência.
+                            <div class="file-upload">
+                                <label for="addressVerify">Adicionar Comprovante</label>
+                                <input type="file" id="addressVerify" class="file-input" required aria-required="true">
+                                <div id="file-error" class="error-message" style="display: none">Por favor, adicione um
+                                    comprovante de
+                                    residência.
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </fieldset>
+                    </fieldset>
+                    <div class="buttons-actions">
+                        <button class="submit-input btn btn-primary" type="submit">Salvar</button>
 
-                <button class="submit-input btn btn-primary" type="submit">Salvar</button>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
     <div th:replace="~{/fragments/scripts}"></div>
 </main>
 </body>
+
 </html>

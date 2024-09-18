@@ -1,13 +1,19 @@
-<div class="individual-company-card inter-font " th:fragment='companyCard(company)'>
+<div class="individual-card inter-font " th:fragment='companyCard(company)'>
     <a th:href="'https://' +${company.urlPage}" target="_blank">
         <h3 th:text="${company.fantasyName}"></h3>
     </a>
     
     <div class="d-flex flex-row gap-2">
-        <smal> ID </smal>
-        <p>[[${company.id}]]</p>
-        <smal>CNPJ</smal>
-        <p th:text="${company.cnpj}"></p>
+        <div class="d-flex flex-column">
+            <smal> ID </smal>
+            <p>[[${company.id}]]</p>
+
+        </div>
+        <div class="d-flex flex-column">
+            <smal>CNPJ</smal>
+            <p th:text="${company.cnpj}"></p>
+
+        </div>
     </div>
 
     <smal>Principal Atividade</smal>
@@ -32,12 +38,14 @@
     </div>
 
     <div>
-        <div class="action-box">
-            <a th:href="@{/company/info/{id}(id=${company.id})}" class="btn-action btn-view">
-                <i class="bi bi-binoculars-fill"></i></a>
+        <div class="buttons-actions">
+            <a th:href="@{/company/info/{id}(id=${company.id})}" class="button-action btn-view">
+                
+                <i class="bi bi-binoculars-fill"></i>
+            </a>
             <form th:action="@{/company/delete/{id}(id=${company.id})}" method="post">
                 <input type="hidden" name="_method" value="DELETE" />
-                <button class="btn-action btn-delete" type="submit" value="">
+                <button class="button-action btn-delete" type="submit" value="">
                     <i class="bi bi-trash-fill"></i> </button>
             </form>
         </div>

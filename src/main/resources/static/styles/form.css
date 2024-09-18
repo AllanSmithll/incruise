@@ -47,7 +47,6 @@
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    /*color: white; !* Cor do texto *!*/
     height: auto;
 }
 
@@ -117,47 +116,6 @@ textarea {
     border: 1px solid #ced4da;
     color: #495057; /* Cor do texto dentro dos campos */
 }
-
-input[type="text"],
-input[type="number"],
-input[type="date"],
-textarea:active {
-
-}
-
-/* Estilo dos botões de envio */
-button[type="submit"] {
-    width: 100%;
-    background-color: #007bff; /* Cor de fundo do botão */
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-/* Estilo do botão ao passar o mouse */
-button[type="submit"]:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-}
-
-.title-page {
-    display: flex;
-    width: 100%;
-    justify-items: center;
-    justify-content: center ;
-    flex-direction: row;
-}
-
-.buttons-actions {
-    display: flex;
-    width: 100%;
-    justify-items: center;
-    justify-content: center ;
-    flex-direction: row;
-}
-
 .custom-select {
     appearance: none; /* Remove a aparência padrão do navegador */
     -webkit-appearance: none; /* Remove a aparência no Safari */

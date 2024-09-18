@@ -43,7 +43,7 @@ body {
 .topic {
   margin: 1rem 0;
   text-align: center;
-  width: 50%;
+  width: 100%;
   align-self: center;
 }
 
@@ -108,7 +108,7 @@ body {
 }
 
 /* Estilo para cartões de oportunidade */
-#oportunity-section .opportunity-item {
+#list-section .list-item {
   display: inline-block;
   cursor: pointer;
   width: calc(30% - 2rem);
@@ -121,17 +121,17 @@ body {
   transition: background-color 0.3s ease;
 }
 
-#oportunity-section .opportunity-item:hover {
+#list-section .list-item:hover {
   background-color: var(--opportunity-card-background-hover);
 }
 
-#oportunity-section h3 {
+#list-section h3 {
   font-size: 1.2rem;
   color: #333;
   margin-bottom: 0.5rem;
 }
 
-#oportunity-section p {
+#list-section p {
   font-size: 1rem;
   color: #555;
   margin: 0.5rem 0;
@@ -149,7 +149,7 @@ body {
     margin-bottom: 1rem;
   }
 
-  .opportunity-item {
+  .list-item {
     width: 100%;
   }
 }

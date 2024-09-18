@@ -8,24 +8,25 @@
 
 <body>
     <header th:replace="~{/fragments/header}"></header>
-    
+
     <main class="main-screen">
 
-        <div class="card-component">
+        <div class="card-list-component">
             <h1>Todos os Alunos Cadastrados</h1>
-            <a class="button-add btn btn-primary " th:href="@{/student/register}">
-                Novo Aluno
-            </a>
+            <div class="buttons-actions">
+                <button class="button-add btn btn-primary " th:href="@{/student/register}">
+                    Novo Aluno
+                </button>   
+            </div>
             <div th:replace="~{/students/fragments/table}">
 
             </div>
             <div class="father-card">
-                <th:block th:each="student :${students}"
-                 th:insert="~{/students/fragments/card(student= ${student})}">
+                <th:block th:each="student :${students}" th:insert="~{/students/fragments/card(student= ${student})}">
 
                 </th:block>
-                </div>
             </div>
+        </div>
         </div>
         <div th:replace="~{/fragments/scripts}"></div>
 

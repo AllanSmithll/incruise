@@ -1,5 +1,5 @@
 /* Estilo do container da listagem */
-.card-component {
+.card-list-component {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -10,15 +10,19 @@
     padding: 20px;
 }
 
-.card-component h1 {
+.card-list-component h1 {
+    width: 100%;
     color: #333;
-    margin-bottom: 20px;
+    margin: 20px 0;
+    text-align: center;
+    
+
 }
 
 /* Estilo comum dos cards */
-.individual-company-card,
-.individual-offer-card,
-.individual-student-card {
+.individual-card,
+.individual-card,
+.individual-card {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -29,22 +33,22 @@
 }
 
 /* Ajuste de larguras específicas */
-.individual-company-card,
-.individual-offer-card 
-.individual-student-card {
+.individual-card,
+.individual-card 
+.individual-card {
 
     width: 500px;
 }
 
 /* Estilo de títulos nos cards */
-.individual-company-card h3,
-.individual-offer-card h3,
-.individual-student-card h3 {
+.individual-card h3,
+.individual-card h3,
+.individual-card h3 {
     margin: 0 0 12px;
 }
 
-.individual-company-card,
-.individual-student-card {
+.individual-card,
+.individual-card {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,49 +60,35 @@
 }
 
 /* Estilo de textos pequenos */
-.individual-company-card smal,
-.individual-offer-card .d-flex smal,
-.individual-student-card .d-flex smal {
+.individual-card smal,
+.individual-card .d-flex smal,
+.individual-card .d-flex smal {
     height: 1.2rem;
     font-weight: bold;
-    margin: 0 20px;
-    color: #6cb0fe;
+    margin: 5   px 0;
+    color: #1e446f;
 }
 
 /* Estilo para d-flex dentro dos cards */
-.individual-offer-card .d-flex,
-.individual-student-card .d-flex {
+.individual-card .d-flex,
+.individual-card .d-flex {
     margin-bottom: 12px;
 }
 
-.individual-offer-card .d-flex div,
-.individual-student-card .d-flex div {
+.individual-card .d-flex div,
+.individual-card .d-flex div {
     flex: 1;
 }
 
-.individual-offer-card .d-flex p,
-.individual-student-card .d-flex p {
+.individual-card .d-flex p,
+.individual-card .d-flex p {
     margin: 0;
 }
 
-/* Estilo dos botões */
-.btn-action {
-    display: inline-flex;
-    width: 100%;
-    align-items: center;
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    text-decoration: none;
-    color: #fff;
-    border: none;
-    transition: background-color 0.3s;
-}
 
 .btn-view {
     background-color: #3e3e68;
     
-
 }
 
 .btn-apply {
@@ -125,18 +115,5 @@
 .btn-apply:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}
-
-.btn-action i {
-    margin-right: 4px;
-}
-
-/* Estilo do container de ações */
-.action-box {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
-    gap: 10px;
-    width: 100%;
 }
 
