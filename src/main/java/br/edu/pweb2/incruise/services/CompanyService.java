@@ -26,7 +26,7 @@ public class CompanyService {
         return companyRepositoryJpa.findAll();
     }
 
-    public void add(Company company) {
+    public void save(Company company) {
         companyRepositoryJpa.save(company);
     }
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="/styles/student/form-student.css">
     <title>Cadastrar-se</title>
 </head>
+
 <body class="main-screen">
 <header th:replace="~{/fragments/header}"></header>
 <main>
@@ -30,28 +32,30 @@
                        title="O nome do curso é obrigatório e deve ter no máximo 100 caracteres." />
 
                 <label class="label-form" for="input-birthdate">Data de Nascimento *</label>
-                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="date" th:field="*{birthdate}" required pattern="\d{2}/\d{2}/\d{4}"
-                       title="Data de nascimento no formato DD/MM/AAAA." />
+                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="date" th:field="*{birthdate}" required
+                       title="Por favor, insira uma data válida no formato DD/MM/AAAA." />
 
-                <input type="tel" id="phoneNumberInput" class="input-form" placeholder="Telefone *"
-                       th:field="*{phoneNumber}" required pattern="\d{10,11}"
-                       title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
+                <label class="label-form" for="phoneNumberInput">Telefone *</label>
+                <input type="tel" id="phoneNumberInput" class="input-form" placeholder="Telefone" th:field="*{phoneNumber}" required pattern="\d{10,11}"
+                       title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos." />
 
                 <label class="label-form" for="input-username">Nome de Usuário *</label>
-                <input id="input-username" class="input-form" placeholder="Nome de usuário" type="text" th:field="*{user.username}" required minlength="5" maxlength="20"
-                       title="Nome de usuário deve ter entre 5 e 20 caracteres." />
+                <input id="input-username" name="username" class="input-form" placeholder="Nome de usuário" type="text" th:field="*{user.username}" required minlength="5" maxlength="20"
+                       pattern="[a-zA-Z0-9]+" title="Nome de usuário deve ter entre 5 e 20 caracteres e conter apenas letras e números." />
+                <span id="username-error" class="error-message" style="color: red; display: none;"></span>
 
                 <label class="label-form" for="input-email">Email *</label>
                 <input id="input-email" class="input-form" placeholder="Seu email" type="email" th:field="*{user.email}" required
                        title="Por favor, insira um endereço de email válido." />
+                <span id="email-error" class="error-message" style="color: red; display: none;"></span>
 
                 <label class="label-form" for="input-password">Senha *</label>
-                <input id="input-password" class="input-form" placeholder="Senha" type="password" th:field="*{user.password}" required minlength="8"
-                       title="Senha deve ter pelo menos 8 caracteres." />
+                <input id="input-password" name="username" class="input-form" placeholder="Senha" type="password" th:field="*{user.password}" required minlength="8"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número." />
 
                 <label class="label-form" for="input-password-confirm">Confirme a Senha *</label>
                 <input id="input-password-confirm" class="input-form" placeholder="Confirme sua senha" type="password" required minlength="8"
-                       title="Confirmação da senha deve ter pelo menos 8 caracteres." />
+                       title="Confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida." />
 
                 <div id="password-error" class="error-message" style="display: none; color: red;">
                     As senhas não coincidem. Por favor, verifique.
@@ -61,8 +65,7 @@
                     <h3>Competências:</h3>
                     <div class="label-competence">
                         <label th:each="competence : ${competences}">
-                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence.id}"
-                                   />
+                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence.id}" />
                             <span th:text="${competence.description}"></span>
                         </label>
                     </div>
@@ -77,4 +80,5 @@
     <div th:replace="~{/fragments/scripts}"></div>
 </main>
 </body>
+
 </html>

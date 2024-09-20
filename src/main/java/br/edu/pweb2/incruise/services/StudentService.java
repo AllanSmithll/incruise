@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.services;
 import br.edu.pweb2.incruise.model.NullStudent;
 import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.repository.StudentRepositoryJpa;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,7 @@ public class StudentService {
         return studentRepositoryJpa.findAll();
     }
 
+    @Transactional
     public void save(Student student) {
         studentRepositoryJpa.save(student);
     }

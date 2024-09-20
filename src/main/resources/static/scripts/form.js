@@ -4,9 +4,9 @@ function validateForm() {
     var errorElement = document.getElementById("password-error");
 
     if (password !== passwordConfirm) {
-    errorElement.textContent = "As senhas não correspondem.";
-    return false;
-}
+        errorElement.textContent = "As senhas não correspondem.";
+        return false;
+    }
 
     errorElement.textContent = "";
     return true;
@@ -71,4 +71,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('input-password-confirm').addEventListener('input', validatePasswords);
+});
+
+function checkUnique(field, url, errorElement) {
+    const value = field.value;
+    if (value.length >= 5) {
+        fetch(url + "?value=" + encodeURIComponent(value)) // Alterado para usar um parâmetro genérico
+            .then(response => response.json())
+            .then(data => {
+                const errorMsgElement = document.getElementById(errorElement);
+                if (!data.available) { // Supondo que a API retorna um objeto com uma propriedade 'available'
+                    errorMsgElement.textContent = "Este valor já está em uso.";
+                    errorMsgElement.style.display = "block";
+                    field.setCustomValidity("Este valor já está em uso.");
+                } else {
+                    errorMsgElement.textContent = "";
+                    errorMsgElement.style.display = "none";
+                    field.setCustomValidity("");
+                }
+                field.reportValidity();
+            });
+    } else {
+        document.getElementById(errorElement).textContent = "";
+        document.getElementById(errorElement).style.display = "none";
+    }
+}
+
+document.getElementById("input-username").addEventListener("input", function () {
+    checkUnique(this, "/company/check-username", "username-error");
+});
+
+document.getElementById("input-email").addEventListener("input", function () {
+    checkUnique(this, "/company/check-email", "email-error");
 });

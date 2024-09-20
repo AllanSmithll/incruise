@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.services;
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.NullCompetence;
 import br.edu.pweb2.incruise.repository.CompetenceRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class CompetenceService {
         return competenceRepository.findById(id).orElse(new NullCompetence());
     }
 
+    @Transactional
     public Competence save(Competence competence) {
         return competenceRepository.save(competence);
     }
