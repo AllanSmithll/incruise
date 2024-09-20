@@ -2,7 +2,9 @@ package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.User;
 import br.edu.pweb2.incruise.repository.UserRepositoryJpa;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,11 +18,13 @@ public class UserService implements UserDetailsService {
 
     private final UserRepositoryJpa userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final UserRepositoryJpa userRepositoryJpa;
 
     @Autowired
-    public UserService(UserRepositoryJpa userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepositoryJpa userRepository, PasswordEncoder passwordEncoder, UserRepositoryJpa userRepositoryJpa) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.userRepositoryJpa = userRepositoryJpa;
     }
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,7 +35,12 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    @Transactional
     public User save(User user) {
+        User existingUser = userRepositoryJpa.findByUsername(user.getUsername());
+        if (existingUser != null) {
+            throw new DataIntegrityViolationException("Este nome de usuário já existe.");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }

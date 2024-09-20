@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.services;
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.NullCompany;
 import br.edu.pweb2.incruise.repository.CompanyRepositoryJpa;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,14 @@ public class CompanyService {
         return companyRepositoryJpa.findAll();
     }
 
+    @Transactional
     public void save(Company company) {
+        if (!UtilService.isValidCNPJ(company.getCnpj())) {
+            throw new IllegalArgumentException("CNPJ inválido");
+        }
+        if (companyRepositoryJpa.findByFantasyName(company.getFantasyName()) != null) {
+            throw new IllegalArgumentException("Nome fantasia já existe.");
+        }
         companyRepositoryJpa.save(company);
     }
 

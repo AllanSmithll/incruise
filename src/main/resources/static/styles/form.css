@@ -1,8 +1,5 @@
 @import url("main.css");
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-
 
 .inter-font {
     font-family: "Inter", sans-serif;
@@ -17,12 +14,11 @@
     font-style: normal;
 }
 
-/* Estilos principais da tela */
 .main-screen {
     display: flex;
     justify-content: center;
     align-content: center;
-    background-color: #6cb0fe; /* Cor de fundo clara */
+    background-color: #6cb0fe;
     margin: 50px 0 200px 0;
     height: auto;
 }
@@ -41,7 +37,6 @@
     padding: 20px;
 }
 
-/* Estilo do conteúdo principal */
 .main-content {
     display: flex;
     justify-content: center;
@@ -60,53 +55,46 @@
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
 }
 
 .submit-input:hover {
     background-color: #0056b3;
 }
 
-/* Estilo do botão ao passar o mouse */
-.submit-input:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-}
-
 .label-competence {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
-    gap: 10px; /* Espaçamento entre os itens */
-    align-items: start; /* Alinha os itens no topo de cada célula */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    align-items: start;
 }
 
-
-/* Estilo dos campos de entrada do formulário */
 .input-form {
     border-radius: 4px;
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #ced4da; /* Cor da borda dos campos */
-    background-color: #ffffff; /* Cor de fundo dos campos */
+    border: 1px solid #ced4da;
+    background-color: #ffffff;
     height: 43px;
+    width: 100%;
 }
 
-/* Estilo dos grupos de formulário */
 .form-group {
     margin-bottom: 15px;
 }
 
-/* Estilo dos rótulos dos campos do formulário */
 label {
     display: block;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #333333; /* Cor do texto dos rótulos */
+    color: #333333;
 }
 
-/* Estilo dos campos de texto, número, data e textarea */
 input[type="text"],
 input[type="number"],
 input[type="date"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
 textarea {
     width: 100%;
     padding: 10px;
@@ -114,12 +102,11 @@ textarea {
     box-sizing: border-box;
     background-color: white;
     border: 1px solid #ced4da;
-    color: #495057; /* Cor do texto dentro dos campos */
+    color: #495057;
 }
+
 .custom-select {
-    appearance: none; /* Remove a aparência padrão do navegador */
-    -webkit-appearance: none; /* Remove a aparência no Safari */
-    -moz-appearance: none; /* Remove a aparência no Firefox */
+    width: 100%;
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -128,6 +115,7 @@ textarea {
     font-size: 1em;
     cursor: pointer;
 }
+
 .custom-file-upload {
     width: fit-content;
     cursor: pointer;
@@ -135,14 +123,45 @@ textarea {
     color: white;
     padding: 8px;
     font-size: 14px;
-;
 }
 
 .custom-file-upload:hover {
     background-color: #0056b3;
 }
 
-.error-message {
-    font-size: 0.9em;
-    color: red;
+.alert {
+    display: flex;
+    align-items: center;
+    background-color: #ffe4e1;
+    color: #721c24;
+    padding: 15px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 0.95em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.alert::before {
+    content: '⚠️';
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+
+.alert {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

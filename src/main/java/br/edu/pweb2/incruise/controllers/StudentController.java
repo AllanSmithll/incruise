@@ -6,10 +6,13 @@ import br.edu.pweb2.incruise.services.RoleService;
 import br.edu.pweb2.incruise.services.StudentService;
 import br.edu.pweb2.incruise.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -60,21 +63,56 @@ public class StudentController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save(Student student, ModelAndView modelAndView, @RequestParam(value = "competences", required = false) List<Competence> competences) {
+    public ModelAndView save(Student student, ModelAndView modelAndView, BindingResult validation,
+                             @RequestParam(value = "competences", required = false) List<Competence> competences,
+                             RedirectAttributes attr) {
         if (competences != null) {
             student.setCompetenceList(competences);
         }
+
         User user = student.getUser();
         if (user != null) {
+            if (validation.hasErrors()) {
+                modelAndView.setViewName("students/form");
+                return modelAndView;
+            }
+
             Role role = roleService.findByName("ROLE_STUDENT");
             user.setRole(role);
-            userService.save(user);
+
+            try {
+                userService.save(user);
+            } catch (DataIntegrityViolationException e) {
+                if (e.getMessage().contains("Este nome de usuário já existe")) {
+                    modelAndView.addObject("usernameError", "Este nome de usuário já existe.");
+                } else if (e.getMessage().contains("email")) {
+                    modelAndView.addObject("emailError", "Este email já existe.");
+                }
+                modelAndView.setViewName("students/form");
+                modelAndView.addObject("student", student);
+                modelAndView.addObject("competences", competenceService.findAll());
+                return modelAndView;
+            }
         }
-        studentService.save(student);
+
+        try {
+            studentService.save(student);
+        } catch (DataIntegrityViolationException e) {
+            modelAndView.addObject("enrollmentError", "Esta matrícula já existe.");
+            modelAndView.setViewName("students/form");
+            return modelAndView;
+        } catch (IllegalArgumentException e) {
+            modelAndView.addObject("birthdateError", e.getMessage());
+            modelAndView.setViewName("students/form");
+            return modelAndView;
+        }
+
+        String operation = (student.getId() == null) ? "criado" : "salvo";
+        attr.addFlashAttribute("mensagem", "Estudante " + student.getName() + " " + operation + " com sucesso!");
+
         modelAndView.setViewName("redirect:/student/students");
         return modelAndView;
     }
-
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
