@@ -17,12 +17,13 @@
             <h1>Cadastrar-se</h1>
             <form th:action="@{/company/save}" method="post" th:object="${company}" onsubmit="return validateForm()">
                 <fieldset class="form-container">
-                    <input type="text" id="username" class="input-form w-50" placeholder="Nome de usuário *"
+                    <input type="text" name="username" id="username" class="input-form w-50" placeholder="Nome de usuário *"
                            th:field="*{user.username}" required minlength="5" maxlength="20"
                            title="O nome de usuário deve ter entre 5 e 20 caracteres.">
+                    <span id="username-error" class="error-message" style="color: red; display: none;"></span>
 
                     <div class="d-flex flex-row gap-3">
-                        <input type="password" id="password" class="w-50 input-form" placeholder="Senha *"
+                        <input type="password" name="password" id="password" class="w-50 input-form" placeholder="Senha *"
                                th:field="*{user.password}" required minlength="8" maxlength="20"
                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                title="A senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número.">
@@ -59,11 +60,12 @@
                     <div class="d-flex flex-column">
                         <legend class="form-container-description">Contato</legend>
                         <div class="d-flex flex-row gap-3">
-                            <input type="email" id="emailInput" class="input-form w-50" placeholder="Email"
+                            <input type="email" id="input-email" class="input-form w-50" placeholder="Email"
                                    th:field="*{user.email}" required
                                    title="Por favor, insira um endereço de email válido.">
+                            <span id="email-error" class="error-message" style="color: red; display: none;"></span>
 
-                                <input type="tel" id="phoneNumberInput" class="input-form w-50" placeholder="Telefone *"
+                            <input type="tel" id="phoneNumberInput" class="input-form w-50" placeholder="Telefone *"
                                     th:field="*{phoneNumber}" required pattern="\d{10,11}"
                                     title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos.">
                             </div>

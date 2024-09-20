@@ -30,7 +30,8 @@ public class IncruiseSecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
-                                "/internshipOffer/info/**","student/register","company/register").permitAll()
+                                "/internshipOffer/info/**","student/register","company/register",
+                                "/company/save", "student/save").permitAll()
                         .requestMatchers("/styles/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form

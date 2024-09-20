@@ -1,10 +1,10 @@
 package br.edu.pweb2.incruise.controllers;
 
-import br.edu.pweb2.incruise.model.Candidature;
-import br.edu.pweb2.incruise.model.Competence;
-import br.edu.pweb2.incruise.model.Student;
+import br.edu.pweb2.incruise.model.*;
 import br.edu.pweb2.incruise.services.CompetenceService;
+import br.edu.pweb2.incruise.services.RoleService;
 import br.edu.pweb2.incruise.services.StudentService;
+import br.edu.pweb2.incruise.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +19,15 @@ public class StudentController {
 
     private final StudentService studentService;
     private final CompetenceService competenceService;
+    private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public StudentController(StudentService studentService, CompetenceService competenceService) {
+    public StudentController(StudentService studentService, CompetenceService competenceService, UserService userService, RoleService roleService) {
         this.studentService = studentService;
         this.competenceService = competenceService;
+        this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/register")
@@ -60,10 +64,17 @@ public class StudentController {
         if (competences != null) {
             student.setCompetenceList(competences);
         }
+        User user = student.getUser();
+        if (user != null) {
+            Role role = roleService.findByName("ROLE_STUDENT");
+            user.setRole(role);
+            userService.save(user);
+        }
         studentService.save(student);
         modelAndView.setViewName("redirect:/student/students");
         return modelAndView;
     }
+
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
