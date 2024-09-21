@@ -1,7 +1,9 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.ItemNotFoundException;
+import br.edu.pweb2.incruise.model.exception.DuplicateFantasyNameException;
+import br.edu.pweb2.incruise.model.exception.InvalidCnpjException;
+import br.edu.pweb2.incruise.model.exception.ItemNotFoundException;
 import br.edu.pweb2.incruise.model.Role;
 import br.edu.pweb2.incruise.model.User;
 import br.edu.pweb2.incruise.services.CompanyService;
@@ -74,14 +76,13 @@ public class CompanyController {
 
         try {
             companyService.save(company);
-        } catch (IllegalArgumentException e) {
-            if (e.getMessage().equals("CNPJ inválido")) {
-                modelAndView.addObject("cnpjError", "CNPJ inválido.");
-            } else if (e.getMessage().equals("Nome fantasia já existe.")) {
-                modelAndView.addObject("fantasyNameError", "Nome fantasia já existe.");
-            }
+        } catch (InvalidCnpjException e) {
+            modelAndView.addObject("cnpjError", e.getMessage());
             modelAndView.setViewName("companies/form");
-            modelAndView.addObject("company", company);
+            return modelAndView;
+        } catch (DuplicateFantasyNameException e) {
+            modelAndView.addObject("fantasyNameError", e.getMessage());
+            modelAndView.setViewName("companies/form");
             return modelAndView;
         }
         modelAndView.setViewName("redirect:/company/companies");

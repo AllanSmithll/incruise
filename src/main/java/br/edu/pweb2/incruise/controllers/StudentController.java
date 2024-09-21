@@ -1,6 +1,8 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.*;
+import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
+import br.edu.pweb2.incruise.model.exception.InvalidAgeException;
 import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.RoleService;
 import br.edu.pweb2.incruise.services.StudentService;
@@ -97,11 +99,11 @@ public class StudentController {
 
         try {
             studentService.save(student);
-        } catch (DataIntegrityViolationException e) {
-            modelAndView.addObject("enrollmentError", "Esta matrícula já existe.");
+        } catch (DuplicateEnrollmentException e) {
+            modelAndView.addObject("enrollmentError", e.getMessage());
             modelAndView.setViewName("students/form");
             return modelAndView;
-        } catch (IllegalArgumentException e) {
+        } catch (InvalidAgeException e) {
             modelAndView.addObject("birthdateError", e.getMessage());
             modelAndView.setViewName("students/form");
             return modelAndView;

@@ -2,6 +2,8 @@ package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.NullCompany;
+import br.edu.pweb2.incruise.model.exception.DuplicateFantasyNameException;
+import br.edu.pweb2.incruise.model.exception.InvalidCnpjException;
 import br.edu.pweb2.incruise.repository.CompanyRepositoryJpa;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +30,13 @@ public class CompanyService {
     }
 
     @Transactional
-    public void save(Company company) {
+    public void save(Company company) throws InvalidCnpjException {
         if (!UtilService.isValidCNPJ(company.getCnpj())) {
-            throw new IllegalArgumentException("CNPJ inválido");
+            throw new InvalidCnpjException("CNPJ inválido");
         }
+
         if (companyRepositoryJpa.findByFantasyName(company.getFantasyName()) != null) {
-            throw new IllegalArgumentException("Nome fantasia já existe.");
+            throw new DuplicateFantasyNameException("Nome fantasia já existe.");
         }
         companyRepositoryJpa.save(company);
     }
