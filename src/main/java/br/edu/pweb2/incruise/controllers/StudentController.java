@@ -1,7 +1,9 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.*;
+import br.edu.pweb2.incruise.model.exception.DuplicateEmailException;
 import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
+import br.edu.pweb2.incruise.model.exception.DuplicateUsernameException;
 import br.edu.pweb2.incruise.model.exception.InvalidAgeException;
 import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.RoleService;
@@ -72,29 +74,9 @@ public class StudentController {
             student.setCompetenceList(competences);
         }
 
-        User user = student.getUser();
-        if (user != null) {
-            if (validation.hasErrors()) {
-                modelAndView.setViewName("students/form");
-                return modelAndView;
-            }
-
-            Role role = roleService.findByName("ROLE_STUDENT");
-            user.setRole(role);
-
-            try {
-                userService.save(user);
-            } catch (DataIntegrityViolationException e) {
-                if (e.getMessage().contains("Este nome de usuário já existe")) {
-                    modelAndView.addObject("usernameError", "Este nome de usuário já existe.");
-                } else if (e.getMessage().contains("email")) {
-                    modelAndView.addObject("emailError", "Este email já existe.");
-                }
-                modelAndView.setViewName("students/form");
-                modelAndView.addObject("student", student);
-                modelAndView.addObject("competences", competenceService.findAll());
-                return modelAndView;
-            }
+        if (validation.hasErrors()) {
+            modelAndView.setViewName("students/form");
+            return modelAndView;
         }
 
         try {
@@ -102,6 +84,18 @@ public class StudentController {
         } catch (DuplicateEnrollmentException e) {
             modelAndView.addObject("enrollmentError", e.getMessage());
             modelAndView.setViewName("students/form");
+            return modelAndView;
+        } catch (DuplicateUsernameException e) {
+            modelAndView.addObject("usernameError", e.getMessage());
+            modelAndView.setViewName("students/form");
+            modelAndView.addObject("student", student);
+            modelAndView.addObject("competences", competenceService.findAll());
+            return modelAndView;
+        } catch (DuplicateEmailException e) {
+            modelAndView.addObject("emailError", e.getMessage());
+            modelAndView.setViewName("students/form");
+            modelAndView.addObject("student", student);
+            modelAndView.addObject("competences", competenceService.findAll());
             return modelAndView;
         } catch (InvalidAgeException e) {
             modelAndView.addObject("birthdateError", e.getMessage());

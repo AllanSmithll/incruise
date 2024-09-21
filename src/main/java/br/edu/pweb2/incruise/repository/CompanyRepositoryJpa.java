@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CompanyRepositoryJpa extends JpaRepository<Company, Long> {
     Company findByFantasyName(String fantasyName);
+    Company findByCnpj(String cnpj);
 }

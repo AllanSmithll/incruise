@@ -1,20 +1,16 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.exception.DuplicateFantasyNameException;
-import br.edu.pweb2.incruise.model.exception.InvalidCnpjException;
-import br.edu.pweb2.incruise.model.exception.ItemNotFoundException;
-import br.edu.pweb2.incruise.model.Role;
-import br.edu.pweb2.incruise.model.User;
+import br.edu.pweb2.incruise.model.exception.*;
 import br.edu.pweb2.incruise.services.CompanyService;
-import br.edu.pweb2.incruise.services.RoleService;
-import br.edu.pweb2.incruise.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -24,14 +20,10 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
-    private final UserService userService;
-    private final RoleService roleService;
 
     @Autowired
-    public CompanyController(CompanyService companyService, UserService userService, RoleService roleService) {
+    public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
-        this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/register")
@@ -50,33 +42,24 @@ public class CompanyController {
 
     @PostMapping("/save")
     public ModelAndView save(Company company, ModelAndView modelAndView, BindingResult validation) {
-        User user = company.getUser();
-        if (user != null) {
-            if (validation.hasErrors()) {
-                modelAndView.setViewName("companies/form");
-                return modelAndView;
-            }
-
-            Role role = roleService.findByName("ROLE_COMPANY");
-            user.setRole(role);
-            try {
-                userService.save(user);
-                company.setUser(user);
-            } catch (DataIntegrityViolationException e) {
-                if (e.getMessage().contains("Este nome de usuário já existe")) {
-                    modelAndView.addObject("usernameError", "Este nome de usuário já existe.");
-                } else if (e.getMessage().contains("email")) {
-                    modelAndView.addObject("emailError", "Este email já existe.");
-                }
-                modelAndView.setViewName("companies/form");
-                modelAndView.addObject("company", company);
-                return modelAndView;
-            }
+        if (validation.hasErrors()) {
+            modelAndView.setViewName("companies/form");
+            return modelAndView;
         }
 
         try {
             companyService.save(company);
-        } catch (InvalidCnpjException e) {
+        } catch (DuplicateUsernameException e) {
+            modelAndView.addObject("usernameError", e.getMessage());
+            modelAndView.setViewName("companies/form");
+            modelAndView.addObject("company", company);
+            return modelAndView;
+        } catch (DuplicateEmailException e) {
+            modelAndView.addObject("emailError", e.getMessage());
+            modelAndView.setViewName("companies/form");
+            modelAndView.addObject("company", company);
+            return modelAndView;
+        } catch (InvalidCnpjException | DuplicateCnpjException e) {
             modelAndView.addObject("cnpjError", e.getMessage());
             modelAndView.setViewName("companies/form");
             return modelAndView;
