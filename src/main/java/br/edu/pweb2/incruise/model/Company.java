@@ -21,8 +21,8 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToOne
-	@JoinColumn(name = "username", insertable = false, updatable = false)
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "username", nullable = false, unique = true)
 	private User user;
 
 	@Getter

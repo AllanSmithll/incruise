@@ -6,56 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar-se')}">
     <link rel="stylesheet" href="/styles/student/form-student.css">
-    <title>Cadastrar-se</title>
+    <title>Registrar-se</title>
 </head>
 
 <body class="main-screen">
 <header th:replace="~{/fragments/header}"></header>
 <main>
     <div class="card-main">
-        <h1 class="inter-font">Incruise</h1>
         <div class="main-content inter-font-line">
             <h1 class="title-page">Cadastrar-se</h1>
             <form th:action="@{/student/save}" method="post" th:object="${student}">
-                <input id="input-id" class="input-form" type="hidden" th:field="*{id}" />
+                <input id="input-id" class="input-form" type="hidden" th:field="*{id}"/>
 
                 <label class="label-form" for="input-name">Nome *</label>
-                <input id="input-name" class="input-form" placeholder="Seu nome completo" type="text" th:field="*{name}" required maxlength="100"
-                       title="Nome completo é obrigatório e deve ter no máximo 100 caracteres." />
+                <input class="input-form" id="input-name" maxlength="100" placeholder="Seu nome completo" required
+                       th:field="*{name}" title="Nome completo é obrigatório e deve ter no máximo 100 caracteres."
+                       type="text"/>
 
                 <label class="label-form" for="input-enrollment">Matrícula *</label>
-                <input id="input-enrollment" class="input-form" placeholder="Sua matrícula" type="text" th:field="*{enrollment}" required pattern="\d{11}"
-                       title="Matrícula deve ter 11 dígitos." />
+                <input id="input-enrollment" name="enrollment" class="input-form" placeholder="Sua matrícula"
+                       type="text" th:field="*{enrollment}" required pattern="\d{11}"
+                       title="Matrícula deve ter 11 dígitos."/>
+                <span th:if="${enrollmentError}" class="alert alert-danger" th:text="${enrollmentError}"></span>
 
                 <label class="label-form" for="input-course">Curso *</label>
-                <input id="input-course" placeholder="Nome do curso" class="input-form" type="text" th:field="*{course}" required maxlength="100"
-                       title="O nome do curso é obrigatório e deve ter no máximo 100 caracteres." />
+                <input id="input-course" placeholder="Nome do curso" class="input-form" type="text" th:field="*{course}"
+                       required maxlength="100"
+                       title="O nome do curso é obrigatório e deve ter no máximo 100 caracteres."/>
 
                 <label class="label-form" for="input-birthdate">Data de Nascimento *</label>
-                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="date" th:field="*{birthdate}" required
-                       title="Por favor, insira uma data válida no formato DD/MM/AAAA." />
+                <input id="input-birthdate" class="input-form" placeholder="Data de nascimento (DD/MM/AAAA)" type="date"
+                       th:field="*{birthdate}" required
+                       title="Por favor, insira uma data válida no formato DD/MM/AAAA."/>
+                <span th:if="${birthdateError}" class="alert alert-danger" th:text="${birthdateError}"></span>
 
                 <label class="label-form" for="phoneNumberInput">Telefone *</label>
-                <input type="tel" id="phoneNumberInput" class="input-form" placeholder="Telefone" th:field="*{phoneNumber}" required pattern="\d{10,11}"
-                       title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos." />
+                <input type="tel" id="phoneNumberInput" class="input-form" placeholder="Telefone"
+                       th:field="*{phoneNumber}" required pattern="\d{10,11}"
+                       title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos."/>
 
                 <label class="label-form" for="input-username">Nome de Usuário *</label>
-                <input id="input-username" name="username" class="input-form" placeholder="Nome de usuário" type="text" th:field="*{user.username}" required minlength="5" maxlength="20"
-                       pattern="[a-zA-Z0-9]+" title="Nome de usuário deve ter entre 5 e 20 caracteres e conter apenas letras e números." />
-                <span id="username-error" class="error-message" style="color: red; display: none;"></span>
+                <input id="input-username" name="username" class="input-form" placeholder="Nome de usuário" type="text"
+                       th:field="*{user.username}" required minlength="5" maxlength="20"
+                       pattern="[a-zA-Z0-9]+"
+                       title="Nome de usuário deve ter entre 5 e 20 caracteres e conter apenas letras e números."/>
+                <span th:if="${usernameError}" class="alert alert-danger" th:text="${usernameError}"></span>
 
                 <label class="label-form" for="input-email">Email *</label>
-                <input id="input-email" class="input-form" placeholder="Seu email" type="email" th:field="*{user.email}" required
-                       title="Por favor, insira um endereço de email válido." />
-                <span id="email-error" class="error-message" style="color: red; display: none;"></span>
+                <input id="input-email" class="input-form" placeholder="Seu email" type="email" th:field="*{user.email}"
+                       required
+                       title="Por favor, insira um endereço de email válido."/>
+                <span th:if="${emailError}" class="alert alert-danger" th:text="${emailError}"></span>
 
                 <label class="label-form" for="input-password">Senha *</label>
-                <input id="input-password" name="username" class="input-form" placeholder="Senha" type="password" th:field="*{user.password}" required minlength="8"
-                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número." />
+                <input class="input-form" id="input-password" minlength="8" maxlength="20" name="password"
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                       placeholder="Senha" required th:field="*{user.password}"
+                       title="Senha deve ter pelo menos 8 caracteres, incluir uma letra maiúscula, uma letra minúscula e um número."
+                       type="password"/>
 
                 <label class="label-form" for="input-password-confirm">Confirme a Senha *</label>
-                <input id="input-password-confirm" class="input-form" placeholder="Confirme sua senha" type="password" required minlength="8"
-                       title="Confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida." />
+                <input id="input-password-confirm" class="input-form" placeholder="Confirme sua senha" type="password"
+                       required minlength="8"
+                       title="Confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida."/>
 
                 <div id="password-error" class="error-message" style="display: none; color: red;">
                     As senhas não coincidem. Por favor, verifique.
@@ -65,7 +78,7 @@
                     <h3>Competências:</h3>
                     <div class="label-competence">
                         <label th:each="competence : ${competences}">
-                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence.id}" />
+                            <input type="checkbox" th:field="*{competenceList}" th:value="${competence.id}"/>
                             <span th:text="${competence.description}"></span>
                         </label>
                     </div>

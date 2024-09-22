@@ -9,7 +9,7 @@
 
 /* Estilo base para o corpo da página */
 body {
-    font-family: var(--info-font-family);
+    font-family: var(--info-font-family), serif;
     background-color: var(--info-background);
     cursor: default;
     margin: 0;

@@ -1,7 +1,7 @@
 //package br.edu.pweb2.incruise.repository;
 //
 //import br.edu.pweb2.incruise.model.Company;
-//import br.edu.pweb2.incruise.model.ItemNotFoundException;
+//import br.edu.pweb2.incruise.model.exception.ItemNotFoundException;
 //import org.springframework.stereotype.Repository;
 //
 //import java.util.*;
