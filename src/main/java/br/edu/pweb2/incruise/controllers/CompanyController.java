@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.controllers;
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.exception.*;
 import br.edu.pweb2.incruise.services.CompanyService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,10 +21,18 @@ import java.util.List;
 public class CompanyController {
 
     private final CompanyService companyService;
+    private final HttpSession session;
 
     @Autowired
-    public CompanyController(CompanyService companyService) {
+    public CompanyController(CompanyService companyService, HttpSession session) {
         this.companyService = companyService;
+        this.session = session;
+    }
+
+    @GetMapping("/setSession")
+    public String setSession(String username) {
+        session.setAttribute("username", username);
+        return "home";
     }
 
     @GetMapping("/register")
