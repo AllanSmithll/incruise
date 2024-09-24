@@ -8,6 +8,28 @@ truncate tb_internship_offer_necessary_skill cascade;
 truncate tb_internship_offer_desirable_skill cascade;
 truncate tb_Candidature cascade;
 
+CREATE TABLE spring_session
+(
+    id            VARCHAR(64)  NOT NULL,
+    session_id            VARCHAR(255) NOT NULL,
+    creation_time         BIGINT       NOT NULL,
+    last_access_time      BIGINT       NOT NULL,
+    max_inactive_interval INTEGER      NOT NULL,
+    expiry_time           BIGINT       NOT NULL,
+    principal_name        VARCHAR(255),
+    unique (session_id),
+    primary key (id)
+);
+
+alter table spring_session rename id to primary_id;
+
+CREATE TABLE spring_session_attributes (
+                                           session_primary_id VARCHAR(64) NOT NULL,
+                                           attribute_name VARCHAR(255) NOT NULL,
+                                           attribute_bytes BYTEA NOT NULL,
+                                           CONSTRAINT unique_attribute  UNIQUE (session_primary_id, attribute_name)
+);
+
 -- Roles
 INSERT INTO tb_role (id, name)
 VALUES (1, 'ROLE_ADMIN');
@@ -23,48 +45,90 @@ VALUES (4, 'ROLE_COMPANY');
 
 -- Users
 INSERT INTO tb_user (username, email, password, enabled, role_id)
-VALUES ('Coordenador_Sistemas', 'coordenador.sistemas@gmail.com', '$2a$10$gnZeaOFqprG8glYWHso/sujuNhqLAbfj6fTaYjO0dH/6GsXhdnrbG', TRUE, 2), -- Coordenador123
-       ('Tech_Innovators', 'Tech_Innovators@gmail.com', '$2a$10$uHIAJXUDN44JaPOKKg/c/OpoQqeJI9GfzJu3A1IK.PdAjixhxvrwK', TRUE, 4), -- TechInno123
-       ('NextGen_Solutions', 'NextGen_Solutions@gmail.com', '$2a$10$od7ajpzIz3dgac7NKcORHORCEQ6o5bnje4r1N/NmAXFfIxhmfMHkK', TRUE, 4), -- NextGen123
-       ('CloudWare_gmail', 'CloudWare_gmail@gmail.com', '$2a$10$vbLDUooNrE/hbV1Dt360yeEplOduJWnxBWnIOpU0KX6FJ8aIvStNC', TRUE, 4), -- Cloud123
-       ('DataStream_Labs', 'DataStream_Labs@gmail.com', '$2a$10$jnXY3rWttAsJVEafzqJjj.VoHSePnYabrxnnmc7xgJs7wKXK5evXq', TRUE, 4), -- DataStream123
-       ('SoftTech_Corp', 'SoftTech_Corp@gmail.com', '$2a$10$VBPI8gNoE7/BPokpwkzZVucL/o3.ZSYGK8SpT0tmmH8sPddC/8oJO', TRUE, 4), -- SoftTech123
-       ('CyberSec_Brasil', 'CyberSec_Brasil@gmail.com', '$2a$10$SauEVVmeio4DCmQ8YkDehOZqm/8usg16DV7OMAu9RoAPoOAgutuTm', TRUE, 4), -- CyberSec123
-       ('AI_Innovations', 'AI_Innovations@gmail.com', '$2a$10$Kbd6i3Mv5uuDGHZwDxRmwO83eCqHlNDXEF.RIhj1CcUj5/149gjqe', TRUE, 4), -- AiInno123
-       ('Quantum_Solutions', 'Quantum_Solutions@gmail.com', '$2a$10$gpscI7xyrKIzEosUzLyq.ebqoAxAHgSuuGfWS3Beapb.8ZINW2BBe', TRUE, 4), -- Quantum123
-       ('DevOps_Masters', 'DevOps_Masters@gmail.com', '$2a$10$uObvYPlV4Y6C4PbQxT4iTu1rrWRHBuW1HxA0UFXp4pLVYpkkoAgDy', TRUE, 4), -- DevOps123
-       ('ByteLab_gmail', 'ByteLab_gmail@gmail.com', '$2a$10$9WwnLqpGm3.35aEShcXj3Oloey6eht4J.QtIjtfeB1r.v43/O6iiC', TRUE, 4), -- ByteLab123
-       ('SmartGrid_Tech', 'SmartGrid_Tech@gmail.com', '$2a$10$vMnPneArlqxPFR6LMeBfa.A2FdrJ0hXlHpYEKbb69zNExbrFYWq5S', TRUE, 4), -- SmartGrid123
-       ('VR_World', 'VR_World@gmail.com', '$2a$10$Fg5TXShVDatdlP.G22I8xuzkfrOaEUksaXQw7Gh.JzPuvx5OCU47S', TRUE, 4), -- VrWorld123
-       ('Blockchain_Solutions', 'Blockchain_Solutions@gmail.com', '$2a$10$Z9riilTL3MJHmpHxzGVVX.5lh.6AoWwy49whzY2sVmkXSiOoC7xm2', TRUE, 4), -- Blockchain123
-       ('RoboTech_gmail', 'RoboTech_gmail@gmail.com', '$2a$10$1/SdmgKNxumms.8IZSf3VOkNO.nGsIwxZc/vHUm0H1HObL.8Ip0/6', TRUE, 4), -- RoboTech123
-       ('Innovatech_gmail', 'Innovatech_gmail@gmail.com', '$2a$10$OTyoe2SGoYZ2UKp9IRnXmOgWTaIR5mkYIZJUMfrUEjEzxtraKPvUO', TRUE, 4), -- Innovatech123
-       ('WebDev_Solutions', 'WebDev_Solutions@gmail.com', '$2a$10$eogzReHN1Y30cS2iPUfze.QqhvtjPEEpnU7J5t2EZypHlmjdrHO5y', TRUE, 4), -- WebDev123
-       ('AI_Robotics', 'AI_Robotics@gmail.com', '$2a$10$QNK0HTrforRMrp9nEi1Dz.zC6Vmwm1Nh3P9TCq1xcTRtxoqS39iMG', TRUE, 4), -- AiRob123
-       ('GreenTech_gmail', 'GreenTech_gmail@gmail.com', '$2a$10$WYr2oy1GzT5bQDKFkP.V6uV/SHyW6rYXOO/jdjjSyZndeZfcWhXZm', TRUE, 4), -- GreenTech123
-       ('Infinity_Networks', 'Infinity_Networks@gmail.com', '$2a$10$fAV2mvnf.aMfLA5fFMuxAek/yIFCEHkqJQJdJsnPk6TCrpTwAWMCi', TRUE, 4), -- Infinity123
-       ('CodeCraft_gmail', 'CodeCraft_gmail@gmail.com', '$2a$10$egbukOZ.CoPX/Ct.bKXEqedRP/C0W3CXqdWF6pTkRrZUJMC7U/DpW', TRUE, 4), -- CodeCraft123
-       ('Yuri_Souza', 'Yuri.Souza@gmail.com', '$2a$10$ObL1T37nbXgVsLuVHpW3cOqYuFU5/qBwXL5D5c/eglFJ5skLAHUDe', TRUE, 3), -- YuriSou123
-       ('Haniel_Silva', 'Haniel.Silva@gmail.com', '$2a$10$3xiECHobPzw/SEaFFhBNeeZLUevSmU5P1yoorm1z4Gd6.hVZtYbl2', TRUE, 3), -- Haniel123
-       ('Marcio_Silva', 'Marcio.Silva@gmail.com', '$2a$10$o9L/Ohxm5RUUVCjr7IECfOi7KC8FBUZ45rSmGSHxaFIS0VrpzJQBC', TRUE, 3), -- Marcio123
-       ('Allan_Amancio', 'Allan.Amancio@gmail.com', '$2a$10$ghEOvPkJHOaBHtHIyoDrTezgHP7P19UH/Iah.LZosJYFJAlQbgKQy', TRUE, 3), -- Allan123
-       ('Matheus_Sousa', 'Matheus.Sousa@gmail.com', '$2a$10$gBoI2Cltp1DF15R6aoiRvONTz5cumHJVSZ42j6f/o6uT/DojPpFdy', TRUE, 3), -- Matheus123
-       ('Brian_Trajano', 'Brian.Trajano@gmail.com', '$2a$10$juul4iHtADaj6JqwOspsbueSAtoz0hKbHVGm0BvsW4TetzetxqYTm', TRUE, 3), -- Brian123
-       ('Ian_Mendonca', 'Ian.Mendonca@gmail.com', '$2a$10$BxoDrGW.6L2yunEnmTd79epvRB0i3zSTW8bi0B1twng1WHtmR.k2S', TRUE, 3), -- IanRib123
-       ('George_Lima', 'George.Lima@gmail.com', '$2a$10$PVZXD1dU88TUBcr2esHF7ezTnZkDE53KfigYXMMJ8E2DvgfFhJli6', TRUE, 3), -- George123
-       ('Marcela_Kramer', 'Marcela.Kramer@gmail.com', '$2a$10$qoL7BFszE6WNZq1zkbuqRONQ93sNyM.gKZ.4M2/xPSDBdB7QkFbmK', TRUE, 3), -- Marcela123
-       ('Renato_Melo', 'Renato.Melo@gmail.com', '$2a$10$hkt0ThrEWwh8sjAdtyiHr.5scllakkwScBWm3nr13YFdmqjVKAweC', TRUE, 3), -- Renato123
-       ('Yago_Aguiar', 'Yago.Aguiar@gmail.com', '$2a$10$0rhBwfkg72K.lJp.WKRlKOShpoxOLRXQRCA04.EKn9roWkZxPY2uK', TRUE, 3), -- YagoCes123
-       ('Amanda_Araujo', 'Amanda.Araujo@gmail.com', '$2a$10$wDurni5v8Eb6kSVbjGzunuQNi25alwcQFLgzKBPrcf7oijJnVYvhO', TRUE, 3), -- Amanda123
-       ('Olivia_Oliva', 'Olivia.Oliva@gmail.com', '$2a$10$/TrbszOwRYmDArwC4BRAY.qSPqO0KsCew23Kq8hPHKuA/khPzujV6', TRUE, 3), -- Olivia123
-       ('Raqueline_Gomes', 'Raqueline.Gomes@gmail.com', '$2a$10$.5JN9xxx7dKcnZnW7gKxeu6fPC.sy1nTT84SEhaIaGC0P.AtM9giS', TRUE, 3), -- Raqueline123
-       ('Geraldo_Neto', 'Geraldo.Neto@gmail.com', '$2a$10$g4sffagWMog65rN0y2o7veP.wtzJCFg9ggmXA.JrdvLtw7oUyZ2dq', TRUE, 3), -- Geraldo123
-       ('Juliana_Cavalcante', 'Juliana.Cavalcante@gmail.com', '$2a$10$y1nhPjr4hXsncl0pO.ocgOJH3hJgdHErHKJv7AL2VancAL3dwZ0dq', TRUE, 3), -- Juliana123
-       ('Pedro_Bravim', 'Pedro.Bravim@gmail.com', '$2a$10$v1FyJ/VynX5o7hnEkmad0eKtECPQLChhN/2Zxk2/sGKeHl5mXKAES', TRUE, 3), -- Pedro123
-       ('Juan_Farias', 'Juan.Farias@gmail.com', '$2a$10$wmwE/1bZnvv6Y2KZPhH5eOZi73qLfkOzOeI0zT5bTLEpi5Rkhl2v6', TRUE, 3), -- JuanFar123
-       ('Joao_Dias', 'Joao.Dias@gmail.com', '$2a$10$X0ZNf5ucz9SfkMdYdF8nL.5ZSebuU6SThZKVMpOmJCPLQ3eumZF8G', TRUE, 3), -- JoaoDias123
-       ('Alic_Andrade', 'Alic.Andrade@gmail.com', '$2a$10$AUH939ZyD0R6bPoviJHnTuld/9Dqz8YFYOW/tzYZln3tlX2nekahC', TRUE, 3), -- AlicAndr123
-       ('Luis_Kilmer', 'Luis.Kilmer@gmail.com', '$2a$10$aWtuBwGfb7ZjVZNO.Mi1yeNsV.hdrjDSuHNYE5KzW54xtr5RrWafu', TRUE, 3); -- LuisKill123
+VALUES ('Coordenador_Sistemas', 'coordenador.sistemas@gmail.com',
+        '$2a$10$gnZeaOFqprG8glYWHso/sujuNhqLAbfj6fTaYjO0dH/6GsXhdnrbG', TRUE, 2), -- Coordenador123
+       ('Tech_Innovators', 'Tech_Innovators@gmail.com', '$2a$10$uHIAJXUDN44JaPOKKg/c/OpoQqeJI9GfzJu3A1IK.PdAjixhxvrwK',
+        TRUE, 4),                                                                 -- TechInno123
+       ('NextGen_Solutions', 'NextGen_Solutions@gmail.com',
+        '$2a$10$od7ajpzIz3dgac7NKcORHORCEQ6o5bnje4r1N/NmAXFfIxhmfMHkK', TRUE, 4), -- NextGen123
+       ('CloudWare_gmail', 'CloudWare_gmail@gmail.com', '$2a$10$vbLDUooNrE/hbV1Dt360yeEplOduJWnxBWnIOpU0KX6FJ8aIvStNC',
+        TRUE, 4),                                                                 -- Cloud123
+       ('DataStream_Labs', 'DataStream_Labs@gmail.com', '$2a$10$jnXY3rWttAsJVEafzqJjj.VoHSePnYabrxnnmc7xgJs7wKXK5evXq',
+        TRUE, 4),                                                                 -- DataStream123
+       ('SoftTech_Corp', 'SoftTech_Corp@gmail.com', '$2a$10$VBPI8gNoE7/BPokpwkzZVucL/o3.ZSYGK8SpT0tmmH8sPddC/8oJO',
+        TRUE, 4),                                                                 -- SoftTech123
+       ('CyberSec_Brasil', 'CyberSec_Brasil@gmail.com', '$2a$10$SauEVVmeio4DCmQ8YkDehOZqm/8usg16DV7OMAu9RoAPoOAgutuTm',
+        TRUE, 4),                                                                 -- CyberSec123
+       ('AI_Innovations', 'AI_Innovations@gmail.com', '$2a$10$Kbd6i3Mv5uuDGHZwDxRmwO83eCqHlNDXEF.RIhj1CcUj5/149gjqe',
+        TRUE, 4),                                                                 -- AiInno123
+       ('Quantum_Solutions', 'Quantum_Solutions@gmail.com',
+        '$2a$10$gpscI7xyrKIzEosUzLyq.ebqoAxAHgSuuGfWS3Beapb.8ZINW2BBe', TRUE, 4), -- Quantum123
+       ('DevOps_Masters', 'DevOps_Masters@gmail.com', '$2a$10$uObvYPlV4Y6C4PbQxT4iTu1rrWRHBuW1HxA0UFXp4pLVYpkkoAgDy',
+        TRUE, 4),                                                                 -- DevOps123
+       ('ByteLab_gmail', 'ByteLab_gmail@gmail.com', '$2a$10$9WwnLqpGm3.35aEShcXj3Oloey6eht4J.QtIjtfeB1r.v43/O6iiC',
+        TRUE, 4),                                                                 -- ByteLab123
+       ('SmartGrid_Tech', 'SmartGrid_Tech@gmail.com', '$2a$10$vMnPneArlqxPFR6LMeBfa.A2FdrJ0hXlHpYEKbb69zNExbrFYWq5S',
+        TRUE, 4),                                                                 -- SmartGrid123
+       ('VR_World', 'VR_World@gmail.com', '$2a$10$Fg5TXShVDatdlP.G22I8xuzkfrOaEUksaXQw7Gh.JzPuvx5OCU47S', TRUE,
+        4),                                                                       -- VrWorld123
+       ('Blockchain_Solutions', 'Blockchain_Solutions@gmail.com',
+        '$2a$10$Z9riilTL3MJHmpHxzGVVX.5lh.6AoWwy49whzY2sVmkXSiOoC7xm2', TRUE, 4), -- Blockchain123
+       ('RoboTech_gmail', 'RoboTech_gmail@gmail.com', '$2a$10$1/SdmgKNxumms.8IZSf3VOkNO.nGsIwxZc/vHUm0H1HObL.8Ip0/6',
+        TRUE, 4),                                                                 -- RoboTech123
+       ('Innovatech_gmail', 'Innovatech_gmail@gmail.com',
+        '$2a$10$OTyoe2SGoYZ2UKp9IRnXmOgWTaIR5mkYIZJUMfrUEjEzxtraKPvUO', TRUE, 4), -- Innovatech123
+       ('WebDev_Solutions', 'WebDev_Solutions@gmail.com',
+        '$2a$10$eogzReHN1Y30cS2iPUfze.QqhvtjPEEpnU7J5t2EZypHlmjdrHO5y', TRUE, 4), -- WebDev123
+       ('AI_Robotics', 'AI_Robotics@gmail.com', '$2a$10$QNK0HTrforRMrp9nEi1Dz.zC6Vmwm1Nh3P9TCq1xcTRtxoqS39iMG', TRUE,
+        4),                                                                       -- AiRob123
+       ('GreenTech_gmail', 'GreenTech_gmail@gmail.com', '$2a$10$WYr2oy1GzT5bQDKFkP.V6uV/SHyW6rYXOO/jdjjSyZndeZfcWhXZm',
+        TRUE, 4),                                                                 -- GreenTech123
+       ('Infinity_Networks', 'Infinity_Networks@gmail.com',
+        '$2a$10$fAV2mvnf.aMfLA5fFMuxAek/yIFCEHkqJQJdJsnPk6TCrpTwAWMCi', TRUE, 4), -- Infinity123
+       ('CodeCraft_gmail', 'CodeCraft_gmail@gmail.com', '$2a$10$egbukOZ.CoPX/Ct.bKXEqedRP/C0W3CXqdWF6pTkRrZUJMC7U/DpW',
+        TRUE, 4),                                                                 -- CodeCraft123
+       ('Yuri_Souza', 'Yuri.Souza@gmail.com', '$2a$10$ObL1T37nbXgVsLuVHpW3cOqYuFU5/qBwXL5D5c/eglFJ5skLAHUDe', TRUE,
+        3),                                                                       -- YuriSou123
+       ('Haniel_Silva', 'Haniel.Silva@gmail.com', '$2a$10$3xiECHobPzw/SEaFFhBNeeZLUevSmU5P1yoorm1z4Gd6.hVZtYbl2', TRUE,
+        3),                                                                       -- Haniel123
+       ('Marcio_Silva', 'Marcio.Silva@gmail.com', '$2a$10$o9L/Ohxm5RUUVCjr7IECfOi7KC8FBUZ45rSmGSHxaFIS0VrpzJQBC', TRUE,
+        3),                                                                       -- Marcio123
+       ('Allan_Amancio', 'Allan.Amancio@gmail.com', '$2a$10$ghEOvPkJHOaBHtHIyoDrTezgHP7P19UH/Iah.LZosJYFJAlQbgKQy',
+        TRUE, 3),                                                                 -- Allan123
+       ('Matheus_Sousa', 'Matheus.Sousa@gmail.com', '$2a$10$gBoI2Cltp1DF15R6aoiRvONTz5cumHJVSZ42j6f/o6uT/DojPpFdy',
+        TRUE, 3),                                                                 -- Matheus123
+       ('Brian_Trajano', 'Brian.Trajano@gmail.com', '$2a$10$juul4iHtADaj6JqwOspsbueSAtoz0hKbHVGm0BvsW4TetzetxqYTm',
+        TRUE, 3),                                                                 -- Brian123
+       ('Ian_Mendonca', 'Ian.Mendonca@gmail.com', '$2a$10$BxoDrGW.6L2yunEnmTd79epvRB0i3zSTW8bi0B1twng1WHtmR.k2S', TRUE,
+        3),                                                                       -- IanRib123
+       ('George_Lima', 'George.Lima@gmail.com', '$2a$10$PVZXD1dU88TUBcr2esHF7ezTnZkDE53KfigYXMMJ8E2DvgfFhJli6', TRUE,
+        3),                                                                       -- George123
+       ('Marcela_Kramer', 'Marcela.Kramer@gmail.com', '$2a$10$qoL7BFszE6WNZq1zkbuqRONQ93sNyM.gKZ.4M2/xPSDBdB7QkFbmK',
+        TRUE, 3),                                                                 -- Marcela123
+       ('Renato_Melo', 'Renato.Melo@gmail.com', '$2a$10$hkt0ThrEWwh8sjAdtyiHr.5scllakkwScBWm3nr13YFdmqjVKAweC', TRUE,
+        3),                                                                       -- Renato123
+       ('Yago_Aguiar', 'Yago.Aguiar@gmail.com', '$2a$10$0rhBwfkg72K.lJp.WKRlKOShpoxOLRXQRCA04.EKn9roWkZxPY2uK', TRUE,
+        3),                                                                       -- YagoCes123
+       ('Amanda_Araujo', 'Amanda.Araujo@gmail.com', '$2a$10$wDurni5v8Eb6kSVbjGzunuQNi25alwcQFLgzKBPrcf7oijJnVYvhO',
+        TRUE, 3),                                                                 -- Amanda123
+       ('Olivia_Oliva', 'Olivia.Oliva@gmail.com', '$2a$10$/TrbszOwRYmDArwC4BRAY.qSPqO0KsCew23Kq8hPHKuA/khPzujV6', TRUE,
+        3),                                                                       -- Olivia123
+       ('Raqueline_Gomes', 'Raqueline.Gomes@gmail.com', '$2a$10$.5JN9xxx7dKcnZnW7gKxeu6fPC.sy1nTT84SEhaIaGC0P.AtM9giS',
+        TRUE, 3),                                                                 -- Raqueline123
+       ('Geraldo_Neto', 'Geraldo.Neto@gmail.com', '$2a$10$g4sffagWMog65rN0y2o7veP.wtzJCFg9ggmXA.JrdvLtw7oUyZ2dq', TRUE,
+        3),                                                                       -- Geraldo123
+       ('Juliana_Cavalcante', 'Juliana.Cavalcante@gmail.com',
+        '$2a$10$y1nhPjr4hXsncl0pO.ocgOJH3hJgdHErHKJv7AL2VancAL3dwZ0dq', TRUE, 3), -- Juliana123
+       ('Pedro_Bravim', 'Pedro.Bravim@gmail.com', '$2a$10$v1FyJ/VynX5o7hnEkmad0eKtECPQLChhN/2Zxk2/sGKeHl5mXKAES', TRUE,
+        3),                                                                       -- Pedro123
+       ('Juan_Farias', 'Juan.Farias@gmail.com', '$2a$10$wmwE/1bZnvv6Y2KZPhH5eOZi73qLfkOzOeI0zT5bTLEpi5Rkhl2v6', TRUE,
+        3),                                                                       -- JuanFar123
+       ('Joao_Dias', 'Joao.Dias@gmail.com', '$2a$10$X0ZNf5ucz9SfkMdYdF8nL.5ZSebuU6SThZKVMpOmJCPLQ3eumZF8G', TRUE,
+        3),                                                                       -- JoaoDias123
+       ('Alic_Andrade', 'Alic.Andrade@gmail.com', '$2a$10$AUH939ZyD0R6bPoviJHnTuld/9Dqz8YFYOW/tzYZln3tlX2nekahC', TRUE,
+        3),                                                                       -- AlicAndr123
+       ('Luis_Kilmer', 'Luis.Kilmer@gmail.com', '$2a$10$aWtuBwGfb7ZjVZNO.Mi1yeNsV.hdrjDSuHNYE5KzW54xtr5RrWafu', TRUE,
+        3); -- LuisKill123
 
 INSERT INTO tb_coordinator (id, username, enrollment, name, course)
 VALUES (1, 'Coordenador_Sistemas', '20220040009', 'João Silva', 'Sistemas para Internet');

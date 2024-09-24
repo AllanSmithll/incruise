@@ -38,7 +38,12 @@ public class IncruiseSecurityConfig {
                         .loginPage("/auth/login")
                         .defaultSuccessUrl("/", true)
                         .permitAll())
-                .logout((logout) -> logout.logoutUrl("/auth/logout"));
+                .logout(logout -> logout
+                        .logoutUrl("/auth/logout")
+                        .logoutSuccessUrl("/auth/login?logout=true")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll());
         return http.build();
     }
 

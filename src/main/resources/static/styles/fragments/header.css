@@ -56,6 +56,11 @@ nav ul li a:visited {
     text-decoration: none !important;
 }
 
+.navbar-dropdown li a {
+    background: #2581DC;
+}
+
+
 nav ul li a {
     background: transparent;
     color: #FFF;
@@ -92,6 +97,18 @@ nav ul li ul li a {
     z-index: 1;
     background: #fff;
     box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.25);
+}
+
+.navbar-dropdown li a {
+    padding: 15px;
+    line-height: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-dropdown li a:hover {
+    background: #1f6c9b;
+    color: #ffffff;
 }
 
 /* Mobile navigation */

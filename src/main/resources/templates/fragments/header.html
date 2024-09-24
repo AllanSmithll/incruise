@@ -1,46 +1,53 @@
 <header th:fragment="header">
-  <section class="navigation">
-    <div class="nav-container">
-      <div class="brand">
-        <a class="navbar-brand" th:href="@{/}">
-          <!--             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
-          <span class="logo-font">Incruise</span>
-        </a>
-      </div>
-      <nav>
-        <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
-        <ul class="nav-list">
-          <li>
-            <a th:href="@{/student/students}">Alunos</a>
-          </li>
-          <li>
-            <a th:href="@{/internshipOffer/offers}">Ofertas de Estágio</a>
-          </li>
-          <li>
-            <a th:href="@{/company/companies}">Empresas</a>
-          </li>
-          <li>
-          </li>
+    <section class="navigation">
+        <div class="nav-container">
+            <div class="brand">
+                <a class="navbar-brand" th:href="@{/}">
+                    <!--             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
+                    <span class="logo-font">Incruise</span>
+                </a>
+            </div>
+            <nav>
+                <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
+                <ul class="nav-list">
+                    <li>
+                        <a th:href="@{/student/students}">Alunos</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/internshipOffer/offers}">Ofertas de Estágio</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/company/companies}">Empresas</a>
+                    </li>
+                    <li>
+                        <a href="#!">Registrar-se</a>
+                        <ul class="navbar-dropdown">
+                            <!--               <li>
+                                            <a href="#!">Login</a>
+                                          </li> -->
+                            <li>
+                                <a th:href="@{/student/register}">Como Estudante</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/company/register}">Como empresa</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li th:if="${#authentication.principal != null}">
+                        <a th:if="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}"
+                           th:text="${#authentication.principal.username}">Usuário</a>
 
-          
-          <li>
-            <a href="#!">Registrar-se</a>
-            <ul class="navbar-dropdown">
-<!--               <li>
-                <a href="#!">Login</a>
-              </li> -->
-              <li>
-                <a th:href="@{/student/register}">Como Estudante</a>
-              </li>
-              <li>
-                <a th:href="@{/company/register}">Como empresa</a>
-              </li>
-            </ul>
-          </li>
-
-        </ul>
-      </nav>
-    </div>
-  </section>
+                        <ul class="navbar-dropdown">
+                            <li>
+                                <form th:action="@{/auth/logout}" method="post">
+                                    <button type="submit">Sair</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
 
 </header>
