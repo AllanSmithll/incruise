@@ -39,9 +39,9 @@
 
                         <ul class="navbar-dropdown">
                             <li>
-                                <a th:action="@{/auth/logout}" method="post">
-                                    Logout
-                                </a>
+                                <form th:action="@{/auth/logout}" method="post">
+                                    <button type="submit">Sair</button>
+                                </form>
                             </li>
                         </ul>
                     </li>
