@@ -20,8 +20,6 @@
                         <a th:href="@{/company/companies}">Empresas</a>
                     </li>
                     <li>
-                    </li>
-                    <li>
                         <a href="#!">Registrar-se</a>
                         <ul class="navbar-dropdown">
                             <!--               <li>
@@ -39,11 +37,11 @@
                         <a th:if="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}"
                            th:text="${#authentication.principal.username}">Usuário</a>
 
-                        <ul>
+                        <ul class="navbar-dropdown">
                             <li>
-                                <form th:action="@{/auth/logout}" method="post">
-                                    <button type="submit">Logout</button>
-                                </form>
+                                <a th:action="@{/auth/logout}" method="post">
+                                    Logout
+                                </a>
                             </li>
                         </ul>
                     </li>
