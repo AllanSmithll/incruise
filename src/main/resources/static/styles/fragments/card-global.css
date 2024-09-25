@@ -1,4 +1,3 @@
-/* Estilo do container da listagem */
 .card-list-component {
     display: flex;
     justify-content: center;
@@ -15,13 +14,8 @@
     color: #333;
     margin: 20px 0;
     text-align: center;
-    
-
 }
 
-/* Estilo comum dos cards */
-.individual-card,
-.individual-card,
 .individual-card {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -32,22 +26,10 @@
     margin-bottom: 16px;
 }
 
-/* Ajuste de larguras específicas */
-.individual-card,
-.individual-card 
-.individual-card {
-
-    width: 500px;
-}
-
-/* Estilo de títulos nos cards */
-.individual-card h3,
-.individual-card h3,
 .individual-card h3 {
     margin: 0 0 12px;
 }
 
-.individual-card,
 .individual-card {
     display: flex;
     flex-direction: column;
@@ -59,36 +41,27 @@
     color: black;
 }
 
-/* Estilo de textos pequenos */
-.individual-card smal,
-.individual-card .d-flex smal,
-.individual-card .d-flex smal {
+.individual-card small {
     height: 1.2rem;
     font-weight: bold;
-    margin: 5   px 0;
+    margin: 5px 0;
     color: #1e446f;
 }
 
-/* Estilo para d-flex dentro dos cards */
-.individual-card .d-flex,
 .individual-card .d-flex {
     margin-bottom: 12px;
 }
 
-.individual-card .d-flex div,
 .individual-card .d-flex div {
     flex: 1;
 }
 
-.individual-card .d-flex p,
 .individual-card .d-flex p {
     margin: 0;
 }
 
-
 .btn-view {
     background-color: #3e3e68;
-    
 }
 
 .btn-apply {
@@ -116,4 +89,3 @@
     outline: none;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
 }
-
