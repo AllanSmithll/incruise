@@ -14,6 +14,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /* @EnableWebMvc
  */
@@ -33,13 +34,22 @@ public class ErrorController {
     }
 
     // Tratar exceções genéricas
+   // Tratar exceções genéricas
     @ExceptionHandler(Throwable.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleGenericException(final Throwable throwable, final Model model) {
+    public String handleGenericException(final Throwable throwable, final Model model, HttpServletRequest request, HttpServletResponse response) {
         logger.error("Erro durante execução da aplicação", throwable);
 
+        // Captura o código de status (caso queira definir um, senão pode ser padrão)
+        int statusCode = response.getStatus(); 
+
+        if (statusCode == 0) {
+            statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR; // 500
+            response.setStatus(statusCode); 
+        }
+
+        model.addAttribute("statusCode", statusCode);
+
         // Obtenha a mensagem da exceção
-        String code = throwable.getMessage();
         String errorMessage = throwable.getMessage();
         model.addAttribute("errorMessage", errorMessage != null ? errorMessage : "Erro interno do servidor.");
 
@@ -48,7 +58,6 @@ public class ErrorController {
                 : "Stack trace não disponível.";
         model.addAttribute("stackTrace", stackTrace);
 
-        return "/system/error";
+        return "system/error"; 
     }
-
 }
