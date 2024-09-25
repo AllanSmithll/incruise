@@ -49,6 +49,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: space-around;
 }
 
 .opportunities-list .offer-card {
@@ -57,6 +58,7 @@ body {
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 #list-section .list-item {
@@ -159,6 +161,13 @@ body {
 
 .section.competences div {
   width: 40%;
+}
+
+@media (min-width: 1200px) {
+  .opportunities-list .offer-card {
+    flex: 1 1 calc(33.333% - 20px);
+    max-width: calc(33.333% - 20px);
+  }
 }
 
 @media (max-width: 768px) {
