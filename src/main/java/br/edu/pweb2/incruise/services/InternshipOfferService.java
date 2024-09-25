@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.services;
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.NullInternshipOffer;
+import br.edu.pweb2.incruise.model.OfferStatus;
 import br.edu.pweb2.incruise.repository.InternshipOfferRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,10 @@ public class InternshipOfferService {
         return internshipOfferRepositoryJpa.findById(id).orElse(new NullInternshipOffer());
     }
 
+    public List<InternshipOffer> findActiveOffers() {
+        return internshipOfferRepositoryJpa.findByStatus(OfferStatus.ABERTA);
+    }
+
     public List<InternshipOffer> filterOffers(String companyName, Double minRemuneration, Double maxRemuneration,
                                           Integer minWeeklyWorkload, Integer maxWeeklyWorkload, String prerequisites) {
         return internshipOfferRepositoryJpa.findAll().stream()
@@ -50,7 +55,13 @@ public class InternshipOfferService {
         internshipOfferRepositoryJpa.save(offer);
     }
 
-    public void remove(Long id) throws Exception {
-        internshipOfferRepositoryJpa.deleteById(id);
+    public void cancel(Long id) throws Exception {
+        InternshipOffer offer = findById(id);
+        if (offer != null && !offer.isEmpty()) {
+            offer.setStatus(OfferStatus.CANCELADA);
+            internshipOfferRepositoryJpa.save(offer);
+        } else {
+            throw new Exception("Oferta não encontrada.");
+        }
     }
 }

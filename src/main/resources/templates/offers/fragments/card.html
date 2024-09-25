@@ -46,8 +46,13 @@
     </div>
     <div class="status-box mt-3">
         <small>Status da Oferta</small>
-        <p th:classappend="${offer.status.ABERTA} ? 'text-success' : 'text-danger'"
-            th:text="${offer.status.ABERTA} ? 'Aberta' : 'Fechada'"></p>
+        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).ABERTA}" class="text-success" th:text="Aberta">
+        Aberta
+        </p>
+        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).FECHADA}" class="text-secondary" th:text="Fechada">
+        </p>
+        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).CANCELADA}" class="text-danger" th:text="Cancelada">
+        </p>
     </div>
     <div class="buttons-actions d-flex gap-2 justify-content-center mt-3">
         <a th:href="@{info/{id}(id=${offer.id})}" class="button-action btn-view">
@@ -61,7 +66,6 @@
         </form>
         <form th:action="@{cancel/{id}(id=${offer.id})}" method="post"
               th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'') or hasRole(''ROLE_ADMIN'')')}">
-            <input type="hidden" name="_method" value="DELETE" />
             <button class="button-action btn-delete" type="submit">
                 <i class="bi bi-x-circle-fill"></i> Cancelar
             </button>
