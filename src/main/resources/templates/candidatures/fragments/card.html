@@ -41,11 +41,7 @@
         <smal>Pré-requisitos</smal>
         <p th:text="${candidature.internshipOffer.prerequisites}">Nenhum</p>
     </div>
-
-    <div class="d-flex flex-column" class="buttons-actions">
-        <button class="btn button-action">Aprovar</button> <!--  Empresa aprova a candidatura do Aluno  -->
-        <button class="btn button-action">Visualizar</button> <!--  Empresa ou Aluno visualiza a candidatura do Aluno  -->
-        <button class="btn button-action">Recusar</button> <!--  Empresa recusa a candidatura do Aluno  -->
-        <button class="btn btn-danger button-action">Cancelar Candidatura</button> <!-- Aluno Cancela sua candidatura  -->
-    </div>
+    <th:block th:insert="~{/candidtures/fragments/buttons-actions}">
+        
+    </th:block>
 </div>

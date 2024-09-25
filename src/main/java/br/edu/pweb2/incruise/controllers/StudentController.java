@@ -1,16 +1,15 @@
 package br.edu.pweb2.incruise.controllers;
 
-import br.edu.pweb2.incruise.model.*;
+import br.edu.pweb2.incruise.model.Competence;
+import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.model.exception.DuplicateEmailException;
 import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
 import br.edu.pweb2.incruise.model.exception.DuplicateUsernameException;
 import br.edu.pweb2.incruise.model.exception.InvalidAgeException;
 import br.edu.pweb2.incruise.services.CompetenceService;
-import br.edu.pweb2.incruise.services.RoleService;
 import br.edu.pweb2.incruise.services.StudentService;
-import br.edu.pweb2.incruise.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,15 +25,14 @@ public class StudentController {
 
     private final StudentService studentService;
     private final CompetenceService competenceService;
-    private final UserService userService;
-    private final RoleService roleService;
+    private final HttpSession session;
+
 
     @Autowired
-    public StudentController(StudentService studentService, CompetenceService competenceService, UserService userService, RoleService roleService) {
+    public StudentController(StudentService studentService, CompetenceService competenceService, HttpSession httpSession) {
         this.studentService = studentService;
         this.competenceService = competenceService;
-        this.userService = userService;
-        this.roleService = roleService;
+        this.session = httpSession;
     }
 
     @GetMapping("/register")
@@ -42,6 +40,12 @@ public class StudentController {
         model.addAttribute("student", new Student());
         model.addAttribute("competences", competenceService.findAll());
         return "students/form";
+    }
+
+    @GetMapping("/setSession")
+    public String setSession(String username) {
+        session.setAttribute("username", username);
+        return "home";
     }
 
     @GetMapping("/students")

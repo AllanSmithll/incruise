@@ -32,13 +32,20 @@ public class IncruiseSecurityConfig {
                         .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
                                 "/internshipOffer/info/**","student/register","company/register",
                                 "/company/save", "student/save").permitAll()
-                        .requestMatchers("/styles/**", "/imgs/**", "/scripts/**").permitAll()
+                        .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
+                        .requestMatchers("/internshipOffer/apply/**").hasRole("STUDENT")
+                        .requestMatchers("/styles/**", "/system/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/auth/login")
                         .defaultSuccessUrl("/", true)
                         .permitAll())
-                .logout((logout) -> logout.logoutUrl("/auth/logout"));
+                .logout(logout -> logout
+                        .logoutUrl("/auth/logout")
+                        .logoutSuccessUrl("/auth/login?logout=true")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .permitAll());
         return http.build();
     }
 

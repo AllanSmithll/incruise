@@ -27,11 +27,4 @@ public class AuthController {
         }
         return "auth/login";
     }
-
-    @GetMapping("/logout")
-    public String logout(RedirectAttributes redirectAttributes) {
-        SecurityContextHolder.clearContext();
-        redirectAttributes.addFlashAttribute("message", "Você saiu com sucesso.");
-        return "redirect:/auth/login?logout=true";
-    }
 }
