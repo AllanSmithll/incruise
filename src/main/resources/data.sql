@@ -45,7 +45,9 @@ VALUES (4, 'ROLE_COMPANY');
 
 -- Users
 INSERT INTO tb_user (username, email, password, enabled, role_id)
-VALUES ('Coordenador_Sistemas', 'coordenador.sistemas@gmail.com',
+VALUES ('admin', 'admin@email.com',
+        '$2a$10$XhWSdZtXKkYIIMLc.2cZO.WmlFUi5oQip.n//bKT2P1fQ6AB2q36K', TRUE, 1), -- administrator
+        ('Coordenador_Sistemas', 'coordenador.sistemas@gmail.com',
         '$2a$10$gnZeaOFqprG8glYWHso/sujuNhqLAbfj6fTaYjO0dH/6GsXhdnrbG', TRUE, 2), -- Coordenador123
        ('Tech_Innovators', 'Tech_Innovators@gmail.com', '$2a$10$uHIAJXUDN44JaPOKKg/c/OpoQqeJI9GfzJu3A1IK.PdAjixhxvrwK',
         TRUE, 4),                                                                 -- TechInno123
