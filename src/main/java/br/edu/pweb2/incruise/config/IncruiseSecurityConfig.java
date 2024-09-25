@@ -32,6 +32,8 @@ public class IncruiseSecurityConfig {
                         .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
                                 "/internshipOffer/info/**","student/register","company/register",
                                 "/company/save", "student/save").permitAll()
+                        .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
+                        .requestMatchers("/internshipOffer/apply/**").hasRole("STUDENT")
                         .requestMatchers("/styles/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .formLogin((form) -> form

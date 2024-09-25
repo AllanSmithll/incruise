@@ -15,11 +15,12 @@
             <div class="card-list-component">
                 <h1>Ofertas de Estágio</h1>
                 <div class="buttons-actions">
-                    <button class="button-add btn btn-primary " th:href="@{/internshipOffer/register}">
+                    <button class="button-add btn btn-primary " th:href="@{/internshipOffer/register}"
+                            th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
                         Nova Oferta
                     </button>
-
                 </div>
+
                 
                 <th:block th:replace="~{/offers/fragments/filter}"></th:block>
 
