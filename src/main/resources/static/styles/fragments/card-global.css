@@ -59,33 +59,3 @@
 .individual-card .d-flex p {
     margin: 0;
 }
-
-.btn-view {
-    background-color: #3e3e68;
-}
-
-.btn-apply {
-    background-color: #28a745;
-}
-
-.btn-delete {
-    background-color: #dc3545;
-}
-
-.btn-view:hover {
-    background-color: #3e3e88;
-    color: #fff;
-}
-
-.btn-apply:hover {
-    background-color: #218838;
-}
-
-.btn-delete:hover {
-    background-color: #c82333;
-}
-
-.btn-apply:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
-}

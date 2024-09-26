@@ -1,0 +1,20 @@
+<div class="d-flex buttons-actions" th:fragment="candidature-actions(candidature)">
+    <a class="btn btn-view button-action"
+    th:href="@{/candidature/info/{id}(id=${candidature.id})}"
+    >Visualizar</a> <!--  Empresa ou Aluno ou Coordenador visualiza a candidatura do Aluno  -->
+    
+    <a class="btn btn-success button-action" 
+    th:href="@{/candidature/aprove/{id}(id=${candidature.id})}"
+    th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')} ">
+    Aprovar</a> <!--  Empresa aprova a candidatura do Aluno  -->
+    
+    <a class="btn button-action btn-danger" 
+    th:href="@{/candidature/refuse/{id}(id=${candidature.id})}"
+    th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')} ">
+    Recusar</a> <!--  Empresa recusa a candidatura do Aluno  -->
+    
+    <a class="btn btn-danger button-action"  
+    th:href="@{/candidature/cancel/{id}(id=${candidature.id})}"
+    th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')} "
+    >Cancelar</a> <!-- Aluno Cancela sua candidatura  -->
+</div>

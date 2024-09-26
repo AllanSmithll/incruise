@@ -41,7 +41,6 @@
         <smal>Pré-requisitos</smal>
         <p th:text="${candidature.internshipOffer.prerequisites}">Nenhum</p>
     </div>
-    <th:block th:insert="~{/candidtures/fragments/buttons-actions}">
+    <th:block th:replace="~{candidatures/fragments/actions(${candidature})}"></th:block>
         
     </th:block>
-</div>
