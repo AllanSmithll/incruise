@@ -5,7 +5,9 @@
     <!-- Incluindo o fragmento de cabeçalho -->
     <meta
             th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${offer.principalActivity})}">
-    <link rel="stylesheet" th:href="@{/styles/offers/info.css}">
+  <link rel="stylesheet" th:href="@{/styles/fragments/table-global.css}">
+  <link rel="stylesheet" th:href="@{/styles/offers/info.css}">
+
 </head>
 
 <body>
@@ -15,7 +17,7 @@
 <!-- Conteúdo principal -->
 <main class="main-content">
     <!-- Seção de detalhes da oportunidade -->
-    <div class="section details">
+    <div class="info-section details">
         <h1 class="section-title">Detalhes</h1>
         <!-- Remuneração -->
         <p th:if="${offer.remunerationValue != 0}">
@@ -30,40 +32,47 @@
         <!-- Vale Transporte -->
         <p th:if="${offer.transportVoucher != 0}">
             <strong>Vale Transporte:</strong><span
-                th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}">R$ 0,00</span>
+            th:text="'R$'+ ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)}">R$ 0,00</span>
         </p>
-
+        
         <p>
             <strong>Pré-requisitos:</strong>
             <span th:if="${!#strings.isEmpty(offer.prerequisites)}"
-                  th:text="${offer.prerequisites}"></span>
+            th:text="${offer.prerequisites}"></span>
             <span th:if="${#strings.isEmpty(offer.prerequisites)}">Nenhum</span>
         </p>
     </div>
-    <div class="section competences">
-        <div id="Competence-Necessary-Box">
-            <p class="topic-title">Competências Obrigatórias</p>
-            <ul class="list-competences" th:each="competence : ${necessarySkills}">
-                <li class="competence " th:text="${competence.description}">
-                    Isso é uma competência obrigatória e longa
-                </li>
-            </ul>
-        </div>
+    <div class="info-section competences">
+        <h1 class="section-title">Competências</h1>
+        <div class="flex gap-2">
+            
+            <div class="w-50" id="Competence-Necessary-Box">
+                <p class="topic-title">Competências Obrigatórias</p>
+                <ul class="list-competences" th:each="competence : ${necessarySkills}">
+                    <li class="competence " th:text="${competence.description}">
+                        Isso é uma competência obrigatória e longa
+                    </li>
+                </ul>
+            </div>
+    
+            <div class="w-50" id="Competence-Desirable-Box">
+    
+                <p class="topic-title">Competências Desejadas</p>
+                <ul class="list-competences" th:each="competence : ${desirableSkills}">
+                    <li class="competence" th:text="${competence.description}">
+                        Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa e não
+                        curta, pois se fosse curta não seria longa
+                    </li>
+                </ul>
+            </div>
 
-        <div id="Competence-Desirable-Box">
-
-            <p class="topic-title">Competências Desejadas</p>
-            <ul class="list-competences" th:each="competence : ${desirableSkills}">
-                <li class="competence" th:text="${competence.description}">
-                    Isso é uma competência desejada longa, muito longa, pode crêr que é longa, por que é longa e não
-                    curta, pois se fosse curta não seria longa
-                </li>
-            </ul>
         </div>
 
     </div>
 
-    <div class="section candidatures">
+    <!-- th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}"-->    
+    <div class="info-section candidatures" 
+    >
         <h1 class="section-title">Candidaturas</h1>
 
         <div th:if="${#lists.isEmpty(offer.candidatureList)}">
@@ -71,12 +80,12 @@
         </div>
         <button> toggle table</button>
         <th:block th:if="${!#lists.isEmpty(offer.candidatureList)}"
-                  th:insert="~{/candidatures/fragments/table(candidatures=offer.candidatureList)}">
+                  th:insert="~{/candidatures/fragments/table(candidatures=${offer.candidatureList})}">
         </th:block>
 
     </div>
 
-    <div class="section company-info">
+    <div class="info-section company-info">
         <h1 class="section-title">Empresa Responsável</h1>
         <p>
             <strong>Nome da Empresa:</strong>
