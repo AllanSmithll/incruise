@@ -3,19 +3,136 @@
 
 <head>
     <!-- Incluindo o fragmento de cabeçalho -->
-    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidture.student.name})}">
+    <meta
+        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidture.student.name})}">
+    <link rel="stylesheet" href="../../static/styles/perfil.css">
+    <link rel="stylesheet" href="../../static/styles/main.css">
 </head>
 
 <!-- Esta vai ser a seção mais divertida que irei criar :D-->
+
 <body>
     <main>
 
         <section class="info-section" id="first-info">
-            <img th:src="@{/imgs/default/enterprise-default.png}" alt="Imagem do Estudante">
-            <h1>Candidatura de <span id="name" th:text="${candidture.student.name}">Nome do estudante></span> </h1>
-        
+            <!--             <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">-->
+            <img src="../../static/imgs/default/candidature-default.png" alt="Imagem do Estudante">
+            <h1>Candidatura de
+                <a>
+                    <span id="name" th:text="${candidture.student.name}"
+                        th:href="@{/students/info/{id}(id=${candidture.student.id})}">
+                        Nome do estudante
+                    </span>
+                </a>
+            </h1>
+        </section>
+
+        <section class="info-section" id="options-section">
+            <h2 class="section-title"> Opções</h2>
+            <th:block th:insert="~{/candidtures/fragments/buttons-actions}"></th:block>
+            <div class="d-flex flex-column" class="buttons-actions">
+                <button class="btn button-action">Aprovar</button> <!--  Empresa aprova a candidatura do Aluno  -->
+                <button class="btn button-action">Visualizar</button>
+                <!--  Empresa ou Aluno visualiza a candidatura do Aluno  -->
+                <button class="btn button-action">Recusar</button> <!--  Empresa recusa a candidatura do Aluno  -->
+                <button class="btn btn-danger button-action">Cancelar Candidatura</button>
+                <!-- Aluno Cancela sua candidatura  -->
+            </div>
+        </section>
+        <section class="info-section">
+            <h2 class="section-title">Informações da Candidatura</h2>
+
+            <div class="d-flex flex-column">
+
+                <div class="topic">
+                    <h1 class="topic-title">
+                        Vaga Candidatada
+                    </h1>
+                    <a class="topic-content" th:text="${candidature.intershipOffer.principalActivity}"
+                        th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}">
+                        Vaga para Ensaboador de Frangos
+                    </a>
+                </div>
+
+                <div class="topic">
+                    <h1 class="topic-title">
+                        Data da aplicação
+                    </h1>
+                    <p class="topic-content" th:text="${#temporals.format(candidature.createdDate, dd/mm/yyyy)}">
+                        09/02/2023
+                    </p>
+                </div>
+                <div class="topic">
+                    <h1 class="topic-title">
+                        Situação
+                    </h1>
+                    <p class="topic-content" th:text="${candidature.status}">
+                        Pendente
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="topic">
+                <h1 class="topic-title">
+                    Mensagem do candidato
+                </h1>
+                <p class="topic-content" th:text="${candidature.message}">
+                    Por favor eu precizo muito, muito, muitíssimo, muitisisísimo dessa vaga!</p>
+            </div>
+
+        </section>
+        <section class="info-section" id="competence-section">
+            <h2 class="section-title"> Competências atingidas</h2>
+            <!------------To Do------------>
+            <h2> Competencias obrigatórias</h2>
+            <ul>
+                <li class="competeces have-competence"> O competence 1</li>
+                <li class="competeces dont-have-competence">X competence 2</li>
+                <li class="competeces dont-have-competence">X competence 3</li>
+                <li class="competeces have-competence">O competence 4</li>
+                <li class="competeces have-competence">O competence 5</li>
+            </ul>
+            <h2> Competencias não obrigatórias</h2>
+            <ul>
+                <li class="competeces have-competence">O competence 1</li>
+                <li class="competeces dont-have-competence">X competence 2</li>
+            </ul>
+        </section>
+        <section class="info-section" class="summary-student"
+            th:if="${#authorization.expression('hasRole('ROLE_COMPANY')')}">
+            <h2 class="section-title"> Resumo do Estudante</h2>
+            <!------------To Do------------>
+            <div class="flex around">
+                <div class="topic">
+                    <h1 class="topic-title">Curso</h1>
+                    <div class="topic">
+                        <h1 class="topic-title">Matrícula</h1>
+                        <p class="topic-content" th:text="${candidature.student.enrollment}">00001112222</p>
+                    </div>
+
+                    <div class="topic">
+                        <h1 class="topic-title">Curso</h1>
+                        <p class="topic-content" th:text="${candidature.student.course}">Sistemas de Informação</p>
+                    </div>
+
+                    <div class="d-flex around">
+                        <div class="topic">
+                            <h1 class="topic-title">Email</h1>
+                            <p class="topic-content" th:text="${candidature.student.user.email}">
+                                palinha.joao@academico.uepa.edu.br</p>
+                        </div>
+
+                        <div class="topic">
+                            <h1 class="topic-title">Telefone</h1>
+                            <p class="topic-content" th:text="${candidature.student.phoneNumber}">+55 83 8229-2523</p>
+                        </div>
+                    </div>
+                </div>
+
         </section>
 
     </main>
 </body>
+
 </html>

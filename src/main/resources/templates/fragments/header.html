@@ -1,46 +1,42 @@
 <header th:fragment="header">
-    <section class="navigation">
+    <section class="main-navigation">
         <div class="nav-container">
-            <div class="brand">
-                <a class="navbar-brand" th:href="@{/}">
-                    <!--             <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="d-inline-block align-text-top"> -->
-                    <span class="logo-font">Incruise</span>
+            <div class="brand-container">
+                <a class="brand-link" th:href="@{/}">
+                    <img th:src="@{/imgs/logo.png}" alt="" width="30" height="24" class="brand-logo">
+                    <span class="brand-name">Incruise</span>
                 </a>
             </div>
-            <nav>
-                <div class="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
+            <nav class="navigation-menu">
+                <div class="nav-toggle"><a id="navbar-toggle" href="#!"><span></span></a></div>
                 <ul class="nav-list">
-                    <li>
-                        <a th:href="@{/student/students}">Alunos</a>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/student/students}">Alunos</a>
                     </li>
-                    <li>
-                        <a th:href="@{/internshipOffer/offers}">Ofertas de Estágio</a>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/internshipOffer/offers}">Ofertas de Estágio</a>
                     </li>
-                    <li>
-                        <a th:href="@{/company/companies}">Empresas</a>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/company/companies}">Empresas</a>
                     </li>
-                    <li>
-                        <a href="#!">Registrar-se</a>
-                        <ul class="navbar-dropdown">
-                            <!--               <li>
-                                            <a href="#!">Login</a>
-                                          </li> -->
+                    <li class="nav-item" th:unless="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}">
+                        <a class="nav-link" href="#!">Registrar-se</a>
+                        <ul class="nav-dropdown">
                             <li>
-                                <a th:href="@{/student/register}">Como Estudante</a>
+                                <a class="dropdown-link" th:href="@{/student/register}">Como Estudante</a>
                             </li>
                             <li>
-                                <a th:href="@{/company/register}">Como empresa</a>
+                                <a class="dropdown-link" th:href="@{/company/register}">Como Empresa</a>
                             </li>
                         </ul>
                     </li>
-                    <li th:if="${#authentication.principal != null}">
-                        <a th:if="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}"
-                           th:text="${#authentication.principal.username}">Usuário</a>
-
-                        <ul class="navbar-dropdown">
+                    <li class="nav-item" th:if="${#authentication.principal != null}">
+                        <a class="nav-link" th:if="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}"
+                           th:text="${#authentication.principal.username}" id="Username-Header">Usuário</a>
+                        <ul class="nav-dropdown">
                             <li>
                                 <form th:action="@{/auth/logout}" method="post">
-                                    <button type="submit">Sair</button>
+                                    <button class="logout-button" type="submit">Sair</button>
                                 </form>
                             </li>
                         </ul>
@@ -49,5 +45,4 @@
             </nav>
         </div>
     </section>
-
 </header>

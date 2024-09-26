@@ -20,11 +20,8 @@
             <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
             <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
             <td>
-                <div class="buttons-actions">
-                    <button class="btn button-action">Aprovar</button> <!--  Empresa aprova a candidatura do Aluno  -->
-        <button class="btn button-action">Visualizar</button> <!--  Empresa ou Aluno visualiza a candidatura do Aluno  -->
-        <button class="btn button-action">Recusar</button> <!--  Empresa recusa a candidatura do Aluno  -->
-                </div>
+                <th:block th:insert="~{/candidtures/fragments/buttons-actions}">
+                </th:block>
             </td>
 
         </tr>
