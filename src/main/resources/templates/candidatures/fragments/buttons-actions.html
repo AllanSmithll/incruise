@@ -1,9 +1,0 @@
-<div class="d-flex flex-column" class="buttons-actions" th:fragment="candidature-buttons-actions(candidature)">
-    <button class="btn button-action">Aprovar</button> <!--  Empresa aprova a candidatura do Aluno  -->
-    <button class="btn button-action">Visualizar</button> <!--  Empresa ou Aluno visualiza a candidatura do Aluno  -->
-    <button class="btn button-action" th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')} ">
-        Recusar</button> <!--  Empresa recusa a candidatura do Aluno  -->
-    <button class="btn btn-danger button-action"  
-    th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')} ">
-    Cancelar Candidatura</button> <!-- Aluno Cancela sua candidatura  -->
-</div>

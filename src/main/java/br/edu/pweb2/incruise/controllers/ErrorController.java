@@ -36,6 +36,8 @@ public class ErrorController {
     // Tratar exceções genéricas
    // Tratar exceções genéricas
     @ExceptionHandler(Throwable.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+
     public String handleGenericException(final Throwable throwable, final Model model, HttpServletRequest request, HttpServletResponse response) {
         logger.error("Erro durante execução da aplicação", throwable);
 
