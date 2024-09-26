@@ -13,17 +13,17 @@ import java.util.List;
 @Service
 public class CandidatureService {
     
-    private final CandidatureRepository candidatureRepository;
+    private final CandidatureRepositoryJpa candidatureRepositoryJpa;
     private final UserService userService;
 
     @Autowired
-    public CandidatureService(CandidatureRepositoryJpa candidatureRepositoryJpa, UserService userService) {
+    public CandidatureService(CandidatureRepositoryJpa candidatureRepositoryJpa, CandidatureRepositoryJpa candidatureRepository, UserService userService) {
         this.candidatureRepositoryJpa = candidatureRepositoryJpa;
         this.userService = userService;
     }
 
     public Candidature findById(Long id) {
-        return candidatureRepositoryJpa.findById(id).orElse(new NullCandidature());
+        return candidatureRepositoryJpa.findById(id).orElse(null);
     }
 
     public List<Candidature> listAll() {
