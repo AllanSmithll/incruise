@@ -8,10 +8,11 @@
                 </a>
             </div>
             <nav class="navigation-menu">
-                <div class="nav-toggle"><a id="navbar-toggle" th:href="@{#!"><span></}span></a></div>
+                <div class="nav-toggle"><a id="navbar-toggle" href="#">
+                        <span></span></a>
+                </div>
                 <ul class="nav-list">
-                    <li class="nav-item"
-                    th:unless="${#authorization.expression('hasRole('ROLE_COMPANY')')}">
+                    <li class="nav-item" th:unless="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
                         <a class="nav-link" th:href="@{/student/students}">Alunos</a>
                     </li>
                     <li class="nav-item">
@@ -20,14 +21,13 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/company/companies}">Empresas</a>
                     </li>
-                    
-                    <li class="nav-item"
-                    th:if="${#authorization.expression('hasRole('ROLE_COORDINATOR')')}">
-                        <a class="nav-link" th:href="@{/candidature/candidatures}" >Candidaturas</a>
+                    <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
+                        <a class="nav-link" th:href="@{/candidature/candidatures}">Candidaturas</a>
                     </li>
 
-                    <li class="nav-item" th:unless="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}">
-                        <a class="nav-link" th:href="@{#!">Registrar-se}</a>
+                    <li class="nav-item"
+                        th:unless="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}">
+                        <a class="nav-link" th:href="#!">Registrar-se</a>
                         <ul class="nav-dropdown">
                             <li>
                                 <a class="dropdown-header-item" th:href="@{/student/register}">Como Estudante</a>
@@ -37,32 +37,36 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item" th:if="${#authentication.principal != null}">
-                        <a class="nav-link" th:text="${#authentication.principal.username}" id="Username-Header">Usuário</a>
-                        
+                        <a class="nav-link" th:text="${#authentication.principal.username}"
+                            id="Username-Header">Usuário</a>
+
                         <ul class="nav-dropdown">
                             <!-- Dropdown para Aluno (ROLE_STUDENT) -->
-                            <li th:if="${#authorization.expression('hasRole('ROLE_STUDENT')')}">
-                                <a class="dropdown-header-item" 
-                                th:href="@{/student/info/{id}
-                                id=${#authentication.principal.id})}">
-                                Perfil</a>
-                            </li>
-                    
-                            <!-- Dropdown para Empresa (ROLE_COMPANY) -->
-                            <li th:if="${#authorization.expression('hasRole('ROLE_COMPANY')')}">
-                                <a class="dropdown-header-item" 
-                                th:href="@{/company/info/{id}
-                                id=${#authentication.principal.id})}">
-                                Perfil</a>
-                            </li>
-                    
-                            <!-- Dropdown para Coordenador (ROLE_COORDENATOR) -->
-<!--                             <li th:if="${#authorization.expression('hasRole('ROLE_COORDENATOR')')}">
-                                <a class="dropdown-header-item"> </a>
+                            <!--                             <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
+                                <a class="dropdown-header-item"
+                                    th:href="@{/student/info/{id}(id=${#authentication.principal.id})}">
+                                    Perfil
+                                </a>
                             </li> -->
-                    
+
+                            <!-- Dropdown para Empresa (ROLE_COMPANY) -->
+                            <!--                             <li th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+                                <a class="dropdown-header-item"
+                                    th:href="@{/company/info/{id}(id=${#authentication.principal.id})}">
+                                    Perfil
+                                </a>
+                            </li> -->
+
+                            <!-- Dropdown para Coordenador (ROLE_COORDINATOR) -->
+                            <!--                             <li th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
+                                <a class="dropdown-header-item"
+                                    th:href="@{/coordinator/info/{id}(id=${#authentication.principal.id})}">
+                                    Perfil
+                                </a>
+                            </li> -->
+
                             <!-- Logout (Visível para todos os usuários) -->
                             <li>
                                 <form th:action="@{/auth/logout}" method="post">
@@ -71,7 +75,12 @@
                             </li>
                         </ul>
                     </li>
-                    
+
+
+
+                </ul>
+                </li>
+
                 </ul>
             </nav>
         </div>

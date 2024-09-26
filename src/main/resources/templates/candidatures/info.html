@@ -5,8 +5,8 @@
     <!-- Incluindo o fragmento de cabeçalho -->
     <meta
         th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidture.student.name})}">
-    <link rel="stylesheet" href="../../static/styles/perfil.css">
-    <link rel="stylesheet" href="../../static/styles/main.css">
+    <!-- <link rel="stylesheet" href="../../static/styles/perfil.css">
+    <link rel="stylesheet" href="../../static/styles/main.css"> -->
 </head>
 
 <!-- Esta vai ser a seção mais divertida que irei criar :D-->
@@ -15,8 +15,8 @@
     <main>
 
         <section class="info-section" id="first-info">
-            <!--             <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">-->
-            <img src="../../static/imgs/default/candidature-default.png" alt="Imagem do Estudante">
+                        <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">
+            <!-- <img src="../../static/imgs/default/candidature-default.png" alt="Imagem do Estudante"> -->
             <h1>Candidatura de
                 <a>
                     <span id="name" th:text="${candidture.student.name}"
