@@ -73,6 +73,14 @@ main{
     height: 2px;
     background-color: white;
     transition: width 0.3s ease, left 0.3s ease;
+
+.navbar-dropdown li a {
+    background: #2581DC;
+}
+
+nav ul li a {
+    background: transparent;
+    color: #FFF;
 }
 
 .nav-link:hover::after {
@@ -120,6 +128,28 @@ main{
     padding: 10px 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
+.navbar-dropdown li a {
+    padding: 15px;
+    line-height: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar-dropdown li a:hover {
+    background: #1f6c9b;
+    color: #ffffff;
+}
+
+/* Mobile navigation */
+.nav-mobile {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: transparent;
+    height: 55px;
+    width: 70px;
 }
 
 .logout-button:hover {

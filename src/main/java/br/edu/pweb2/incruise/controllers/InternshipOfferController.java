@@ -103,7 +103,7 @@ public class InternshipOfferController {
     public String applyForInternship(@RequestParam("offerId") Long offerId,
                                      @RequestParam("enrollment") String enrollment,
                                      @RequestParam(value = "message", required = false) String message,
-                                     RedirectAttributes redirectAttributes) throws Exception {
+                                     RedirectAttributes redirectAttributes) {
 
         Student student = studentService.findByEnrollment(enrollment);
         if (student == null) {
@@ -135,9 +135,9 @@ public class InternshipOfferController {
     }
 
     @PostMapping("/cancel/{id}")
-    public String cancelOffer(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+    public String cancel(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         try {
-            internshipOfferService.remove(id);
+            internshipOfferService.cancel(id);
             redirectAttributes.addFlashAttribute("success", "Oferta cancelada com sucesso.");
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Não foi possível cancelar a oferta.");
