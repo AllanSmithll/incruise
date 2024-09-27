@@ -15,7 +15,7 @@
     <div class="card-main">
         <div class="main-content">
             <h1 class="title-page">Cadastrar-se</h1>
-            <form th:action="@{/company/save}" method="post" th:object="${company}">
+            <form th:action="@{/company/save}" method="post" th:object="${company}"  >
                 <input id="input-id" class="input-form" type="hidden" th:field="*{id}"/>
 
                 <fieldset class="form-container">
@@ -96,18 +96,16 @@
                            title="O endereço pode ter no máximo 200 caracteres."/>
 
                     <div class="file-upload">
-                        <label for="addressVerify">Adicionar Comprovante</label>
-                        <input type="file" id="addressVerify" class="file-input" required aria-required="true"/>
-                        <div id="file-error" class="error-message" style="display: none">Por favor, adicione um
-                            comprovante de residência.
-                        </div>
+                        <label for="addressVerify">Adicionar Comprovante (PDF)</label>
+                        <input type="file" id="addressVerify" class="file-input" th:field="*{addressProof}"  required/>
                     </div>
+
                 </fieldset>
 
                 <div class="buttons-actions">
                     <input class="submit-input" type="submit" value="Salvar"/>
                 </div>
-            </form>
+            </form>*
         </div>
     </div>
 
