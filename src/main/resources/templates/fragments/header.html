@@ -9,7 +9,7 @@
             </div>
             <nav class="navigation-menu">
                 <div class="nav-toggle"><a id="navbar-toggle" href="#">
-                        <span></span></a>
+                    <span></span></a>
                 </div>
                 <ul class="nav-list">
                     <li class="nav-item" th:unless="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
@@ -25,9 +25,8 @@
                         <a class="nav-link" th:href="@{/candidature/candidatures}">Candidaturas</a>
                     </li>
 
-                    <li class="nav-item"
-                        th:unless="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails)}">
-                        <a class="nav-link" th:href="#!">Registrar-se</a>
+                    <li class="nav-item" th:if="${#authorization.expression('isAnonymous()')}">
+                        <a class="nav-link">Registrar-se</a>
                         <ul class="nav-dropdown">
                             <li>
                                 <a class="dropdown-header-item" th:href="@{/student/register}">Como Estudante</a>
@@ -38,36 +37,37 @@
                         </ul>
                     </li>
 
-                    <li class="nav-item" th:if="${#authentication.principal != null}">
-                        <a class="nav-link" th:text="${#authentication.principal.username}"
-                            id="Username-Header">Usuário</a>
+                    <li class="nav-item" th:if="${#authorization.expression('isAnonymous()')}">
+                        <a class="nav-link" th:href="@{/auth/login}">Login</a>
+                    </li>
+
+                    <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a class="nav-link"
+                           th:text="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails) ? #authentication.principal.username : #authentication.principal}"
+                           id="Username-Header">Usuário</a>
 
                         <ul class="nav-dropdown">
-                            <!-- Dropdown para Aluno (ROLE_STUDENT) -->
-                            <!--                             <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
+                            <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
                                 <a class="dropdown-header-item"
-                                    th:href="@{/student/info/{id}(id=${#authentication.principal.id})}">
+                                   th:href="@{/student/info/{id}(id=${#authentication.principal.username})}">
                                     Perfil
                                 </a>
-                            </li> -->
+                            </li>
 
-                            <!-- Dropdown para Empresa (ROLE_COMPANY) -->
-                            <!--                             <li th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+                            <li th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
                                 <a class="dropdown-header-item"
-                                    th:href="@{/company/info/{id}(id=${#authentication.principal.id})}">
+                                   th:href="@{/company/info/{id}(id=${#authentication.principal.username})}">
                                     Perfil
                                 </a>
-                            </li> -->
+                            </li>
 
-                            <!-- Dropdown para Coordenador (ROLE_COORDINATOR) -->
-                            <!--                             <li th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
+                            <li th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
                                 <a class="dropdown-header-item"
-                                    th:href="@{/coordinator/info/{id}(id=${#authentication.principal.id})}">
+                                   th:href="@{/coordinator/info/{id}(id=${#authentication.principal.username})}">
                                     Perfil
                                 </a>
-                            </li> -->
+                            </li>
 
-                            <!-- Logout (Visível para todos os usuários) -->
                             <li>
                                 <form th:action="@{/auth/logout}" method="post">
                                     <button class="logout-button" type="submit">Sair</button>
@@ -75,12 +75,6 @@
                             </li>
                         </ul>
                     </li>
-
-
-
-                </ul>
-                </li>
-
                 </ul>
             </nav>
         </div>
