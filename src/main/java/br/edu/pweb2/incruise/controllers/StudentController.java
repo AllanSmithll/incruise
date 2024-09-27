@@ -125,12 +125,12 @@ public class StudentController {
     }
 
 
-    @RequestMapping(value = "/info/{id}", method = RequestMethod.GET)
-    public String info(@PathVariable("id") Long id, Model model) {
+    @RequestMapping(value = "/info/{username}", method = RequestMethod.GET)
+    public String info(@PathVariable("username") String username, Model model) {
         try {
 
-            Student stundent = this.studentService.findById(id);
-            model.addAttribute("student", stundent);
+            Student student = this.studentService.findByUserUsername(username);
+            model.addAttribute("student", student);
             return "/students/info";
 
         } catch (Exception e) {

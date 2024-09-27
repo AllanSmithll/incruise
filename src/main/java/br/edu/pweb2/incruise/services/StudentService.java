@@ -1,5 +1,6 @@
 package br.edu.pweb2.incruise.services;
 
+import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.NullStudent;
 import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
@@ -31,6 +32,10 @@ public class StudentService {
 
     public Student findById(Long id) {
         return studentRepositoryJpa.findById(id).orElse(new NullStudent());
+    }
+
+    public Student findByUserUsername(String username) {
+        return studentRepositoryJpa.findByUserUsername(username);
     }
 
     public List<Student> listAll() {

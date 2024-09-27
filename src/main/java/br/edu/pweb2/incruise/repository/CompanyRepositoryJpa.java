@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface CompanyRepositoryJpa extends JpaRepository<Company, Long> {
     Company findByFantasyName(String fantasyName);
     Company findByCnpj(String cnpj);
+    Company findByUserUsername(String username);
 }

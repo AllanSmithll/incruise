@@ -49,14 +49,14 @@
                         <ul class="nav-dropdown">
                             <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
                                 <a class="dropdown-header-item"
-                                   th:href="@{/student/info/{id}(id=${#authentication.principal.username})}">
+                                   th:href="@{/student/info/{username}(username=${#authentication.principal.username})}">
                                     Perfil
                                 </a>
                             </li>
 
                             <li th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
                                 <a class="dropdown-header-item"
-                                   th:href="@{/company/info/{id}(id=${#authentication.principal.username})}">
+                                   th:href="@{/company/info/{username}(username=${#authentication.principal.username})}">
                                     Perfil
                                 </a>
                             </li>
