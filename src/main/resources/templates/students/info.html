@@ -3,9 +3,9 @@
 
 <head>
     <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${student.name})}">
-    
+
     <link rel="stylesheet" th:href="@{/styles/students/info.css}">
-    
+
     <link rel="stylesheet" th:href="@{/styles/fragments/card-global.css}">
 
 </head>
@@ -85,14 +85,17 @@
             <div class="card-list-component">
 
                 <h1 class="section-title"> Candidaturas</h1>
-                
+
                 <div th:if="${#lists.isEmpty(student.candidatureList)}">
                     <p class="no-content-msg">Não há registros de candidaturas.</p>
                 </div>
-                
-                <th:block th:each="candidature : ${student.candidatureList}"
-                    th:insert="~{/candidatures/fragments/card(candidature)}">
-                </th:block>
+
+                <div class="father-card">
+                    <th:block th:each="candidature : ${student.candidatureList}"
+                        th:insert="~{/candidatures/fragments/card(candidature)}">
+
+                    </th:block>
+                </div>
 
             </div>
         </section>
