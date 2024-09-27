@@ -100,7 +100,7 @@ main{
     display: block;
 }
 
-.dropdown-link {
+.dropdown-header-item {
     color: white;
     padding: 8px 12px;
     text-decoration: none;
@@ -108,7 +108,7 @@ main{
     transition: background 0.3s ease;
 }
 
-.dropdown-link:hover {
+.dropdown-header-item:hover {
     background-color: #1abc9c;
 }
 
