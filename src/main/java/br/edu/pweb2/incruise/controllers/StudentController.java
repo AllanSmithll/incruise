@@ -126,7 +126,7 @@ public class StudentController {
 
 
     @RequestMapping(value = "/info/{username}", method = RequestMethod.GET)
-    public String info(@PathVariable("username") String username, Model model) {
+    public String showInfo(@PathVariable("username") String username, Model model) {
         try {
 
             Student student = this.studentService.findByUserUsername(username);

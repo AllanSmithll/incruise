@@ -23,4 +23,6 @@ public abstract class SchoolMember {
 	private String name;
 
 	private String course;
+
+	private String phoneNumber;
 }
