@@ -9,40 +9,31 @@
 
 <body>
     <header th:replace="~{/fragments/header}"></header>
-    <main>
+    <main class="main-screen">
 
-        <div class="main-screen">
-            <div class="card-list-component">
-                <h1>Ofertas de Estágio</h1>
-                <div class="buttons-actions">
-                    <button class="button-add btn btn-primary " th:href="@{/internshipOffer/register}"
-                            th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
-                        Nova Oferta
-                    </button>
-                </div>
 
-                
-                <th:block th:replace="~{/offers/fragments/filter}"></th:block>
-
-                <div class="container">
-
-                    <div class="father-card">
-                    
-                        <div class="col-md-6 col-lg-6">
-                            <th:block th:each="offer : ${offers}" th:insert="~{/offers/fragments/card(offer)}">
-                            </th:block>
-                        </div>
-                    
-                    </div>
-                
-                </div>
-
+        <div class="card-list-component">
+            <h1>Ofertas de Estágio</h1>
+            <div class="buttons-actions">
+                <button class="button-add btn btn-primary " th:href="@{/internshipOffer/register}"
+                    th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+                    Nova Oferta
+                </button>
             </div>
+
+
+            <div class="filter-form" th:insert="~{/offers/fragments/filter}"></div>
         </div>
+
+        <div class="father-card">
+            <th:block th:each="offer : ${offers}" th:insert="~{/offers/fragments/card(offer)}">
+            </th:block>
+        </div>
+
 
     </main>
     <div th:replace="~{/fragments/scripts}"></div>
- 
+
 </body>
 
 </html>

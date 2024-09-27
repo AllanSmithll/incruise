@@ -56,8 +56,7 @@
     </div>
     <div class="buttons-actions d-flex gap-2 justify-content-center mt-3">
         <a th:href="@{info/{id}(id=${offer.id})}" class="button-action btn-view">
-            <i class="bi bi-binoculars-fill"></i> Visualizar
-        </a>
+            <i class="bi bi-binoculars-fill"></i> Visualizar</a>
         <form th:action="@{apply/{id}(id=${offer.id})}" method="get"
               th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
             <button class="button-action btn-apply" type="submit" value="Candidatar-se">

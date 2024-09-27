@@ -25,10 +25,7 @@
     box-shadow: 0 0 5px rgba(23, 162, 184, 0.5);
 }
 
-.father-card {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
-    gap: 2px; /* Espaçamento entre os itens */
-    align-items: start; /* Alinha os itens no topo de cada célula */
-    width: 100%;
+
+.filter-form{
+    padding: 7.3vh 6.3vw ;
 }
