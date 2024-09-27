@@ -136,10 +136,10 @@ public class CompanyController {
         }
     }
 
-    @GetMapping("/info/{id}")
-    public String showCompanyInfo(Model model, @PathVariable Long id) {
+    @GetMapping("/info/{username}")
+    public String showCompanyInfo(Model model, @PathVariable("username") String username) {
         try {
-            Company company = companyService.findById(id);
+            Company company = companyService.findByUserUsername(username);
             model.addAttribute("company", company);
             return "companies/info";
         } catch (ItemNotFoundException ie) {

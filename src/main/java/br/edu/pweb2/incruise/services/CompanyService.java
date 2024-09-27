@@ -5,6 +5,7 @@ import br.edu.pweb2.incruise.model.NullCompany;
 import br.edu.pweb2.incruise.model.exception.DuplicateCnpjException;
 import br.edu.pweb2.incruise.model.exception.DuplicateFantasyNameException;
 import br.edu.pweb2.incruise.model.exception.InvalidCnpjException;
+import br.edu.pweb2.incruise.model.exception.ItemNotFoundException;
 import br.edu.pweb2.incruise.repository.CompanyRepositoryJpa;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class CompanyService {
     public Company findById(Long id) {
         return companyRepositoryJpa.findById(id).orElse(new NullCompany());
     }
+
+    public Company findByUserUsername(String username) {
+        return companyRepositoryJpa.findByUserUsername(username);
+    }
+
 
     public List<Company> listAll() {
         return companyRepositoryJpa.findAll();

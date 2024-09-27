@@ -27,7 +27,7 @@
         </div>
     </div>
     <div class="buttons-actions d-flex gap-2 justify-content-center mt-3">
-        <a th:href="@{info/{id}(id=${student.id})}" class="button-action btn-view">
+        <a th:href="@{info/{username}(username=${student.user.username})}" class="button-action btn-view">
             Visualizar
         </a>
         <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">

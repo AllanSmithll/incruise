@@ -20,7 +20,7 @@
         <td th:text="${student.phoneNumber}"></td>
         <td>
             <div class="buttons-actions">
-                <a th:href="@{info/{id}(id=${student.id})}" class="button-action btn-view">Visualizar</a>
+                <a th:href="@{info/{username}(username=${student.user.username})}" class="button-action btn-view">Visualizar</a>
 
                 <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
                     <input type="hidden" name="_method" value="DELETE"/>

@@ -21,16 +21,16 @@
 
             </div>
 
-            <th:block th:replace="~{/companies/fragments/table(companies= ${companies})}">
+            <th:block th:replace="~{/companies/fragments/table(companies = ${companies})}">
             </th:block>
 
             <div class="father-card">
-                <th:block th:each="company :${companies}" th:insert="~{/companies/fragments/card(company= ${company})}">
+                <th:block th:each="company :${companies}" th:insert="~{/companies/fragments/card(company = ${company})}">
                 </th:block>
             </div>
 
             <div th:replace="~{/fragments/scripts}">
             </div>
-    </main>
+        </div>
     </main>
 </body>
