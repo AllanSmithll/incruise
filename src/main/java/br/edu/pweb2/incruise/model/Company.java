@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import jakarta.persistence.*;
 
 
@@ -42,6 +39,11 @@ public class Company {
 	private String principalActivity;
 
 	private String urlPage="";
+
+
+	@Lob
+	@Column(name = "address_proof" )
+	private byte[] addressProof;
 
 	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
