@@ -137,7 +137,7 @@ public class CompanyController {
     }
 
     @GetMapping("/info/{username}")
-    public String showCompanyInfo(Model model, @PathVariable("username") String username) {
+    public String showInfo(Model model, @PathVariable("username") String username) {
         try {
             Company company = companyService.findByUserUsername(username);
             model.addAttribute("company", company);

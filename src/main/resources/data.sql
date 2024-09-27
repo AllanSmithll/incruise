@@ -132,8 +132,8 @@ VALUES ('admin', 'admin@email.com',
        ('Luis_Kilmer', 'Luis.Kilmer@gmail.com', '$2a$10$aWtuBwGfb7ZjVZNO.Mi1yeNsV.hdrjDSuHNYE5KzW54xtr5RrWafu', TRUE,
         3); -- LuisKill123
 
-INSERT INTO tb_coordinator (id, username, enrollment, name, course)
-VALUES (1, 'Coordenador_Sistemas', '20220040009', 'João Silva', 'Sistemas para Internet');
+INSERT INTO tb_coordinator (id, username, enrollment, name, course, phone_number)
+VALUES (1, 'Coordenador_Sistemas', '20220040009', 'João Silva', 'Sistemas para Internet', '83992384910');
 
 
 /*

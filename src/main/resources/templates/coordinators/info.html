@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${coordinator.name})}">
+<!--    <link rel="stylesheet" th:href="@{/styles/coordinators/info.css}">-->
+    <link rel="stylesheet" th:href="@{/styles/fragments/card-global.css}">
+</head>
+
+<body>
+
+<header th:replace="~{/fragments/header}"></header>
+
+<main>
+    <section class="info-section" id="first-info">
+<!--        <img th:src="@{/imgs/default/coordinator-default.png}" alt="Coordenador">-->
+        <h1 id="name" th:text="${#strings.capitalize(coordinator.name)}">Nome do Coordenador</h1>
+    </section>
+
+    <section class="info-section" id="academic-section">
+        <h1 class="section-title">Dados Acadêmicos</h1>
+        <div class="flex around">
+            <div class="topic">
+                <h1 class="topic-title">Matrícula</h1>
+                <p class="topic-content" th:text="${coordinator.enrollment}">00001112222</p>
+            </div>
+
+            <div class="topic">
+                <h1 class="topic-title">Curso</h1>
+                <p class="topic-content" th:text="${coordinator.course}">Curso do Coordenador</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="basic-section">
+        <h2 class="section-title">Dados Pessoais</h2>
+        <div class="flex around">
+            <div class="topic">
+                <h1 class="topic-title">Nome Completo</h1>
+                <p class="topic-content" th:text="${coordinator.name}">Nome Completo do Coordenador</p>
+            </div>
+            <div class="topic">
+                <h1 class="topic-title">Email</h1>
+                <p class="topic-content" th:text="${coordinator.user.email}">coordenador@universidade.com</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section" id="contact-section">
+        <h2 class="section-title">Contato</h2>
+        <div class="flex around">
+            <div class="topic">
+                <h1 class="topic-title">Telefone</h1>
+                <p class="topic-content" th:text="${coordinator.phoneNumber}">+55 83 8229-2523</p>
+            </div>
+        </div>
+    </section>
+
+    <div th:replace="~{/fragments/scripts}"></div>
+</main>
+
+</body>
+</html>
