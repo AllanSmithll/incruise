@@ -30,13 +30,16 @@ public class IncruiseSecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
-                                "/internshipOffer/info/**","student/register","company/register",
-                                "/company/save", "student/save").permitAll()
+                                "/internshipOffer/info/**", "student/register", "company/register",
+                                "/company/save", "student/save")
+                        .permitAll()
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
                         .requestMatchers("/internshipOffer/apply/**").hasRole("STUDENT")
                         .requestMatchers("/candidatures/**").hasRole("ADMIN")
                         .requestMatchers("/styles/**", "/system/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
+                .exceptionHandling(handling -> handling
+                        .accessDeniedPage("/system/access-denied"))
                 .formLogin((form) -> form
                         .loginPage("/auth/login")
                         .defaultSuccessUrl("/", true)
@@ -60,14 +63,12 @@ public class IncruiseSecurityConfig {
         JdbcUserDetailsManager manager = new JdbcUserDetailsManager();
         manager.setDataSource(dataSource);
         manager.setUsersByUsernameQuery(
-                "SELECT username, password, enabled FROM tb_user WHERE username = ?"
-        );
+                "SELECT username, password, enabled FROM tb_user WHERE username = ?");
 
         manager.setAuthoritiesByUsernameQuery(
                 "SELECT u.username, r.name " +
                         "FROM tb_user u INNER JOIN tb_role r ON u.role_id = r.id " +
-                        "WHERE u.username = ?"
-        );
+                        "WHERE u.username = ?");
         return manager;
     }
 

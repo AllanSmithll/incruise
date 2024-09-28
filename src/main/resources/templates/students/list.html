@@ -14,9 +14,9 @@
         <div class="card-list-component">
             <h1>Todos os Alunos Cadastrados</h1>
             <div class="buttons-actions">
-                <button class="button-add btn btn-primary " th:href="@{/student/register}">
+                <a class="button-add btn btn-primary " th:href="@{/student/register}">
                     Novo Aluno
-                </button>   
+                </a>   
             </div>
             <div th:replace="~{/students/fragments/table}">
 
