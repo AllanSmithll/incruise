@@ -82,6 +82,8 @@
         </section>
 
         <section class="info-section" id="oportunity-section">
+            <!-- th:if="${#authentication.principal.username == student.user.username}" -->
+            <!-- Para Privar a visualização das candidaturas -->
             <div class="card-list-component">
 
                 <h1 class="section-title"> Candidaturas</h1>
@@ -90,12 +92,10 @@
                     <p class="no-content-msg">Não há registros de candidaturas.</p>
                 </div>
 
-                <div class="father-card">
-                    <th:block th:each="candidature : ${student.candidatureList}"
-                        th:insert="~{/candidatures/fragments/card(candidature)}">
+                <th:block th:each="candidature : ${student.candidatureList}"
+                    th:insert="~{/candidatures/fragments/card(candidature)}">
 
-                    </th:block>
-                </div>
+                </th:block>
 
             </div>
         </section>

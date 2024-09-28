@@ -1,5 +1,9 @@
 <div class="individual-card inter-font" th:fragment="offer-card(offer)">
-    <h3 th:text="${offer.principalActivity}"></h3>
+
+    <div class="card-header">
+        <h4 th:text="${offer.principalActivity}"></h4>
+    </div>
+
     <div class="d-flex flex-row gap-2">
         <div class="d-flex flex-column">
             <small>ID</small>
@@ -36,35 +40,46 @@
                 th:text="${offer.transportVoucher != null && offer.transportVoucher > 0} ? 'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : 'Nenhum'">
                 Nenhum</p>
         </div>
+
         <div class="d-flex flex-column">
             <small>Pré-requisitos</small>
             <p th:if="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}"
-                th:text="${offer.prerequisites}"></p>
+                th:text="${offer.prerequisites}">
+            </p>
             <p th:unless="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}">
                 Nenhum</p>
         </div>
     </div>
-    <div class="status-box mt-3">
+<!--     <div class="status-box mt-3">
         <small>Status da Oferta</small>
-        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).ABERTA}" class="text-success" th:text="Aberta">
-        Aberta
+        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).ABERTA}" class="text-success"
+            th:text="Aberta">
+            Aberta
         </p>
-        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).FECHADA}" class="text-secondary" th:text="Fechada">
+        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).FECHADA}" class="text-secondary"
+            th:text="Fechada">
         </p>
-        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).CANCELADA}" class="text-danger" th:text="Cancelada">
+        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).CANCELADA}" class="text-danger"
+            th:text="Cancelada">
         </p>
-    </div>
+    </div> -->
     <div class="buttons-actions d-flex gap-2 justify-content-center mt-3">
-        <a th:href="@{info/{id}(id=${offer.id})}" class="button-action btn-view">
-            <i class="bi bi-binoculars-fill"></i> Visualizar</a>
+        <a th:href="@{/internshipOffer/info/{id}(id=${offer.id})}" class="button-action btn-view">
+
+            <i class="bi bi-binoculars-fill"></i> Visualizar
+        </a>
+
         <form th:action="@{apply/{id}(id=${offer.id})}" method="get"
-              th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
+            th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"
+            th:onsubmit="event.stopPropagation();">
             <button class="button-action btn-apply" type="submit" value="Candidatar-se">
                 <i class="bi bi-check-circle-fill"></i> Candidatar-se
             </button>
         </form>
+
         <form th:action="@{cancel/{id}(id=${offer.id})}" method="post"
-              th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'') or hasRole(''ROLE_ADMIN'')')}">
+            th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'') or hasRole(''ROLE_ADMIN'')')}"
+            th:onsubmit="event.stopPropagation();">
             <button class="button-action btn-delete" type="submit">
                 <i class="bi bi-x-circle-fill"></i> Cancelar
             </button>

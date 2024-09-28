@@ -16,26 +16,25 @@
                 <h1>Canidaturas</h1>
                 <div class="buttons-actions">
 
-                <!-- <th:block th:replace="~{/canidatures/fragments/filter}"></th:block>-->
-                <div class="container">
+                    <!-- <th:block th:replace="~{/canidatures/fragments/filter}"></th:block>-->
 
                     <div class="father-card">
-                    
+
                         <div class="col-md-6 col-lg-6">
-                            <th:block th:each="offer : ${canidatures}" th:insert="~{/canidatures/fragments/card(offer)}">
+                            <th:block th:each="offer : ${canidatures}"
+                                th:insert="~{/canidatures/fragments/card(offer)}">
                             </th:block>
                         </div>
-                    
-                    </div>
-                
-                </div>
 
+                    </div>
+
+
+                </div>
             </div>
-        </div>
 
     </main>
     <div th:replace="~{/fragments/scripts}"></div>
- 
+
 </body>
 
 </html>
