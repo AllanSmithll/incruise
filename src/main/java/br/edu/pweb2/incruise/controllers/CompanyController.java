@@ -1,8 +1,10 @@
 package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.Company;
+import br.edu.pweb2.incruise.model.User;
 import br.edu.pweb2.incruise.model.exception.*;
 import br.edu.pweb2.incruise.services.CompanyService;
+import br.edu.pweb2.incruise.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +24,13 @@ public class CompanyController {
 
     private final CompanyService companyService;
     private final HttpSession session;
+    private final UserService userService;
 
     @Autowired
-    public CompanyController(CompanyService companyService, HttpSession session) {
+    public CompanyController(CompanyService companyService, HttpSession session, UserService userService) {
         this.companyService = companyService;
         this.session = session;
+        this.userService = userService;
     }
 
     @GetMapping("/setSession")
@@ -142,6 +146,7 @@ public class CompanyController {
             System.out.println("Estamos aqui no get!");
 
             Company currentCompany = companyService.findById(id);
+
             model.addAttribute("currentCompany", currentCompany);
             return "companies/edit";
 
@@ -157,7 +162,10 @@ public class CompanyController {
                     @ModelAttribute("currentCompany") Company companyUpdate) {
         try {
             companyUpdate.setId(id);
+            System.out.println(companyUpdate);
+//            User userCompany = (User) userService.loadUserByUsername(companyUpdate.getUser().getUsername());
 
+//            companyUpdate.setUser(userCompany);
             companyService.saveAndFlush(companyUpdate);
             System.out.println("Estamos aqui no post!");
 

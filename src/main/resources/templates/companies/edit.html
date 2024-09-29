@@ -9,39 +9,43 @@
 <h1>Editar Empresas</h1>
 
 
-<form th:action="@{/company/edit/{id}(id=${currentCompany.id})}" th:object="${currentCompany}" method="post">
-  <div>
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+  <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}"
+        th:object="${currentCompany}"
+        method="post" >
 
+<!--  <label for="usernameInput">Usuário:</label>-->
+<!--  <input type="text" id="usernameInput" th:field="*{user.username}"  placeholder="Usuário *"/>-->
+<!--  <br/>-->
 
+  <label for="fantasyNameInput">Nome Fantasia:</label>
+  <input type="text" id="fantasyNameInput" th:field="*{fantasyName}" required placeholder="Nome fantasia *"/>
+  <br/>
 
+  <label for="cnpjInput">CNPJ:</label>
+  <input type="text" id="cnpjInput" th:field="*{cnpj}" required placeholder="CNPJ *"/>
+  <br/>
 
-    <label for="fantasyNameInput">Nome:</label>
-    <input type="text" id="fantasyNameInput" th:field="*{fantasyName}" required placeholder="Nome fantasia *"/>
-    <br/>
+  <label for="phoneNumberInput">Telefone:</label>
+  <input type="text" id="phoneNumberInput" th:field="*{phoneNumber}" required placeholder="Telefone *"/>
+  <br/>
 
-    <label for="cnpj">CNPJ:</label>
-    <input type="text" id="cnpj" th:field="*{cnpj}" required />
+  <label for="personContactInput">Pessoa de Contato:</label>
+  <input type="text" id="personContactInput" th:field="*{personContact}" required placeholder="Pessoa de Contato *"/>
+  <br/>
 
-    <label for="phoneNumber">Telefone:</label>
-    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required />
+  <label for="principalActivityInput">Atividade Principal:</label>
+  <input type="text" id="principalActivityInput" th:field="*{principalActivity}" required placeholder="Atividade Principal *"/>
+  <br/>
 
-    <label for="personContact">Pessoa de Contato:</label>
-    <input type="text" id="personContact" th:field="*{personContact}" required />
+  <label for="urlPageInput">Página Web:</label>
+  <input type="text" id="urlPageInput" th:field="*{urlPage}" required placeholder="Página Web *"/>
+  <br/>
 
-    <label for="principalActivity">Atividade Principal:</label>
-    <input type="text" id="principalActivity" th:field="*{principalActivity}" required />
+  <label for="addressProofInput">Prova de Endereço:</label>
+  <input type="file" id="addressProofInput" th:field="*{addressProof}" />
+  <br/>
 
-    <label for="urlPage">Página Web:</label>
-    <input type="text" id="urlPage" th:field="*{urlPage}" required />
-
-    <label for="urlPage">Prova de Endereço:</label>
-    <input type="file" id="addressProof" th:field="*{addressProof}"  />
-
-    <br/>
-
-    <button type="submit">Salvar</button>
-  </div>
+  <button type="submit">Salvar</button>
 </form>
 
 <a th:href="@{/company/companies}">Voltar para páginas de empresas!</a>
