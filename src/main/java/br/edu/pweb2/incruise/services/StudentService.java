@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Company;
+import br.edu.pweb2.incruise.model.Coordinator;
 import br.edu.pweb2.incruise.model.NullStudent;
 import br.edu.pweb2.incruise.model.Student;
 import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
@@ -19,11 +20,14 @@ public class StudentService {
 
     private final StudentRepositoryJpa studentRepositoryJpa;
     private final UserService userService;
+    private final CoordinatorService coordinatorService;
+
 
     @Autowired
-    public StudentService(StudentRepositoryJpa studentRepositoryJpa, UserService userService) {
+    public StudentService(StudentRepositoryJpa studentRepositoryJpa, UserService userService, CoordinatorService coordinatorService) {
         this.studentRepositoryJpa = studentRepositoryJpa;
         this.userService = userService;
+        this.coordinatorService = coordinatorService;
     }
 
     public Student findByEnrollment(String enrollment) {
@@ -41,6 +45,12 @@ public class StudentService {
     public List<Student> listAll() {
         return studentRepositoryJpa.findAll();
     }
+
+    public List<Student> listStudentsByCoordinator(String coordinatorUsername) {
+        Coordinator coordinator = coordinatorService.findByUserUsername(coordinatorUsername);
+        return studentRepositoryJpa.findByCourse(coordinator.getCourse());
+    }
+
 
     @Transactional
     public Student save(Student student) throws DuplicateEnrollmentException, InvalidAgeException {

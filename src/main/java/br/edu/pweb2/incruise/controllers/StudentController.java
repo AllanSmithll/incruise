@@ -10,12 +10,14 @@ import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.StudentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
@@ -51,8 +53,19 @@ public class StudentController {
     @GetMapping("/students")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("students/list");
-        List<Student> students = studentService.listAll();
-        modelAndView.addObject("students", students);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        if (authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_COORDINATOR"))) {
+
+            List<Student> students = studentService.listStudentsByCoordinator(username);
+            modelAndView.addObject("students", students);
+        } else {
+            List<Student> students = studentService.listAll();
+            modelAndView.addObject("students", students);
+        }
         return modelAndView;
     }
 

@@ -12,13 +12,13 @@
                     <span></span></a>
                 </div>
                 <ul class="nav-list">
-                    <li class="nav-item" th:unless="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+                    <li class="nav-item" th:if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'', ''ROLE_COORDINATOR'')')}">
                         <a class="nav-link" th:href="@{/student/students}">Alunos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/internshipOffer/offers}">Ofertas de Estágio</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" th:if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'', ''ROLE_COORDINATOR'')')}">
                         <a class="nav-link" th:href="@{/company/companies}">Empresas</a>
                     </li>
                     <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">

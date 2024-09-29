@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Company;
+import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.NullCompany;
 import br.edu.pweb2.incruise.model.exception.DuplicateCnpjException;
 import br.edu.pweb2.incruise.model.exception.DuplicateFantasyNameException;
@@ -18,11 +19,13 @@ public class CompanyService {
 
     private final CompanyRepositoryJpa companyRepositoryJpa;
     private final UserService userService;
+    private final InternshipOfferService internshipOfferService;
 
     @Autowired
-    public CompanyService(CompanyRepositoryJpa companyRepositoryJpa, UserService userService) {
+    public CompanyService(CompanyRepositoryJpa companyRepositoryJpa, UserService userService, InternshipOfferService internshipOfferService) {
         this.companyRepositoryJpa = companyRepositoryJpa;
         this.userService = userService;
+        this.internshipOfferService = internshipOfferService;
     }
 
     public Company findById(Long id) {
@@ -33,6 +36,9 @@ public class CompanyService {
         return companyRepositoryJpa.findByUserUsername(username);
     }
 
+    public List<InternshipOffer> findByCompany(Company company) {
+        return internshipOfferService.findByCompanyResponsible(company);
+    }
 
     public List<Company> listAll() {
         return companyRepositoryJpa.findAll();

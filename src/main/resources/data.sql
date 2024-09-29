@@ -10,7 +10,7 @@ truncate tb_Candidature cascade;
 
 CREATE TABLE spring_session
 (
-    id            VARCHAR(64)  NOT NULL,
+    id                    VARCHAR(64)  NOT NULL,
     session_id            VARCHAR(255) NOT NULL,
     creation_time         BIGINT       NOT NULL,
     last_access_time      BIGINT       NOT NULL,
@@ -21,13 +21,15 @@ CREATE TABLE spring_session
     primary key (id)
 );
 
-alter table spring_session rename id to primary_id;
+alter table spring_session
+    rename id to primary_id;
 
-CREATE TABLE spring_session_attributes (
-                                           session_primary_id VARCHAR(64) NOT NULL,
-                                           attribute_name VARCHAR(255) NOT NULL,
-                                           attribute_bytes BYTEA NOT NULL,
-                                           CONSTRAINT unique_attribute  UNIQUE (session_primary_id, attribute_name)
+CREATE TABLE spring_session_attributes
+(
+    session_primary_id VARCHAR(64)  NOT NULL,
+    attribute_name     VARCHAR(255) NOT NULL,
+    attribute_bytes    BYTEA        NOT NULL,
+    CONSTRAINT unique_attribute UNIQUE (session_primary_id, attribute_name)
 );
 
 -- Roles
@@ -47,7 +49,7 @@ VALUES (4, 'ROLE_COMPANY');
 INSERT INTO tb_user (username, email, password, enabled, role_id)
 VALUES ('admin', 'admin@email.com',
         '$2a$10$XhWSdZtXKkYIIMLc.2cZO.WmlFUi5oQip.n//bKT2P1fQ6AB2q36K', TRUE, 1), -- administrator
-        ('Coordenador_Sistemas', 'coordenador.sistemas@gmail.com',
+       ('Coordenador_Sistemas', 'coordenador.sistemas@gmail.com',
         '$2a$10$gnZeaOFqprG8glYWHso/sujuNhqLAbfj6fTaYjO0dH/6GsXhdnrbG', TRUE, 2), -- Coordenador123
        ('Tech_Innovators', 'Tech_Innovators@gmail.com', '$2a$10$uHIAJXUDN44JaPOKKg/c/OpoQqeJI9GfzJu3A1IK.PdAjixhxvrwK',
         TRUE, 4),                                                                 -- TechInno123
@@ -130,7 +132,9 @@ VALUES ('admin', 'admin@email.com',
        ('Alic_Andrade', 'Alic.Andrade@gmail.com', '$2a$10$AUH939ZyD0R6bPoviJHnTuld/9Dqz8YFYOW/tzYZln3tlX2nekahC', TRUE,
         3),                                                                       -- AlicAndr123
        ('Luis_Kilmer', 'Luis.Kilmer@gmail.com', '$2a$10$aWtuBwGfb7ZjVZNO.Mi1yeNsV.hdrjDSuHNYE5KzW54xtr5RrWafu', TRUE,
-        3); -- LuisKill123
+        3),                                                                       -- LuisKill123
+       ('Joao_Kleber', 'joao.kleber@gmail.com', '$2a$10$ixAQQUfU0JVReUmKbLrFmOdOd6epBk5bTgFmoMTEwaGzg.wI9KOHe', TRUE,
+        3); -- JoaoKleber123
 
 INSERT INTO tb_coordinator (id, username, enrollment, name, course, phone_number)
 VALUES (1, 'Coordenador_Sistemas', '20220040009', 'João Silva', 'Sistemas para Internet', '83992384910');
@@ -271,7 +275,9 @@ VALUES (1, 'Yuri_Souza', '83991234567', '20180010001',
        (20, 'Alic_Andrade', '83998901237', '20220010038',
         'Alic Victor Santos de Andrade', '1997-09-22', 'Sistemas para Internet'),
        (21, 'Luis_Kilmer', '839989039423', '20220010006',
-        'Luis Kilmer Bernardo da Silva', '2003-12-03', 'Sistemas para Internet');
+        'Luis Kilmer Bernardo da Silva', '2003-12-03', 'Sistemas para Internet'),
+       (22, 'Joao_Kleber', '839989039424', '20220110007',
+        'Joao Kleber da Silva', '2002-12-03', 'Engenharia de Software');
 /*
 tb_student_competence_skill
 student competence (N..N)
@@ -365,7 +371,8 @@ tb_internship_offer
     Long companyResponsible
     OfferStatus status ENUM Type
  */
-INSERT INTO tb_internship_offer (principal_activity, weekly_workload, remuneration_value, transport_voucher, prerequisites, company_id, status)
+INSERT INTO tb_internship_offer (principal_activity, weekly_workload, remuneration_value, transport_voucher,
+                                 prerequisites, company_id, status)
 VALUES ('Desenvolvimento de Software', 20, 1500.00, 200.00, 'Conhecimento em Java e SQL', 1, 'ABERTA'),
        ('Marketing Digital', 25, 1200.00, 0.00, 'Experiência com redes sociais', 2, 'ABERTA'),
        ('Suporte Técnico', 30, 0.00, 100.00, 'Boa comunicação e conhecimento básico de TI', 3, 'ABERTA'),
