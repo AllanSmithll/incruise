@@ -29,6 +29,10 @@ public class InternshipOfferService {
         return internshipOfferRepositoryJpa.findById(id).orElse(new NullInternshipOffer());
     }
 
+    public List<InternshipOffer> findByCompanyResponsible(Company company) {
+        return internshipOfferRepositoryJpa.findByCompanyResponsible(company);
+    }
+
     public List<InternshipOffer> findActiveOffers() {
         return internshipOfferRepositoryJpa.findByStatus(OfferStatus.ABERTA);
     }
@@ -44,6 +48,15 @@ public class InternshipOfferService {
                 .filter(offer -> (prerequisites == null || offer.getPrerequisites().toLowerCase().contains(prerequisites.toLowerCase())))
                 .collect(Collectors.toList());
     }
+
+    public List<InternshipOffer> filterOffersByCompanyAndCriteria(Company company,
+                                                                  String companyName, Double minRemuneration, Double maxRemuneration,
+                                                                  Integer minWeeklyWorkload, Integer maxWeeklyWorkload, String prerequisites) {
+
+        return internshipOfferRepositoryJpa.findByCompanyAndFilters(company, companyName, minRemuneration,
+                maxRemuneration, minWeeklyWorkload, maxWeeklyWorkload, prerequisites);
+    }
+
 
     public void save(InternshipOffer offer, Company company) {
         if(offer.getRemunerationValue() == null){

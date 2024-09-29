@@ -1,5 +1,5 @@
 <form th:action="@{/internshipOffer/filter}" method="get">
-    <div class="form-group">
+    <div class="form-group" th:if="${#authorization.expression('hasAnyRole(''ROLE_STUDENT'', ''ROLE_COORDINATOR'', ''ROLE_ADMIN'')')}">
         <label for="companyName">Nome da Empresa:</label>
         <input type="text" id="companyName" name="companyName" class="form-control"
             placeholder="Nome da Empresa">
@@ -27,17 +27,11 @@
         <input type="text" id="prerequisites" name="prerequisites" class="form-control"
             placeholder="Pré-requisitos">
     </div>
-    <!--                    <div class="form-group">-->
-    <!--                        <label for="competencies">Competências:</label>-->
-    <!--                        <input type="text" id="competencies" name="competencies" class="form-control" placeholder="Digite para buscar competências">-->
-    <!--                        <ul id="competencySuggestions" class="list-group" style="position: absolute; z-index: 1000; width: 100%; display: none;">-->
-    <!--                        </ul>-->
-    <!--                        <input type="hidden" id="competenciesData" th:value="${competences}" />-->
-    <!--                    </div>-->
     <div class="container mt-3">
         <div class="d-flex w-100 justify-content-between">
             <button type="submit" class="btn btn-primary btn-large w-25">Filtrar</button>
-            <button class="btn btn-primary btn-large ml-auto w-50" th:href="@{/internshipOffer/offers}">
+            <button class="btn btn-primary btn-large ml-auto w-50" th:href="@{/internshipOffer/offers}"
+                    th:if="${#authorization.expression('hasAnyRole(''ROLE_STUDENT'', ''ROLE_COORDINATOR'', ''ROLE_ADMIN'')')}">
                 Listar Todas
             </button>
         </div>
