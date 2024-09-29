@@ -6,6 +6,8 @@ import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.InternshipOfferService;
 import br.edu.pweb2.incruise.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
@@ -49,8 +51,20 @@ public class InternshipOfferController {
     @GetMapping("/offers")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("offers/list");
-        List<InternshipOffer> offers = internshipOfferService.findAll();
-        modelAndView.addObject("offers", offers);
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        if (authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_COMPANY"))) {
+            Company company = companyService.findByUserUsername(username);
+            List<InternshipOffer> offers = internshipOfferService.findByCompanyResponsible(company);
+            modelAndView.addObject("offers", offers);
+        } else {
+            List<InternshipOffer> offers = internshipOfferService.findAll();
+            modelAndView.addObject("offers", offers);
+        }
+
         return modelAndView;
     }
 
@@ -63,10 +77,21 @@ public class InternshipOfferController {
             @RequestParam(value = "maxWeeklyWorkload", required = false) Integer maxWeeklyWorkload,
             @RequestParam(value = "prerequisites", required = false) String prerequisites,
             ModelAndView modelAndView) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
 
-        List<InternshipOffer> filteredOffers = internshipOfferService.filterOffers(
-                companyName, minRemuneration, maxRemuneration, minWeeklyWorkload, maxWeeklyWorkload, prerequisites);
+        List<InternshipOffer> filteredOffers;
 
+        if (authentication.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_COMPANY"))) {
+            Company company = companyService.findByUserUsername(username);
+
+            filteredOffers = internshipOfferService.filterOffersByCompanyAndCriteria(company,
+                    companyName, minRemuneration, maxRemuneration, minWeeklyWorkload, maxWeeklyWorkload, prerequisites);
+        } else {
+            filteredOffers = internshipOfferService.filterOffers(
+                    companyName, minRemuneration, maxRemuneration, minWeeklyWorkload, maxWeeklyWorkload, prerequisites);
+        }
         modelAndView.setViewName("offers/list");
         modelAndView.addObject("offers", filteredOffers);
         return modelAndView;

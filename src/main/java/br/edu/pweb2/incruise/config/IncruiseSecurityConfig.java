@@ -33,6 +33,8 @@ public class IncruiseSecurityConfig {
                                 "/internshipOffer/info/**", "student/register", "company/register",
                                 "/company/save", "student/save")
                         .permitAll()
+                        .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR")
+                        .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR")
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
                         .requestMatchers("/internshipOffer/apply/**").hasRole("STUDENT")
                         .requestMatchers("/candidatures/**").hasRole("ADMIN")
@@ -46,7 +48,7 @@ public class IncruiseSecurityConfig {
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout")
-                        .logoutSuccessUrl("/auth/login?logout=true")
+                        .logoutSuccessUrl("/auth/login")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll());
