@@ -4,9 +4,7 @@
 <head>
     <!-- Incluindo o fragmento de cabeçalho -->
     <meta
-        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidture.student.name})}">
-    <!-- <link rel="stylesheet" href="../../static/styles/perfil.css">
-    <link rel="stylesheet" href="../../static/styles/main.css"> -->
+        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidature.student.name})}">
 </head>
 
 <!-- Esta vai ser a seção mais divertida que irei criar :D-->
@@ -15,12 +13,11 @@
     <main>
 
         <section class="info-section" id="first-info">
-                        <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">
-            <!-- <img src="../../static/imgs/default/candidature-default.png" alt="Imagem do Estudante"> -->
+            <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">
             <h1>Candidatura de
                 <a>
-                    <span id="name" th:text="${candidture.student.name}"
-                        th:href="@{/students/info/{id}(id=${candidture.student.id})}">
+                    <span id="name" th:text="${candidature.student.name}"
+                        th:href="@{/students/info/{id}(id=${candidature.student.id})}">
                         Nome do estudante
                     </span>
                 </a>
@@ -28,16 +25,8 @@
         </section>
 
         <section class="info-section" id="options-section">
-            <h2 class="section-title"> Opções</h2>
-            <th:block th:insert="~{/candidtures/fragments/buttons-actions}"></th:block>
-            <div class="d-flex flex-column" class="buttons-actions">
-                <button class="btn button-action">Aprovar</button> <!--  Empresa aprova a candidatura do Aluno  -->
-                <button class="btn button-action">Visualizar</button>
-                <!--  Empresa ou Aluno visualiza a candidatura do Aluno  -->
-                <button class="btn button-action">Recusar</button> <!--  Empresa recusa a candidatura do Aluno  -->
-                <button class="btn btn-danger button-action">Cancelar Candidatura</button>
-                <!-- Aluno Cancela sua candidatura  -->
-            </div>
+            <h2 class="section-title">Opções</h2>
+            <th:block th:insert="~{/candidatures/fragments/actions(candidature=candidature)}"></th:block>
         </section>
         <section class="info-section">
             <h2 class="section-title">Informações da Candidatura</h2>

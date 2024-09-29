@@ -20,20 +20,14 @@
     </div>
 
     <div class="d-flex flex-row gap-2">
-        <div class="d-flex flex-column" th:if="${candidature.internshipOffer.remunerationValue != 0}">
+        <div class="d-flex flex-column" th:if="${candidature.internshipOffer.remunerationValue != null and candidature.internshipOffer.remunerationValue > 0}">
             <smal>Remuneração</smal>
-            <p th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.remunerationValue, 1, 2)}">
-                R$0,00</p>
-            <div th:unless="${candidature.internshipOffer.remunerationValue != 0}">
-                <p class="no-content-msg">Estágio Voluntário</p>
-            </div>
+            <p th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.remunerationValue, 1, 2)}">R$0,00</p>
         </div>
-
-        <div class="d-flex flex-column" th:if="${candidature.internshipOffer.transportVoucher != 0}">
+        <div class="d-flex flex-column" th:if="${candidature.internshipOffer.transportVoucher != null and candidature.internshipOffer.transportVoucher > 0}">
             <smal>Vale Transporte</smal> 
-             <p
-                th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.transportVoucher, 1, 2)}">R$ 0,00</p>
-        </div>
+            <p th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.transportVoucher, 1, 2)}">R$ 0,00</p>
+        </div>        
 
     </div>
 
@@ -41,6 +35,6 @@
         <smal>Pré-requisitos</smal>
         <p th:text="${candidature.internshipOffer.prerequisites}">Nenhum</p>
     </div>
-    <th:block th:replace="~{candidatures/fragments/actions(${candidature})}"></th:block>
-        
+    <th:block th:replace="~{candidatures/fragments/actions(candidature=${candidature})}"></th:block>
+            
     </th:block>

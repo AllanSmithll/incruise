@@ -1,8 +1,8 @@
 package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Candidature;
+import br.edu.pweb2.incruise.model.NullCandidature;
 import br.edu.pweb2.incruise.repository.CandidatureRepositoryJpa;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +23,11 @@ public class CandidatureService {
     }
 
     public Candidature findById(Long id) {
-        return candidatureRepositoryJpa.findById(id).orElse(null);
-    }
+        
+        return new NullCandidature();
+        /* return candidatureRepositoryJpa.findById(id).orElse(new NullCandidature());*/    }
 
-    public List<Candidature> listAll() {
+    public List<Candidature> findAll() {
         return candidatureRepositoryJpa.findAll();
     }
     
