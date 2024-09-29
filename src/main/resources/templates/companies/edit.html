@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar - Empresa</title>
+</head>
+<body>
+
+<h1>Editar Empresas</h1>
+
+
+<form th:action="@{/company/edit/{id}(id=${currentCompany.id})}" th:object="${currentCompany}" method="post">
+  <div>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+
+
+
+    <label for="fantasyNameInput">Nome:</label>
+    <input type="text" id="fantasyNameInput" th:field="*{fantasyName}" required placeholder="Nome fantasia *"/>
+    <br/>
+
+    <label for="cnpj">CNPJ:</label>
+    <input type="text" id="cnpj" th:field="*{cnpj}" required />
+
+    <label for="phoneNumber">Telefone:</label>
+    <input type="text" id="phoneNumber" th:field="*{phoneNumber}" required />
+
+    <label for="personContact">Pessoa de Contato:</label>
+    <input type="text" id="personContact" th:field="*{personContact}" required />
+
+    <label for="principalActivity">Atividade Principal:</label>
+    <input type="text" id="principalActivity" th:field="*{principalActivity}" required />
+
+    <label for="urlPage">Página Web:</label>
+    <input type="text" id="urlPage" th:field="*{urlPage}" required />
+
+    <label for="urlPage">Prova de Endereço:</label>
+    <input type="file" id="addressProof" th:field="*{addressProof}"  />
+
+    <br/>
+
+    <button type="submit">Salvar</button>
+  </div>
+</form>
+
+<a th:href="@{/company/companies}">Voltar para páginas de empresas!</a>
+
+</body>
+</html>

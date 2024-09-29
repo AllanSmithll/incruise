@@ -48,6 +48,14 @@
                 <button class="button-action btn-delete" type="submit" value="">
                     <i class="bi bi-trash-fill"></i> </button>
             </form>
+
+            <form th:action="@{/company/edit/{id}(id=${company.id})}" method="get">
+                <input type="hidden" name="_method" value="EDIT" />
+                <button class="button-action btn-edit" type="submit" value="">
+                    <i class="bi bi-pen-fill"></i> </button>
+
+            </form>
+
         </div>
     </div>
 </div>

@@ -64,7 +64,10 @@ public class CompanyService {
 
         companyRepositoryJpa.save(company);
     }
-
+    public void saveAndFlush(Company company)
+    {
+        companyRepositoryJpa.saveAndFlush(company);
+    }
     public void update(Company company) {
         companyRepositoryJpa.save(company);
     }

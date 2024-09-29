@@ -136,6 +136,39 @@ public class CompanyController {
         }
     }
 
+    @GetMapping("/edit/{id}")
+    public String getEditForm(@PathVariable("id") Long id, Model model) {
+        try {
+            System.out.println("Estamos aqui no get!");
+
+            Company currentCompany = companyService.findById(id);
+            model.addAttribute("currentCompany", currentCompany);
+            return "companies/edit";
+
+
+        } catch (Exception e) {
+            return "redirect:/company/companies";
+        }
+    }
+    @PostMapping("/edit/{id}")
+    public String edit
+            (
+                    @PathVariable("id") Long id,
+                    @ModelAttribute("currentCompany") Company companyUpdate) {
+        try {
+            companyUpdate.setId(id);
+
+            companyService.saveAndFlush(companyUpdate);
+            System.out.println("Estamos aqui no post!");
+
+            return "redirect:/company/companies";
+        } catch (Exception e) {
+            System.out.println("Estamos aqui no erro :(!");
+            e.printStackTrace();
+            return "redirect:/company/companies";
+        }
+    }
+
     @GetMapping("/info/{username}")
     public String showInfo(Model model, @PathVariable("username") String username) {
         try {
