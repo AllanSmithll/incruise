@@ -19,7 +19,7 @@ public class Company {
 	private Long id;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "username", nullable = false, unique = true)
+	@JoinColumn(name = "username",  unique = true)
 	private User user;
 
 	@Getter
