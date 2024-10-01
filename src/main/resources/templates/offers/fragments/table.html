@@ -37,7 +37,7 @@
                     <a th:href="@{/offer/info/{id}(id=${offer.id})}" class="button-action btn-view">
                         <i class="bi bi-binoculars-fill"></i> Visualizar
                     </a>
-                    <form th:action="@{/apply/{id}(id=${offer.id})}" method="get">
+                    <form th:action="{/candidature/apply/{id}(id=${offer.id})}" method="get">
                         <input class="button-action btn-apply" type="submit" value="Candidatar-se" />
                     </form>
                     <form th:action="@{/cancel/{id}(id=${offer.id})}" method="post">

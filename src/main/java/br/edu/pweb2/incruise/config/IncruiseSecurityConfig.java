@@ -36,7 +36,7 @@ public class IncruiseSecurityConfig {
                         .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR")
                         .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR")
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
-                        .requestMatchers("/internshipOffer/apply/**").hasRole("STUDENT")
+                        .requestMatchers("/candidature/apply/**").hasRole("STUDENT")
                         .requestMatchers("/candidatures/**").hasRole("ADMIN")
                         .requestMatchers("/styles/**", "/system/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
