@@ -3,7 +3,7 @@
 
 <head>
 
-    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Canidaturas')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Candidaturas')}">
 
 </head>
 
@@ -13,21 +13,15 @@
 
         <div class="main-screen">
             <div class="card-list-component">
-                <h1>Canidaturas</h1>
+                <h1>Candidaturas</h1>
                 <div class="buttons-actions">
 
-                    <!-- <th:block th:replace="~{/canidatures/fragments/filter}"></th:block>-->
+                    <!-- <th:block th:replace="~{/candidatures/fragments/filter}"></th:block> -->
+                    <div class="father-card" >
 
-                    <div class="father-card">
-
-                        <div class="col-md-6 col-lg-6">
-                            <th:block th:each="offer : ${canidatures}"
-                                th:insert="~{/canidatures/fragments/card(offer)}">
-                            </th:block>
-                        </div>
-
+                        <th:block th:each="candidature : ${candidatures}"
+                         th:insert="~{/candidatures/fragments/card(candidature= ${candidature})}"></th:block>
                     </div>
-
 
                 </div>
             </div>

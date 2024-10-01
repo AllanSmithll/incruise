@@ -13,14 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
 import java.sql.Blob;
+
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/company")
@@ -91,9 +90,6 @@ public class CompanyController {
         modelAndView.setViewName("redirect:/company/companies");
         return modelAndView;
     }
-
-
-
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {

@@ -2,9 +2,9 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta th:insert="~{/fragments/headfiles(title='Candidatar-se - ${offer.principalActivity}')}">
-    <link rel="stylesheet" th:href="@{/styles/candidature.css}">
-</head>
+    <meta th:insert="~{/fragments/custom-headfiles :: form-headfiles(title='Candidatar-se - ${offer.principalActivity}')}">
+<!--     <link rel="stylesheet" th:href="@{/styles/candidature.css}">
+ --></head>
 
 <body class="application-screen">
 
@@ -18,7 +18,7 @@
             <p th:text="${error}"></p>
         </div>
 
-        <form th:action="@{/internshipOffer/apply}" method="post">
+        <form th:action="@{/candidature/apply}" method="post">
             <input type="hidden" name="offerId" th:value="${offer.id}" />
 
             <div class="form-group">

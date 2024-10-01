@@ -31,12 +31,16 @@ public class Company {
 	@Column(unique = true)
 	private String cnpj;
 
+	@Column(nullable = false)
 	private String phoneNumber;
 
+	@Column(nullable = false)
 	private String personContact;
 
+	@Column(nullable = false)
 	private String address;
 
+	@Column(nullable = false)
 	private String principalActivity;
 
 	private String urlPage="";
@@ -47,9 +51,9 @@ public class Company {
 	@Basic(fetch = FetchType.EAGER)
 	private String addressProof;
 
+
 	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
-
 
 	@Override
 	public String toString() {

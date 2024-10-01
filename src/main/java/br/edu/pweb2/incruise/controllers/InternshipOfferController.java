@@ -5,6 +5,8 @@ import br.edu.pweb2.incruise.services.CompanyService;
 import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.InternshipOfferService;
 import br.edu.pweb2.incruise.services.StudentService;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.security.Principal;
 
 import java.util.List;
 
@@ -24,27 +28,36 @@ public class InternshipOfferController {
     private final StudentService studentService;
     private final CompanyService companyService;
     private final CompetenceService competenceService;
+    private final HttpSession session;
 
     @Autowired
     public InternshipOfferController(InternshipOfferService internshipOfferService,
-                                     StudentService studentService,
-                                     CompanyService companyService,
-                                     CompetenceService competenceService) {
+            StudentService studentService,
+            CompanyService companyService,
+            CompetenceService competenceService,
+            HttpSession session) {
         this.internshipOfferService = internshipOfferService;
         this.studentService = studentService;
         this.companyService = companyService;
         this.competenceService = competenceService;
+        this.session = session;
     }
 
     @GetMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Company company = companyService.findByUserUsername(username);
+
+        model.addAttribute("company", company);
+
         model.addAttribute("internshipOffer", internshipOffer);
-        List<Company> companies = companyService.listAll();
         List<Competence> necessarySkills = competenceService.findAll();
         List<Competence> desirableSkills = competenceService.findAll();
-        model.addAttribute("companies", companies);
         model.addAttribute("necessarySkills", necessarySkills);
         model.addAttribute("desirableSkills", desirableSkills);
+
         return "/offers/form";
     }
 
@@ -99,63 +112,17 @@ public class InternshipOfferController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute("internshipOffer") InternshipOffer offer,
-                       @RequestParam("companyId") Long companyId,
-                       RedirectAttributes redirectAttributes) {
+            @RequestParam("companyId") Long companyId,
+            RedirectAttributes redirectAttributes) {
         Company company = companyService.findById(companyId);
         if (company == null) {
             redirectAttributes.addFlashAttribute("error", "Empresa não encontrada.");
             return "redirect:/internshipOffer/register";
         }
-        
-        internshipOfferService.save(offer,company);
-        
+
+        internshipOfferService.save(offer, company);
+
         redirectAttributes.addFlashAttribute("success", "Oferta de estágio salva com sucesso.");
-        return "redirect:/internshipOffer/offers";
-    }
-
-    @GetMapping("/apply/{id}")
-    public String showApplicationForm(@PathVariable("id") Long offerId, Model model, RedirectAttributes redirectAttributes) {
-        InternshipOffer offer = internshipOfferService.findById(offerId);
-        if (offer == null || offer.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
-            return "redirect:/internshipOffer/offers";
-        }
-        model.addAttribute("offer", offer);
-        return "offers/application";
-    }
-
-    @PostMapping("/apply")
-    public String applyForInternship(@RequestParam("offerId") Long offerId,
-                                     @RequestParam("enrollment") String enrollment,
-                                     @RequestParam(value = "message", required = false) String message,
-                                     RedirectAttributes redirectAttributes) {
-
-        Student student = studentService.findByEnrollment(enrollment);
-        if (student == null) {
-            redirectAttributes.addFlashAttribute("error", "Aluno não encontrado com a matrícula fornecida.");
-            return "redirect:/internshipOffer/apply/" + offerId;
-        }
-
-        InternshipOffer offer = internshipOfferService.findById(offerId);
-        if (offer == null || offer.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
-            return "redirect:/internshipOffer/offers";
-        }
-
-        boolean alreadyApplied = offer.getCandidatureList().stream()
-                .anyMatch(candidature -> candidature.getStudent().equals(student));
-        if (alreadyApplied) {
-            redirectAttributes.addFlashAttribute("error", "Você já se candidatou a esta oferta.");
-            return "redirect:/internshipOffer/offers";
-        }
-
-        Candidature newCandidature = new Candidature(student, offer, message);
-        offer.addCandidature(newCandidature);
-        student.addCandidature(newCandidature);
-
-        internshipOfferService.save(offer, offer.getCompanyResponsible());
-
-        redirectAttributes.addFlashAttribute("success", "Candidatura realizada com sucesso.");
         return "redirect:/internshipOffer/offers";
     }
 
@@ -171,17 +138,25 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/info/{id}")
-    public String showInternshipInfo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+    public String showInternshipInfo(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes,
+            Principal principal) {
         InternshipOffer offer = internshipOfferService.findById(id);
         if (offer == null || offer.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
             return "redirect:/internshipOffer/offers";
         }
+        
+        String username = (String) this.session.getAttribute("username");
+        System.out.println("Olha eu aqui"+ username);
+        Student student = studentService.findByUserUsername(username);
         List<Competence> necessarySkills = internshipOfferService.findById(id).getNecessarySkills();
         List<Competence> desirableSkills = internshipOfferService.findById(id).getDesirableSkills();
         model.addAttribute("offer", offer);
+        model.addAttribute("student", student);
         model.addAttribute("necessarySkills", necessarySkills);
         model.addAttribute("desirableSkills", desirableSkills);
+
+
         return "offers/info";
     }
 }

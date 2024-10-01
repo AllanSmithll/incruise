@@ -48,4 +48,8 @@ public class Candidature {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return this.createdDate.format(formatter);
     }
+
+    public boolean isEmpty() {
+        return false;
+    }
 }
