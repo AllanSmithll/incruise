@@ -91,7 +91,10 @@
             <h1 class="section-title">Empresa Responsável</h1>
             <p>
                 <strong>Nome da Empresa:</strong>
-                <span th:text="${offer.companyResponsible.fantasyName}">Nome da Empresa</span>
+                <a 
+                th:href="@{/company/info/{username}(username=${offer.companyResponsible.user.username})}"
+                th:text="${offer.companyResponsible.fantasyName}"
+                >Perfil da empresa</a>
             </p>
             <p>
                 <strong>Endereço:</strong>
@@ -104,8 +107,7 @@
                         th:text="${offer.companyResponsible.urlPage}">Acesse o perfil da empresa</a>
                 </p>
             </div>
-            <a class="btn btn-primary company-visit-btn"
-                th:href="@{/company/info/{id}(id=${offer.companyResponsible.id})}">Visitar perfil</a>
+
         </div>
     </main>
 

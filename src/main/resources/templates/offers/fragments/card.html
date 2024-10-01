@@ -11,7 +11,7 @@
         </div>
         <div class="d-flex flex-column">
             <small>Contratante</small>
-            <a th:href="@{/company/info/{id}(id=${offer.companyResponsible.id})}"
+            <a th:href="@{/company/info/{username}(username=${offer.companyResponsible.user.username})}"
                 th:text="${offer.companyResponsible.fantasyName}"></a>
         </div>
     </div>
