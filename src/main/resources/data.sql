@@ -712,7 +712,9 @@ VALUES (1, 3),
     CandidatureStatus status
     String message
     LocalDateTime createdDate
-*/INSERT INTO tb_Candidature (id, student_id, internship_offer_id, status, message, created_date)
+*/
+
+INSERT INTO tb_Candidature (id, student_id, internship_offer_id, status, message, created_date)
   VALUES
       -- Oferta 1
       (1, 2, 1, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),

@@ -1,87 +1,98 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Editar - Empresa</title>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Editar - Empresa')}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-<h1>Editar Empresas</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Editar Empresas</h1>
 
+    <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}" th:object="${currentCompany}" method="post">
+        <div class="form-group d-none" hidden="hidden">
+            <label for="idInput">ID:</label>
+            <input type="text" id="idInput" hidden="hidden" class="form-control" th:field="*{id}" placeholder="id" />
+        </div>
 
-  <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}"
-        th:object="${currentCompany}"
-        method="post" >
-<!--    <p  th:text="${currentUser.username}"  ></p>-->
-<!--    <br/>-->
+        <div class="form-group d-none" hidden="hidden">
+            <label for="usernameInput">Username:</label>
+            <input type="text" id="usernameInput" class="form-control" th:field="*{user.username}" placeholder="Username" />
+        </div>
 
-    <label for="fantasyNameInput">ID :</label>
-    <input type="text"  th:field="*{id}"  placeholder="id ne  vida"/>
-    <br/>
+        <div class="form-group d-none" hidden="hidden">
+            <label for="emailInput">Email:</label>
+            <input type="email" id="emailInput" class="form-control" th:field="*{user.email}" placeholder="Email" />
+        </div>
 
+        <div class="form-group d-none" hidden="hidden">
+            <label for="passwordInput">Password:</label>
+            <input type="password" id="passwordInput" class="form-control" th:field="*{user.password}" placeholder="Password" />
+        </div>
 
-    <label >Username:</label>
-    <input type="text" th:field="*{user.username}" placeholder="Username" />
-    <br/>
+        <div class="form-group d-none" hidden="hidden">
+            <label for="roleInput">Role:</label>
+            <input type="text" id="roleInput" class="form-control" th:field="*{user.role}" placeholder="Role" />
+        </div>
 
-    <!-- Campo para o email do User -->
-    <label  >Email:</label>
-    <input type="email" th:field="*{user.email}" placeholder="Email" />
-    <br/>
+        <div class="form-group">
+            <label for="fantasyNameInput">Nome Fantasia:</label>
+            <input type="text" id="fantasyNameInput" class="form-control" th:field="*{fantasyName}" required placeholder="Nome fantasia *" />
+        </div>
 
-    <!-- Campo para o password do User (caso necessário) -->
-    <label >Password:</label>
-    <input  th:field="*{user.password}" placeholder="Password" />
-    <br/>
+        <div class="form-group">
+            <label for="cnpjInput">CNPJ:</label>
+            <input type="text" id="cnpjInput" class="form-control" th:field="*{cnpj}" required placeholder="CNPJ *" />
+        </div>
 
-    <!-- Campo para o role do User -->
-    <label >Role:</label>
-    <input type="text" th:field="*{user.role}" placeholder="Role" />
+        <div class="form-group">
+            <label for="phoneNumberInput">Telefone:</label>
+            <input type="text" id="phoneNumberInput" class="form-control" th:field="*{phoneNumber}" required placeholder="Telefone *" />
+        </div>
 
-    <br/>
-    <h1>Empresa  dados!</h1>
-    <label for="fantasyNameInput">Nome Fantasia:</label>
-  <input type="text" id="fantasyNameInput" th:field="*{fantasyName}" required placeholder="Nome fantasia *"/>
-  <br/>
+        <div class="form-group">
+            <label for="personContactInput">Pessoa de Contato:</label>
+            <input type="text" id="personContactInput" class="form-control" th:field="*{personContact}" required placeholder="Pessoa de Contato *" />
+        </div>
 
-  <label for="cnpjInput">CNPJ:</label>
-  <input type="text" id="cnpjInput" th:field="*{cnpj}" required placeholder="CNPJ *"/>
-  <br/>
+        <div class="form-group">
+            <label for="principalActivityInput">Atividade Principal:</label>
+            <input type="text" id="principalActivityInput" class="form-control" th:field="*{principalActivity}" required placeholder="Atividade Principal *" />
+        </div>
 
-  <label for="phoneNumberInput">Telefone:</label>
-  <input type="text" id="phoneNumberInput" th:field="*{phoneNumber}" required placeholder="Telefone *"/>
-  <br/>
+        <div class="form-group">
+            <label for="urlPageInput">Página Web:</label>
+            <input type="text" id="urlPageInput" class="form-control" th:field="*{urlPage}" required placeholder="Página Web *" />
+        </div>
 
-  <label for="personContactInput">Pessoa de Contato:</label>
-  <input type="text" id="personContactInput" th:field="*{personContact}" required placeholder="Pessoa de Contato *"/>
-  <br/>
+        <div class="form-group">
+            <label for="addressInput">Endereço:</label>
+            <input type="text" id="addressInput" class="form-control" th:field="*{address}" placeholder="Endereço" />
+        </div>
 
-  <label for="principalActivityInput">Atividade Principal:</label>
-  <input type="text" id="principalActivityInput" th:field="*{principalActivity}" required placeholder="Atividade Principal *"/>
-  <br/>
+        <div class="form-group">
+            <label for="addressProofInput">Prova de Endereço:</label>
+            <input type="file" id="addressProofInput" class="form-control-file" th:field="*{addressProof}" />
+        </div>
 
-  <label for="urlPageInput">Página Web:</label>
-  <input type="text" id="urlPageInput" th:field="*{urlPage}" required placeholder="Página Web *"/>
-  <br/>
+        <div class="form-group">
+            <p hidden="hidden" th:each="offer : ${currentCompany.getInternshipOfferList()}">
+                <strong>Empresa Responsável:</strong> <span th:text="${offer.getCompanyResponsible().fantasyName}"></span><br />
+                <strong>Atividade:</strong> <span th:text="${offer.getPrincipalActivity()}"></span>
+            </p>
+        </div>
 
-    <label for="adress">Endereço</label>
-    <input type="text" id="adress" th:field="*{address}" />
-    <br/>
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
 
-  <label for="addressProofInput">Prova de Endereço:</label>
-  <input type="file" id="addressProofInput" th:field="*{addressProof}" />
-  <br/>
-  <p th:each="offer : ${currentCompany.getInternshipOfferList()}">
-    <tr>company</tr>
-    <td th:text="${offer.getCompanyResponsible().fantasyName}"></td>
+    <a th:href="@{/company/companies}" class="btn btn-secondary mt-3">Voltar para páginas de empresas!</a>
+</div>
 
-    <tr>atvd</tr>
-    <td th:text="${offer.getPrincipalActivity()}"></td>
-  </p>
-  <button type="submit">Salvar</button>
-</form>
-
-<a th:href="@{/company/companies}">Voltar para páginas de empresas!</a>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
