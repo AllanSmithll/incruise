@@ -30,7 +30,7 @@ public class CandidatureService {
         return candidatureRepositoryJpa.findAll();
     }
 
-    public void update(Candidature candidature) {
+    public void save(Candidature candidature) {
         candidatureRepositoryJpa.save(candidature);
     }
 
