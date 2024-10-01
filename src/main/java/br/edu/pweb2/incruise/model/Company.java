@@ -30,25 +30,27 @@ public class Company {
 	@Column(unique = true)
 	private String cnpj;
 
+	@Column(nullable = false)
 	private String phoneNumber;
 
+	@Column(nullable = false)
 	private String personContact;
 
+	@Column(nullable = false)
 	private String address;
 
+	@Column(nullable = false)
 	private String principalActivity;
 
 	private String urlPage="";
 
-
 	@Lob
-	@Column(name = "address_proof" )
+	@Basic(fetch = FetchType.LAZY)
+	@Column(name = "address_proof", nullable = false)
 	private byte[] addressProof;
 
 	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
-
-	//private Document<PDF> comproEnder; A fazer
 
 	@Override
 	public String toString() {

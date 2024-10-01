@@ -15,7 +15,7 @@
     <div class="card-main">
         <div class="main-content">
             <h1 class="title-page">Cadastrar-se</h1>
-            <form th:action="@{/company/save}" method="post" th:object="${company}">
+            <form th:action="@{/company/save}" method="post" th:object="${company}" enctype="multipart/form-data">
                 <input id="input-id" class="input-form" type="hidden" th:field="*{id}"/>
 
                 <fieldset class="fieldset-info">
@@ -39,6 +39,10 @@
                            type="password"
                            required minlength="8"
                            title="Confirmação da senha deve ter pelo menos 8 caracteres e corresponder à senha fornecida."/>
+
+                    <div id="password-error" class="error-message" style="display: none; color: red;">
+                        As senhas não coincidem. Por favor, verifique.
+                    </div>
                 </fieldset>
 
                 <fieldset class="fieldset-info">
@@ -48,6 +52,16 @@
                            th:field="*{fantasyName}" required maxlength="100"
                            title="O nome fantasia pode ter no máximo 100 caracteres."/>
                     <span th:if="${fantasyNameError}" class="alert alert-danger" th:text="${fantasyNameError}"></span>
+
+                    <label class="label-form" for="fantasyNameInput">Principal atividade *</label>
+                    <input type="text" id="principalActivityInput" class="input-form w-100"
+                           placeholder="Principal atividade *" th:field="*{principalActivity}" required maxlength="150"
+                           title="A principal atividade pode ter no máximo 150 caracteres.">
+
+                    <label class="label-form" for="fantasyNameInput">Site da empresa *</label>
+                    <input type="url" id="urlPageInput" class="input-form w-100" placeholder="Site da empresa *"
+                           th:field="*{urlPage}" required pattern="https?://.+"
+                           title="Por favor, insira uma URL válida (ex: http://www.exemplo.com).">
 
                     <label class="label-form" for="cnpjInput">CNPJ *</label>
                     <input type="text" id="cnpjInput" class="input-form" placeholder="CNPJ *" th:field="*{cnpj}"
@@ -65,6 +79,11 @@
                     <input type="tel" id="companyPhoneInput" class="input-form" placeholder="Telefone da Empresa *"
                            th:field="*{phoneNumber}" required pattern="\d{10,11}"
                            title="Por favor, insira um número de telefone válido com 10 ou 11 dígitos."/>
+
+                    <label class="label-form" for="fantasyNameInput">Pessoa do contato *</label>
+                    <input type="text" id="personContactInput" class="input-form w-100"
+                           placeholder="Nome do responsável" th:field="*{personContact}" required maxlength="100"
+                           title="O nome do responsável pode ter no máximo 100 caracteres.">
                 </fieldset>
 
                 <fieldset class="fieldset-info">
@@ -75,7 +94,7 @@
 
                     <div class="file-upload">
                         <label for="addressVerify">Adicionar Comprovante (PDF)</label>
-                        <input type="file" id="addressVerify" class="file-input" th:field="*{addressProof}" required/>
+                        <input type="file" id="addressVerify" name="file" accept="application/pdf" class="file-input" th:field="*{addressProof}" required/>
                     </div>
                 </fieldset>
 
