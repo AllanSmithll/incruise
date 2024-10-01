@@ -1,40 +1,40 @@
 <div class="individual-card" th:fragment="candidature-card(candidature)">
-    <h3>
-        <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
-            th:text="${candidature.internshipOffer.principalActivity}">
-            Principal Atividade
-        </a>
-    </h3>
+        <th:block th:if="candidature != null">
+            <h3>
+                <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
+                    th:text="${candidature.internshipOffer.principalActivity}">
+                    Principal Atividade
+                </a>
+            </h3>
+        
+            <div class="d-flex flex-column">
+                <smal>Empresa</smal>
+                <a th:href="@{/company/info/{id}(id=${candidature.internshipOffer.companyResponsible.user.username})}"
+                    th:text="${candidature.internshipOffer.companyResponsible.fantasyName}">
+                    Nome da Empresa
+                </a>
+            </div>
 
-    <div class="d-flex flex-column">
-        <smal>Empresa</smal>
-        <a th:href="@{/company/info/{id}(id=${candidature.internshipOffer.companyResponsible.id})}"
-            th:text="${candidature.internshipOffer.companyResponsible.fantasyName}">
-            Nome da Empresa
-        </a>
-    </div>
-
-    <div class="d-flex flex-column">
-        <smal>Data Candidatura</smal>
-        <p th:text="${candidature.formattedDate}">10/03/2004</p>
-    </div>
-
-    <div class="d-flex flex-row gap-2">
-        <div class="d-flex flex-column" th:if="${candidature.internshipOffer.remunerationValue != null and candidature.internshipOffer.remunerationValue > 0}">
-            <smal>Remuneração</smal>
-            <p th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.remunerationValue, 1, 2)}">R$0,00</p>
-        </div>
-        <div class="d-flex flex-column" th:if="${candidature.internshipOffer.transportVoucher != null and candidature.internshipOffer.transportVoucher > 0}">
-            <smal>Vale Transporte</smal> 
-            <p th:text="'R$ '+ ${#numbers.formatDecimal(candidature.internshipOffer.transportVoucher, 1, 2)}">R$ 0,00</p>
-        </div>        
-
-    </div>
-
-    <div class="d-flex flex-column" th:if="${candidature.internshipOffer.prerequisites != 0}">
-        <smal>Pré-requisitos</smal>
-        <p th:text="${candidature.internshipOffer.prerequisites}">Nenhum</p>
-    </div>
-    <th:block th:replace="~{candidatures/fragments/actions(candidature=${candidature})}"></th:block>
+            <div th:unless="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}" class="d-flex flex-column">
+                <smal>Candidato</smal>
+                <a th:href="@{/student/info/{username}(username=${candidature.student.user.username})}"
+                    th:text="${candidature.student.name}">
+                    Nome do candidato
+                </a>
+            </div>
+        
+            <div class="d-flex flex-column">
+                <smal>Data Candidatura</smal>
+                <p th:text="${candidature.formattedDate}">10/03/2004</p>
+            </div>
             
-    </th:block>
+            <div class="d-flex flex-column">
+                <smal>Situação</smal>
+                <p th:text="${candidature.status}">PENDENTE</p>
+            </div>
+
+
+            <th:block th:replace="~{candidatures/fragments/actions(candidature=${candidature})}"></th:block>
+            </th:block>
+        </th:block>
+</div>

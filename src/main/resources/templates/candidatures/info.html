@@ -4,30 +4,41 @@
 <head>
     <!-- Incluindo o fragmento de cabeçalho -->
     <meta
-        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de'+ ${candidature.student.name})}">
+        th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de '+ ${candidature.student.name})}">
+        
 </head>
 
 <!-- Esta vai ser a seção mais divertida que irei criar :D-->
+<!-- Nota do Dev: foi a página que mais me deu problema-->
 
 <body>
+
+    <header th:replace="~{/fragments/header}"></header>
+
     <main>
 
         <section class="info-section" id="first-info">
             <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">
             <h1>Candidatura de
-                <a>
-                    <span id="name" th:text="${candidature.student.name}"
-                        th:href="@{/students/info/{id}(id=${candidature.student.id})}">
-                        Nome do estudante
-                    </span>
+                <a id="name" th:text="${candidature.student.name}"
+                    th:href="@{/student/info/{username}(username=${candidature.student.user.username})}">
+                    Nome do estudante
                 </a>
             </h1>
         </section>
 
         <section class="info-section" id="options-section">
             <h2 class="section-title">Opções</h2>
-            <th:block th:insert="~{/candidatures/fragments/actions(candidature=candidature)}"></th:block>
+            <th:block th:insert="~{/candidatures/fragments/actions(candidature=${candidature})}"></th:block>
         </section>
+
+        <section class="info-section" id="message-section">
+            <h2 class="section-title">Motivação</h2>
+            <p id="candidature-message"class="topic-content" th:text="${candidature.message}">
+                Por favor eu precizo muito, muito, muitíssimo, muitisisísimo dessa vaga!</p>
+        </section>
+        
+
         <section class="info-section">
             <h2 class="section-title">Informações da Candidatura</h2>
 
@@ -37,7 +48,7 @@
                     <h1 class="topic-title">
                         Vaga Candidatada
                     </h1>
-                    <a class="topic-content" th:text="${candidature.intershipOffer.principalActivity}"
+                    <a class="topic-content" th:text="${candidature.internshipOffer.principalActivity}"
                         th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}">
                         Vaga para Ensaboador de Frangos
                     </a>
@@ -47,7 +58,8 @@
                     <h1 class="topic-title">
                         Data da aplicação
                     </h1>
-                    <p class="topic-content" th:text="${#temporals.format(candidature.createdDate, dd/mm/yyyy)}">
+                    <p th:if="${candidature}!=null" class="topic-content"
+                        th:text="${#temporals.format(candidature.createdDate, 'dd/MM/yyyy')}">
                         09/02/2023
                     </p>
                 </div>
@@ -60,14 +72,6 @@
                     </p>
                 </div>
 
-            </div>
-
-            <div class="topic">
-                <h1 class="topic-title">
-                    Mensagem do candidato
-                </h1>
-                <p class="topic-content" th:text="${candidature.message}">
-                    Por favor eu precizo muito, muito, muitíssimo, muitisisísimo dessa vaga!</p>
             </div>
 
         </section>
@@ -88,40 +92,46 @@
                 <li class="competeces dont-have-competence">X competence 2</li>
             </ul>
         </section>
-        <section class="info-section" class="summary-student"
-            th:if="${#authorization.expression('hasRole('ROLE_COMPANY')')}">
+        <section class="info-section" id="summary-student"
+            th:unless="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
             <h2 class="section-title"> Resumo do Estudante</h2>
             <!------------To Do------------>
             <div class="flex around">
                 <div class="topic">
                     <h1 class="topic-title">Curso</h1>
+                    <p class="topic-content" th:text="${candidature.student.course}">Sistemas para alguma coisa de alguma coisa para internet das coisas que são coisas</p>
+                </div>
+                
+                <div class="topic">
+                    <h1 class="topic-title">Matrícula</h1>
+                    <p class="topic-content" th:text="${candidature.student.enrollment}">00001112222</p>
+                </div>
+
+                <div class="topic">
+                    <h1 class="topic-title">Curso</h1>
+                    <p class="topic-content" th:text="${candidature.student.course}">Sistemas de Informação</p>
+                </div>
+
+                <div class="d-flex around">
                     <div class="topic">
-                        <h1 class="topic-title">Matrícula</h1>
-                        <p class="topic-content" th:text="${candidature.student.enrollment}">00001112222</p>
+                        <h1 class="topic-title">Email</h1>
+                        <p class="topic-content" th:text="${candidature.student.user.email}">
+                            palinha.joao@academico.uepa.edu.br</p>
                     </div>
 
                     <div class="topic">
-                        <h1 class="topic-title">Curso</h1>
-                        <p class="topic-content" th:text="${candidature.student.course}">Sistemas de Informação</p>
-                    </div>
-
-                    <div class="d-flex around">
-                        <div class="topic">
-                            <h1 class="topic-title">Email</h1>
-                            <p class="topic-content" th:text="${candidature.student.user.email}">
-                                palinha.joao@academico.uepa.edu.br</p>
-                        </div>
-
-                        <div class="topic">
-                            <h1 class="topic-title">Telefone</h1>
-                            <p class="topic-content" th:text="${candidature.student.phoneNumber}">+55 83 8229-2523</p>
-                        </div>
+                        <h1 class="topic-title">Telefone</h1>
+                        <p class="topic-content" th:text="${candidature.student.phoneNumber}">+55 83 8229-2523</p>
                     </div>
                 </div>
+            </div>
 
         </section>
 
     </main>
+
+    <div th:replace="~{/fragments/scripts}"></div>
+
 </body>
 
 </html>
