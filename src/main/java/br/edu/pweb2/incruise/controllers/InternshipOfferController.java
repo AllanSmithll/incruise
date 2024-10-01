@@ -38,13 +38,19 @@ public class InternshipOfferController {
 
     @GetMapping("/register")
     public String getForm(InternshipOffer internshipOffer, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        Company company = companyService.findByUserUsername(username);
+
+        model.addAttribute("company", company);
+
         model.addAttribute("internshipOffer", internshipOffer);
-        List<Company> companies = companyService.listAll();
         List<Competence> necessarySkills = competenceService.findAll();
         List<Competence> desirableSkills = competenceService.findAll();
-        model.addAttribute("companies", companies);
         model.addAttribute("necessarySkills", necessarySkills);
         model.addAttribute("desirableSkills", desirableSkills);
+
         return "/offers/form";
     }
 

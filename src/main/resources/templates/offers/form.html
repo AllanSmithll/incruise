@@ -2,80 +2,101 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar Oferta')}">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar Oferta de Estágio')}">
     <title>Cadastrar Oferta de Estágio</title>
-    <link rel="stylesheet" href="/styles/internship/form-internship.css">
 </head>
-<body class="main-screen">
+<body>
 <header th:replace="~{/fragments/header}"></header>
 <main>
-    <div class="card-main">
-        <div class="main-content">
-            <h1>Cadastrar Oferta de Estágio</h1>
-            <form th:action="@{/internshipOffer/save}" method="post" th:object="${internshipOffer}">
-                <fieldset class="form-container">
-                    <legend class="form-container-description">Informações da Oferta</legend>
+    <div class="main-content">
+        <h1 class="form-title">Cadastrar Oferta de Estágio</h1>
 
-                    <div class="d-flex flex-column gap-3">
-                        <input type="text" id="principalActivity" class="input-form w-100" placeholder="Principal atividade *"
-                               th:field="*{principalActivity}" required maxlength="100"
-                               title="A principal atividade pode ter no máximo 100 caracteres.">
+        <form th:action="@{/internshipOffer/save}" method="post" th:object="${internshipOffer}">
 
-                        <div class="d-flex flex-row gap-3">
-                            <input type="number" id="weeklyWorkload" class="input-form w-50" placeholder="Carga horária semanal *"
-                                   th:field="*{weeklyWorkload}" required min="1" max="40"
-                                   title="A carga horária semanal deve estar entre 1 e 40 horas." step="1">
+            <fieldset class="fieldset-info">
+                <legend class="fieldset-legend">Informações da Oferta</legend>
 
-                            <input type="number" id="remunerationValue" class="input-form w-50" placeholder="Valor da bolsa"
-                                   th:field="*{remunerationValue}" step="0.01" min="0" value="0.00"
-                                   title="Por favor, insira um valor válido para a bolsa. Utilize vírgula (,) como separador decimal.">
-                        </div>
+                <div class="input-group">
+                    <label for="principalActivity" class="input-label">Principal Atividade *</label>
+                    <input type="text" id="principalActivity" class="input-form" placeholder="Descreva a principal atividade"
+                           th:field="*{principalActivity}" required maxlength="100"
+                           title="A principal atividade pode ter no máximo 100 caracteres.">
+                </div>
 
-                        <input type="number" id="transportVoucher" class="input-form w-100" placeholder="Vale transporte"
-                               th:field="*{transportVoucher}" step="0.01" min="0.00" value="0.00"
-                               title="Por favor, insira um valor válido para o vale transporte. Utilize vírgula (,) como separador decimal.">
+                <div class="d-flex">
+                    <div class="input-group w-50">
+                        <label for="weeklyWorkload" class="input-label">Carga Horária Semanal *</label>
+                        <input type="number" id="weeklyWorkload" class="input-form" placeholder="Ex: 30"
+                               th:field="*{weeklyWorkload}" required min="1" max="40"
+                               title="A carga horária semanal deve estar entre 1 e 40 horas.">
                     </div>
-                </fieldset>
 
-                <fieldset class="form-container">
-                    <legend class="form-container-description">Empresa</legend>
-                    <select id="company" name="companyId" class="input-form w-100 custom-select" required>
-                        <option value="">Selecione uma empresa</option>
-                        <option th:each="company : ${companies}" th:value="${company.id}"
-                                th:text="${company.fantasyName}"></option>
-                    </select>
-                </fieldset>
+                    <div class="input-group w-50 currency-prefix">
+                        <label for="remunerationValue" class="input-label">Valor da Bolsa *</label>
+                        <span class="currency-label">R$</span>
+                        <input type="number" id="remunerationValue" class="input-form" placeholder="Ex: 1500,00"
+                               th:field="*{remunerationValue}" step="0.01" min="0"
+                               title="Por favor, insira um valor válido para a bolsa de estágio.">
+                    </div>
+                </div>
 
-                <fieldset class="form-container">
-                    <legend class="form-container-description">Pré-requisitos</legend>
+                <div class="input-group currency-prefix">
+                    <label for="transportVoucher" class="input-label">Vale Transporte (opcional)</label>
+                    <span class="currency-label">R$</span>
+                    <input type="number" id="transportVoucher" class="input-form" placeholder="Ex: 200,00"
+                           th:field="*{transportVoucher}" step="0.01" min="0"
+                           title="Por favor, insira um valor válido para o vale transporte.">
+                </div>
+            </fieldset>
 
-                    <textarea id="prerequisites" class="input-form w-100" placeholder="Pré-requisitos"
+            <fieldset class="fieldset-info">
+                <legend class="fieldset-legend">Empresa</legend>
+                <div class="input-group">
+                    <input type="hidden" id="companyId" name="companyId" th:value="${company.id}"
+                           title="ID da empresa autenticada associada ao usuário logado.">
+
+                    <input type="text" class="input-form" th:value="${company.fantasyName}" readonly
+                           title="Nome fantasia da empresa autenticada.">
+                </div>
+            </fieldset>
+
+            <fieldset class="fieldset-info">
+                <legend class="fieldset-legend">Pré-requisitos</legend>
+
+                <div class="input-group">
+                    <textarea id="prerequisites" class="input-form" placeholder="Máx. 500 caracteres"
                               th:field="*{prerequisites}" maxlength="500"
                               title="Os pré-requisitos podem ter no máximo 500 caracteres."></textarea>
+                </div>
+            </fieldset>
 
-                    <div class="d-flex flex-column gap-3">
-                        <label>Competências Necessárias (Selecione pelo menos uma):</label>
-                        <div class="d-flex flex-wrap gap-3">
-                            <label th:each="competence : ${necessarySkills}" class="competence-checkbox">
-                                <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence.id}" name="necessarySkills" />
-                                <span th:text="${competence.getDescription()}"></span>
-                            </label>
-                        </div>
-                        <div id="competenceError" style="color: red; display: none;">Por favor, selecione pelo menos uma competência necessária.</div>
+            <fieldset class="fieldset-info">
+                <legend class="fieldset-legend">Competências</legend>
 
-                        <label>Competências Desejadas:</label>
-                        <div class="d-flex flex-wrap gap-3">
-                            <label th:each="competence : ${desirableSkills}" class="competence-checkbox">
-                                <input type="checkbox" th:field="*{desirableSkills}" th:value="${competence.id}" name="desirableSkills"/>
-                                <span th:text="${competence.getDescription()}"></span>
-                            </label>
-                        </div>
+                <div class="input-group">
+                    <label class="competence-label"><strong>Necessárias</strong></label>
+                    <div class="d-flex flex-wrap">
+                        <label th:each="competence : ${necessarySkills}" class="competence-checkbox">
+                            <input type="checkbox" th:field="*{necessarySkills}" th:value="${competence.id}" name="necessarySkills"/>
+                            <span th:text="${competence.getDescription()}"></span>
+                        </label>
                     </div>
-                </fieldset>
+                    <div id="competenceError" style="color: red; display: none;">Por favor, selecione pelo menos uma competência necessária.</div>
+                </div>
 
-                <button class="submit-input btn btn-primary" type="submit">Cadastrar Oferta</button>
-            </form>
-        </div>
+                <div class="input-group">
+                    <label class="competence-label"><strong>Desejáveis</strong></label>
+                    <div class="d-flex flex-wrap">
+                        <label th:each="competence : ${desirableSkills}" class="competence-checkbox">
+                            <input type="checkbox" th:field="*{desirableSkills}" th:value="${competence.id}" name="desirableSkills"/>
+                            <span th:text="${competence.getDescription()}"></span>
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <button class="submit-input" type="submit">Cadastrar Oferta</button>
+        </form>
     </div>
 
     <div th:replace="~{/fragments/scripts}"></div>
