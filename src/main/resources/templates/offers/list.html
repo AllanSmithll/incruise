@@ -15,10 +15,9 @@
         <div class="card-list-component">
             <h1>Ofertas de Estágio</h1>
             <div class="buttons-actions">
-                <button class="button-action button-add btn btn-primary " th:href="@{/internshipOffer/register}"
-                    th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+                <a class="button-action button-add btn btn-primary" th:href="@{/internshipOffer/register}" th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
                     Nova Oferta
-                </button>
+                </a>
             </div>
 
 

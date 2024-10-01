@@ -6,6 +6,7 @@ header {
     background: linear-gradient(45deg, #4199fe, #74b4fe);
     position: fixed;
     top:0;
+    z-index: 1000;
 }
 main{
     margin-top: 55px;
