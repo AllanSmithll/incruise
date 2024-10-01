@@ -8,6 +8,7 @@ truncate tb_internship_offer_necessary_skill cascade;
 truncate tb_internship_offer_desirable_skill cascade;
 truncate tb_Candidature cascade;
 
+
 CREATE TABLE spring_session
 (
     id                    VARCHAR(64)  NOT NULL,

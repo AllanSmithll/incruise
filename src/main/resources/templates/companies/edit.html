@@ -12,8 +12,8 @@
   <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}"
         th:object="${currentCompany}"
         method="post" >
-    <p  th:text="${currentUser.username}"  ></p>
-    <br/>
+<!--    <p  th:text="${currentUser.username}"  ></p>-->
+<!--    <br/>-->
 
     <label for="fantasyNameInput">ID :</label>
     <input type="text"  th:field="*{id}"  placeholder="id ne  vida"/>
@@ -39,6 +39,7 @@
     <input type="text" th:field="*{user.role}" placeholder="Role" />
 
     <br/>
+    <h1>Empresa  dados!</h1>
     <label for="fantasyNameInput">Nome Fantasia:</label>
   <input type="text" id="fantasyNameInput" th:field="*{fantasyName}" required placeholder="Nome fantasia *"/>
   <br/>
@@ -63,10 +64,20 @@
   <input type="text" id="urlPageInput" th:field="*{urlPage}" required placeholder="Página Web *"/>
   <br/>
 
+    <label for="adress">Endereço</label>
+    <input type="text" id="adress" th:field="*{address}" />
+    <br/>
+
   <label for="addressProofInput">Prova de Endereço:</label>
   <input type="file" id="addressProofInput" th:field="*{addressProof}" />
   <br/>
+  <p th:each="offer : ${currentCompany.getInternshipOfferList()}">
+    <tr>company</tr>
+    <td th:text="${offer.getCompanyResponsible().fantasyName}"></td>
 
+    <tr>atvd</tr>
+    <td th:text="${offer.getPrincipalActivity()}"></td>
+  </p>
   <button type="submit">Salvar</button>
 </form>
 

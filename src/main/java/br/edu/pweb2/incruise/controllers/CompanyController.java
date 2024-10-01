@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.List;
 import java.util.Objects;
 
@@ -109,24 +111,13 @@ public class CompanyController {
     @GetMapping("/edit/{id}/{username}")
     public String getEditForm(@PathVariable("id") Long id,@PathVariable("username") String username, Model model) {
         try {
-
             System.out.println("Estamos aqui no get!");
-
             Company currentCompany = companyService.findById(id);
-            System.out.println("Username for company user: " + currentCompany.getUser().getUsername());
             User user = (User) userService.loadUserByUsername(username);
-
             Company company = companyService.findByUserUsername(username);
-            System.out.println("Encontrada pelo user: " + company);
-
-            System.out.println("User direto pelo id: " + user.getUsername());
-
-
             model.addAttribute("currentCompany", currentCompany);
-            model.addAttribute("currentUser",user);
 
             return "companies/edit";
-
 
         } catch (Exception e) {
             System.out.println("n pode entrar aqui " );
@@ -135,33 +126,35 @@ public class CompanyController {
             return "redirect:/company/companies";
         }
     }
+
+
+
     @PostMapping("/edit/{id}")
-    public String edit
-            (@PathVariable("id") Long id,
-             @ModelAttribute("currentCompany") Company companyUpdate
-            )  {
+    public String edit(@PathVariable("id") Long id, @ModelAttribute("currentCompany") Company companyUpdate)  {
         try {
-            User user1 = companyUpdate.getUser();
-            if (user1 != null) {
-                System.out.println("Username for user in post method in if: " + user1.getUsername() + user1.toString());
+            User user = companyUpdate.getUser();
+            if (user != null) {
+                System.out.println("Username for user in post method in if: " + user.getUsername() + user.toString());
             } else {
                 System.out.println("User is null!");
             }
 
-            // Recuperar o username do user associado ao companyUpdate
-            assert user1 != null;
-            String username = user1.getUsername();
-            System.out.println("Username duplicado? " + username);
+           List<InternshipOffer> offer =  this.internshipOfferService.findByCompanyResponsible(companyUpdate);
 
-            System.out.println("Buscar user " +  user1.getUsername());
-            // Buscar o user pelo username (ou ID, dependendo da sua lógica de negócio)
-            User userProcurado = (User) userService.findByUsername(user1.getUsername());
-            System.out.println("Username duplicado? " + userProcurado.getUsername());
+//            if(offer.getFirst() != null){
+//                System.out.println(offer.getFirst().getCompanyResponsible().getFantasyName());
+//                System.out.println(offer.getFirst().getCompanyResponsible().getFantasyName());
+//            }
+//           offer.forEach(System.out::println);
+
+
 
             // Associar o user existente ao companyUpdate
-            companyUpdate.setUser(user1);
+            companyUpdate.setUser(user);
+            offer.forEach(internshipOffer -> internshipOffer.setCompanyResponsible(companyUpdate));
+            companyUpdate.setInternshipOfferList(offer);
 
-
+            System.out.println(companyUpdate.getInternshipOfferList());
             companyService.saveAndFlush(companyUpdate);
 
             return "redirect:/company/companies";
