@@ -12,12 +12,34 @@
   <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}"
         th:object="${currentCompany}"
         method="post" >
+    <p  th:text="${currentUser.username}"  ></p>
+    <br/>
 
-<!--  <label for="usernameInput">Usuário:</label>-->
-<!--  <input type="text" id="usernameInput" th:field="*{user.username}"  placeholder="Usuário *"/>-->
-<!--  <br/>-->
+    <label for="fantasyNameInput">ID :</label>
+    <input type="text"  th:field="*{id}"  placeholder="id ne  vida"/>
+    <br/>
 
-  <label for="fantasyNameInput">Nome Fantasia:</label>
+
+    <label >Username:</label>
+    <input type="text" th:field="*{user.username}" placeholder="Username" />
+    <br/>
+
+    <!-- Campo para o email do User -->
+    <label  >Email:</label>
+    <input type="email" th:field="*{user.email}" placeholder="Email" />
+    <br/>
+
+    <!-- Campo para o password do User (caso necessário) -->
+    <label >Password:</label>
+    <input  th:field="*{user.password}" placeholder="Password" />
+    <br/>
+
+    <!-- Campo para o role do User -->
+    <label >Role:</label>
+    <input type="text" th:field="*{user.role}" placeholder="Role" />
+
+    <br/>
+    <label for="fantasyNameInput">Nome Fantasia:</label>
   <input type="text" id="fantasyNameInput" th:field="*{fantasyName}" required placeholder="Nome fantasia *"/>
   <br/>
 

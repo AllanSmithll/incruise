@@ -370,6 +370,7 @@ tb_internship_offer
     String prerequisites
     Long companyResponsible
     OfferStatus status ENUM Type
+
  */
 INSERT INTO tb_internship_offer (principal_activity, weekly_workload, remuneration_value, transport_voucher,
                                  prerequisites, company_id, status)

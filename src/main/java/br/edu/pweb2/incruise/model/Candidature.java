@@ -23,7 +23,7 @@ public class Candidature {
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "internship_offer_id", nullable = false)
     private InternshipOffer internshipOffer;
 
