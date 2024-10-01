@@ -133,28 +133,20 @@ public class CompanyController {
     public String edit(@PathVariable("id") Long id, @ModelAttribute("currentCompany") Company companyUpdate)  {
         try {
             User user = companyUpdate.getUser();
-            if (user != null) {
-                System.out.println("Username for user in post method in if: " + user.getUsername() + user.toString());
-            } else {
-                System.out.println("User is null!");
-            }
 
-           List<InternshipOffer> offer =  this.internshipOfferService.findByCompanyResponsible(companyUpdate);
-
-//            if(offer.getFirst() != null){
-//                System.out.println(offer.getFirst().getCompanyResponsible().getFantasyName());
-//                System.out.println(offer.getFirst().getCompanyResponsible().getFantasyName());
-//            }
-//           offer.forEach(System.out::println);
+            List<InternshipOffer> offer =  this.internshipOfferService.findByCompanyResponsible(companyUpdate);
 
 
-
-            // Associar o user existente ao companyUpdate
             companyUpdate.setUser(user);
             offer.forEach(internshipOffer -> internshipOffer.setCompanyResponsible(companyUpdate));
             companyUpdate.setInternshipOfferList(offer);
+            offer.forEach(
+                    internshipOffer ->
+                            internshipOffer.getCandidatureList()
+                                    .forEach(candidature ->
+                                            candidature
+                                                    .setInternshipOffer(internshipOffer)));
 
-            System.out.println(companyUpdate.getInternshipOfferList());
             companyService.saveAndFlush(companyUpdate);
 
             return "redirect:/company/companies";
@@ -162,8 +154,6 @@ public class CompanyController {
         } catch (Exception e) {
             System.out.println("Estamos aqui no erro :(!");
             e.printStackTrace();
-
-
 
             return "redirect:/company/companies";
         }
