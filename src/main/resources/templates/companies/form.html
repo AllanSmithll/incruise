@@ -15,7 +15,7 @@
     <div class="card-main">
         <div class="main-content">
             <h1 class="title-page">Cadastrar-se</h1>
-            <form th:action="@{/company/save}" method="post" th:object="${company}" enctype="multipart/form-data">
+            <form th:action="@{/company/save}" method="post" th:object="${company}">
                 <input id="input-id" class="input-form" type="hidden" th:field="*{id}"/>
 
                 <fieldset class="fieldset-info">
