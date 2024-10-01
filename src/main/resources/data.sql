@@ -1,12 +1,12 @@
-truncate tb_role cascade;
-truncate tb_company cascade;
-truncate tb_competence cascade;
-truncate tb_student cascade;
-truncate tb_student_competence_skill cascade;
-truncate tb_internship_offer cascade;
-truncate tb_internship_offer_necessary_skill cascade;
-truncate tb_internship_offer_desirable_skill cascade;
-truncate tb_Candidature cascade;
+truncate table tb_role cascade;
+truncate table tb_company cascade;
+truncate table tb_competence cascade;
+truncate table tb_student cascade;
+truncate table tb_student_competence_skill cascade;
+truncate table tb_internship_offer cascade;
+truncate table tb_internship_offer_necessary_skill cascade;
+truncate table tb_internship_offer_desirable_skill cascade;
+truncate table tb_Candidature cascade;
 
 CREATE TABLE spring_session
 (
@@ -710,81 +710,82 @@ VALUES (1, 3),
     CandidatureStatus status
     String message
     LocalDateTime createdDate
-*/INSERT INTO tb_Candidature (id, student_id, internship_offer_id, status, message, created_date)
+*/
+INSERT INTO tb_Candidature (student_id, internship_offer_id, status, message, created_date)
   VALUES
       -- Oferta 1
-      (1, 2, 1, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),
-      (2, 3, 1, 'PENDENTE', 'Acredito que meu perfil se encaixa.', '2024-09-03 14:00:00'),
-      (3, 4, 1, 'PENDENTE', 'Estou muito interessado!', '2024-09-04 09:15:00'),
-      (4, 5, 1, 'PENDENTE', 'Em busca de novas oportunidades.', '2024-09-05 16:45:00'),
-      (5, 6, 1, 'PENDENTE', 'Espero ser um bom candidato.', '2024-09-06 12:00:00'),
-      (6, 7, 1, 'PENDENTE', 'Acho que posso contribuir muito.', '2024-09-07 10:30:00'),
-      (7, 8, 1, 'PENDENTE', 'Motivado para o desafio.', '2024-09-08 11:00:00'),
-      (8, 9, 1, 'PENDENTE', 'Tenho experiência relevante.', '2024-09-09 13:30:00'),
-      (9, 10, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
-      (10, 11, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
-      (11, 12, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
-      (12, 13, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
-      (13, 14, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
+      (2, 1, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),
+      (3, 1, 'PENDENTE', 'Acredito que meu perfil se encaixa.', '2024-09-03 14:00:00'),
+      (4, 1, 'PENDENTE', 'Estou muito interessado!', '2024-09-04 09:15:00'),
+      (5, 1, 'PENDENTE', 'Em busca de novas oportunidades.', '2024-09-05 16:45:00'),
+      (6, 1, 'PENDENTE', 'Espero ser um bom candidato.', '2024-09-06 12:00:00'),
+      (7, 1, 'PENDENTE', 'Acho que posso contribuir muito.', '2024-09-07 10:30:00'),
+      (8, 1, 'PENDENTE', 'Motivado para o desafio.', '2024-09-08 11:00:00'),
+      (9, 1, 'PENDENTE', 'Tenho experiência relevante.', '2024-09-09 13:30:00'),
+      (10, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
+      (11, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
+      (12, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
+      (13, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
+      (14, 1, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-10 15:00:00'),
       -- Oferta 2
-      (14, 11, 2, 'PENDENTE', 'Muito interessado na vaga.', '2024-09-01 08:30:00'),
-      (15, 12, 2, 'PENDENTE', 'Gostaria de saber mais sobre a vaga.', '2024-09-02 09:45:00'),
-      (16, 13, 2, 'PENDENTE', 'Experiência relevante para a posição.', '2024-09-03 14:30:00'),
-      (17, 14, 2, 'PENDENTE', 'Pronto para novos desafios.', '2024-09-04 16:00:00'),
-      (18, 15, 2, 'PENDENTE', 'Confiante no meu perfil.', '2024-09-05 10:00:00'),
+      (11, 2, 'PENDENTE', 'Muito interessado na vaga.', '2024-09-01 08:30:00'),
+      (12, 2, 'PENDENTE', 'Gostaria de saber mais sobre a vaga.', '2024-09-02 09:45:00'),
+      (13, 2, 'PENDENTE', 'Experiência relevante para a posição.', '2024-09-03 14:30:00'),
+      (14, 2, 'PENDENTE', 'Pronto para novos desafios.', '2024-09-04 16:00:00'),
+      (15, 2, 'PENDENTE', 'Confiante no meu perfil.', '2024-09-05 10:00:00'),
       -- Oferta 3
       --Vazia
       -- Oferta 4
-      (19, 10, 4, 'PENDENTE', 'Estou interessado.', '2024-09-01 14:00:00'),
-      (20, 11, 4, 'PENDENTE', 'Gostaria de saber mais.', '2024-09-02 16:00:00'),
-      (21, 12, 4, 'PENDENTE', 'Pronto para a vaga.', '2024-09-03 18:00:00'),
+      (10, 4, 'PENDENTE', 'Estou interessado.', '2024-09-01 14:00:00'),
+      (11, 4, 'PENDENTE', 'Gostaria de saber mais.', '2024-09-02 16:00:00'),
+      (12, 4, 'PENDENTE', 'Pronto para a vaga.', '2024-09-03 18:00:00'),
       -- Oferta 5
       --Vazia
       -- Oferta 6
       --Vazia
       -- Oferta 7
-      (23, 17, 7, 'PENDENTE', 'Estou interessado.', '2024-09-01 11:00:00'),
-      (24, 18, 7, 'PENDENTE', 'Experiência relevante.', '2024-09-02 13:00:00'),
+      (17, 7, 'PENDENTE', 'Estou interessado.', '2024-09-01 11:00:00'),
+      (18, 7, 'PENDENTE', 'Experiência relevante.', '2024-09-02 13:00:00'),
       -- Oferta 8
       --Vazia
       -- Oferta 9
-      (25, 19, 9, 'PENDENTE', 'Acho que me encaixo na vaga.', '2024-09-01 16:00:00'),
-      (26, 20, 9, 'PENDENTE', 'Pronto para a entrevista.', '2024-09-02 18:00:00'),
+      (19, 9, 'PENDENTE', 'Acho que me encaixo na vaga.', '2024-09-01 16:00:00'),
+      (20, 9, 'PENDENTE', 'Pronto para a entrevista.', '2024-09-02 18:00:00'),
       -- Oferta 10
-      (27, 3, 10, 'PENDENTE', 'Empolgado para a posição.', '2024-09-01 09:30:00'),
-      (28, 4, 10, 'PENDENTE', 'Tenho o perfil desejado.', '2024-09-02 11:00:00'),
-      (29, 5, 10, 'PENDENTE', 'Espero ser um bom candidato.', '2024-09-03 13:00:00'),
+      (3, 10, 'PENDENTE', 'Empolgado para a posição.', '2024-09-01 09:30:00'),
+      (4, 10, 'PENDENTE', 'Tenho o perfil desejado.', '2024-09-02 11:00:00'),
+      (5, 10, 'PENDENTE', 'Espero ser um bom candidato.', '2024-09-03 13:00:00'),
       -- Oferta 11
-      (30, 6, 11, 'PENDENTE', 'Interessado na vaga.', '2024-09-01 10:00:00'),
-      (31, 7, 11, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),
-      (32, 8, 11, 'PENDENTE', 'Acredito que meu perfil se encaixa.', '2024-09-03 14:00:00'),
-      (33, 9, 11, 'PENDENTE', 'Estou muito interessado!', '2024-09-04 09:15:00'),
+      (6, 11, 'PENDENTE', 'Interessado na vaga.', '2024-09-01 10:00:00'),
+      (7, 11, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),
+      (8, 11, 'PENDENTE', 'Acredito que meu perfil se encaixa.', '2024-09-03 14:00:00'),
+      (9, 11, 'PENDENTE', 'Estou muito interessado!', '2024-09-04 09:15:00'),
       -- Oferta 12
-      (34, 10, 12, 'PENDENTE', 'Em busca de novas oportunidades.', '2024-09-01 16:45:00'),
-      (35, 11, 12, 'PENDENTE', 'Espero ser um bom candidato.', '2024-09-02 12:00:00'),
-      (36, 12, 12, 'PENDENTE', 'Acho que posso contribuir muito.', '2024-09-03 10:30:00'),
+      (10, 12, 'PENDENTE', 'Em busca de novas oportunidades.', '2024-09-01 16:45:00'),
+      (11, 12, 'PENDENTE', 'Espero ser um bom candidato.', '2024-09-02 12:00:00'),
+      (12, 12, 'PENDENTE', 'Acho que posso contribuir muito.', '2024-09-03 10:30:00'),
       -- Oferta 13
-      (37, 13, 13, 'PENDENTE', 'Motivado para o desafio.', '2024-09-01 11:00:00'),
-      (38, 14, 13, 'PENDENTE', 'Tenho experiência relevante.', '2024-09-02 13:30:00'),
+      (13, 13, 'PENDENTE', 'Motivado para o desafio.', '2024-09-01 11:00:00'),
+      (14, 13, 'PENDENTE', 'Tenho experiência relevante.', '2024-09-02 13:30:00'),
       -- Oferta 14
-      (39, 15, 14, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-01 15:00:00'),
-      (40, 16, 14, 'PENDENTE', 'Acho que me encaixo bem.', '2024-09-02 17:00:00'),
-      (41, 17, 14, 'PENDENTE', 'Experiência relevante para a posição.', '2024-09-03 14:30:00'),
-      (42, 18, 14, 'PENDENTE', 'Pronto para novos desafios.', '2024-09-04 16:00:00'),
-      (43, 19, 14, 'PENDENTE', 'Confiante no meu perfil.', '2024-09-05 10:00:00'),
+      (15, 14, 'PENDENTE', 'Estou pronto para a entrevista.', '2024-09-01 15:00:00'),
+      (16, 14, 'PENDENTE', 'Acho que me encaixo bem.', '2024-09-02 17:00:00'),
+      (17, 14, 'PENDENTE', 'Experiência relevante para a posição.', '2024-09-03 14:30:00'),
+      (18, 14, 'PENDENTE', 'Pronto para novos desafios.', '2024-09-04 16:00:00'),
+      (19, 14, 'PENDENTE', 'Confiante no meu perfil.', '2024-09-05 10:00:00'),
       -- Oferta 15
-      (44, 20, 15, 'PENDENTE', 'Muito interessado na vaga.', '2024-09-01 08:30:00'),
-      (45, 21, 15, 'PENDENTE', 'Gostaria de saber mais sobre a vaga.', '2024-09-02 09:45:00'),
-      (46, 21, 15, 'PENDENTE', 'Experiência relevante para a posição.', '2024-09-03 14:30:00'),
-      (47, 17, 15, 'PENDENTE', 'Pronto para novos desafios.', '2024-09-04 16:00:00'),
+      (20, 15, 'PENDENTE', 'Muito interessado na vaga.', '2024-09-01 08:30:00'),
+      (21, 15, 'PENDENTE', 'Gostaria de saber mais sobre a vaga.', '2024-09-02 09:45:00'),
+      (21, 15, 'PENDENTE', 'Experiência relevante para a posição.', '2024-09-03 14:30:00'),
+      (17, 15, 'PENDENTE', 'Pronto para novos desafios.', '2024-09-04 16:00:00'),
       -- Oferta 16
-      (48, 18, 16, 'PENDENTE', 'Confiante no meu perfil.', '2024-09-01 10:00:00'),
-      (49, 19, 16, 'PENDENTE', 'Tenho as habilidades necessárias.', '2024-09-02 12:00:00'),
-      (50, 20, 16, 'PENDENTE', 'Espero ser considerado.', '2024-09-03 14:00:00'),
+      (18, 16, 'PENDENTE', 'Confiante no meu perfil.', '2024-09-01 10:00:00'),
+      (19, 16, 'PENDENTE', 'Tenho as habilidades necessárias.', '2024-09-02 12:00:00'),
+      (20, 16, 'PENDENTE', 'Espero ser considerado.', '2024-09-03 14:00:00'),
       -- Oferta 17
-      (51, 21, 17, 'PENDENTE', 'Estou empolgado para a oportunidade.', '2024-09-01 11:00:00'),
-      (52, 17, 17, 'PENDENTE', 'Tenho as habilidades certas.', '2024-09-02 12:30:00'),
-      (53, 18, 17, 'PENDENTE', 'Pronto para contribuir com a equipe.', '2024-09-03 14:00:00'),
+      (21, 17, 'PENDENTE', 'Estou empolgado para a oportunidade.', '2024-09-01 11:00:00'),
+      (17, 17, 'PENDENTE', 'Tenho as habilidades certas.', '2024-09-02 12:30:00'),
+      (18, 17, 'PENDENTE', 'Pronto para contribuir com a equipe.', '2024-09-03 14:00:00'),
       -- Oferta 18
-      (54, 19, 18, 'PENDENTE', 'Muito interessado na vaga.', '2024-09-01 15:30:00'),
-      (55, 20, 18, 'PENDENTE', 'Gostaria de saber mais.', '2024-09-02 17:00:00');
+      (19, 18, 'PENDENTE', 'Muito interessado na vaga.', '2024-09-01 15:30:00'),
+      (20, 18, 'PENDENTE', 'Gostaria de saber mais.', '2024-09-02 17:00:00');

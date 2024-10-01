@@ -17,7 +17,7 @@
             <td th:text="${offer.id}"></td>
             <td th:text="${offer.principalActivity}"></td>
             <td>
-                <a th:href="@{/company/info/{id}(id=${offer.companyResponsible.id})}" th:text="${offer.companyResponsible.fantasyName}"></a>
+                <a th:href="@{/company/info/{username}(username=${offer.companyResponsible.user.username})}" th:text="${offer.companyResponsible.fantasyName}"></a>
             </td>
             <td th:text="${offer.weeklyWorkload + ' horas'}"></td>
             <td>
@@ -37,7 +37,7 @@
                     <a th:href="@{/offer/info/{id}(id=${offer.id})}" class="button-action btn-view">
                         <i class="bi bi-binoculars-fill"></i> Visualizar
                     </a>
-                    <form th:action="@{/apply/{id}(id=${offer.id})}" method="get">
+                    <form th:action="{/candidature/apply/{id}(id=${offer.id})}" method="get">
                         <input class="button-action btn-apply" type="submit" value="Candidatar-se" />
                     </form>
                     <form th:action="@{/cancel/{id}(id=${offer.id})}" method="post">

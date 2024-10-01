@@ -6,10 +6,12 @@ import br.edu.pweb2.incruise.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List; 
+
 @Repository
 public interface CandidatureRepositoryJpa extends JpaRepository<Candidature, Long> {
 
-    Candidature findByStudent(Student student);
+    List<Candidature> findByStudent(Student student);
 
-    Candidature findByInternshipOffer(InternshipOffer internshipOffer);
+    List<Candidature> findByInternshipOffer(InternshipOffer internshipOffer);
 }

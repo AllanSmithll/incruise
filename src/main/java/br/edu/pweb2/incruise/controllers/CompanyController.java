@@ -9,12 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/company")
@@ -81,50 +78,6 @@ public class CompanyController {
         return modelAndView;
     }
 
-
-//    @PostMapping("/save")
-//    public ModelAndView save(Company company,
-//                             @RequestParam("addressProof") MultipartFile file,
-//                             ModelAndView modelAndView,
-//                             BindingResult validation) {
-//        if (validation.hasErrors()) {
-//            modelAndView.setViewName("companies/form");
-//            return modelAndView;
-//        }
-//
-//        try {
-//            // Verifica se o arquivo não está vazio
-//            if (file.isEmpty()) {
-//                modelAndView.addObject("fileError", "Por favor, envie um arquivo PDF válido.");
-//                modelAndView.setViewName("companies/form");
-//                return modelAndView;
-//            }
-//
-//            // Verifica se o tipo de conteúdo é PDF
-//            if (!file.getContentType().equals("application/pdf")) {
-//                modelAndView.addObject("fileError", "Por favor, envie um arquivo PDF válido.");
-//                modelAndView.setViewName("companies/form");
-//                return modelAndView;
-//            }
-//
-//            // Converte o arquivo MultipartFile para byte[]
-//            company.setAddressProof(file.getBytes());
-//
-//            // Salva a empresa
-//            companyService.save(company);
-//
-//            // Redireciona para a lista de empresas após salvar com sucesso
-//            modelAndView.setViewName("redirect:/company/companies");
-//        } catch (IOException e) {
-//            modelAndView.addObject("error", "Ocorreu um erro ao processar o arquivo: " + e.getMessage());
-//            modelAndView.setViewName("companies/form");
-//        } catch (Exception e) {
-//            modelAndView.addObject("error", "Ocorreu um erro ao salvar a empresa: " + e.getMessage());
-//            modelAndView.setViewName("companies/form");
-//        }
-//
-//        return modelAndView;
-//    }
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable("id") Long id) {
