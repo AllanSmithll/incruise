@@ -19,6 +19,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/internshipOffer")
@@ -64,19 +66,8 @@ public class InternshipOfferController {
     @GetMapping("/offers")
     public ModelAndView getAll(ModelAndView modelAndView) {
         modelAndView.setViewName("offers/list");
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-
-        if (authentication.getAuthorities().stream()
-                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_COMPANY"))) {
-            Company company = companyService.findByUserUsername(username);
-            List<InternshipOffer> offers = internshipOfferService.findByCompanyResponsible(company);
-            modelAndView.addObject("offers", offers);
-        } else {
-            List<InternshipOffer> offers = internshipOfferService.findAll();
-            modelAndView.addObject("offers", offers);
-        }
+        List<InternshipOffer> offers = internshipOfferService.findAll();
+        modelAndView.addObject("offers", offers);
 
         return modelAndView;
     }
@@ -145,9 +136,9 @@ public class InternshipOfferController {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
             return "redirect:/internshipOffer/offers";
         }
-        
+
         String username = (String) this.session.getAttribute("username");
-        System.out.println("Olha eu aqui"+ username);
+        System.out.println("Olha eu aqui" + username);
         Student student = studentService.findByUserUsername(username);
         List<Competence> necessarySkills = internshipOfferService.findById(id).getNecessarySkills();
         List<Competence> desirableSkills = internshipOfferService.findById(id).getDesirableSkills();
@@ -156,7 +147,17 @@ public class InternshipOfferController {
         model.addAttribute("necessarySkills", necessarySkills);
         model.addAttribute("desirableSkills", desirableSkills);
 
-
         return "offers/info";
     }
+
+    @GetMapping("/{company}/offers")
+    public String getMethodName(@PathVariable("company") String companyUser, Model model) {
+        Company company = companyService.findByUserUsername(companyUser); // Procure a compania pelo o nome passado
+        //Tem que checar se é uma compania válida
+        if (company == null)
+            return "system/not-found";
+        else   
+            model.addAttribute("offers", company.getInternshipOfferList());
+            return "/offers/list";
+        }
 }

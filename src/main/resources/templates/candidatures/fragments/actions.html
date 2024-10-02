@@ -1,6 +1,8 @@
-<div class="d-flex buttons-actions" th:fragment="candidature-actions(candidature)">
+<div class="d-flex buttons-actions" th:fragment="candidature-actions(candidature)" 
+th:with="showViewButton= ${showViewButton} ?: true">
     <a class="btn btn-view button-action"
     th:href="@{/candidature/info/{id}(id=${candidature.id})}"
+    th:if="${showViewButton}"
     >Visualizar</a> <!--  Empresa ou Aluno ou Coordenador visualiza a candidatura do Aluno  -->
     
     <a class="btn btn-success button-action" 
