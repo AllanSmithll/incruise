@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,12 +16,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+/* import br.edu.pweb2.incruise.services.SecurityService;
+ */
 @Configuration
 @EnableWebSecurity
 public class IncruiseSecurityConfig {
     private final DataSource dataSource;
 
-    @Autowired
     public IncruiseSecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -29,19 +31,29 @@ public class IncruiseSecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
-                                "/internshipOffer/info/**", "student/register", "company/register",
-                                "/company/save", "student/save")
+                        .requestMatchers("/", 
+                        "/internshipOffer/offers", 
+                        "/internshipOffer/filter",
+                                "/internshipOffer/info/**", 
+                                "student/register", 
+                                "company/register",
+                                "/company/save", 
+                                "student/save")
                         .permitAll()
+
+                        .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR","STUDENT")
+                        .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR","STUDENT","COMPANY")
+                        .requestMatchers("/candidature/candidatures").hasAnyRole("ADMIN", "COORDINATOR")
+
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR")
                         .requestMatchers("/company/companies").hasAnyRole("STUDENT", "ADMIN", "COORDINATOR")
                         .requestMatchers("/company/edit/**").hasAnyRole("COMPANY","ADMIN", "COORDINATOR")
                         .requestMatchers("/company/delete/**").hasAnyRole("ADMIN", "COORDINATOR")
+
                         .requestMatchers("/internshipOffer/register").hasAnyRole("COMPANY")
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
                         .requestMatchers("/candidature/apply/**").hasRole("STUDENT")
-                        .requestMatchers("/candidatures/**").hasRole("ADMIN")
                         .requestMatchers("/styles/**", "/system/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(handling -> handling

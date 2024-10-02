@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Matrícula</th>
+            <!--<th>Matrícula</th>-->
             <th>Email</th>
             <th>Curso</th>
             <th>Telefone</th>
@@ -11,14 +11,12 @@
         </tr>
     </thead>
     <tbody th:each="c : ${candidatures}">
-        <!-- th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')') 
-        and 
-        #authentication.principal.username == c.student.user.username    
-    } " -->
+
         <tr>
-            <td><a th:text="${c.student.name}" th:href="@{/student/info/{username}(username=${c.student.user.username})}">Nome do estudante</a>
+            <td><a th:text="${c.student.name}"
+                    th:href="@{/student/info/{username}(username=${c.student.user.username})}">Nome do estudante</a>
             </td>
-            <td th:text="${c.student.enrollment}">Matrícula do Estudante</td>
+            <!-- <td th:text="${c.student.enrollment}">Matrícula do Estudante</td> -->
             <td th:text="${c.student.user.email}">Email do Estudante</td>
             <td th:text="${c.student.course}">Curso do Estudante</td>
             <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
