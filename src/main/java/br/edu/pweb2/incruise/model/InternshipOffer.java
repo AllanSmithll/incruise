@@ -22,13 +22,13 @@ public class InternshipOffer {
 	private String principalActivity;
 
 	@Column(name = "weekly_workload", nullable = false)
-	private Integer weeklyWorkload = 0;
+	private Integer weeklyWorkload;
 
 	@Column(name = "remuneration_value", nullable = false)
-	private Double remunerationValue = 0.0;
+	private Double remunerationValue;
 
 	@Column(name = "transport_voucher", nullable = false)
-	private Double transportVoucher = 0.0;
+	private Double transportVoucher;
 
 	@Column(name = "prerequisites")
 	private String prerequisites;

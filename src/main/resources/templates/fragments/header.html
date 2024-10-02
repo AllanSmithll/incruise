@@ -9,16 +9,18 @@
             </div>
             <nav class="navigation-menu">
                 <div class="nav-toggle"><a id="navbar-toggle" href="#">
-                    <span></span></a>
+                        <span></span></a>
                 </div>
                 <ul class="nav-list">
-                    <li class="nav-item" th:if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'', ''ROLE_COORDINATOR'')')}">
+                    <li class="nav-item"
+                        th:if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'', ''ROLE_COORDINATOR'')')}">
                         <a class="nav-link" th:href="@{/student/students}">Alunos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/internshipOffer/offers}">Ofertas de Estágio</a>
                     </li>
-                    <li class="nav-item" th:if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'', ''ROLE_COORDINATOR'')')}">
+                    <li class="nav-item"
+                        th:if="${#authorization.expression('hasAnyRole(''ROLE_ADMIN'', ''ROLE_COORDINATOR'')')}">
                         <a class="nav-link" th:href="@{/company/companies}">Empresas</a>
                     </li>
                     <li class="nav-item" th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
@@ -43,29 +45,22 @@
 
                     <li class="nav-item" th:if="${#authorization.expression('isAuthenticated()')}">
                         <a class="nav-link"
-                           th:text="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails) ? #authentication.principal.username : #authentication.principal}"
-                           id="Username-Header">Usuário</a>
+                            th:text="${#authentication.principal instanceof T(org.springframework.security.core.userdetails.UserDetails) ? #authentication.principal.username : #authentication.principal}"
+                            id="Username-Header">Usuário</a>
 
                         <ul class="nav-dropdown">
-                            <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
-                                <a class="dropdown-header-item"
-                                   th:href="@{/student/info/{username}(username=${#authentication.principal.username})}">
-                                    Perfil
-                                </a>
-                            </li>
+                            <li th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')') 
+            or #authorization.expression('hasRole(''ROLE_COMPANY'')') 
+            or #authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
 
-                            <li th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
-                                <a class="dropdown-header-item"
-                                   th:href="@{/company/info/{username}(username=${#authentication.principal.username})}">
-                                    Perfil
-                                </a>
-                            </li>
-
-                            <li th:if="${#authorization.expression('hasRole(''ROLE_COORDINATOR'')')}">
-                                <a class="dropdown-header-item"
-                                   th:href="@{/coordinator/info/{id}(id=${#authentication.principal.username})}">
-                                    Perfil
-                                </a>
+                                <th:block th:with="profilePath=${#authorization.expression('hasRole(''ROLE_STUDENT'')') ? '/student/info' : 
+            (#authorization.expression('hasRole(''ROLE_COMPANY'')') ? '/company/info' : 
+            '/coordinator/info')}">
+                                    <a class="dropdown-header-item"
+                                        th:href="@{${profilePath} + '/' + ${#authentication.principal.username}}">
+                                        Perfil
+                                    </a>
+                                </th:block>
                             </li>
 
                             <li>

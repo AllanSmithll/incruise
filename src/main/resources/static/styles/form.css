@@ -1,59 +1,75 @@
-@import url("main.css");
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-.inter-font {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 900;
-    font-style: normal;
-}
-.inter-font-line {
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
-}
-
 .main-screen {
-    display: flex;
+    /*     display: flex;
     justify-content: center;
-    align-content: center;
-    background-color: #6cb0fe;
-    margin: 50px 0 200px 0;
+    align-content: center; */
+    padding: 0 200px;
+    margin: 50px 0;
     height: auto;
 }
 
 .card-main {
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     flex-direction: column;
-    background-color: white;
-    color: black;
-    width: 500px;
-    height: auto;
+    background-color: var(--primary-color);
+    padding: 10px;
+    margin: 50px 0;
+    color: var(--neutral-color);
     border: none;
     border-radius: 8px;
-    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
-
 
 .main-content {
     display: flex;
-    justify-content: center;
-    align-content: center;
     flex-direction: column;
-    height: auto;
+    padding-top: 60px;
+    width: 100%;
+}
+
+.form-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: center;
+    font-weight: bold;
+}
+
+.fieldset-info {
+    border: none;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f7f9fc;
+}
+.input-label {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.input-form {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.input-form:focus {
+    border-color: var(--primary-color);
 }
 
 .submit-input {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff;
+    padding: 12px;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 5px;
-    font-size: 1.1em;
+    font-size: 1.1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
@@ -62,107 +78,217 @@
     background-color: #0056b3;
 }
 
-.label-competence {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    align-items: start;
-}
-
-.input-form {
-    border-radius: 4px;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ced4da;
-    background-color: #ffffff;
-    height: 43px;
-    width: 100%;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #333333;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="date"],
-input[type="email"],
-input[type="password"],
-input[type="tel"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: white;
-    border: 1px solid #ced4da;
-    color: #495057;
-}
-
-.custom-select {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: 1px solid #007bff;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-.custom-file-upload {
-    width: fit-content;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    padding: 8px;
-    font-size: 14px;
-}
-
-.custom-file-upload:hover {
-    background-color: #0056b3;
-}
-
 .alert {
-    display: flex;
-    align-items: center;
     background-color: #ffe4e1;
     color: #721c24;
-    padding: 15px;
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     margin-bottom: 20px;
-    font-weight: 600;
-    font-size: 0.95em;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+    font-weight: bold;
+    padding: 15px;
 }
 
-.alert::before {
-    content: '⚠️';
+
+.main-content {
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.form-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #343a40;
+    text-align: center;
+}
+
+.fieldset-info {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f7f9fc;
+}
+
+.fieldset-legend {
+    font-size: 1.2rem;
+    padding: 0 10px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-label {
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.input-form {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.input-form:focus {
+    border-color: var(--primary-color);
+}
+
+.d-flex {
+    gap: 20px;
+}
+
+.w-50 {
+    flex: 1;
+}
+
+.currency-prefix {
+    display: flex;
+    align-items: center;
+}
+
+.currency-label {
+    margin-right: 8px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.submit-input {
+    width: 30%;
+    padding: 12px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-input:hover {
+    background-color: #0056b3;
+}
+
+.competence-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.competence-checkbox input {
     margin-right: 10px;
-    font-size: 1.2em;
 }
 
-.alert {
+.form-feedback {
+    display: none;
+    color: red;
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+
+
+.fieldset-legend {
+    font-size: 1.2rem;
+    padding: 0 10px;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.fieldset-info {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f7f9fc;
+}
+
+
+/* Estilo geral do label, que envolve o checkbox */
+
+.input-group:has(label.competence-label) {
+    justify-content: center;
+    font-size: 1.6rem;
+    position: relative;
+}
+.input-group:has(label.competence-label) label.competence-label{
+    margin: 15px;
+}
+
+.checkBox-box {
+    display: block;
+    position: relative;
+    width: 26%;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    color: #004080; /* Azul oceano profundo */
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkBox-box input {
+    position: absolute;
     opacity: 0;
-    animation: fadeIn 0.6s forwards;
-}
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fffcfc;
+    border: 2px solid var(--ocean);
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkBox-box:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .checkBox-box input:checked ~ .checkmark {
+    background-color: #2196F3;
+    border-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkBox-box input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkBox-box .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }

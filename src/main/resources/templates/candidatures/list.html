@@ -9,21 +9,19 @@
 
 <body>
     <header th:replace="~{/fragments/header}"></header>
-    <main>
+    <main class="main-screen">
 
-        <div class="main-screen">
-            <div class="card-list-component">
-                <h1>Candidaturas</h1>
-                <div class="buttons-actions">
+        <div class="card-list-component">
+            <h1>Candidaturas</h1>
+            <div class="buttons-actions">
 
-                    <!-- <th:block th:replace="~{/candidatures/fragments/filter}"></th:block> -->
-                    <div class="father-card" >
+                <!-- <th:block th:replace="~{/candidatures/fragments/filter}"></th:block> -->
+                <div class="father-card">
 
-                        <th:block th:each="candidature : ${candidatures}"
-                         th:insert="~{/candidatures/fragments/card(candidature= ${candidature})}"></th:block>
-                    </div>
-
+                    <th:block th:each="candidature : ${candidatures}"
+                        th:insert="~{/candidatures/fragments/card(candidature= ${candidature})}"></th:block>
                 </div>
+
             </div>
 
     </main>
