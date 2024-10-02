@@ -1,6 +1,5 @@
 package br.edu.pweb2.incruise.model;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +44,10 @@ public class Company {
 
 	private String urlPage="";
 
-
-
+	@Lob
 	@Column(name = "address_proof" )
 	@Basic(fetch = FetchType.EAGER)
-	private String addressProof;
+	private byte[] addressProof;
 
 
 	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)

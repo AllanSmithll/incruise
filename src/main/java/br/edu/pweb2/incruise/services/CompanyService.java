@@ -28,18 +28,22 @@ public class CompanyService {
         this.internshipOfferService = internshipOfferService;
     }
 
+    @Transactional
     public Company findById(Long id) {
         return companyRepositoryJpa.findById(id).orElse(new NullCompany());
     }
 
+    @Transactional
     public Company findByUserUsername(String username) {
         return companyRepositoryJpa.findByUserUsername(username);
     }
 
+    @Transactional
     public List<InternshipOffer> findByCompany(Company company) {
         return internshipOfferService.findByCompanyResponsible(company);
     }
 
+    @Transactional
     public List<Company> listAll() {
         return companyRepositoryJpa.findAll();
     }
@@ -64,10 +68,14 @@ public class CompanyService {
 
         companyRepositoryJpa.save(company);
     }
+
+    @Transactional
     public void saveAndFlush(Company company)
     {
         companyRepositoryJpa.saveAndFlush(company);
     }
+
+    @Transactional
     public void update(Company company) {
         companyRepositoryJpa.save(company);
     }
