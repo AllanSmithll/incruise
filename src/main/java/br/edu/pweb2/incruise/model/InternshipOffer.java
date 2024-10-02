@@ -33,8 +33,8 @@ public class InternshipOffer {
 	@Column(name = "prerequisites")
 	private String prerequisites;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "company_id", nullable = false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH} )
+	@JoinColumn(name = "company_id")
 	private Company companyResponsible;
 
 	@Enumerated(EnumType.STRING)

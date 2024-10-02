@@ -8,6 +8,7 @@ truncate table tb_internship_offer_necessary_skill cascade;
 truncate table tb_internship_offer_desirable_skill cascade;
 truncate table tb_Candidature cascade;
 
+
 CREATE TABLE spring_session
 (
     id                    VARCHAR(64)  NOT NULL,
@@ -370,6 +371,7 @@ tb_internship_offer
     String prerequisites
     Long companyResponsible
     OfferStatus status ENUM Type
+
  */
 INSERT INTO tb_internship_offer (principal_activity, weekly_workload, remuneration_value, transport_voucher,
                                  prerequisites, company_id, status)
@@ -711,7 +713,9 @@ VALUES (1, 3),
     String message
     LocalDateTime createdDate
 */
+
 INSERT INTO tb_Candidature (student_id, internship_offer_id, status, message, created_date)
+
   VALUES
       -- Oferta 1
       (2, 1, 'PENDENTE', 'Gostaria de aplicar para essa vaga.', '2024-09-02 11:30:00'),
