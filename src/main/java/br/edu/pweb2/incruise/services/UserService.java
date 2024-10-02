@@ -74,13 +74,15 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
-    public void enableUser(User user) {
-        user.setEnabled(true);
+    public void disableUser(String username) {
+        User user = userRepository.findByUsername(username);
+        user.setEnabled(false);
         userRepository.save(user);
     }
 
-    public void disableUser(User user) {
-        user.setEnabled(false);
+    public void enableUser(String username) {
+        User user = userRepository.findByUsername(username);
+        user.setEnabled(true);
         userRepository.save(user);
     }
 }

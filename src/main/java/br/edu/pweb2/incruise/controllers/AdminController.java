@@ -35,6 +35,6 @@ public class AdminController {
             user.setEnabled(!user.isEnabled());
             userService.save(user);
         }
-        return "redirect:/admin/users"; // Redireciona de volta para a lista de usuários
+        return "redirect:/admin/users";
     }
 }
