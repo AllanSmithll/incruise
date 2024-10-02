@@ -33,13 +33,12 @@ public class IncruiseSecurityConfig {
                                 "/internshipOffer/info/**", "student/register", "company/register",
                                 "/company/save", "student/save")
                         .permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR")
-                        .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR")
-
+                        .requestMatchers("/company/companies").hasAnyRole("STUDENT", "ADMIN", "COORDINATOR")
                         .requestMatchers("/company/edit/**").hasAnyRole("COMPANY","ADMIN", "COORDINATOR")
-                        .requestMatchers("/company/delete/**").hasAnyRole("COMPANY","ADMIN", "COORDINATOR")
+                        .requestMatchers("/company/delete/**").hasAnyRole("ADMIN", "COORDINATOR")
                         .requestMatchers("/internshipOffer/register").hasAnyRole("COMPANY")
-
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
                         .requestMatchers("/candidature/apply/**").hasRole("STUDENT")
                         .requestMatchers("/candidatures/**").hasRole("ADMIN")
