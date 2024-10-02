@@ -69,7 +69,7 @@ public class StudentController {
         return modelAndView;
     }
 
-    @GetMapping("/my-candidatures")
+/*     @GetMapping("/my-candidatures")
     public ModelAndView getMyCandidatures() throws Exception {
         String enrollment = "1234";
         Student student = studentService.findByEnrollment(enrollment);
@@ -81,7 +81,7 @@ public class StudentController {
 //        modelAndView.addObject("candidatures", candidatures);
         modelAndView.addObject("studentName", student.getName());
         return modelAndView;
-    }
+    } */
 
     @PostMapping("/save")
     public ModelAndView save(Student student, ModelAndView modelAndView, BindingResult validation,

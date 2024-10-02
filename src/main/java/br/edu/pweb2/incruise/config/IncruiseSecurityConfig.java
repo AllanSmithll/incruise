@@ -15,10 +15,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import br.edu.pweb2.incruise.services.SecurityService;
+
 @Configuration
 @EnableWebSecurity
 public class IncruiseSecurityConfig {
     private final DataSource dataSource;
+
+    @Autowired
+    private SecurityService securityService;
 
     @Autowired
     public IncruiseSecurityConfig(DataSource dataSource) {
@@ -29,16 +34,24 @@ public class IncruiseSecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/internshipOffer/offers", "/internshipOffer/filter",
-                                "/internshipOffer/info/**", "student/register", "company/register",
-                                "/company/save", "student/save")
+                        .requestMatchers("/", 
+                        "/internshipOffer/offers", 
+                        "/internshipOffer/filter",
+                                "/internshipOffer/info/**", 
+                                "student/register", 
+                                "company/register",
+                                "/company/save", 
+                                "student/save")
                         .permitAll()
-                        .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR")
-                        .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR")
+                        .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR","STUDENT")
+/*                         .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR","STUDENT","COMPANY") */
+                        .requestMatchers("/candidature/candidatures").hasRole("ADMIN", "COORDINATOR")
                         .requestMatchers("/internshipOffer/register").hasAnyRole("COMPANY")
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
                         .requestMatchers("/candidature/apply/**").hasRole("STUDENT")
-                        .requestMatchers("/candidatures/**").hasRole("ADMIN")
+                        .requestMatchers("/candidature/info/**").acess("@securityService.isCandidatureOwner(authentication.principal.username, #candidatureId)"+ 
+                        "or @securityService.isCompanyAllowedInCandidature(authentication.principal.username, #candidatureId)"+
+                        "or hasAnyRole('ROLE_COORDINATOR', 'ROLE_ADMIN')")
                         .requestMatchers("/styles/**", "/system/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(handling -> handling
