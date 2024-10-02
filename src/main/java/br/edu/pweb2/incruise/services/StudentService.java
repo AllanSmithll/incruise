@@ -1,11 +1,9 @@
 package br.edu.pweb2.incruise.services;
 
-import br.edu.pweb2.incruise.model.Company;
-import br.edu.pweb2.incruise.model.Coordinator;
-import br.edu.pweb2.incruise.model.NullStudent;
-import br.edu.pweb2.incruise.model.Student;
+import br.edu.pweb2.incruise.model.*;
 import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
 import br.edu.pweb2.incruise.model.exception.InvalidAgeException;
+import br.edu.pweb2.incruise.model.exception.ItemNotFoundException;
 import br.edu.pweb2.incruise.repository.StudentRepositoryJpa;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -75,8 +74,19 @@ public class StudentService {
         studentRepositoryJpa.save(student);
     }
 
-    public void remove(Long id) throws Exception {
-        studentRepositoryJpa.deleteById(id);
+    @Transactional
+    public void disable(Long id) {
+        Optional<Student> optionalStudent = studentRepositoryJpa.findById(id);
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            User user = student.getUser();
+            if (user != null) {
+                userService.disableUser(user.getUsername());
+            }
+            studentRepositoryJpa.save(student);
+        } else {
+            throw new ItemNotFoundException("Empresa não encontrada.");
+        }
     }
 }
 

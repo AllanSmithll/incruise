@@ -30,7 +30,8 @@ public class CompanyController {
     private final UserService userService;
     private final InternshipOfferService internshipOfferService;
 
-            ;
+    ;
+
     @Autowired
     public CompanyController(CompanyService companyService, HttpSession session, UserService userService, InternshipOfferService internshipOfferService) {
         this.companyService = companyService;
@@ -92,12 +93,9 @@ public class CompanyController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    public String disable(@PathVariable("id") Long id) {
         try {
-            companyService.remove(id);
-
-          InternshipOffer offer = (InternshipOffer) internshipOfferService.findByCompanyResponsible(companyService.findById(id));
-          offer.setCompanyResponsible(null);
+            companyService.disable(id);
             return "redirect:/company/companies";
         } catch (Exception e) {
             return "redirect:/company/companies";
@@ -105,7 +103,7 @@ public class CompanyController {
     }
 
     @GetMapping("/edit/{id}/{username}")
-    public String getEditForm(@PathVariable("id") Long id,@PathVariable("username") String username, Model model) {
+    public String getEditForm(@PathVariable("id") Long id, @PathVariable("username") String username, Model model) {
         try {
             System.out.println("Estamos aqui no get!");
             Company currentCompany = companyService.findById(id);
@@ -116,7 +114,7 @@ public class CompanyController {
             return "companies/edit";
 
         } catch (Exception e) {
-            System.out.println("n pode entrar aqui " );
+            System.out.println("n pode entrar aqui ");
             e.printStackTrace();
 
             return "redirect:/company/companies";
@@ -124,13 +122,12 @@ public class CompanyController {
     }
 
 
-
     @PostMapping("/edit/{id}")
-    public String edit(@PathVariable("id") Long id, @ModelAttribute("currentCompany") Company companyUpdate)  {
+    public String edit(@PathVariable("id") Long id, @ModelAttribute("currentCompany") Company companyUpdate) {
         try {
             User user = companyUpdate.getUser();
 
-            List<InternshipOffer> offer =  this.internshipOfferService.findByCompanyResponsible(companyUpdate);
+            List<InternshipOffer> offer = this.internshipOfferService.findByCompanyResponsible(companyUpdate);
 
 
             companyUpdate.setUser(user);
