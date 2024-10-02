@@ -77,10 +77,12 @@
                 </fieldset>
 
                 <fieldset class="fieldset-info">
-                    <legend class="fieldset-legend">Competências</legend>
-                    <div class="label-competence">
-                        <label th:each="competence : ${competences}">
+                    
+                    <legend class="fieldset-legend">Suas Competências</legend>
+                    <div class="d-flex flex-wrap align-items-center justify-content-center">
+                        <label class="checkBox-box" th:each="competence : ${competences}">
                             <input type="checkbox" th:field="*{competenceList}" th:value="${competence.id}"/>
+                            <span class="checkmark"></span>
                             <span th:text="${competence.description}"></span>
                         </label>
                     </div>

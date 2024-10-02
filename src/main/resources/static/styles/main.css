@@ -68,10 +68,6 @@ button[type="submit"] {
     transition: background-color 0.3s;
 }
 
-/* Estilo do botão ao passar o mouse */
-/* button[type="submit"]:hover {
-    background-color: #0056b3; 
-} */
 
 .title-page {
     display: flex;
@@ -104,6 +100,8 @@ button[type="submit"] {
     transition: background-color 0.3s;
     
 }
+
+
 .card-header{
     background: none;
     padding: 0;

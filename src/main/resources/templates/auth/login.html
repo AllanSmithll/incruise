@@ -8,9 +8,9 @@
     <title>Login</title>
 </head>
 
-<body class="main-screen">
+<body >
 <header th:replace="~{/fragments/header}"></header>
-<main>
+<main class="main-screen">
     <div class="card-main">
         <div class="main-content">
             <h1 class="form-title">Login</h1>
@@ -34,9 +34,11 @@
                                title="A senha deve ter pelo menos 8 caracteres.">
                     </div>
 
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="lembrar"> Lembrar-me
+                    <div class="mb-3">
+                        <label class="checkBox-box">
+                            <input type="checkbox" value="lembrar"> 
+                            <span class="checkmark"></span>
+                            Lembrar-me
                         </label>
                     </div>
                 </fieldset>

@@ -55,16 +55,18 @@ public class CandidatureController {
         return "candidatures/info";
     }
 
-    @GetMapping("/apply/{id}")
-    public String showApplicationForm(@PathVariable("id") Long offerId, Model model,
+    @GetMapping("/apply/{username}/{id}")
+    public String showApplicationForm(@PathVariable("id") Long offerId, @PathVariable("username") String username, Model model,
             RedirectAttributes redirectAttributes) {
         InternshipOffer offer = internshipOfferService.findById(offerId);
+        
         if (offer == null || offer.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
             return "redirect:/internshipOffer/offers";
         }
+                
         model.addAttribute("offer", offer);
-        return "offers/application";
+        return "candidatures/apply";
     }
 
     @PostMapping("/apply")
