@@ -1,9 +1,10 @@
 .main-screen {
-    display: flex;
+    /*     display: flex;
     justify-content: center;
-    align-items: center;
-    background-color: #f0f4f8;
-    height: 100vh;
+    align-content: center; */
+    padding: 0 200px;
+    margin: 50px 0;
+    height: auto;
 }
 
 .card-main {
@@ -11,9 +12,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: #ffffff;
-    color: black;
-    width: 100%;
+    background-color: var(--primary-color);
+    padding: 10px;
+    margin: 50px 0;
+    color: var(--neutral-color);
     border: none;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -29,7 +31,7 @@
 .form-title {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #007bff;
+    color: var(--primary-color);
     text-align: center;
     font-weight: bold;
 }
@@ -40,14 +42,6 @@
     margin-bottom: 20px;
     background-color: #f7f9fc;
 }
-
-.input-group {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 .input-label {
     width: 100%;
     font-weight: bold;
@@ -65,13 +59,13 @@
 }
 
 .input-form:focus {
-    border-color: #007bff;
+    border-color: var(--primary-color);
 }
 
 .submit-input {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -120,7 +114,7 @@
 .fieldset-legend {
     font-size: 1.2rem;
     padding: 0 10px;
-    color: #007bff;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -148,11 +142,10 @@
 }
 
 .input-form:focus {
-    border-color: #007bff;
+    border-color: var(--primary-color);
 }
 
 .d-flex {
-    display: flex;
     gap: 20px;
 }
 
@@ -174,7 +167,7 @@
 .submit-input {
     width: 30%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -204,16 +197,11 @@
     font-size: 0.9rem;
 }
 
-.label-competence {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
 .fieldset-legend {
     font-size: 1.2rem;
     padding: 0 10px;
-    color: #007bff;
+    color: var(--primary-color);
     font-weight: bold;
 }
 
@@ -224,3 +212,83 @@
     margin-bottom: 20px;
     background-color: #f7f9fc;
 }
+
+
+/* Estilo geral do label, que envolve o checkbox */
+
+.input-group:has(label.competence-label) {
+    justify-content: center;
+    font-size: 1.6rem;
+    position: relative;
+}
+.input-group:has(label.competence-label) label.competence-label{
+    margin: 15px;
+}
+
+.checkBox-box {
+    display: block;
+    position: relative;
+    width: 26%;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    color: #004080; /* Azul oceano profundo */
+  }
+  
+  /* Hide the browser's default checkbox */
+  .checkBox-box input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #fffcfc;
+    border: 2px solid var(--ocean);
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .checkBox-box:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .checkBox-box input:checked ~ .checkmark {
+    background-color: #2196F3;
+    border-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .checkBox-box input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .checkBox-box .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+  }

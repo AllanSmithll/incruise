@@ -1,7 +1,7 @@
 :root {
     /*Cores específicas*/
     --body-color-default: #fffcfc;
-
+    --header-background: linear-gradient(45deg, #4199fe, #74b4fe);
     /*tags*/
     --links-color: #2a318e;
     /*info pages colors*/
@@ -27,6 +27,8 @@
     /* Azul escuro */
     --primary-color-tomato: hsl(4, 100%, 67%);
 
+    --ocean : #1e90ff;
+    --deep-ocean : #004080;
     /* Cores secundárias */
     --secondary-color: #ffffff;
     /* Branco */
@@ -72,6 +74,13 @@
     --off-black-neutral-color: hsl(0, 0%, 8%);
 
     --introduction-color: #ffffff;
+
+
+
+    --simple-ligth: #e1e1e1;
+
+
+
 
     /* Gradientes */
 
