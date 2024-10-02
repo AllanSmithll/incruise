@@ -23,10 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class IncruiseSecurityConfig {
     private final DataSource dataSource;
 
-/*     @Autowired
-    private SecurityService securityService;
-
-*/    public IncruiseSecurityConfig(DataSource dataSource) {
+    public IncruiseSecurityConfig(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -43,25 +40,20 @@ public class IncruiseSecurityConfig {
                                 "/company/save", 
                                 "student/save")
                         .permitAll()
+
                         .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR","STUDENT")
                         .requestMatchers("/company/companies").hasAnyRole("ADMIN", "COORDINATOR","STUDENT","COMPANY")
                         .requestMatchers("/candidature/candidatures").hasAnyRole("ADMIN", "COORDINATOR")
+
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/student/students").hasAnyRole("ADMIN", "COORDINATOR")
+                        .requestMatchers("/company/companies").hasAnyRole("STUDENT", "ADMIN", "COORDINATOR")
+                        .requestMatchers("/company/edit/**").hasAnyRole("COMPANY","ADMIN", "COORDINATOR")
+                        .requestMatchers("/company/delete/**").hasAnyRole("ADMIN", "COORDINATOR")
+
                         .requestMatchers("/internshipOffer/register").hasAnyRole("COMPANY")
                         .requestMatchers("/internshipOffer/cancel/**").hasAnyRole("COMPANY", "ADMIN")
                         .requestMatchers("/candidature/apply/**").hasRole("STUDENT")
-/*                         .requestMatchers("/candidature/info/**").access((authentication, requestContext) -> {
-    String username = authentication.get().getName();
-    Long candidatureId = Long.parseLong(requestContext.getRequest().getParameter("candidatureId"));
-    // Verifique as permissões
-    if (securityService.isCandidatureOwner(username, candidatureId) ||
-        securityService.isCompanyAllowedInCandidature(username, candidatureId) ||
-        authentication.get().getAuthorities().stream().anyMatch(authCandidature -> 
-        authCandidature.getAuthority().equals("ROLE_COORDINATOR") || authCandidature.getAuthority().equals("ROLE_ADMIN"))) {
-        return new AuthorizationDecision(true);
-    } else {
-        return new AuthorizationDecision(false);
-    }
-}) */
                         .requestMatchers("/styles/**", "/system/**", "/imgs/**", "/scripts/**").permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(handling -> handling

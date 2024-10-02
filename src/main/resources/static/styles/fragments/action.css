@@ -26,6 +26,14 @@
     background-color: #c82333;
 }
 
+
+.btn-edit{
+    background-color: #2315c6;
+}
+.btn-edit:hover{
+    background-color: #15b1c6;
+}
+
 .btn-apply:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);

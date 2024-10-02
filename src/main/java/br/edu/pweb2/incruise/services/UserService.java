@@ -39,6 +39,10 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    public void save(User user) {
+        userRepository.save(user);
+    }
+
     @Transactional
     public void saveUserWithRole(User user, String roleName) {
         if (userRepositoryJpa.findByUsername(user.getUsername()) != null) {
@@ -63,10 +67,22 @@ public class UserService implements UserDetailsService {
     }
 
     public User findByEmail(String email) {
-        return userRepository.findByUsername(email);
+        return userRepository.findByEmail(email);
     }
 
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public void disableUser(String username) {
+        User user = userRepository.findByUsername(username);
+        user.setEnabled(false);
+        userRepository.save(user);
+    }
+
+    public void enableUser(String username) {
+        User user = userRepository.findByUsername(username);
+        user.setEnabled(true);
+        userRepository.save(user);
     }
 }

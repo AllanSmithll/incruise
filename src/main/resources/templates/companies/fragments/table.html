@@ -19,15 +19,20 @@
             <td th:text="${company.fantasyName}"></td>
             <td th:text="${company.cnpj}"></td>
             <td th:text="${company.principalActivity}"></td>
-            <td th:text="${company.user.email}"></td>
+            <td th:if="${company.user != null}" th:text="${company.user.email}">Email do Usuário</td>
+            <td th:if="${company.user == null}">Usuário não disponível</td>
             <td th:text="${company.phoneNumber}">td>
             <td th:text="${company.personContact}">td>
             <td th:text="${company.address}">td>
             <td th:text="${company.urlPage}">td>
             <td>
                 <div class="buttons-actions">
-                    <button th:href="@{/company/info/{username}(username=${company.user.username})}" class="button-action btn-view">
+                    <button  th:href="@{/company/info/{username}(username=${company.user.username})}" class="button-action btn-view">
                         <i class="bi bi-binoculars-fill"></i></button>
+<!--                    -->
+<!--                    <button th:if="${company.user != null}"  th:href="@{/company/info/{username}(username=${company.user.username})}" class="button-action btn-view">-->
+<!--                        <i class="bi bi-binoculars-fill"></i></button>-->
+
                     <form th:action="@{/company/delete/{id}(id=${company.id})}" method="post">
                         <input type="hidden" name="_method" value="DELETE" />
                         <button class="button-action btn-delete" type="submit" value="">

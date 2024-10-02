@@ -128,9 +128,9 @@ public class StudentController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    public String disable(@PathVariable("id") Long id) {
         try {
-            studentService.remove(id);
+            studentService.disable(id);
             return "redirect:/student/students";
         } catch (Exception e) {
             return "redirect:/student/students";

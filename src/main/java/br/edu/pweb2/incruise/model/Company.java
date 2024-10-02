@@ -19,7 +19,7 @@ public class Company {
 	private Long id;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "username", nullable = false, unique = true)
+	@JoinColumn(name = "username",  unique = true)
 	private User user;
 
 	@Getter
@@ -45,9 +45,10 @@ public class Company {
 	private String urlPage="";
 
 	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	@Column(name = "address_proof", nullable = false)
+	@Column(name = "address_proof" )
+	@Basic(fetch = FetchType.EAGER)
 	private byte[] addressProof;
+
 
 	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<InternshipOffer> internshipOfferList = new ArrayList<>();

@@ -3,6 +3,7 @@ package br.edu.pweb2.incruise.services;
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.NullCompany;
+import br.edu.pweb2.incruise.model.User;
 import br.edu.pweb2.incruise.model.exception.DuplicateCnpjException;
 import br.edu.pweb2.incruise.model.exception.DuplicateFantasyNameException;
 import br.edu.pweb2.incruise.model.exception.InvalidCnpjException;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyService {
@@ -28,18 +30,22 @@ public class CompanyService {
         this.internshipOfferService = internshipOfferService;
     }
 
+    @Transactional
     public Company findById(Long id) {
         return companyRepositoryJpa.findById(id).orElse(new NullCompany());
     }
 
+    @Transactional
     public Company findByUserUsername(String username) {
         return companyRepositoryJpa.findByUserUsername(username);
     }
 
+    @Transactional
     public List<InternshipOffer> findByCompany(Company company) {
         return internshipOfferService.findByCompanyResponsible(company);
     }
 
+    @Transactional
     public List<Company> listAll() {
         return companyRepositoryJpa.findAll();
     }
@@ -65,11 +71,29 @@ public class CompanyService {
         companyRepositoryJpa.save(company);
     }
 
+    @Transactional
+    public void saveAndFlush(Company company)
+    {
+        companyRepositoryJpa.saveAndFlush(company);
+    }
+
+    @Transactional
     public void update(Company company) {
         companyRepositoryJpa.save(company);
     }
 
-    public void remove(Long id) throws Exception {
-        this.companyRepositoryJpa.deleteById(id);
+    @Transactional
+    public void disable(Long id) {
+        Optional<Company> optionalCompany = companyRepositoryJpa.findById(id);
+        if (optionalCompany.isPresent()) {
+            Company company = optionalCompany.get();
+            User user = company.getUser();
+            if (user != null) {
+                userService.disableUser(user.getUsername());
+            }
+            companyRepositoryJpa.save(company);
+        } else {
+            throw new ItemNotFoundException("Empresa não encontrada.");
+        }
     }
 }
