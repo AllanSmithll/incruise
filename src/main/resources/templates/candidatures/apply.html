@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta
         th:insert="~{/fragments/custom-headfiles :: form-headfiles(title='Candidatar-se - ${offer.principalActivity}')}">
     <link rel="stylesheet" th:href="@{/styles/candidature.css}">
-
 </head>
-
 <body class="application-screen">
-
-    <header th:replace="~{/fragments/header}"></header>
-    <main>
-
+    <main layout:fragment="content">
         <div class="application-container">
             <h1>Formulário de Candidatura</h1>
 
@@ -36,8 +29,6 @@
                 <button type="submit" class="btn-submit">Enviar Candidatura</button>
             </form>
         </div>
-
-        <div th:replace="~{/fragments/scripts}"></div>
     </main>
 </body>
 

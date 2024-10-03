@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <!-- Incluindo o fragmento de cabeçalho -->
     <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${company.fantasyName})}">
     <link rel="stylesheet" th:href="@{/styles/fragments/card-global.css}">k
     <link rel="stylesheet" th:href="@{/styles/fragments/action.css}">k
-
 </head>
-
 <body>
-<header th:replace="~{/fragments/header}"></header>
-
-<main>
-
+<main layout:fragment="content">
     <section class="info-section" id="first-info">
         <img th:src="@{/imgs/default/enterprise-default.png}" alt="Imagem da Empresa">
         <h1 id="name" th:text="${company.fantasyName}">Nome da Empresa</h1>
@@ -101,10 +93,6 @@
             </th:block>
         </div>
     </section>
-
-    <!-- Inclusão de scripts -->
-    <div th:replace="~{/fragments/scripts}"></div>
-
 </main>
 </body>
 
