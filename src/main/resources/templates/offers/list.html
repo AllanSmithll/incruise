@@ -1,16 +1,10 @@
-<!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Ofertas'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-
     <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Ofertas')}">
-
 </head>
 
 <body>
-    <header th:replace="~{/fragments/header}"></header>
-    <main class="main-screen">
-
+    <main class="main-screen" layout:fragment="content">
         <div class="card-list-component">
             <h1>Ofertas de Estágio</h1>
             <div class="buttons-actions">
@@ -26,15 +20,12 @@
         </div>
 
         <div class="father-card">
-            <th:block th:each="offer : ${offers}" th:insert="~{/offers/fragments/card(offer)}">
+            <th:block th:each="offer : ${offersPage}" th:insert="~{/offers/fragments/card(offer)}">
             </th:block>
         </div>
 
-
+        <div id="navigation" th:replace="~{/offers/fragments/pagination}"></div>
     </main>
-    <div th:replace="~{/fragments/scripts}"></div>
-
-
 </body>
 
 </html>

@@ -8,6 +8,9 @@ import br.edu.pweb2.incruise.services.StudentService;
 import jakarta.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -64,10 +67,17 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/offers")
-    public ModelAndView getAll(ModelAndView modelAndView) {
+    public ModelAndView getAll(@RequestParam(value = "page", defaultValue = "0") int page,
+                               @RequestParam(value = "size", defaultValue = "10") int size,
+                               ModelAndView modelAndView) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<InternshipOffer> offersPage = internshipOfferService.findAll(pageable);
+
         modelAndView.setViewName("offers/list");
-        List<InternshipOffer> offers = internshipOfferService.findAll();
-        modelAndView.addObject("offers", offers);
+        modelAndView.addObject("offersPage", offersPage);
+        modelAndView.addObject("currentPage", page);
+        modelAndView.addObject("totalPages", offersPage.getTotalPages());
+        modelAndView.addObject("pageSize", size);
 
         return modelAndView;
     }

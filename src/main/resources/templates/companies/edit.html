@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Editar - Empresa')}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-
-<div class="container mt-5">
+<div class="container mt-5" layout:fragment="content">
     <h1 class="text-center mb-4">Editar Empresas</h1>
 
     <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}" th:object="${currentCompany}" method="post">

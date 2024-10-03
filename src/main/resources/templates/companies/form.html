@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +8,7 @@
 </head>
 
 <body>
-<header th:replace="~{/fragments/header}"></header>
-<main>
+<main layout:fragment="content">
     <div class="card-main">
         <div class="main-content">
             <h1 class="title-page">Cadastrar-se</h1>
@@ -104,7 +101,6 @@
             </form>
         </div>
     </div>
-    <div th:replace="~{/fragments/scripts}"></div>
 </main>
 </body>
 

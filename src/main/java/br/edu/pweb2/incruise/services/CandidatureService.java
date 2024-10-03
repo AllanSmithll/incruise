@@ -1,8 +1,10 @@
 package br.edu.pweb2.incruise.services;
 
 import br.edu.pweb2.incruise.model.Candidature;
+import br.edu.pweb2.incruise.model.CandidatureStatus;
 import br.edu.pweb2.incruise.model.NullCandidature;
 import br.edu.pweb2.incruise.repository.CandidatureRepositoryJpa;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +38,18 @@ public class CandidatureService {
 
     public void remove(Long id) throws Exception {
         this.candidatureRepositoryJpa.deleteById(id);
+    }
+
+    public void cancelCandidature(Candidature candidature) {
+        this.candidatureRepositoryJpa.delete(candidature);
+    }
+
+    public void rejectCandidature(Candidature candidature){
+        candidature.setStatus(CandidatureStatus.REJEITADA);
+        this.updateCandidature(candidature);
+    }
+
+    public void updateCandidature(Candidature candidature){
+        this.candidatureRepositoryJpa.save(candidature);
     }
 }
