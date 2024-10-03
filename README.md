@@ -42,8 +42,8 @@ Este projeto foi realizado no intuito da obtenção da nota final da disciplina 
 - Além dos conceitos de PWEB, também foi possível praticar tópicos como:
   -  diagramação — Diagramas de DER, Classes; 
   -  Levantamento de requisitos - A equipe levantou os requisitos durante reuniões com o cliente (professor).
-  -  SCRUM — Divisão de tarefas, reuniões em equipes ;
-  -  GIT — Criação de Branchs, revisão de Pull Requests.
+  -  SCRUM — Divisão de tarefas, reuniões em equipe;
+  -  GIT — Criação de branchs, revisão de Pull Requests.
 
 ## Licença
 Este projeto está licenciado sob a Licença Apache - veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
