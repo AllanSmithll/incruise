@@ -109,6 +109,26 @@ button[type="submit"] {
     padding: 0;
 }
 
+/*Situação da Candidatura*/
+.rejected-background, .approved-background {
+    padding: 10px;
+} 
+.rejected-background {
+    background-color: var(--primary-color-tomato);
+}
+
+.rejected-background .situacao{
+    color: var(--primary-color-tomato)!important;
+}
+.approved-background {
+    background-color: var(--secondary-color-tomato);
+}
+
+.approved-background {
+    background-color: var(--secondary-color-tomato);
+}
+
+
 @media (max-width: 768px) {
     .buttons-actions {
         flex-direction: column; /* Alinha os botões verticalmente em telas menores */
