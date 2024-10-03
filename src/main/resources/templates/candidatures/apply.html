@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta
-        th:insert="~{/fragments/custom-headfiles :: form-headfiles(title='Candidatar-se - ${offer.principalActivity}')}">
+        th:insert="~{/fragments/custom-headfiles :: form-headfiles(title='Candidatar-se -'+ ${offer.principalActivity})}">
     <link rel="stylesheet" th:href="@{/styles/candidature.css}">
 </head>
 

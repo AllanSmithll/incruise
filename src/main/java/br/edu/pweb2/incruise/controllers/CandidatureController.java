@@ -75,7 +75,7 @@ public class CandidatureController {
     }
 
     @PostMapping("/apply")
-    public String applyForInternship(@RequestParam("offerId") Long offerId,
+    public String applyForInternship(@PathVariable("offerId") Long offerId,
             @RequestParam(value = "message", required = false) String message,
             RedirectAttributes redirectAttributes) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -97,6 +97,76 @@ public class CandidatureController {
         return "redirect:/internshipOffer/offers";
     }
 
+    @PostMapping("/reject/{internshipId}/{candidatureId}")
+    public String reject(@PathVariable("candidatureId") Long candidatureId,
+            @PathVariable("internshipId") Long internshipId,
+            RedirectAttributes redirectAttributes) {
+        /**
+         * Rejeita a candidatura de um determinado aluno;
+         * devendo alterar o status para CandidatureStatus.REJEITADA e atualizar no
+         * banco de dados
+         */
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // Recupera a candidatura
+        Candidature candidature = this.findCandidature(candidatureId, redirectAttributes);
+
+        // Caso falhe nas verificações
+        if (redirectAttributes.getAttribute("error") != null) {
+            return "redirect:/internshipOffer/info/" + internshipId;
+        }
+        // PAra ver se dá erro
+        else if (!candidature.getInternshipOffer().getCompanyResponsible().getUser().getUsername().equals(username)) {
+            redirectAttributes.addFlashAttribute("error", "Você não tem permissão para rejeitar esta candidatura.");
+        }else{
+            // Logica para rejeitar uma candidatura
+            this.candidatureService.rejectCandidature(candidature);
+            redirectAttributes.addFlashAttribute("success", "Candidatura Rejeitada.");
+
+        }
+        return "redirect:/internshipOffer/info/" + internshipId;
+
+    }
+
+    @PostMapping("/cancel/{candidatureId}")
+    public String cancel(@PathVariable("candidatureId") Long candidatureId,
+            RedirectAttributes redirectAttributes) {
+        /**
+         * Cancela a candidatura de uma vaga de um determinado estudante.
+         * Devendo apagar a candidatura do banco.
+         */
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        // Recupera a candidatura
+        Candidature candidature = this.findCandidature(candidatureId, redirectAttributes);
+
+        // Caso falhe nas verificações
+        if (redirectAttributes.getAttribute("error") != null) {
+            return String.format("redirect:/student/info/%s", username);
+        }
+
+        // Verifica se a candidatura pertence ao estudante autenticado
+        if (!candidature.getStudent().getUser().getUsername().equals(username)) {
+            redirectAttributes.addFlashAttribute("error", "Você não tem permissão para cancelar esta candidatura.");
+            return String.format("redirect:/student/info/%s", username);
+        }
+        // Cancela a candidatura
+        try {
+            this.candidatureService.cancelCandidature(candidature);
+            redirectAttributes.addFlashAttribute("success", "Candidatura cancelada com sucesso.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Não foi possível");
+
+        }
+
+        // Redireciona para a página de informações do estudante
+        return String.format("redirect:/student/info/%s", username);
+    }
+
     private Student findStudent(String username, RedirectAttributes redirectAttributes) {
         Student student = studentService.findByUserUsername(username);
         if (student == null) {
@@ -111,6 +181,14 @@ public class CandidatureController {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
         }
         return offer;
+    }
+
+    private Candidature findCandidature(Long candidatureId, RedirectAttributes redirectAttributes) {
+        Candidature candidature = candidatureService.findById(candidatureId);
+        if (candidature == null || candidature.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "Candidatura não encontrada.");
+        }
+        return candidature;
     }
 
     private boolean hasAlreadyApplied(InternshipOffer offer, Student student, RedirectAttributes redirectAttributes) {

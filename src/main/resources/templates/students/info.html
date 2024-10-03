@@ -80,6 +80,8 @@
                 Total de Candidaturas:
                 <span class="count-number" th:text="${#lists.size(student.candidatureList)}"></span>
             </p>
+            <h1 th:if="${error != null}"th:text="${error}"></h1>
+            <h1 th:if="${success != null}"th:text="${success}"></h1>
 
             <div th:if="${#lists.isEmpty(student.candidatureList)}">
                 <p class="no-content-msg">Não há registros de candidaturas.</p>

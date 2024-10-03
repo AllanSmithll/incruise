@@ -24,7 +24,7 @@ public class Student extends SchoolMember {
     )
     private List<Competence> competenceList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true,
+    @OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE, orphanRemoval = true,
             fetch = FetchType.EAGER)
     private final List<Candidature> candidatureList = new ArrayList<>();
 
