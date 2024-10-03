@@ -6,6 +6,8 @@ import br.edu.pweb2.incruise.model.NullInternshipOffer;
 import br.edu.pweb2.incruise.model.OfferStatus;
 import br.edu.pweb2.incruise.repository.InternshipOfferRepositoryJpa;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,12 +23,17 @@ public class InternshipOfferService {
         this.internshipOfferRepositoryJpa = internshipOfferRepositoryJpa;
     }
 
-    public List<InternshipOffer> findAll() {
-        return internshipOfferRepositoryJpa.findAll();
+    public Page<InternshipOffer> findAll(Pageable pageable) {
+        return internshipOfferRepositoryJpa.findInternshipOffers(pageable);
+    }
+
+    public Page<InternshipOffer> findById(Long id, Pageable pageable) {
+        return internshipOfferRepositoryJpa.findInternshipOfferById(id, pageable);
     }
 
     public InternshipOffer findById(Long id) {
-        return internshipOfferRepositoryJpa.findById(id).orElse(new NullInternshipOffer());
+        Page<InternshipOffer> offersPage = internshipOfferRepositoryJpa.findInternshipOfferById(id, Pageable.unpaged());
+        return offersPage.isEmpty() ? new NullInternshipOffer() : offersPage.getContent().get(0);
     }
 
     public List<InternshipOffer> findByCompanyResponsible(Company company) {
@@ -69,12 +76,15 @@ public class InternshipOfferService {
     }
 
     public void cancel(Long id) throws Exception {
-        InternshipOffer offer = findById(id);
-        if (offer != null && !offer.isEmpty()) {
+        Page<InternshipOffer> offersPage = findById(id, Pageable.unpaged());
+
+        if (!offersPage.isEmpty()) {
+            InternshipOffer offer = offersPage.getContent().getFirst();
             offer.setStatus(OfferStatus.CANCELADA);
             internshipOfferRepositoryJpa.save(offer);
         } else {
             throw new Exception("Oferta não encontrada.");
         }
     }
+
 }

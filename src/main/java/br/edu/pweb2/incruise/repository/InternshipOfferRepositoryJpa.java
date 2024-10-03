@@ -3,6 +3,8 @@ package br.edu.pweb2.incruise.repository;
 import br.edu.pweb2.incruise.model.Company;
 import br.edu.pweb2.incruise.model.InternshipOffer;
 import br.edu.pweb2.incruise.model.OfferStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,6 +14,12 @@ import java.util.List;
 
 @Repository
 public interface InternshipOfferRepositoryJpa extends JpaRepository<InternshipOffer, Long> {
+    @Query("SELECT offer FROM InternshipOffer offer WHERE offer.id = :id")
+    Page<InternshipOffer> findInternshipOfferById(@Param("id") Long id, Pageable pageable);
+
+    @Query("SELECT offer FROM InternshipOffer offer")
+    Page<InternshipOffer> findInternshipOffers(Pageable pageable);
+
     List<InternshipOffer> findByStatus(OfferStatus status);
     List<InternshipOffer> findByCompanyResponsible(Company company);
     
