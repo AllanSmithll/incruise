@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${coordinator.name})}">
-<!--    <link rel="stylesheet" th:href="@{/styles/coordinators/info.css}">-->
+    <link rel="stylesheet" th:href="@{/styles/perfil.css}">
     <link rel="stylesheet" th:href="@{/styles/fragments/card-global.css}">
 </head>
 
 <body>
-
-<header th:replace="~{/fragments/header}"></header>
-
-<main>
+<main layout:fragment="content">
     <section class="info-section" id="first-info">
 <!--        <img th:src="@{/imgs/default/coordinator-default.png}" alt="Coordenador">-->
         <h1 id="name" th:text="${#strings.capitalize(coordinator.name)}">Nome do Coordenador</h1>
@@ -54,8 +50,6 @@
             </div>
         </div>
     </section>
-
-    <div th:replace="~{/fragments/scripts}"></div>
 </main>
 
 </body>
