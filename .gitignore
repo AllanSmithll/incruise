@@ -34,3 +34,4 @@ build/
 
 ### Personal ###
 src/main/resources/.env
+.env
