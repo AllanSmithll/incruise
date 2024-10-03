@@ -81,25 +81,23 @@
             </div>
         </section>
 
-        <section class="info-section" id="oportunity-section">
-            <!-- th:if="${#authentication.principal.username == student.user.username}" -->
-            <!-- Para Privar a visualização das candidaturas -->
-            <div class="card-list-component">
+        <section class="info-section" id="list-section"
+            th:if="${#authentication.principal.username == student.user.username}">
 
-                <h1 class="section-title"> Candidaturas</h1>
+            <h2 class="section-title"> Candidaturas</h2>
+            <p class="list-count" th:unless="${#lists.isEmpty(student.candidatureList)}">
+                Total de Candidaturas:
+                <span class="count-number" th:text="${#lists.size(student.candidatureList)}"></span>
+            </p>
 
-                <div th:if="${#lists.isEmpty(student.candidatureList)}">
-                    <p class="no-content-msg">Não há registros de candidaturas.</p>
-                </div>
-
-                <th:block th:each="candidature : ${student.candidatureList}"
-                    th:insert="~{/candidatures/fragments/card(candidature)}">
-
+            <div th:if="${#lists.isEmpty(student.candidatureList)}">
+                <p class="no-content-msg">Não há registros de candidaturas.</p>
+            </div>
+            <div class="father-card" th:unless="${#lists.isEmpty(student.candidatureList)}">
+                <th:block th:each="candidature : ${student.candidatureList}" th:insert="~{/candidatures/fragments/card(${candidature})}">
                 </th:block>
-
             </div>
         </section>
-
         <div th:replace="~{/fragments/scripts}"></div>
     </main>
 </body>

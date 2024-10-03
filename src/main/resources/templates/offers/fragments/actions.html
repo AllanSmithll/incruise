@@ -1,0 +1,28 @@
+<div class="buttons-actions d-flex gap-2 justify-content-center mt-3" 
+th:fragment="offer-action(offer)"
+th:with="showViewButton= ${showViewButton} ?: true"
+>
+    <a 
+    class="button-action btn-view"
+    th:href="@{/internshipOffer/info/{id}(id=${offer.id})}" 
+    th:if="${showViewButton}"
+    >
+        <i class="bi bi-binoculars-fill"></i> Visualizar
+    </a>
+
+    <form th:action="@{/candidature/apply/{id}(id=${offer.id})}" method="get"
+        th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"
+        th:onsubmit="event.stopPropagation();">
+        <button class="button-action btn-apply" type="submit" value="Candidatar-se">
+            <i class="bi bi-check-circle-fill"></i> Candidatar-se
+        </button>
+    </form>
+
+    <form th:action="@{cancel/{id}(id=${offer.id})}" method="post"
+        th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'') or hasRole(''ROLE_ADMIN'')')}"
+        th:onsubmit="event.stopPropagation();">
+        <button class="button-action btn-delete" type="submit">
+            <i class="bi bi-x-circle-fill"></i> Cancelar
+        </button>
+    </form>
+</div>
