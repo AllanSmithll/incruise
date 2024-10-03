@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,12 +18,17 @@ public class User implements UserDetails {
 
 	@Id
 	@Column(name = "username", nullable = false, unique = true)
+	@NotBlank(message = "Nome de usuário é obrigatório.")
+	@Size(min = 5, max = 20, message = "Nome de usuário deve ter entre 5 e 20 caracteres.")
 	private String username;
 
 	@Column(name = "email", nullable = false, unique = true)
+	@NotBlank(message = "Email é obrigatório.")
+	@Email(message = "Email deve ser válido.")
 	private String email;
 
 	@Column(name = "password", nullable = false)
+	@NotBlank(message = "Senha é obrigatória.")
 	private String password;
 
 	@Column(name = "enabled", nullable = false)

@@ -2,6 +2,7 @@ package br.edu.pweb2.incruise.controllers;
 
 import br.edu.pweb2.incruise.model.Competence;
 import br.edu.pweb2.incruise.model.Student;
+import br.edu.pweb2.incruise.model.User;
 import br.edu.pweb2.incruise.model.exception.DuplicateEmailException;
 import br.edu.pweb2.incruise.model.exception.DuplicateEnrollmentException;
 import br.edu.pweb2.incruise.model.exception.DuplicateUsernameException;
@@ -9,6 +10,7 @@ import br.edu.pweb2.incruise.model.exception.InvalidAgeException;
 import br.edu.pweb2.incruise.services.CompetenceService;
 import br.edu.pweb2.incruise.services.StudentService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -47,7 +49,7 @@ public class StudentController {
     @GetMapping("/setSession")
     public String setSession(String username) {
         session.setAttribute("username", username);
-        return "home";
+        return "index";
     }
 
     @GetMapping("/students")
@@ -69,30 +71,20 @@ public class StudentController {
         return modelAndView;
     }
 
-/*     @GetMapping("/my-candidatures")
-    public ModelAndView getMyCandidatures() throws Exception {
-        String enrollment = "1234";
-        Student student = studentService.findByEnrollment(enrollment);
-        if (student == null) {
-            throw new Exception("Student not found.");
-        }
-//        List<Candidature> candidatures = student.getCandidatureList();
-        ModelAndView modelAndView = new ModelAndView("students/my-candidatures");
-//        modelAndView.addObject("candidatures", candidatures);
-        modelAndView.addObject("studentName", student.getName());
-        return modelAndView;
-    } */
-
     @PostMapping("/save")
-    public ModelAndView save(Student student, ModelAndView modelAndView, BindingResult validation,
+    public ModelAndView save(@Valid @ModelAttribute("student") Student student,
+                             BindingResult validation,
+                             ModelAndView modelAndView,
                              @RequestParam(value = "competences", required = false) List<Competence> competences,
                              RedirectAttributes attr) {
+
         if (competences != null) {
             student.setCompetenceList(competences);
         }
 
         if (validation.hasErrors()) {
             modelAndView.setViewName("students/form");
+            modelAndView.addObject("competences", competenceService.findAll());
             return modelAndView;
         }
 
@@ -100,29 +92,28 @@ public class StudentController {
             studentService.save(student);
         } catch (DuplicateEnrollmentException e) {
             modelAndView.addObject("enrollmentError", e.getMessage());
+            modelAndView.addObject("competences", competenceService.findAll());
             modelAndView.setViewName("students/form");
             return modelAndView;
         } catch (DuplicateUsernameException e) {
             modelAndView.addObject("usernameError", e.getMessage());
-            modelAndView.setViewName("students/form");
-            modelAndView.addObject("student", student);
             modelAndView.addObject("competences", competenceService.findAll());
+            modelAndView.setViewName("students/form");
             return modelAndView;
         } catch (DuplicateEmailException e) {
             modelAndView.addObject("emailError", e.getMessage());
-            modelAndView.setViewName("students/form");
-            modelAndView.addObject("student", student);
             modelAndView.addObject("competences", competenceService.findAll());
+            modelAndView.setViewName("students/form");
             return modelAndView;
         } catch (InvalidAgeException e) {
             modelAndView.addObject("birthdateError", e.getMessage());
+            modelAndView.addObject("competences", competenceService.findAll());
             modelAndView.setViewName("students/form");
             return modelAndView;
         }
 
         String operation = (student.getId() == null) ? "criado" : "salvo";
         attr.addFlashAttribute("mensagem", "Estudante " + student.getName() + " " + operation + " com sucesso!");
-
         modelAndView.setViewName("redirect:/student/students");
         return modelAndView;
     }

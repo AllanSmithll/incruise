@@ -1,6 +1,7 @@
 package br.edu.pweb2.incruise.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Student extends SchoolMember {
 
+    @NotNull(message = "Data de nascimento é obrigatória.")
+    @Past(message = "A data de nascimento deve ser uma data passada.")
     private LocalDate birthdate;
 
     @ManyToMany(fetch = FetchType.EAGER)
