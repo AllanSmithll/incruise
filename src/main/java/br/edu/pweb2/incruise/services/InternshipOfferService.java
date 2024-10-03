@@ -36,6 +36,10 @@ public class InternshipOfferService {
         return offersPage.isEmpty() ? new NullInternshipOffer() : offersPage.getContent().get(0);
     }
 
+    public Page<InternshipOffer> findByCompanyResponsiblePage(Company company, Pageable pageable) {
+        return internshipOfferRepositoryJpa.findByCompanyResponsible(company, pageable);
+    }
+
     public List<InternshipOffer> findByCompanyResponsible(Company company) {
         return internshipOfferRepositoryJpa.findByCompanyResponsible(company);
     }

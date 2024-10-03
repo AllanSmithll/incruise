@@ -67,7 +67,7 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/offers")
-    public ModelAndView getAll(@RequestParam(value = "page", defaultValue = "0") int page,
+    public ModelAndView getAll(@RequestParam(value = "page", defaultValue = "1") int page,
                                @RequestParam(value = "size", defaultValue = "10") int size,
                                ModelAndView modelAndView) {
         Pageable pageable = PageRequest.of(page, size);
@@ -161,13 +161,19 @@ public class InternshipOfferController {
     }
 
     @GetMapping("/{company}/offers")
-    public String getMethodName(@PathVariable("company") String companyUser, Model model) {
-        Company company = companyService.findByUserUsername(companyUser); // Procure a compania pelo o nome passado
-        //Tem que checar se é uma compania válida
-        if (company == null)
+    public String getOffersByCompany(@PathVariable("company") String companyUser,
+                                     @RequestParam(defaultValue = "0") int page,
+                                     @RequestParam(defaultValue = "10") int size,
+                                     Model model) {
+        Company company = companyService.findByUserUsername(companyUser);
+        if (company == null) {
             return "system/not-found";
-        else   
-            model.addAttribute("offers", company.getInternshipOfferList());
+        } else {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<InternshipOffer> offersPage = internshipOfferService.findByCompanyResponsiblePage(company, pageable);
+
+            model.addAttribute("offersPage", offersPage);
             return "/offers/list";
         }
+    }
 }
