@@ -101,7 +101,9 @@ button[type="submit"] {
     
 }
 
-
+.inform{
+    color :var(--deep-ocean);
+}
 .card-header{
     background: none;
     padding: 0;

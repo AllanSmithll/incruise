@@ -8,14 +8,14 @@
 
 </head>
 
-<body class="application-screen">
+<body >
 
     <header th:replace="~{/fragments/header}"></header>
-    <main>
-
+    <main class="application-screen" >
         <div class="application-container">
             <h1>Formulário de Candidatura</h1>
-
+            
+            <p class="inform"> *confirme seus dados</p>
             <div th:if="${error}" class="alert alert-danger">
                 <p th:text="${error}"></p>
             </div>
@@ -24,8 +24,33 @@
                 <input type="hidden" name="offerId" th:value="${offer.id}" />
 
                 <div class="form-group">
-                    <label for="enrollment">Matrícula:</label>
-                    <input type="text" id="enrollment" name="enrollment" required>
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" name="name" th:value="${student.name}" disabled>
+                </div>
+                <div class="d-flex  align-items-center justify-content-around">
+                    <div class="form-group">
+                        <label for="enrollment">Matrícula</label>
+                        <input type="text" id="enrollment" name="enrollment" th:value="${student.enrollment}" disabled>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="email">Curso</label>
+                        <input type="text" id="course" name="course" th:value="${student.course}" disabled>
+                    </div>
+
+                </div>
+                
+                <div class="d-flex  align-items-center justify-content-around">
+                    <div class="form-group">
+                        <label for="phoneNumber">Telefone</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" th:value="${student.phoneNumber}" disabled>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" th:value="${student.user.email}" disabled>
+                    </div>
+
                 </div>
 
                 <div class="form-group">

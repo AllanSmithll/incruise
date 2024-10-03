@@ -2,4 +2,17 @@
 
     <script th:src="@{/scripts/header.js}"></script>
     <script th:src="@{/scripts/form.js}"></script>
+    <script>
+        function toggleFilter() {
+            const filterForm = document.getElementById('filter-form');
+            const toggleButton = document.getElementById('toggleButton');
+            if (filterForm.style.display === 'none') {
+                filterForm.style.display = 'block';
+                toggleButton.innerText = 'Esconder Filtros';
+            } else {
+                filterForm.style.display = 'none';
+                toggleButton.innerText = 'Mostrar Filtros';
+            }
+        }
+    </script>
 </div>
