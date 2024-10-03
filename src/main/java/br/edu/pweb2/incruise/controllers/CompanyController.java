@@ -8,6 +8,7 @@ import br.edu.pweb2.incruise.services.CompanyService;
 import br.edu.pweb2.incruise.services.InternshipOfferService;
 import br.edu.pweb2.incruise.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +30,6 @@ public class CompanyController {
     private final HttpSession session;
     private final UserService userService;
     private final InternshipOfferService internshipOfferService;
-
-    ;
 
     @Autowired
     public CompanyController(CompanyService companyService, HttpSession session, UserService userService, InternshipOfferService internshipOfferService) {
@@ -61,7 +60,9 @@ public class CompanyController {
     }
 
     @PostMapping("/save")
-    public ModelAndView save(Company company, ModelAndView modelAndView, BindingResult validation) {
+    public ModelAndView save(@Valid @ModelAttribute("company") Company company,
+                             BindingResult validation,
+                             ModelAndView modelAndView) {
         if (validation.hasErrors()) {
             modelAndView.setViewName("companies/form");
             return modelAndView;
@@ -72,12 +73,10 @@ public class CompanyController {
         } catch (DuplicateUsernameException e) {
             modelAndView.addObject("usernameError", e.getMessage());
             modelAndView.setViewName("companies/form");
-            modelAndView.addObject("company", company);
             return modelAndView;
         } catch (DuplicateEmailException e) {
             modelAndView.addObject("emailError", e.getMessage());
             modelAndView.setViewName("companies/form");
-            modelAndView.addObject("company", company);
             return modelAndView;
         } catch (InvalidCnpjException | DuplicateCnpjException e) {
             modelAndView.addObject("cnpjError", e.getMessage());
@@ -88,6 +87,7 @@ public class CompanyController {
             modelAndView.setViewName("companies/form");
             return modelAndView;
         }
+
         modelAndView.setViewName("redirect:/company/companies");
         return modelAndView;
     }

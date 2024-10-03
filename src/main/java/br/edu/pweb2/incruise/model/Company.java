@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.*;
 import lombok.*;
 import jakarta.persistence.*;
 
@@ -23,23 +24,31 @@ public class Company {
 	private User user;
 
 	@Getter
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
+	@NotBlank(message = "Nome fantasia é obrigatório.")
 	private String fantasyName;
 
 	@Getter
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
+	@NotBlank(message = "CNPJ é obrigatório.")
+	@Pattern(regexp = "\\d{14}", message = "CNPJ deve ter 14 dígitos.")
 	private String cnpj;
 
 	@Column(nullable = false)
+	@NotBlank(message = "Número de telefone é obrigatório.")
+	@Pattern(regexp = "\\d{10,11}", message = "Telefone deve ter 10 ou 11 dígitos.")
 	private String phoneNumber;
 
 	@Column(nullable = false)
+	@NotBlank(message = "Contato é obrigatório.")
 	private String personContact;
 
 	@Column(nullable = false)
+	@NotBlank(message = "Endereço é obrigatório.")
 	private String address;
 
 	@Column(nullable = false)
+	@NotBlank(message = "Atividade principal é obrigatória.")
 	private String principalActivity;
 
 	private String urlPage="";
