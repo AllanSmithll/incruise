@@ -1,101 +1,26 @@
-<!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Estudantes')}">
-
 </head>
+
 <body>
-<header th:replace="~{/fragments/header}"></header>
-<main>
-    <div class="main-screen">
-        <div class="card-component">
+    <main class="main-screen" layout:fragment="content">
+        <div class="card-list-component">
             <h1>Todos os Alunos Cadastrados</h1>
-            <a th:href="@{/student/register}">
-                <button class="button-add btn btn-primary">Novo Aluno</button>
-            </a>
-            <table border="1" class="d-none">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Matrícula</th>
-                    <th>Curso</th>
-                    <th>Email</th>
-                    <th>Telefone</th>
-                    <th>Ações</th>
-                </tr>
-                </thead>
-                <tbody>
-
-                <tr th:each="student : ${students}">
-                    <td>[[${student.id}]]</td>
-                    <td th:text="${student.name}"></td>
-                    <td th:text="${student.enrollment}"></td>
-                    <td th:text="${student.course}"></td>
-                    <td th:text="${student.email}"></td>
-                    <td th:text="${student.phoneNumber}"></td>
-                    <td>
-                        <div class="action-box">
-                            <a th:href="@{info/{id}(id=${student.id})}" class="btn-action btn-view">Visualizar</a>
-
-                            <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
-                                <input type="hidden" name="_method" value="DELETE"/>
-                                <input class="btn-action btn-delete" type="submit" value="Remover"/>
-                            </form>
-
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="father-card">
-                <div class="individual-student-card inter-font" th:each="student : ${students}">
-                    <h3 th:text="${student.name}"></h3>
-                    <div class="d-flex flex-row gap-2">
-                        <div class="d-flex flex-column">
-                            <smal>ID:</smal>
-                            <p th:text="${student.id}"></p>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <smal>Matrícula:</smal>
-                            <p th:text="${student.enrollment}"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row gap-2">
-                        <div class="d-flex flex-column">
-                            <smal>Curso:</smal>
-                            <p th:text="${student.course}"></p>
-                        </div>
-                        <div class="d-flex flex-column">
-                            <smal>Email:</smal>
-                            <p th:text="${student.email}"></p>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-row gap-2">
-                        <div class="d-flex flex-column">
-                            <smal>Telefone:</smal>
-                            <p th:text="${student.phoneNumber}"></p>
-                        </div>
-                    </div>
-                    <div class="action-box d-flex gap-2 justify-content-center mt-3">
-                        <a th:href="@{info/{id}(id=${student.id})}" class="btn-action btn-view">
-                            Visualizar
-                        </a>
-                        <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
-                            <input type="hidden" name="_method" value="DELETE"/>
-                            <input class="btn-action btn-delete" type="submit" value="Remover"/>
-                        </form>
-                    </div>
-                </div>
+            <div class="buttons-actions">
+                <a class="button-add btn btn-primary " th:href="@{/student/register}">
+                    Novo Aluno
+                </a>   
             </div>
+            <div th:replace="~{/students/fragments/table}">
 
+            </div>
+            <div class="father-card">
+                <th:block th:each="student :${students}" th:insert="~{/students/fragments/card(student= ${student})}">
+                </th:block>
+            </div>
         </div>
-    </div>
-    <div th:replace="~{/fragments/scripts}"></div>
-
-</main>
+    </main>
 </body>
 
 </html>

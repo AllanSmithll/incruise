@@ -1,0 +1,41 @@
+<div class="individual-card" th:fragment="candidature-card(candidature)"
+th:with="status=${candidature.status.name()}"
+th:classappend="${status == 'REJEITADA'} ? 'rejected-background' : (${status == 'APROVADA'} ? 'approved-background' : '')"
+>
+            <h3>
+                <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
+                    th:text="${candidature.internshipOffer.principalActivity}">
+                    Principal Atividade
+                </a>
+            </h3>
+        
+            <div class="d-flex flex-column">
+                <smal>Empresa</smal>
+                <a th:href="@{/company/info/{id}(id=${candidature.internshipOffer.companyResponsible.user.username})}"
+                    th:text="${candidature.internshipOffer.companyResponsible.fantasyName}">
+                    Nome da Empresa
+                </a>
+            </div>
+
+            <div th:unless="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}" class="d-flex flex-column">
+                <smal>Candidato</smal>
+                <a th:href="@{/student/info/{username}(username=${candidature.student.user.username})}"
+                    th:text="${candidature.student.name}">
+                    Nome do candidato
+                </a>
+            </div>
+        
+            <div class="d-flex flex-column">
+                <smal>Data Candidatura</smal>
+                <p th:text="${candidature.formattedDate}">10/03/2004</p>
+            </div>
+            
+            <div class="d-flex flex-column">
+                <smal>Situação</smal>
+                <p class="situacao" th:text="${candidature.status}">PENDENTE</p>
+            </div>
+
+
+            <th:block th:replace="~{candidatures/fragments/actions(candidature=${candidature})}"></th:block>
+            </th:block>
+</div>

@@ -1,5 +1,5 @@
-<div class="container" th:fragment="footer">
-    <footer class="row row-cols-5 py-5 my-5 border-top">
+<footer class="container" th:fragment="footer">
+    <div class="row row-cols-5 py-5 my-5 border-top">
         <div class="col text-center copyright">
             <a th:href="@{/}" class="d-inline-block mb-3 link-dark text-decoration-none">
                 <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
@@ -41,5 +41,11 @@
                     Instagram</a></li>
             </ul>
         </div>
-    </footer>
+    </div>
+</footer>
+
+<div th:fragment="scripts">
+
+    <script th:src="@{/scripts/header.js}"></script>
+    <script th:src="@{/scripts/form.js}"></script>
 </div>

@@ -1,0 +1,42 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Usuários')}">
+    <title>Gerenciamento de Usuários</title>
+</head>
+<body>
+<main layout:fragment="content">
+    <div class="container">
+        <h1>Gerenciamento de Usuários</h1>
+
+        <table id="userTable" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nome de Usuário</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}">Nome do Usuário</td>
+                <td th:text="${user.email}">user@exemplo.com</td>
+                <td>
+                    <ul>
+                        <li th:each="role : ${user.role}" th:text="${user.role.name}">Admin</li>
+                    </ul>
+                </td>
+                <td>
+                    <form th:action="@{/admin/users/toggleStatus/{username}(username=${user.username})}" method="post" style="display: inline;">
+                        <button type="submit" class="btn" th:classappend="${user.enabled} ? 'btn-success' : 'btn-secondary'"
+                                th:text="${user.enabled} ? 'Desabilitar' : 'Habilitar'">
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

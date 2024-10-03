@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    
+    <link rel="stylesheet" th:href="@{/styles/system/error.css}">
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="compass-container">
+            <div class="compass">
+                <div class="compass-needle"></div>
+            </div>
+        </div>
+        <div class="error-icon">⚠️</div>
+        <h1><!-- Erro [[${statusCode}]] --> Oops! Algo deu errado</h1>
+        <p>Ocorreu um problema com sua solicitação.</p>
+        <p><strong>Mensagem do erro:</strong></p>
+        <p th:text="${errorMessage}">Aqui virá a mensagem de erro</p>
+
+        <a th:href="@{/}">Voltar para a Página Inicial</a>
+        <p><strong>Pilha de execução:</strong></p>
+        <div class="stack-trace" th:text="${stackTrace}">Aqui virá a pilha de execução</div>
+
+    </div>
+</body>
+</html>

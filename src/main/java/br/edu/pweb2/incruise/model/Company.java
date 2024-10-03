@@ -3,60 +3,64 @@ package br.edu.pweb2.incruise.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-//import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.*;
+import lombok.*;
+import jakarta.persistence.*;
 
 
-//@Entity
-//@Table(name = "tb_company")
-
+@Entity
+@Table(name = "tb_company")
 @Data
 @NoArgsConstructor
-public class Company extends User {
+@AllArgsConstructor
+public class Company {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "username",  unique = true)
+	private User user;
+
 	@Getter
+	@Column(unique = true, nullable = false)
+	@NotBlank(message = "Nome fantasia é obrigatório.")
 	private String fantasyName;
-	
+
 	@Getter
+	@Column(unique = true, nullable = false)
+	@NotBlank(message = "CNPJ é obrigatório.")
+	@Pattern(regexp = "\\d{14}", message = "CNPJ deve ter 14 dígitos.")
 	private String cnpj;
 
+	@Column(nullable = false)
+	@NotBlank(message = "Número de telefone é obrigatório.")
+	@Pattern(regexp = "\\d{10,11}", message = "Telefone deve ter 10 ou 11 dígitos.")
 	private String phoneNumber;
 
+	@Column(nullable = false)
+	@NotBlank(message = "Contato é obrigatório.")
 	private String personContact;
 
+	@Column(nullable = false)
+	@NotBlank(message = "Endereço é obrigatório.")
 	private String address;
 
+	@Column(nullable = false)
+	@NotBlank(message = "Atividade principal é obrigatória.")
 	private String principalActivity;
 
 	private String urlPage="";
 
-	private List<Opportunity> opportunityList = new ArrayList<Opportunity>();
+	@Lob
+	@Column(name = "address_proof" )
+	@Basic(fetch = FetchType.EAGER)
+	private byte[] addressProof;
 
-	// A FAZER
-	// private Document<PDF> comproEnder;
 
-	public Company(Integer id, String username, String email, String password, String fantasyName, String cnpj,
-			String phoneNumber, String personContact, String address, String principalActivity, String urlPage) {
-		super(id, username, email, password);
-		this.fantasyName = fantasyName;
-		this.cnpj = cnpj;
-		this.phoneNumber = phoneNumber;
-		this.personContact = personContact;
-		this.address = address;
-		this.principalActivity = principalActivity;
-		this.urlPage = urlPage;
-	}
-
-	public List<InternshipOffer> getVacancyList() {
-		List<InternshipOffer> vacancies = new ArrayList<>();
-		for (Opportunity opportunity : opportunityList) {
-			
-			if (opportunity instanceof InternshipOffer)
-				vacancies.add((InternshipOffer) opportunity);
-		}
-		return vacancies;
-	}
+	@OneToMany(mappedBy = "companyResponsible", orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
 
 	@Override
 	public String toString() {
@@ -71,8 +75,8 @@ public class Company extends User {
 				'}';
 	}
 
-	public void  addOpportunity(Opportunity opportunity) {
-		this.opportunityList.add(opportunity);
+	public void  addOpportunity(InternshipOffer internshipOffer) {
+		this.internshipOfferList.add(internshipOffer);
 	}
 
 	public boolean empty(){

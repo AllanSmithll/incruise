@@ -1,23 +1,20 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-  <meta th:insert="~{/fragments/headfiles(title='[[${student.name}]]')}">
+    <meta th:insert="~{/fragments/headfiles(title='[[${student.name}]]')}">
 </head>
 <body>
-  
-
-   <header  th:replace="~{/fragments/header}"></header> <main>
-
-<h1>Editar Aluno</h1>
-<form th:action="@{/student/edit/{id}(id=${student.id})}" method="post">
-  <input type="hidden" th:field="*{id}"/>
-  Nome: <input type="text" th:field="*{name}"/><br/><br/>
-  Email: <input type="text" th:field="*{email}"/><br/><br/>
-  Matrícula: <input type="text" th:field="*{enrollment}"/><br/><br/>
-  Curso: <input type="text" th:field="*{course}"/><br/><br/>
-  <input type="submit" value="Salvar">
-</form>
-<div th:replace="~{/fragments/scripts}"></div>
-</main> </main> </body>
+<main layout:fragment="content">
+    <h1>Editar Aluno</h1>
+    <form th:action="@{/student/edit/{id}(id=${student.id})}" method="post">
+        <input type="hidden" th:field="*{id}"/>
+        Nome: <input type="text" th:field="*{name}"/><br/><br/>
+        Email: <input type="text" th:field="*{user.email}"/><br/><br/>
+        Matrícula: <input type="text" th:field="*{enrollment}"/><br/><br/>
+        Curso: <input type="text" th:field="*{course}"/><br/><br/>
+        <input type="submit" value="Salvar">
+    </form>
+    <div th:replace="~{/fragments/scripts}"></div>
+</main>
+</body>
 
 </html>

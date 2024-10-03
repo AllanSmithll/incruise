@@ -17,15 +17,6 @@
     font-style: normal;
 }
 
-/* Estilos principais da tela */
-.main-screen {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #7F7F7F; /* Cor de fundo clara */
-    margin: 50px 0 200px 0;
-    height: auto;
-}
 
 .card-main {
     display: flex;
@@ -71,12 +62,6 @@
     background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
 }
 
-.label-competence {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual */
-    gap: 10px; /* Espaçamento entre os itens */
-    align-items: start; /* Alinha os itens no topo de cada célula */
-}
 
 
 /* Estilo dos campos de entrada do formulário */
@@ -142,36 +127,3 @@ textarea {
 }
 
 
-/* Estilo dos botões de envio */
-button[type="submit"] {
-    width: 100%;
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-}
-
-/* Estilo do botão ao passar o mouse */
-button[type="submit"]:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-}
-
-.title-page {
-    display: flex;
-    width: 100%;
-    justify-items: center;
-    justify-content: center ;
-    flex-direction: row;
-}
-
-.buttons-actions {
-    display: flex;
-    width: 100%;
-    justify-items: center;
-    justify-content: center ;
-    flex-direction: row;
-}

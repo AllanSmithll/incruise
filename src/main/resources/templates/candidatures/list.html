@@ -1,0 +1,22 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Candidaturas')}">
+</head>
+<body>
+    <main class="main-screen" layout:fragment="content">
+        <div class="card-list-component">
+            <h1>Candidaturas</h1>
+            <div class="buttons-actions">
+
+                <!-- <th:block th:replace="~{/candidatures/fragments/filter}"></th:block> -->
+                <div class="father-card">
+
+                    <th:block th:each="candidature : ${candidatures}"
+                        th:insert="~{/candidatures/fragments/card(candidature= ${candidature})}"></th:block>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

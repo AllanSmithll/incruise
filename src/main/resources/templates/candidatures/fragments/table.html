@@ -1,0 +1,32 @@
+<table class="table-candidatures" th:fragment="candidatures">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <!--<th>Matrícula</th>-->
+            <th>Email</th>
+            <th>Curso</th>
+            <th>Telefone</th>
+            <th>Data</th>
+            <th>Situaçao</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody th:each="c : ${candidatures}">
+
+        <tr>
+            <td><a th:text="${c.student.name}"
+                    th:href="@{/student/info/{username}(username=${c.student.user.username})}">Nome do estudante</a>
+            </td>
+            <!-- <td th:text="${c.student.enrollment}">Matrícula do Estudante</td> -->
+            <td th:text="${c.student.user.email}">Email do Estudante</td>
+            <td th:text="${c.student.course}">Curso do Estudante</td>
+            <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
+            <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
+            <td th:text="${c.status.name()}">status</td>
+            <td>
+                <th:block th:replace="~{candidatures/fragments/actions(${c})}"></th:block>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

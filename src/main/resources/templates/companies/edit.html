@@ -1,0 +1,96 @@
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Editar - Empresa')}">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5" layout:fragment="content">
+    <h1 class="text-center mb-4">Editar Empresas</h1>
+
+    <form th:action="@{/company/edit/{id}(id=${currentCompany.id})}" th:object="${currentCompany}" method="post">
+        <div class="form-group d-none" hidden="hidden">
+            <label for="idInput">ID:</label>
+            <input type="text" id="idInput" hidden="hidden" class="form-control" th:field="*{id}" placeholder="id" />
+        </div>
+
+        <div class="form-group d-none" hidden="hidden">
+            <label for="usernameInput">Username:</label>
+            <input type="text" id="usernameInput" class="form-control" th:field="*{user.username}" placeholder="Username" />
+        </div>
+
+        <div class="form-group d-none" hidden="hidden">
+            <label for="emailInput">Email:</label>
+            <input type="email" id="emailInput" class="form-control" th:field="*{user.email}" placeholder="Email" />
+        </div>
+
+        <div class="form-group d-none" hidden="hidden">
+            <label for="passwordInput">Password:</label>
+            <input type="password" id="passwordInput" class="form-control" th:field="*{user.password}" placeholder="Password" />
+        </div>
+
+        <div class="form-group d-none" hidden="hidden">
+            <label for="roleInput">Role:</label>
+            <input type="text" id="roleInput" class="form-control" th:field="*{user.role}" placeholder="Role" />
+        </div>
+
+        <div class="form-group">
+            <label for="fantasyNameInput">Nome Fantasia:</label>
+            <input type="text" id="fantasyNameInput" class="form-control" th:field="*{fantasyName}" required placeholder="Nome fantasia *" />
+        </div>
+
+        <div class="form-group">
+            <label for="cnpjInput">CNPJ:</label>
+            <input type="text" id="cnpjInput" class="form-control" th:field="*{cnpj}" required placeholder="CNPJ *" />
+        </div>
+
+        <div class="form-group">
+            <label for="phoneNumberInput">Telefone:</label>
+            <input type="text" id="phoneNumberInput" class="form-control" th:field="*{phoneNumber}" required placeholder="Telefone *" />
+        </div>
+
+        <div class="form-group">
+            <label for="personContactInput">Pessoa de Contato:</label>
+            <input type="text" id="personContactInput" class="form-control" th:field="*{personContact}" required placeholder="Pessoa de Contato *" />
+        </div>
+
+        <div class="form-group">
+            <label for="principalActivityInput">Atividade Principal:</label>
+            <input type="text" id="principalActivityInput" class="form-control" th:field="*{principalActivity}" required placeholder="Atividade Principal *" />
+        </div>
+
+        <div class="form-group">
+            <label for="urlPageInput">Página Web:</label>
+            <input type="text" id="urlPageInput" class="form-control" th:field="*{urlPage}" required placeholder="Página Web *" />
+        </div>
+
+        <div class="form-group">
+            <label for="addressInput">Endereço:</label>
+            <input type="text" id="addressInput" class="form-control" th:field="*{address}" placeholder="Endereço" />
+        </div>
+
+        <div class="form-group">
+            <label for="addressProofInput">Prova de Endereço:</label>
+            <input type="file" id="addressProofInput" class="form-control-file" th:field="*{addressProof}" />
+        </div>
+
+        <div class="form-group">
+            <p hidden="hidden" th:each="offer : ${currentCompany.getInternshipOfferList()}">
+                <strong>Empresa Responsável:</strong> <span th:text="${offer.getCompanyResponsible().fantasyName}"></span><br />
+                <strong>Atividade:</strong> <span th:text="${offer.getPrincipalActivity()}"></span>
+            </p>
+        </div>
+
+        <button type="submit" class="btn btn-success">Salvar</button>
+    </form>
+
+    <a th:href="@{/company/companies}" class="btn btn-secondary mt-3">Voltar para páginas de empresas!</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

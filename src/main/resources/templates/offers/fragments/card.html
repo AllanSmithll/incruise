@@ -1,0 +1,54 @@
+<div class="individual-card inter-font" th:fragment="offer-card(offer)">
+    <div class="card-header">
+        <h4 th:text="${offer.principalActivity}"></h4>
+    </div>
+
+    <div class="d-flex flex-row gap-2">
+        <div class="d-flex flex-column">
+            <small>ID</small>
+            <p th:text="${offer.id}"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <small>Contratante</small>
+            <a th:href="@{/company/info/{username}(username=${offer.companyResponsible.user.username})}"
+                th:text="${offer.companyResponsible.fantasyName}"></a>
+        </div>
+    </div>
+    <div class="d-flex flex-row gap-3">
+        <div class="d-flex flex-column">
+            <small>Carga Horária Semanal</small>
+            <p th:text="${offer.weeklyWorkload} + ' horas'"></p>
+        </div>
+        <div class="d-flex flex-column">
+            <small>Valor da Bolsa</small>
+
+            <p>
+                <span th:if="${offer.remunerationValue > 0}"
+                    th:text="'R$ ' + ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></span>
+                <span th:unless="${offer.remunerationValue > 0}">
+                    <strong>Estágio Voluntário</strong>
+                </span>
+            </p>
+
+        </div>
+    </div>
+    <div class="d-flex flex-row gap-3">
+        <div class="d-flex flex-column">
+            <small>Vale Transporte</small>
+            <p
+                th:text="${offer.transportVoucher != null && offer.transportVoucher > 0} ? 'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : 'Nenhum'">
+                Nenhum</p>
+        </div>
+
+        <div class="d-flex flex-column">
+            <small>Pré-requisitos</small>
+            <p th:if="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}"
+                th:text="${offer.prerequisites}">
+            </p>
+            <p th:unless="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}">
+                Nenhum</p>
+        </div>
+    </div>
+    <th:block th:replace="~{/offers/fragments/actions(offer=${offer})}">
+    </th:block>
+</div>

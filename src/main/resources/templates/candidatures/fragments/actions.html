@@ -1,0 +1,36 @@
+<div class="d-flex buttons-actions" th:fragment="candidature-actions(candidature)"
+    th:with="showViewButton= ${showViewButton} ?: true">
+    <a class="btn btn-view button-action" th:href="@{/candidature/info/{id}(id=${candidature.id})}"
+        th:if="${showViewButton}">Visualizar</a>
+    <!--  Empresa ou Aluno ou Coordenador visualiza a candidatura do Aluno  -->
+
+    <form th:action="@{/candidature/aprove/{id}(id=${candidature.id})}" method="post"
+        th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+        <button type="submit" class="btn btn-success button-action">
+            Aprovar
+        </button> <!--  Empresa aprova a candidatura do Aluno  -->
+    </form> <!--  Empresa aprova a candidatura do Aluno  -->
+
+    <form
+        th:action="@{/candidature/reject/{internshipId}/{candidatureId}(candidatureId=${candidature.id}, internshipId=${candidature.internshipOffer.id})}"
+        method="post" th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')'  )}">
+
+        <!-- Campo oculto para simular o método DELETE -->
+        <input type="hidden" name="_method" value="DELETE" />
+
+        <!-- Botão de submissão -->
+        <button class="button-action btn-delete" type="submit">
+            Rejeitar
+        </button> <!-- Empresa recusa a candidatura do Aluno -->
+    </form>
+
+
+    <form th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"
+        th:action="@{/candidature/cancel/{candidatureId}(candidatureId=${candidature.id})}" method="post">
+        <input type="hidden" name="_method" value="DELETE" />
+        <button class="button-action btn-delete" type="submit">
+            Cancelar
+        </button>
+    </form>
+    <!-- Aluno Cancela sua candidatura  -->
+</div>

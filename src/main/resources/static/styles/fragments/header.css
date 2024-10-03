@@ -1,192 +1,175 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+/* Estilos gerais do header */
 
 header {
     height: 55px;
     width: 100%;
-    background: linear-gradient(45deg, #4199fe, #74b4fe);
+    background: var(--header-background);
     position: fixed;
-    top:0;
+    top:0;  
+    z-index: 1000;
 }
 main{
     margin-top: 55px;
 }
 
-.brand {
-    position: absolute;
-    padding-left: 20px;
-    float: left;
-    line-height: 55px;
-    text-transform: uppercase;
-    font-size: 1.4em;
-}
-
-.brand a,
-.brand a:visited {
-    color: #ffffff;
-    text-decoration: none !important;
+.main-navigation {
+    padding: 5px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
-    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-nav {
-    float: right;
+.brand-link {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-nav ul {
+.brand-link:hover {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+/* Navegação */
+.navigation-menu {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list {
     list-style: none;
+    display: flex;
     margin: 0;
     padding: 0;
 }
 
-nav ul li {
-    float: left;
+.nav-item {
+    margin-left: 30px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
     position: relative;
+    transition: all 0.3s ease;
 }
 
-nav ul li a,
-nav ul li a:visited {
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.nav-link:hover {
+    color: #f0f0f0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* Dropdown menu */
+.nav-dropdown {
+    display: none;
+    position: absolute;
+    right:0;
+    background: var(--header-background);
+    margin-top: 5px;
+    padding: 10px;
+    list-style: none;
+    width: 25%;
+}
+
+.nav-item:hover .nav-dropdown {
     display: block;
-    padding: 0 20px;
-    line-height: 55px;
-    color: #fff;
-    background: #262626;
-    text-decoration: none !important;
 }
 
-nav ul li a {
-    background: transparent;
-    color: #FFF;
+.dropdown-header-item, .logout-button {
+    color: white;
+    background: none;
+    font-size: 1.3rem !important;
+    min-height: 40px;
+    padding: 0;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
 }
 
-nav ul li a:hover,
-nav ul li a:visited:hover {
-    background: #2581DC;
-    color: #ffffff;
+.dropdown-header-item:hover{
+    background-color: var(--primary-color-light);
+    color: white;
 }
 
-.navbar-dropdown li a {
-    background: #2581DC;
+.logout-button:hover {
+    background-color: #c0392b;
 }
 
-nav ul li a:not(:only-child):after,
-nav ul li a:visited:not(:only-child):after {
-    padding-left: 4px;
-    content: ' \025BE';
+/* Logout button */
+/* .logout-button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+*/
+/* Toggle button para mobile */
+.nav-toggle {
+    display: none; /* Escondido para telas maiores */
 }
 
-nav ul li ul li {
-    min-width: 190px;
-}
-
-nav ul li ul li a {
-    padding: 15px;
-    line-height: 20px;
-}
-
-.navbar-dropdown {
-    position: absolute;
-    display: none;
-    z-index: 1;
-    background: #fff;
-    box-shadow: 0 0 35px 0 rgba(0, 0, 0, 0.25);
-}
-
-/* Mobile navigation */
-.nav-mobile {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: transparent;
-    height: 55px;
-    width: 70px;
-}
-
-@media only screen and (max-width: 800px) {
-    .nav-mobile {
+/* Responsividade */
+@media (max-width: 768px) {
+    .nav-toggle {
         display: block;
+        cursor: pointer;
     }
 
-    nav {
-        width: 100%;
-        padding: 55px 0 15px;
-    }
-
-    nav ul {
+    .nav-list {
         display: none;
+        flex-direction: column;
+        background-color: #2c3e50;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 20px 0;
     }
 
-    nav ul li {
-        float: none;
+    .nav-item {
+        margin-left: 0;
+        padding: 10px 20px;
+        text-align: center;
     }
 
-    nav ul li a {
-        padding: 15px;
-        line-height: 20px;
-        background: #262626;
+    .nav-toggle.active + .nav-list {
+        display: flex;
     }
-
-    nav ul li ul li a {
-        padding-left: 30px;
-    }
-
-    .navbar-dropdown {
-        position: static;
-    }
-
-    @media screen and (min-width:800px) {
-        .nav-list {
-            display: block !important;
+    @media (max-width: 1024px){
+        header{
+            position: static;
+            height: 100%;
         }
-    }
-
-    #navbar-toggle {
-        position: absolute;
-        left: 18px;
-        top: 15px;
-        cursor: pointer;
-        padding: 10px 35px 16px 0px;
-    }
-
-    #navbar-toggle span,
-    #navbar-toggle span:before,
-    #navbar-toggle span:after {
-        cursor: pointer;
-        border-radius: 1px;
-        height: 3px;
-        width: 30px;
-        background: #ffffff;
-        position: absolute;
-        display: block;
-        content: '';
-        transition: all 300ms ease-in-out;
-    }
-
-    #navbar-toggle span:before {
-        top: -10px;
-    }
-
-    #navbar-toggle span:after {
-        bottom: -10px;
-    }
-
-    #navbar-toggle.active span {
-        background-color: transparent;
-    }
-
-    #navbar-toggle.active span:before,
-    #navbar-toggle.active span:after {
-        top: 0;
-    }
-
-    #navbar-toggle.active span:before {
-        transform: rotate(45deg);
-    }
-
-    #navbar-toggle.active span:after {
-        transform: rotate(-45deg);
     }
 }

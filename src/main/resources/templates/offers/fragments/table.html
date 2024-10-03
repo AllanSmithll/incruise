@@ -1,0 +1,53 @@
+<table class="w-auto" th:fragment="offers-table(offers)">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Atividade Principal</th>
+            <th>Contratante</th>
+            <th>Carga Horária Semanal</th>
+            <th>Valor da Bolsa</th>
+            <th>Vale Transporte</th>
+            <th>Pré-requisitos</th>
+            <th>Status da Oferta</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="offer :${offers}">
+            <td th:text="${offer.id}"></td>
+            <td th:text="${offer.principalActivity}"></td>
+            <td>
+                <a th:href="@{/company/info/{username}(username=${offer.companyResponsible.user.username})}" th:text="${offer.companyResponsible.fantasyName}"></a>
+            </td>
+            <td th:text="${offer.weeklyWorkload + ' horas'}"></td>
+            <td>
+                <span th:if="${offer.remunerationValue > 0}" th:text="'R$ ' + ${#numbers.formatDecimal(offer.remunerationValue, 1, 2)}"></span>
+                <span th:unless="${offer.remunerationValue > 0}">Estágio Voluntário</span>
+            </td>
+            <td th:text="${offer.transportVoucher != null && offer.transportVoucher > 0} ? 'R$' + ${#numbers.formatDecimal(offer.transportVoucher, 1, 2)} : 'Nenhum'"></td>
+            <td>
+                <p th:if="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}" th:text="${offer.prerequisites}"></p>
+                <p th:unless="${offer.prerequisites != null && !offer.prerequisites.isEmpty()}">Nenhum</p>
+            </td>
+            <td>
+                <p th:classappend="${offer.status.ABERTA} ? 'text-success' : 'text-danger'" th:text="${offer.status.ABERTA} ? 'Aberta' : 'Fechada'"></p>
+            </td>
+            <td>
+                <div class="buttons-actions">
+                    <a th:href="@{/offer/info/{id}(id=${offer.id})}" class="button-action btn-view">
+                        <i class="bi bi-binoculars-fill"></i> Visualizar
+                    </a>
+                    <form th:action="{/candidature/apply/{id}(id=${offer.id})}" method="get">
+                        <input class="button-action btn-apply" type="submit" value="Candidatar-se" />
+                    </form>
+                    <form th:action="@{/cancel/{id}(id=${offer.id})}" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        <button class="button-action btn-delete" type="submit">
+                            <i class="bi bi-trash-fill"></i> Cancelar
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

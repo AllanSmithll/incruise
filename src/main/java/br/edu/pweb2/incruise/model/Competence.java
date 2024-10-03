@@ -1,25 +1,20 @@
 package br.edu.pweb2.incruise.model;
 
-import lombok.Getter;
+import jakarta.persistence.*;
+import lombok.Data;
 
-@Getter
-public enum Competence {
-    JAVA("Java"),
-    PYTHON("Python"),
-    HTML("HTML"),
-    CSS("CSS"),
-    JAVASCRIPT("JavaScript"),
-    MYSQL("MySQL"),
-    POSTGRES("PostgreSQL"),
-    WINDOWS("Windows"),
-    ANDROID("Android"),
-    TEAM_WORK("Trabalho em Equipe"),
-    ADAPTABILITY("Adaptabilidade");
+@Entity
+@Data
+@Table(name = "tb_competence")
+public class Competence {
 
-    private final String description;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private String description;
 
-    Competence(String description) {
-        this.description = description;
+    public boolean isEmpty(){
+        return false;
     }
-
 }

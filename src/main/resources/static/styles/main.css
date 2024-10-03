@@ -9,7 +9,7 @@
 
 /* Estilo base para o corpo da página */
 body {
-    font-family: var(--info-font-family);
+    font-family: var(--info-font-family), serif;
     background-color: var(--info-background);
     cursor: default;
     margin: 0;
@@ -26,6 +26,10 @@ a {
 
 a:hover {
     color: var(--neutral-color-dark-state-gray);
+}
+
+.d-flex.flex-row.gap-2{
+    justify-content: space-evenly;
 }
 
 /* Classes*/
@@ -52,4 +56,82 @@ div.logo {
     width: 100%;
     text-align: center;
     color: var(--primary-color-dark);
+}
+
+/* Estilo dos botões de envio */
+button[type="submit"] {
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+
+.title-page {
+    display: flex;
+    width: 100%;
+    justify-items: center;
+    justify-content: center ;
+    flex-direction: row;
+}
+
+.buttons-actions {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+}
+.button-action, .buttons-actions form{
+    flex: 1; 
+    margin: 0;
+    min-width: 0;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    height: 2rem;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+    
+}
+
+.inform{
+    font-size: 1.4rem;
+    color :var(--deep-ocean);
+}
+.card-header{
+    background: none;
+    padding: 0;
+}
+
+/*Situação da Candidatura*/
+.rejected-background, .approved-background {
+    padding: 10px;
+} 
+.rejected-background {
+    background-color: var(--primary-color-tomato);
+}
+
+.rejected-background .situacao{
+    color: var(--primary-color-tomato)!important;
+}
+.approved-background {
+    background-color: var(--secondary-color-tomato);
+}
+
+.approved-background {
+    background-color: var(--secondary-color-tomato);
+}
+
+
+@media (max-width: 768px) {
+    .buttons-actions {
+        flex-direction: column; /* Alinha os botões verticalmente em telas menores */
+    }
 }

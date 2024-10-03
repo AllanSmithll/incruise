@@ -1,0 +1,34 @@
+<table class="d-none" th:fragment="student-table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Matrícula</th>
+        <th>Curso</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student : ${students}">
+        <td>[[${student.id}]]</td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.enrollment}"></td>
+        <td th:text="${student.course}"></td>
+        <td th:text="${student.user.email}"></td>
+        <td th:text="${student.phoneNumber}"></td>
+        <td>
+            <div class="buttons-actions">
+                <a th:href="@{info/{username}(username=${student.user.username})}" class="button-action btn-view">Visualizar</a>
+
+                <form th:action="@{/student/delete/{id}(id=${student.id})}" method="post">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button class="button-action btn-delete" type="submit" value="Remover"></button>
+                </form>
+
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

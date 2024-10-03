@@ -37,6 +37,68 @@ p {
     line-height: 1.6;
 }
 
+.section.competences {
+    padding: 20px;
+    background-color: #f9f9f9; /* Fundo claro para destacar */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Título da seção */
+.section.competences .topic-title {
+    font-size: 1.8em;
+    color: #2c3e50; /* Azul escuro */
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #2980b9; /* Linha de destaque abaixo do título */
+    padding-bottom: 10px;
+}
+
+/* Lista de competências */
+.list-competences {
+    list-style-type: none; /* Remove bullets padrão */
+    padding: 0;
+    margin: 0;
+}
+
+/* Itens da lista de competências */
+.list-competences .competence {
+    background-color: #fff;
+    border-left: 4px solid #2980b9; /* Barra de cor à esquerda */
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+}
+
+/* Ícone antes do texto */
+.list-competences .competence::before {
+    content: "\2713"; /* Adiciona um checkmark (✓) */
+    font-size: 1.2em;
+    color: #2980b9;
+    margin-right: 10px;
+}
+
+.list-competences .competence:hover::before {
+    color: #ffffff;
+}
+
+/* Efeito hover na competência */
+.list-competences .competence:hover {
+    background-color: #2980b9;
+    color: white; /* Texto branco no hover */
+    border-color: #1e6a96; /* Cor mais escura na barra lateral */
+    cursor: pointer;
+}
+
 .table-candidatures {
     width: 100%;
     border-collapse: collapse;
@@ -107,5 +169,9 @@ p {
 
     .table-candidatures th, .table-candidatures td {
         padding: 8px;
+    }
+
+    .list-competences .competence {
+        font-size: 1em; /* Ajusta o tamanho do texto em telas menores */
     }
 }
