@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Ofertas'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Ofertas')}">
 </head>
@@ -20,9 +20,11 @@
         </div>
 
         <div class="father-card">
-            <th:block th:each="offer : ${offers}" th:insert="~{/offers/fragments/card(offer)}">
+            <th:block th:each="offer : ${offersPage}" th:insert="~{/offers/fragments/card(offer)}">
             </th:block>
         </div>
+
+        <div id="navigation" th:replace="~{/offers/fragments/pagination}"></div>
     </main>
 </body>
 
