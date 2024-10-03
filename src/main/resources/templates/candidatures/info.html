@@ -11,18 +11,31 @@
         th:classappend="${status == 'REJEITADA'} ? 'rejected-background' : (${status == 'APROVADA'} ? 'approved-background' : '')">
         <section class="info-section" id="first-info">
             <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">
-            <h1>Candidatura de
+            <h1 th:unless="${status == 'APROVADA'}">Candidatura de
+                <a id="name" th:text="${candidature.student.name}"
+                    th:href="@{/student/info/{username}(username=${candidature.student.user.username})}">
+                    Nome do estudante
+                </a>
+            </h1>
+            <h1 th:if="${status == 'APROVADA'}">Estágio comprovado de
                 <a id="name" th:text="${candidature.student.name}"
                     th:href="@{/student/info/{username}(username=${candidature.student.user.username})}">
                     Nome do estudante
                 </a>
             </h1>
         </section>
-
+        <form
+        th:if="${status == 'APROVADA'}" 
+        th:action="@{/candidature/pdf/{id}(id=${candidature.id})}" method="get">
+            <button type="submit" class="btn btn-primary">
+                Baixar PDF
+            </button>
+        </form>
         <section class="info-section" id="options-section">
             <h2 class="section-title">Parecer do Avaliador</h2>
-            <p  th:if="${status == 'REJEITADA'}" class="inform">Infelizmente, Você não se encaixa no perfil da nossa vaga. </p>
-            <p  th:if="${status == 'APROVADA'}" class="inform">Parabéns! Sinta-se Honrado </p>
+            <p th:if="${status == 'REJEITADA'}" class="inform">Infelizmente, Você não se encaixa no perfil da nossa
+                vaga. </p>
+            <p th:if="${status == 'APROVADA'}" class="inform">Parabéns! Sinta-se Honrado </p>
             <div th:unless="${status != 'PENDENTE'}">
                 <h2 class="section-title">Opções</h2>
                 <th:block
@@ -52,7 +65,7 @@
             <div class="d-flex ">
                 <div class="topic">
                     <h1 class="topic-title">
-                        Oferta 
+                        Oferta
                     </h1>
                     <a class="topic-content" th:text="${candidature.internshipOffer.principalActivity}"
                         th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}">
@@ -74,47 +87,47 @@
 
         </section>
         <section class="info-section mb-5" id="summary-student"
-        th:unless="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
-        <h2 class="section-title text-center mb-4">Resumo do Estudante</h2>
-    
-        <div class="container d-flex flex-wrap justify-content-around">
-    
-            <div class="topic text-center mb-4">
-                <h5 class="topic-title">Nome</h5>
-                <p class="topic-content" th:text="${candidature.student.name}">
-                    Sistemas para alguma coisa de alguma coisa para internet das coisas que são coisas
-                </p>
-            </div>
-    
-            <div class="topic text-center mb-4">
-                <h5 class="topic-title">Matrícula</h5>
-                <p class="topic-content" th:text="${candidature.student.enrollment}">00001112222</p>
-            </div>
-    
-            <div class="topic text-center mb-4">
-                <h5 class="topic-title">Curso</h5>
-                <p class="topic-content" th:text="${candidature.student.course}">Sistemas de Informação</p>
-            </div>
-    
-            <div class="topic text-center mb-4">
-                <h5 class="topic-title">Email</h5>
-                <p class="topic-content" th:text="${candidature.student.user.email}">
-                    palinha.joao@academico.uepa.edu.br
-                </p>
-            </div>
-    
-            <div class="topic text-center mb-4">
-                <h5 class="topic-title">Telefone</h5>
-                <p class="topic-content" th:text="${candidature.student.phoneNumber}">+55 83 8229-2523</p>
-            </div>
-    
-        </div>
-    </section>
-    
+            th:unless="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}">
+            <h2 class="section-title text-center mb-4">Resumo do Estudante</h2>
 
-        <section class="info-section" id="competence-section">
+            <div class="container d-flex flex-wrap justify-content-around">
+
+                <div class="topic text-center mb-4">
+                    <h5 class="topic-title">Nome</h5>
+                    <p class="topic-content" th:text="${candidature.student.name}">
+                        Sistemas para alguma coisa de alguma coisa para internet das coisas que são coisas
+                    </p>
+                </div>
+
+                <div class="topic text-center mb-4">
+                    <h5 class="topic-title">Matrícula</h5>
+                    <p class="topic-content" th:text="${candidature.student.enrollment}">00001112222</p>
+                </div>
+
+                <div class="topic text-center mb-4">
+                    <h5 class="topic-title">Curso</h5>
+                    <p class="topic-content" th:text="${candidature.student.course}">Sistemas de Informação</p>
+                </div>
+
+                <div class="topic text-center mb-4">
+                    <h5 class="topic-title">Email</h5>
+                    <p class="topic-content" th:text="${candidature.student.user.email}">
+                        palinha.joao@academico.uepa.edu.br
+                    </p>
+                </div>
+
+                <div class="topic text-center mb-4">
+                    <h5 class="topic-title">Telefone</h5>
+                    <p class="topic-content" th:text="${candidature.student.phoneNumber}">+55 83 8229-2523</p>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!------------To Do------------>
+        <!-- <section class="info-section" id="competence-section">
             <h2 class="section-title"> Competências atingidas</h2>
-            <!------------To Do------------>
             <h2> Competencias Atingidas</h2>
             <ul>
                 <li class="competeces have-competence"> O competence 1</li>
@@ -128,7 +141,7 @@
                 <li class="competeces have-competence">O competence 1</li>
                 <li class="competeces dont-have-competence">X competence 2</li>
             </ul>
-        </section>
+        </section> -->
 
     </main>
 </body>

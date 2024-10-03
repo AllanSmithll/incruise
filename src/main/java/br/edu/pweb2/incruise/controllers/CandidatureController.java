@@ -19,6 +19,22 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.itextpdf.*;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
 import br.edu.pweb2.incruise.model.*;
 
 @Controller
@@ -192,7 +208,43 @@ public class CandidatureController {
 
         return "redirect:/candidature/info/" + candidatureId;
     }
-
+    @GetMapping("/pdf/{id}")
+    public ResponseEntity<byte[]> generatePdf(@PathVariable("id") Long id) {
+    
+        Candidature candidature = candidatureService.findById(id);
+    
+        // Gerar PDF em memória
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, out); // Usando o ByteArrayOutputStream para gerar o PDF em memória
+            document.addTitle(candidature.getInternshipOffer().getPrincipalActivity() + " " + candidature.getStudent().getName());
+            document.open();
+    
+            // Adicione o conteúdo ao PDF
+            document.add(new Paragraph("Estágio comprovado pelo sistema do INCRUISE " ));
+            document.add(new Paragraph("Aluno Aprovado: " + candidature.getStudent().getName()));
+            document.add(new Paragraph("Data da Aplicação: " + candidature.getFormattedDate()));
+            document.add(new Paragraph("Atividade do Estágio: " + candidature.getInternshipOffer().getPrincipalActivity()));
+            document.add(new Paragraph("Empresa Contratante: " + candidature.getInternshipOffer().getCompanyResponsible().getFantasyName()));
+    
+            document.close();
+    
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    
+        // Retornar o PDF como resposta HTTP
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("filename", "Termo_de_Estagio.pdf");
+    
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(out.toByteArray());
+    }
+    
     private Student findStudent(String username, RedirectAttributes redirectAttributes) {
         Student student = studentService.findByUserUsername(username);
         if (student == null) {
