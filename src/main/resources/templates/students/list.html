@@ -1,16 +1,10 @@
-<!doctype html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta th:insert="~{/fragments/custom-headfiles :: list-headfiles(title='Estudantes')}">
-
 </head>
 
 <body>
-    <header th:replace="~{/fragments/header}"></header>
-
-    <main class="main-screen">
-
+    <main class="main-screen" layout:fragment="content">
         <div class="card-list-component">
             <h1>Todos os Alunos Cadastrados</h1>
             <div class="buttons-actions">
@@ -26,9 +20,6 @@
                 </th:block>
             </div>
         </div>
-        </div>
-        <div th:replace="~{/fragments/scripts}"></div>
-
     </main>
 </body>
 

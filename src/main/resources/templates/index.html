@@ -1,23 +1,73 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <meta th:insert="~{/fragments/headfiles(title='Incruise')}">
-    <link rel="stylesheet" th:href="@{/styles/principal-page.css}" />
+    <link rel="stylesheet" th:href="@{/styles/principal-page.css}"/>
 </head>
-
 <body>
-<header th:replace="~{/fragments/header}"></header>
+<div layout:fragment="content">
+    <section class="introduction"
+             th:style="'background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + @{/imgs/backgrounds/principal-cruise2.jpg} + ')'">
+        <div class="intro-text">
+            <h1>Incruise</h1>
+            <p>O Cruzeiro de Oportunidades</p>
+        </div>
+    </section>
 
-<main>
-    <!-- Conteúdo específico da página será inserido aqui -->
-    <div th:fragment="content">
-        <div th:replace="~{/fragments/main-content}"></div>
-    </div>
+    <section id="Objective-Section" class="section-main">
+        <h1 class="section-title">Nosso Objetivo</h1>
+        <p id="Our-Objective">
+            O Incruise é um projeto sem fins lucrativos que visa conectar estudantes a oportunidades de estágio,
+            facilitando o processo de candidatura, seleção e divulgação das vagas.
+        </p>
+    </section>
 
-<footer th:replace="~{/fragments/footer}"></footer>
-
-<div th:replace="~{/fragments/scripts}"></div>
+    <section class="team-boxed">
+        <div class="container">
+            <div class="intro section-title">
+                <h2 class="text-center section-title">Equipe</h2>
+            </div>
+            <div class="row people">
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        <img class="rounded-circle" src="https://avatars.githubusercontent.com/AllanSmithll"
+                             alt="Allan Amâncio">
+                        <h3 class="name">Allan Amâncio</h3>
+                        <p class="title">Developer</p>
+                        <div class="social">
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        <img class="rounded-circle" src="https://avatars.githubusercontent.com/HanielCostaDaSilva"
+                             alt="Haniel Costa">
+                        <h3 class="name">Haniel Costa</h3>
+                        <p class="title">Developer</p>
+                        <div class="social">
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="box">
+                        <img class="rounded-circle" src="https://avatars.githubusercontent.com/ImMarcio"
+                             alt="Márcio José">
+                        <h3 class="name">Márcio José</h3>
+                        <p class="title">Developer</p>
+                        <div class="social">
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 </body>
-
 </html>

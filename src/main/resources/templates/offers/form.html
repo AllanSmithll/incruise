@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
     <meta th:insert="~{/fragments/custom-headfiles :: register-headfiles(title='Cadastrar Oferta de Estágio')}">
@@ -8,8 +6,7 @@
 </head>
 
 <body>
-    <header th:replace="~{/fragments/header}"></header>
-    <main>
+    <main layout:fragment="content">
         <div class="main-content">
             <h1 class="form-title">Cadastrar Oferta de Estágio</h1>
 
@@ -109,8 +106,6 @@
                 <button class="submit-input" type="submit">Cadastrar Oferta</button>
             </form>
         </div>
-
-        <div th:replace="~{/fragments/scripts}"></div>
     </main>
 </body>
 

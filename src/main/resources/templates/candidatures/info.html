@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <!-- Incluindo o fragmento de cabeçalho -->
     <meta
         th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title='Candidatura de '+ ${candidature.student.name})}">
-        
 </head>
-
-<!-- Esta vai ser a seção mais divertida que irei criar :D-->
-<!-- Nota do Dev: foi a página que mais me deu problema-->
-
 <body>
-
-    <header th:replace="~{/fragments/header}"></header>
-
-    <main>
-
+    <main layout:fragment="content">
         <section class="info-section" id="first-info">
             <img th:src="@{/imgs/default/candidature-default.png}" alt="Imagem do Estudante">
             <h1>Candidatura de
@@ -129,9 +117,6 @@
         </section>
 
     </main>
-
-    <div th:replace="~{/fragments/scripts}"></div>
-
 </body>
 
 </html>

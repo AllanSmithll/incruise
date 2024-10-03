@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="~{/layout/layout}" th:with="title='Home'" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta th:insert="~{/fragments/custom-headfiles :: perfil-headfiles(title=${student.name})}">
-
     <link rel="stylesheet" th:href="@{/styles/students/info.css}">
-
     <link rel="stylesheet" th:href="@{/styles/fragments/card-global.css}">
-
 </head>
-
 <body>
-
-    <header th:replace="~{/fragments/header}"></header>
-    <main>
-
+    <main layout:fragment="content">
         <section class="info-section" id="first-info">
             <img th:src="@{/imgs/default/student-boy-default.png}">
             <h1 id="name" th:text="${#strings.capitalize(student.name)}">João Maria Lobo Alves Palhares Costa Palhinha
@@ -98,7 +89,6 @@
                 </th:block>
             </div>
         </section>
-        <div th:replace="~{/fragments/scripts}"></div>
     </main>
 </body>
 
