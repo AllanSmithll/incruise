@@ -19,11 +19,13 @@ public class Candidature {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // Não cascades operações de remoção para o estudante, já que um estudante pode ter múltiplas candidaturas
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // Também não cascades para a oferta de estágio, pois uma oferta pode ter várias candidaturas
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "internship_offer_id", nullable = false)
     private InternshipOffer internshipOffer;
 

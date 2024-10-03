@@ -24,8 +24,9 @@
     --primary-color-light: #428bca;
     /* Azul médio */
     --primary-color-dark: #00589c;
-    /* Azul escuro */
+    /* 🍅 */
     --primary-color-tomato: hsl(4, 100%, 67%);
+    --secondary-color-tomato: hsl(111, 71%, 52%);
 
     --ocean : #1e90ff;
     --deep-ocean : #004080;

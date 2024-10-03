@@ -4,14 +4,16 @@
         th:if="${showViewButton}">Visualizar</a>
     <!--  Empresa ou Aluno ou Coordenador visualiza a candidatura do Aluno  -->
 
-    <a class="btn btn-success button-action" th:href="@{/candidature/aprove/{id}(id=${candidature.id})}"
-        th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')} ">
-        Aprovar</a> <!--  Empresa aprova a candidatura do Aluno  -->
+    <form th:action="@{/candidature/aprove/{id}(id=${candidature.id})}" method="post"
+        th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')')}">
+        <button type="submit" class="btn btn-success button-action">
+            Aprovar
+        </button> <!--  Empresa aprova a candidatura do Aluno  -->
+    </form> <!--  Empresa aprova a candidatura do Aluno  -->
 
-        <form 
-        th:action="@{/candidature/reject/{internshipId}/{candidatureId}(candidatureId=${candidature.id}, internshipId=${candidature.internshipOffer.id})}" 
-        method="post"
-        th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')'  )}">
+    <form
+        th:action="@{/candidature/reject/{internshipId}/{candidatureId}(candidatureId=${candidature.id}, internshipId=${candidature.internshipOffer.id})}"
+        method="post" th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'')'  )}">
 
         <!-- Campo oculto para simular o método DELETE -->
         <input type="hidden" name="_method" value="DELETE" />
@@ -23,10 +25,12 @@
     </form>
 
 
-    <form th:action="@{/candidature/cancel/{candidatureId}(candidatureId=${candidature.id})}" method="post"
-        th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')} ">
+    <form th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"
+        th:action="@{/candidature/cancel/{candidatureId}(candidatureId=${candidature.id})}" method="post">
         <input type="hidden" name="_method" value="DELETE" />
-        <button class="button-action btn-delete" type="submit" value="">
-            Cancelar</button>
-    </form> <!-- Aluno Cancela sua candidatura  -->
+        <button class="button-action btn-delete" type="submit">
+            Cancelar
+        </button>
+    </form>
+    <!-- Aluno Cancela sua candidatura  -->
 </div>

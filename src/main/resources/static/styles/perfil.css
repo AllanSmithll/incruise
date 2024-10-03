@@ -1,3 +1,4 @@
+@import url("./theme.css");
 body {
   background: var(--info-background);
 }
@@ -168,6 +169,7 @@ body {
 .section.competences div {
   width: 40%;
 }
+
 
 @media (min-width: 1200px) {
   .opportunities-list .offer-card {

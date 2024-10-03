@@ -1,5 +1,7 @@
-<div class="individual-card" th:fragment="candidature-card(candidature)">
-        <th:block th:if="candidature != null">
+<div class="individual-card" th:fragment="candidature-card(candidature)"
+th:with="status=${candidature.status.name()}"
+th:classappend="${status == 'REJEITADA'} ? 'rejected-background' : (${status == 'APROVADA'} ? 'approved-background' : '')"
+>
             <h3>
                 <a th:href="@{/internshipOffer/info/{id}(id=${candidature.internshipOffer.id})}"
                     th:text="${candidature.internshipOffer.principalActivity}">
@@ -30,11 +32,10 @@
             
             <div class="d-flex flex-column">
                 <smal>Situação</smal>
-                <p th:text="${candidature.status}">PENDENTE</p>
+                <p class="situacao" th:text="${candidature.status}">PENDENTE</p>
             </div>
 
 
             <th:block th:replace="~{candidatures/fragments/actions(candidature=${candidature})}"></th:block>
             </th:block>
-        </th:block>
 </div>

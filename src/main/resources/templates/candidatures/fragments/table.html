@@ -7,6 +7,7 @@
             <th>Curso</th>
             <th>Telefone</th>
             <th>Data</th>
+            <th>Situaçao</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -21,6 +22,7 @@
             <td th:text="${c.student.course}">Curso do Estudante</td>
             <td th:text="${c.student.phoneNumber}">Telefone do Estudante</td>
             <td th:text="${#temporals.format(c.createdDate, 'dd/MM/yyyy')}">Data da Candidatura</td>
+            <td th:text="${c.status.name()}">status</td>
             <td>
                 <th:block th:replace="~{candidatures/fragments/actions(${c})}"></th:block>
             </td>

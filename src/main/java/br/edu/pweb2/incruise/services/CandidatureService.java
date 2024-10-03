@@ -4,6 +4,7 @@ import br.edu.pweb2.incruise.model.Candidature;
 import br.edu.pweb2.incruise.model.CandidatureStatus;
 import br.edu.pweb2.incruise.model.NullCandidature;
 import br.edu.pweb2.incruise.repository.CandidatureRepositoryJpa;
+import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,20 +37,27 @@ public class CandidatureService {
         candidatureRepositoryJpa.save(candidature);
     }
 
-    public void remove(Long id) throws Exception {
+    private void delete(Long id) throws Exception {
         this.candidatureRepositoryJpa.deleteById(id);
     }
-
-    public void cancelCandidature(Candidature candidature) {
-        this.candidatureRepositoryJpa.delete(candidature);
+    @Transactional
+    public void cancelCandidature(Candidature candidature) throws Exception {
+        this.delete(candidature.getId());
     }
-
-    public void rejectCandidature(Candidature candidature){
+    @Transactional
+    public void rejectCandidature(Candidature candidature) throws Exception{
         candidature.setStatus(CandidatureStatus.REJEITADA);
+        this.delete(candidature.getId());
         this.updateCandidature(candidature);
     }
 
     public void updateCandidature(Candidature candidature){
         this.candidatureRepositoryJpa.save(candidature);
+    }
+
+    public void aproveCandidature(Candidature candidature) throws Exception {
+        candidature.setStatus(CandidatureStatus.APROVADA);
+        this.delete(candidature.getId());
+        this.updateCandidature(candidature);
     }
 }
