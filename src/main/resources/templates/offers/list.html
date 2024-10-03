@@ -11,7 +11,6 @@
     <header th:replace="~{/fragments/header}"></header>
     <main class="main-screen">
 
-
         <div class="card-list-component">
             <h1>Ofertas de Estágio</h1>
             <div class="buttons-actions">
@@ -19,9 +18,11 @@
                     Nova Oferta
                 </a>
             </div>
+            <div>
+                <button id="toggleButton" class="btn btn-secondary" onclick="toggleFilter()">Esconder Filtros</button>
 
-
-            <div class="filter-form" th:insert="~{/offers/fragments/filter}"></div>
+                <div id="filter-form" th:insert="~{/offers/fragments/filter}"></div>
+            </div>
         </div>
 
         <div class="father-card">
@@ -32,6 +33,7 @@
 
     </main>
     <div th:replace="~{/fragments/scripts}"></div>
+
 
 </body>
 

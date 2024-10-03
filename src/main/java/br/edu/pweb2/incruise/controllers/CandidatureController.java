@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,46 +57,54 @@ public class CandidatureController {
         return "candidatures/info";
     }
 
-    @GetMapping("/apply/{username}/{id}")
-    public String showApplicationForm(@PathVariable("id") Long offerId, @PathVariable("username") String username, Model model,
+    @GetMapping("/apply/{id}")
+    public String showApplicationForm(@PathVariable("id") Long offerId, Model model,
             RedirectAttributes redirectAttributes) {
-        InternshipOffer offer = internshipOfferService.findById(offerId);
-        
-        if (offer == null || offer.isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Student student = this.findStudent(username, redirectAttributes);
+        InternshipOffer offer = this.findInternshipOffer(offerId, redirectAttributes);
+
+        if (offer == null || student == null) {
             return "redirect:/internshipOffer/offers";
         }
-                
+
         model.addAttribute("offer", offer);
+        model.addAttribute("student", student);
         return "candidatures/apply";
     }
 
     @PostMapping("/apply")
     public String applyForInternship(@RequestParam("offerId") Long offerId,
-                                      @RequestParam("enrollment") String enrollment,
-                                      @RequestParam(value = "message", required = false) String message,
-                                      RedirectAttributes redirectAttributes) {
-        Student student = findStudent(enrollment, redirectAttributes, offerId);
-        if (student == null) return "redirect:/candidature/apply/" + offerId;
-    
+            @RequestParam(value = "message", required = false) String message,
+            RedirectAttributes redirectAttributes) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        Student student = this.findStudent(username, redirectAttributes);
+
+        if (student == null)
+            return "redirect:/candidature/apply/" + offerId;
+
         InternshipOffer offer = findInternshipOffer(offerId, redirectAttributes);
-        if (offer == null) return "redirect:/internshipOffer/offers";
-    
-        if (hasAlreadyApplied(offer, student, redirectAttributes)) return "redirect:/internshipOffer/offers";
-    
+        if (offer == null)
+            return "redirect:/internshipOffer/offers";
+
+        if (hasAlreadyApplied(offer, student, redirectAttributes))
+            return "redirect:/internshipOffer/offers";
+
         createAndSaveCandidature(student, offer, message, redirectAttributes);
-    
+
         return "redirect:/internshipOffer/offers";
     }
-    
-    private Student findStudent(String enrollment, RedirectAttributes redirectAttributes, Long offerId) {
-        Student student = studentService.findByEnrollment(enrollment);
+
+    private Student findStudent(String username, RedirectAttributes redirectAttributes) {
+        Student student = studentService.findByUserUsername(username);
         if (student == null) {
-            redirectAttributes.addFlashAttribute("error", "Aluno não encontrado com a matrícula fornecida.");
+            redirectAttributes.addFlashAttribute("error", "Aluno não encontrado.");
         }
         return student;
     }
-    
+
     private InternshipOffer findInternshipOffer(Long offerId, RedirectAttributes redirectAttributes) {
         InternshipOffer offer = internshipOfferService.findById(offerId);
         if (offer == null || offer.isEmpty()) {
@@ -102,7 +112,7 @@ public class CandidatureController {
         }
         return offer;
     }
-    
+
     private boolean hasAlreadyApplied(InternshipOffer offer, Student student, RedirectAttributes redirectAttributes) {
         boolean alreadyApplied = offer.getCandidatureList().stream()
                 .anyMatch(candidature -> candidature.getStudent().equals(student));
@@ -111,17 +121,17 @@ public class CandidatureController {
         }
         return alreadyApplied;
     }
-    
+
     private void createAndSaveCandidature(Student student, InternshipOffer offer, String message,
-                                           RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) {
         Candidature newCandidature = new Candidature(student, offer, message);
         offer.addCandidature(newCandidature);
         student.addCandidature(newCandidature);
-    
+
         candidatureService.save(newCandidature);
         internshipOfferService.save(offer, offer.getCompanyResponsible());
-    
+
         redirectAttributes.addFlashAttribute("success", "Candidatura realizada com sucesso.");
     }
-    
+
 }

@@ -1,5 +1,6 @@
 <form th:action="@{/internshipOffer/filter}" method="get">
-    <div class="form-group" th:if="${#authorization.expression('hasAnyRole(''ROLE_STUDENT'', ''ROLE_COORDINATOR'', ''ROLE_ADMIN'')')}">
+    <div class="form-group" >
+        <!-- th:if="${#authorization.expression('hasAnyRole(''ROLE_STUDENT'', ''ROLE_COORDINATOR'', ''ROLE_ADMIN'')')}" -->
         <label for="companyName">Nome da Empresa:</label>
         <input type="text" id="companyName" name="companyName" class="form-control"
             placeholder="Nome da Empresa">
