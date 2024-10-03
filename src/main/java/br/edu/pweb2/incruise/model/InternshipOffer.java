@@ -33,7 +33,7 @@ public class InternshipOffer {
 	@Column(name = "prerequisites")
 	private String prerequisites;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH} )
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REMOVE} )
 	@JoinColumn(name = "company_id")
 	private Company companyResponsible;
 
