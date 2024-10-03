@@ -7,6 +7,18 @@
 
 <body>
     <main class="main-content" layout:fragment="content">
+        <section class="info-section" id="first-info">
+            <h1>
+                <img th:src="@{/imgs/default/internshipOffer-default.png}" alt="Imagem do Estudante">
+                [[${offer.principalActivity}]]
+            </h1>
+        </section>
+        <!-- Seção de Ações da oportunidade -->
+        <section class="info-section" id="options-section">
+            <h2 class="section-title">Opções</h2>
+            <th:block th:replace="~{/offers/fragments/actions(offer=${offer},showViewButton=false)}"></th:block>
+        </section>
+        <!-- Seção de detalhes da oportunidade -->
         <div class="info-section details">
             <h1 class="section-title">Detalhes</h1>
             <!-- Remuneração -->

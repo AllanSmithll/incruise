@@ -75,9 +75,9 @@
     </section>
 
     <section class="info-section" id="list-section">
-        <h2 class="section-title">Oportunidades de Estágio<span></span></h2>
+        <h2 class="section-title">Oportunidades de Estágio</h2>
 
-        <p class="opportunity-count" th:unless="${#lists.isEmpty(company.internshipOfferList)}">
+        <p class="list-count" th:unless="${#lists.isEmpty(company.internshipOfferList)}">
             Total de Oportunidades:
             <span class="count-number" th:text="${#lists.size(company.internshipOfferList)}"></span>
         </p>

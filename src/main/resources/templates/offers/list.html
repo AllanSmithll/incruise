@@ -12,9 +12,11 @@
                     Nova Oferta
                 </a>
             </div>
+            <div>
+                <button id="toggleButton" class="btn btn-secondary" onclick="toggleFilter()">Esconder Filtros</button>
 
-
-            <div class="filter-form" th:insert="~{/offers/fragments/filter}"></div>
+                <div id="filter-form" th:insert="~{/offers/fragments/filter}"></div>
+            </div>
         </div>
 
         <div class="father-card">

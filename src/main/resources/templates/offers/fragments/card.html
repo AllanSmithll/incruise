@@ -1,5 +1,4 @@
 <div class="individual-card inter-font" th:fragment="offer-card(offer)">
-
     <div class="card-header">
         <h4 th:text="${offer.principalActivity}"></h4>
     </div>
@@ -50,39 +49,6 @@
                 Nenhum</p>
         </div>
     </div>
-<!--     <div class="status-box mt-3">
-        <small>Status da Oferta</small>
-        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).ABERTA}" class="text-success"
-            th:text="Aberta">
-            Aberta
-        </p>
-        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).FECHADA}" class="text-secondary"
-            th:text="Fechada">
-        </p>
-        <p th:if="${offer.status == T(br.edu.pweb2.incruise.model.OfferStatus).CANCELADA}" class="text-danger"
-            th:text="Cancelada">
-        </p>
-    </div> -->
-    <div class="buttons-actions d-flex gap-2 justify-content-center mt-3">
-        <a th:href="@{/internshipOffer/info/{id}(id=${offer.id})}" class="button-action btn-view">
-
-            <i class="bi bi-binoculars-fill"></i> Visualizar
-        </a>
-
-        <form th:action="@{/candidature/apply/{id}(id=${offer.id})}" method="get"
-            th:if="${#authorization.expression('hasRole(''ROLE_STUDENT'')')}"
-            th:onsubmit="event.stopPropagation();">
-            <button class="button-action btn-apply" type="submit" value="Candidatar-se">
-                <i class="bi bi-check-circle-fill"></i> Candidatar-se
-            </button>
-        </form>
-
-        <form th:action="@{cancel/{id}(id=${offer.id})}" method="post"
-            th:if="${#authorization.expression('hasRole(''ROLE_COMPANY'') or hasRole(''ROLE_ADMIN'')')}"
-            th:onsubmit="event.stopPropagation();">
-            <button class="button-action btn-delete" type="submit">
-                <i class="bi bi-x-circle-fill"></i> Cancelar
-            </button>
-        </form>
-    </div>
+    <th:block th:replace="~{/offers/fragments/actions(offer=${offer})}">
+    </th:block>
 </div>
