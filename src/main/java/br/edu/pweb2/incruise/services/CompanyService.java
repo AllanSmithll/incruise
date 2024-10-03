@@ -11,6 +11,8 @@ import br.edu.pweb2.incruise.model.exception.ItemNotFoundException;
 import br.edu.pweb2.incruise.repository.CompanyRepositoryJpa;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +40,11 @@ public class CompanyService {
     @Transactional
     public Company findByUserUsername(String username) {
         return companyRepositoryJpa.findByUserUsername(username);
+    }
+
+    @Transactional
+    public Page<InternshipOffer> findByCompany(Company company, Pageable pageable) {
+        return internshipOfferService.findByCompanyResponsiblePage(company, pageable);
     }
 
     @Transactional
