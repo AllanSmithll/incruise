@@ -21,7 +21,8 @@
 
         <section class="info-section" id="options-section">
             <h2 class="section-title">Parecer do Avaliador</h2>
-            <p class="topic-content">Infelizmente, Você não se encaixa no perfil da nossa vaga. </p>
+            <p  th:if="${status == 'REJEITADA'}" class="inform">Infelizmente, Você não se encaixa no perfil da nossa vaga. </p>
+            <p  th:if="${status == 'APROVADA'}" class="inform">Parabéns! Sinta-se Honrado </p>
             <div th:unless="${status != 'PENDENTE'}">
                 <h2 class="section-title">Opções</h2>
                 <th:block
@@ -114,7 +115,7 @@
         <section class="info-section" id="competence-section">
             <h2 class="section-title"> Competências atingidas</h2>
             <!------------To Do------------>
-            <h2> Competencias obrigatórias</h2>
+            <h2> Competencias Atingidas</h2>
             <ul>
                 <li class="competeces have-competence"> O competence 1</li>
                 <li class="competeces dont-have-competence">X competence 2</li>

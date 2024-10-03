@@ -102,6 +102,7 @@ button[type="submit"] {
 }
 
 .inform{
+    font-size: 1.4rem;
     color :var(--deep-ocean);
 }
 .card-header{

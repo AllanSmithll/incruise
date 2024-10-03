@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.pweb2.incruise.model.*;
-import org.springframework.web.bind.annotation.RequestBody;;
 
 @Controller
 @RequestMapping("/candidature")
@@ -41,7 +40,7 @@ public class CandidatureController {
 
     @GetMapping("/candidatures")
     public String listCandidatures(Model model) {
-        List<Candidature> candidatures = this.candidatureService.findAll();
+        List<Candidature> candidatures = this.candidatureService.findAllOrdedByStatus();
         model.addAttribute("candidatures", candidatures);
         return "/candidatures/list";
     }
@@ -75,7 +74,7 @@ public class CandidatureController {
         return "candidatures/apply";
     }
 
-    @PostMapping("/apply")
+    @PostMapping("/apply/{offerId}")
     public String applyForInternship(@PathVariable("offerId") Long offerId,
             @RequestParam(value = "message", required = false) String message,
             RedirectAttributes redirectAttributes) {
