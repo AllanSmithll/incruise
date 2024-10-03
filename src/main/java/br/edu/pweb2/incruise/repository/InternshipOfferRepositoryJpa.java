@@ -21,8 +21,10 @@ public interface InternshipOfferRepositoryJpa extends JpaRepository<InternshipOf
     Page<InternshipOffer> findInternshipOffers(Pageable pageable);
 
     List<InternshipOffer> findByStatus(OfferStatus status);
+
+    Page<InternshipOffer> findByCompanyResponsible(Company company, Pageable pageable);
     List<InternshipOffer> findByCompanyResponsible(Company company);
-    
+
     @Query("SELECT offer FROM InternshipOffer offer WHERE offer.companyResponsible = :company AND "
             + "(:fantasyName IS NULL OR offer.companyResponsible.fantasyName LIKE %:fantasyName%) AND "
             + "(:minRemuneration IS NULL OR offer.remunerationValue >= :minRemuneration) AND "
