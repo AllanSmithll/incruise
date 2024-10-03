@@ -50,7 +50,7 @@ public class Company {
 	private byte[] addressProof;
 
 
-	@OneToMany(mappedBy = "companyResponsible", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "companyResponsible", orphanRemoval = true, fetch = FetchType.EAGER)
 	private List<InternshipOffer> internshipOfferList = new ArrayList<>();
 
 	@Override
