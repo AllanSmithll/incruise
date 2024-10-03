@@ -176,7 +176,8 @@ public class CandidatureController {
     }
 
     private InternshipOffer findInternshipOffer(Long offerId, RedirectAttributes redirectAttributes) {
-        InternshipOffer offer = internshipOfferService.findById(offerId);
+        // Utilize o método findById(offerId) que retorna um único resultado, sem paginação
+        InternshipOffer offer = internshipOfferService.findById(offerId);  // Método auxiliar sem paginação
         if (offer == null || offer.isEmpty()) {
             redirectAttributes.addFlashAttribute("error", "Oferta não encontrada.");
         }

@@ -1,0 +1,21 @@
+<div class="pagination">
+    <ul class="pagination-list">
+        <li th:if="${offersPage.hasPrevious()}" class="page-item">
+            <a class="page-link" th:href="@{/internshipOffer/offers(page=${offersPage.number - 1}, size=${offersPage.size})}">
+                Anterior
+            </a>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(0, offersPage.totalPages - 1)}"
+            th:classappend="${i == offersPage.number} ? 'active' : ''" class="page-item">
+            <a class="page-link" th:href="@{/internshipOffer/offers(page=${i}, size=${offersPage.size})}"
+               th:text="${i + 1}"></a>
+        </li>
+
+        <li th:if="${offersPage.hasNext()}" class="page-item">
+            <a class="page-link" th:href="@{/internshipOffer/offers(page=${offersPage.number + 1}, size=${offersPage.size})}">
+                Próximo
+            </a>
+        </li>
+    </ul>
+</div>
