@@ -4,6 +4,8 @@ Estagiar é como a aventura em um Cruzeiro. Todo trajeto é marcado por incríve
 ## Descrição
 O Incruise é um Sistema Acadêmico de gerenciamento de ofertas de estágio. Ele permite que empresas publiquem e mantenham suas ofertas de estágio, estudantes se candidatem a essas ofertas, que serão futuramente convertidas em estágios ativos após a seleção dos candidatos e permitirá que os coordenadores de curso administrem e monitorem todo o processo do estágio.
 
+![Preview da tela principal](assets/preview.png)
+
 ## Objetivo
 Este projeto foi realizado no intuito da obtenção da nota final da disciplina Programação para Web II, ministrada por [Frederico Costa Guedes Pereira](https://gitlab.com/fredguedespereira), professor do curso superior Sistemas para Internet, [IFPB](https://github.com/ifpb).
 
